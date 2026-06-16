@@ -139,6 +139,62 @@
     {
       "name": "Video_download_failed",
       "value": "视频下载失败"
+    },
+    {
+      "name": "Operation_History",
+      "value": "操作历史"
+    },
+    {
+      "name": "Please_choose",
+      "value": "请选择"
+    },
+    {
+      "name": "Please_choose_time",
+      "value": "请选择故障时间"
+    },
+    {
+      "name": "Please_choose_probability",
+      "value": "请选择问题概率"
+    },
+    {
+      "name": "Please_fill_description",
+      "value": "请填写问题描述"
+    },
+    {
+      "name": "Please_choose_type",
+      "value": "请选择问题类型"
+    },
+    {
+      "name": "Hello_developer",
+      "value": "尊敬的开发者您好，该设备为非标准设备，无法使用此应用"
+    },
+    {
+      "name": "Failed_details",
+      "value": "详情获取失败"
+    },
+    {
+      "name": "Bill_successful",
+      "value": "提单成功"
+    },
+    {
+      "name": "Bill_failed",
+      "value": "提单失败"
+    },
+    {
+      "name": "Failed_logs",
+      "value": "抓取日志失败"
+    },
+    {
+      "name": "Uploading",
+      "value": "上传中..."
+    },
+    {
+      "name": "Custom_long",
+      "value": "自定义名称超长"
+    },
+    {
+      "name": "bigger_than_100MB",
+      "value": "附件大小不能超过100M"
     }
   ]
 }

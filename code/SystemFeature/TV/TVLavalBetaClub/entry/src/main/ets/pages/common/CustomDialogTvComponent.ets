@@ -22,6 +22,7 @@ import { inputEventClient } from '@kit.InputKit';
 import { i18n } from '@kit.LocalizationKit';
 import { ColorMetrics } from '@kit.ArkUI';
 import { EventUtil } from './EventUtil';
+import LogManager from '../../common/Log/LogManager';
 
 const sourceToolMouseClick: number = 7;
 const TAG = 'CustomDialogTvComponent';
@@ -74,9 +75,9 @@ export struct CustomDialogTvComponent {
       // 触发tab点击，使默认焦点组件多态样式生效
       inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
       inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
-      console.log('手动触发tab点击成功');
+      LogManager.hilogI('手动触发tab点击成功');
     } catch (e) {
-      console.log('手动触发tab点击失败');
+      LogManager.hilogI('手动触发tab点击失败');
     }
   }
 
@@ -85,7 +86,7 @@ export struct CustomDialogTvComponent {
   }
 
   aboutToAppear() {
-    console.info(TAG + 'aboutToAppear' + '宽度' + this.content.dialogWidth + '高度' + this.content.dialogHeight);
+    LogManager.hilogI(TAG + 'aboutToAppear' + '宽度' + this.content.dialogWidth + '高度' + this.content.dialogHeight);
     this.get24HourFormat();
     this.userCustomTime = this.selectDate.getTime();
     if (this.content.content == '此操作将会连接当前wifi') {
@@ -145,7 +146,7 @@ export struct CustomDialogTvComponent {
             .focusable(true)
             .onFocus(() => {
               this.focusIndex = 0;
-              console.info(TAG + 'textInput:' + this.focusIndex);
+              LogManager.hilogI(TAG + 'textInput:' + this.focusIndex);
             })
             .onBlur(() => {
               this.focusIndex = -1;
@@ -169,11 +170,11 @@ export struct CustomDialogTvComponent {
                 case KeyCode.KEY_9:
                   if (event.type == KeyType.Up) {
                     this.userInputs += event.keyCode % 2000;
-                    console.info(TAG + ':input value:' + this.userInputs);
+                    LogManager.hilogI(TAG + ':input value:' + this.userInputs);
                     if (this.userInputs.length > 30) {
                       this.userInputs.substring(0, 30);
                       promptAction.showToast({
-                        message: '自定义名称超长',
+                        message: $r('app.string.Custom_long'),
                         duration: 2000,
                         bottom: globalThis.screenHeight / 4
                       });
@@ -196,7 +197,7 @@ export struct CustomDialogTvComponent {
             .onSubmit((enterKey) => {
               InputMethod.getInputMethodController().stopInput()
                 .then((ret) => {
-                  console.debug(` enterType: ${enterKey}, stopInput: ${ret}`);
+                  LogManager.hilogD(` enterType: ${enterKey}, stopInput: ${ret}`);
                 });
             });
         }
@@ -220,13 +221,13 @@ export struct CustomDialogTvComponent {
               .onDateChange((date) => {
                 this.selectDate = new Date(date.getTime());
                 this.userCustomTime = date.getTime();
-                console.info(TAG + '--日期选择器onchange-result：' + date as string);
-                console.log(TAG + 'date change数据' + this.selectDate);
+                LogManager.hilogI(TAG + '--日期选择器onchange-result：' + date as string);
+                LogManager.hilogI(TAG + 'date change数据' + this.selectDate);
               })
               .focusable(true)
               .onFocus(() => {
                 this.focusIndex = 0;
-                console.info(TAG + 'textInput:' + this.focusIndex);
+                LogManager.hilogI(TAG + 'textInput:' + this.focusIndex);
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {
@@ -274,7 +275,7 @@ export struct CustomDialogTvComponent {
               .layoutWeight(1)
               .loop(true)
               .onChange((result) => {
-                console.info(TAG + '滑动时间');
+                LogManager.hilogI(TAG + '滑动时间');
                 let currentTime = new Date();
                 let time =
                   new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDay(), result.hour,
@@ -282,12 +283,12 @@ export struct CustomDialogTvComponent {
                 currentTime.setHours(result.hour, result.minute);
                 this.selectDate = new Date();
                 this.userCustomTime = currentTime.getTime();
-                console.info(TAG + '--时间选择器onchange-result：' + JSON.stringify(result) + '--' + time.toString());
+                LogManager.hilogI(TAG + '--时间选择器onchange-result：' + JSON.stringify(result) + '--' + time.toString());
               })
               .focusable(true)
               .onFocus(() => {
                 this.focusIndex = 0;
-                console.info(TAG + 'textInput:' + this.focusIndex);
+                LogManager.hilogI(TAG + 'textInput:' + this.focusIndex);
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {

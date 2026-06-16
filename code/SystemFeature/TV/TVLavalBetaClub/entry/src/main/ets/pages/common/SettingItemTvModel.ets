@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import LogManager from '../../common/Log/LogManager';
 import BaseModel from './BaseModel';
 import { SettingItemStyle } from './StyleConstants';
 
@@ -59,7 +60,7 @@ export class SettingItemTvModel extends BaseModel {
 
   constructor() {
     super();
-    console.info(`${TAG} init`);
+    LogManager.hilogI(`${TAG} init`);
   }
 
   public setIsOn = (isOn: boolean): void => {

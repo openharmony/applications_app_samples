@@ -17,6 +17,7 @@ import { image } from '@kit.ImageKit';
 import { JSON } from '@kit.ArkTS';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import LogManager from '../Log/LogManager';
 
 /**
  * 指针相关工具类
@@ -43,16 +44,16 @@ export class PointerUtil {
                 let windowId = win.getWindowProperties().id;
                 try {
                   pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-                  console.log(`setCustomCursorSync success`);
+                  LogManager.hilogI(`setCustomCursorSync success`);
                 } catch (error) {
-                  console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                  LogManager.hilogI(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 }
               }
             });
           });
         });
     } catch (error) {
-      console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      LogManager.hilogI(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   }
 }

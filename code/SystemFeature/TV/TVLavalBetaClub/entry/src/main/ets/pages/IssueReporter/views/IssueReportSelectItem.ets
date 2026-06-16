@@ -44,7 +44,7 @@ export function registerInputConsumer(keyCode: number, callback: () => void): vo
   };
   inputConsumer.on('key', onKeyCode, () => {
     callback && callback();
-    console.log(TAG, 'inputConsumer keyEvent start');
+    LogManager.log(TAG, 'inputConsumer keyEvent start');
   });
 }
 
@@ -78,7 +78,7 @@ export function enterClick() {
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err);
+    LogManager.hilogEWithTag('settingList inputEventClient' , err);
   }
 }
 
@@ -89,7 +89,7 @@ const sourceToolMouseClick: number = 7;
 export default struct issueReportSelectItem {
   @Prop itemType: IssueReporterDetailItemType = IssueReporterDetailItemType.default;
   title: ResourceStr = '';
-  @Prop itemValue: string = '请选择';
+  @Prop itemValue: string = this.getResourceToString($r('app.string.Please_choose'));
   selectedTimeHandle?: (time: string) => void;
   selectedDateHandle?: (time: string) => void;
   selectedFilterHandle?: (filter: string, index: number) => void;
@@ -153,7 +153,9 @@ export default struct issueReportSelectItem {
     alignment: DialogAlignment.Center,
     customStyle: true
   });
-
+  getResourceToString(res: Resource) {
+    return getContext().resourceManager.getStringSync(res.id)
+  }
   onPageShow() {
     this.issueReportTime = '';
     this.issueReportDate = '';
@@ -264,7 +266,7 @@ export default struct issueReportSelectItem {
         };
 
         Row({ space: vpChangeLpx(39) }) {
-          Text(this.itemValue || '请选择')
+          Text(this.itemValue || $r('app.string.Please_choose'))
             .fontColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'))
             .fontSize(fpChangeLpx(36));
           Image($r('app.media.icon_arrow_right'))
@@ -288,7 +290,7 @@ export default struct issueReportSelectItem {
         try {
           emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e);
+          LogManager.hilogEWithTag('err',e);
         }
         if (!EventUtil.isTouchEvent(event)) {
           return;
@@ -354,7 +356,7 @@ export default struct issueReportSelectItem {
         try {
           emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e);
+          LogManager.hilogEWithTag('err',e);
         }
       }
     })

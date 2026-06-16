@@ -20,6 +20,7 @@ import { tabClick } from '../Index';
 import json from '@ohos.util.json';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { EventUtil } from '../common/EventUtil';
+import LogManager from '../../common/Log/LogManager';
 
 const TAG = 'IssueReporterHome';
 const sourceToolMouseClick: number = 7;
@@ -87,21 +88,21 @@ export default struct IssueReporterHome {
               focusControl.requestFocus('' + index);
               switch (this.currentIndex) {
                 case 0:
-                  console.log('点击了创建', index, this.currentIndex);
+                  LogManager.log('点击了创建', (index + this.currentIndex).toString());
                   AppStorage.setOrCreate('page', 0);
                   router.pushUrl({
                     url: 'pages/IssueReporter/IssueReporterAdd',
                   });
                   break;
                 case 1:
-                  console.log('点击了创建', index, this.currentIndex);
+                  LogManager.log('点击了创建', (index + this.currentIndex).toString());
                   AppStorage.setOrCreate('page', 1);
                   router.pushUrl({
                     url: 'pages/IssueReporter/views/IssueReporterList',
                   });
                   break;
                 case 2:
-                  console.log('点击了创建', index, this.currentIndex);
+                  LogManager.log('点击了创建', (index + this.currentIndex).toString());
                   AppStorage.setOrCreate('page', 2);
                   router.pushUrl({
                     url: 'pages/IssueReporter/UseIntroduction',
@@ -124,7 +125,7 @@ export default struct IssueReporterHome {
           .onKeyEvent((item) => {
             if (item.type == 0) {
               let focus: number = AppStorage.get('page') as number;
-              console.log('熊', focus, ':', this.currentIndex, ':', json.stringify(item));
+              LogManager.log('熊', focus + ':' + this.currentIndex + ':' + json.stringify(item));
 
               if (focus == 0) {
                 if (item.keyCode == KeyCode.KEYCODE_DPAD_DOWN) {

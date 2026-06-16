@@ -42,16 +42,16 @@ export default class EntryAbility extends UIAbility {
 
     this.startRequestPermission();
 
-    bundleManager.getApplicationInfo('com.laval.betaclub', bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT)
+    bundleManager.getApplicationInfo('com.samples.betaclub', bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT)
       .then((applicationInfo) => {
         AppStorage.setOrCreate<number>('appUid', applicationInfo.uid);
-        console.info(TAG, `getApplicationInfo success, uid: ${applicationInfo.uid}`);
+        LogManager.log(TAG, `getApplicationInfo success, uid: ${applicationInfo.uid}`);
       })
       .catch((err: BusinessError) => {
-        console.error(TAG, `getApplicationInfo fail, err: ${err}`);
+        LogManager.hilogEWithTag(TAG, `getApplicationInfo fail, err: ${err}`);
       });
 
-    KvManagerService.createKV(this.context, 'com.laval.betaclub');
+    KvManagerService.createKV(this.context, 'com.samples.betaclub');
     KvManagerService.createStore(KeyConstant.KV_STORE_ID);
   }
 

@@ -139,6 +139,62 @@
     {
       "name": "Video_download_failed",
       "value": "Video download failed"
+    },
+    {
+      "name": "Operation_History",
+      "value": "Operation History"
+    },
+    {
+      "name": "Please_choose",
+      "value": "Please choose"
+    },
+    {
+      "name": "Please_choose_time",
+      "value": "Please choose the fault time"
+    },
+    {
+      "name": "Please_choose_probability",
+      "value": "Please choose the question probability"
+    },
+    {
+      "name": "Please_fill_description",
+      "value": "Please fill in the problem description"
+    },
+    {
+      "name": "Please_choose_type",
+      "value": "Please choose a question type"
+    },
+    {
+      "name": "Hello_developer",
+      "value": "Hello developer, this device is non-standard and cannot use this app."
+    },
+    {
+      "name": "Failed_details",
+      "value": "Failed to get details"
+    },
+    {
+      "name": "Bill_successful",
+      "value": "Bill of lading successful"
+    },
+    {
+      "name": "Bill_failed",
+      "value": "Bill of lading failed"
+    },
+    {
+      "name": "Failed_logs",
+      "value": "Failed to fetch logs"
+    },
+    {
+      "name": "Uploading",
+      "value": "Uploading..."
+    },
+    {
+      "name": "Custom_long",
+      "value": "Custom name too long"
+    },
+    {
+      "name": "bigger_than_100MB",
+      "value": "The attachment can't be bigger than 100MB"
     }
   ]
 }

@@ -183,7 +183,7 @@ export default struct IssueReporterAdd {
       this.isManualBack = true;
 
       promptAction.showToast({
-        message: '请选择故障时间'
+        message: $r('app.string.Please_choose_time')
       });
       return;
     }
@@ -193,7 +193,7 @@ export default struct IssueReporterAdd {
       this.isManualBack = true;
 
       promptAction.showToast({
-        message: '请选择问题概率'
+        message: $r('app.string.Please_choose_probability')
       });
       return;
     }
@@ -203,7 +203,7 @@ export default struct IssueReporterAdd {
       this.isManualBack = true;
 
       promptAction.showToast({
-        message: '请填写问题描述'
+        message: $r('app.string.Please_fill_description')
       });
       return;
     }
@@ -213,7 +213,7 @@ export default struct IssueReporterAdd {
       this.isManualBack = true;
 
       promptAction.showToast({
-        message: '请选择问题类型'
+        message: $r('app.string.Please_choose_type')
       });
       return;
     }
@@ -225,7 +225,7 @@ export default struct IssueReporterAdd {
 
     if (this.allSize / BYTE_TO_MB > 100) {
       promptAction.showToast({
-        message: '附件大小不能超过100M'
+        message: $r('app.string.bigger_than_100MB')
       });
       return;
     }
@@ -420,14 +420,14 @@ export default struct IssueReporterAdd {
         if (!latestTimesFiles.includes(file)) {
           const filePath = dstPath + '/hilog' + '/' + file;
           fs.unlinkSync(filePath);
-          console.log(TAG, `已删除文件: ${filePath}`);
+          LogManager.log(TAG, `已删除文件: ${filePath}`);
         }
       }
 
       this.uploadLogs(`${KeyConstant.CACHE_LOG_PATH_FOLDER}/`, `allLogs${this.timeStamp}.zip`);
     } catch (err) {
       promptAction.showToast({
-        message: '抓取日志失败'
+        message: $r('app.string.Failed_logs')
       });
       this.issueInfoCache('6');
       LogManager.hilogIWithTag(TAG, 'logCatcher.catchLog: ' + JSON.stringify(err));
@@ -512,7 +512,7 @@ export default struct IssueReporterAdd {
         }
       }
     } catch (error) {
-      console.error(TAG, 'Error processing files:', error);
+      LogManager.hilogEWithTag(TAG, 'Error processing files:' + error);
     }
   }
 
@@ -609,7 +609,7 @@ export default struct IssueReporterAdd {
         this.isManualBack = true;
         this.issueInfoCache('7');
         promptAction.showToast({
-          message: '提单失败'
+          message: $r('app.string.Bill_failed')
         });
         return;
       }
@@ -622,14 +622,14 @@ export default struct IssueReporterAdd {
         this.issueInfoCache('7');
 
         promptAction.showToast({
-          message: '提单失败'
+          message: $r('app.string.Bill_failed')
         });
         return;
       }
       this.issueInfoCache('8', true);
 
       promptAction.showToast({
-        message: '提单成功'
+        message: $r('app.string.Bill_successful')
       });
       this.isManualBack = true;
       initImageCollection();

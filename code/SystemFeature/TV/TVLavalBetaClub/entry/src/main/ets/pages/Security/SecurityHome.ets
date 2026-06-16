@@ -17,7 +17,7 @@
 struct SecurityHome {
   build() {
     Column() {
-      Text('尊敬的开发者您好，该设备为非标准设备，无法使用此应用。')
+      Text($r('app.string.Hello_developer'))
         .fontSize('150lpx')
         .fontWeight(FontWeight.Bold);
     }

@@ -96,7 +96,7 @@ export default struct IssueReporterDetail {
       inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
       inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
     } catch (err) {
-      console.error('settingList inputEventClient' + err);
+      LogManager.hilogEWithTag('settingList inputEventClient' , err);
     }
   }
 
@@ -115,7 +115,7 @@ export default struct IssueReporterDetail {
 
       if (listErr) {
         promptAction.showToast({
-          message: '详情获取失败'
+          message: $r('app.string.Failed_details')
         });
         return;
       }
@@ -128,7 +128,7 @@ export default struct IssueReporterDetail {
 
       if (code != 200) {
         promptAction.showToast({
-          message: '详情获取失败'
+          message: $r('app.string.Failed_details')
         });
         return;
       }
@@ -160,7 +160,7 @@ export default struct IssueReporterDetail {
           `getHistory, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`);
         if (listErr) {
           promptAction.showToast({
-            message: '详情获取失败'
+            message: $r('app.string.Failed_details')
           });
           return;
         }
@@ -174,7 +174,7 @@ export default struct IssueReporterDetail {
 
         if (code != 200) {
           promptAction.showToast({
-            message: '详情获取失败'
+            message: $r('app.string.Failed_details')
           });
           return;
         }
@@ -286,7 +286,7 @@ export default struct IssueReporterDetail {
     .height('100%')
     .backgroundColor($r('app.color.global_default_background'))
     .onKeyEvent((event) => {
-      console.log('TextPickerDialog:onChange()' + 'onKeyEvent 3');
+      LogManager.hilogI('TextPickerDialog:onChange()' + 'onKeyEvent 3');
       if (event.keyCode == KeyCode.KEYCODE_ESCAPE) {
         router.back();
       }

@@ -19,6 +19,7 @@ import photoManager from '../manager/PhotoManager';
 import { AlbumModel, AlbumType, PhotoModel } from '../models/PhotoModel';
 import { PointerUtil } from '../common/Utils/PointerUtil';
 import { common } from '@kit.AbilityKit';
+import LogManager from '../common/Log/LogManager';
 
 export function tabClick() {
   let keyDownOpt: inputEventClient.KeyEvent = {
@@ -40,7 +41,7 @@ export function tabClick() {
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err);
+    LogManager.hilogEWithTag('settingList inputEventClient' , err);
   }
 }
 
@@ -57,7 +58,7 @@ struct Index {
   }
 
   private allPhotoObserver = (photos: PhotoModel[], albumModel: AlbumModel) => {
-    console.info('allPhotoObserver tmpList: ' + JSON.stringify(photos));
+    LogManager.hilogI('allPhotoObserver tmpList: ' + JSON.stringify(photos));
     AppStorage.setOrCreate('photoGroupList', photos);
   };
 
@@ -92,11 +93,11 @@ struct Index {
     .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) })
     // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
     .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-      console.info('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio);
+      LogManager.hilogI('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio);
       if (isVisible && currentRatio >= 1.0) {
-        console.info('IssueReporterHome onPageShow xx');
+        LogManager.hilogI('IssueReporterHome onPageShow xx');
         tabClick();
-        console.info('IssueReporterHome onPageShow');
+        LogManager.hilogI('IssueReporterHome onPageShow');
       }
     })
     .onTouch((event) => {

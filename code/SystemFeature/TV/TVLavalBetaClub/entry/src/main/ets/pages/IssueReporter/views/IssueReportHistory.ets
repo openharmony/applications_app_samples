@@ -26,7 +26,7 @@ export default struct issueReportHistory {
     Column() {
       if (this.issueHistory?.length) {
         Column() {
-          Text('操作历史')
+          Text($r('app.string.Operation_History'))
             .fontSize('42lpx')
             .fontWeight(600)
             .margin({ left: '72lpx', bottom: '24lpx' });

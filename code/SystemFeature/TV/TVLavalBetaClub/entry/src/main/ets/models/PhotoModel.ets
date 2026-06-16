@@ -14,6 +14,7 @@
  */
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
+import LogManager from '../common/Log/LogManager';
 
 export const CACHE_ALBUM_MIN_WIDTH = 1920;
 
@@ -100,7 +101,7 @@ class BasicDataSource<T> implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
+      LogManager.hilogI('add listener');
       this.listeners.push(listener);
     }
   }
@@ -109,7 +110,7 @@ class BasicDataSource<T> implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
+      LogManager.hilogI('remove listener');
       this.listeners.splice(pos, 1);
     }
   }

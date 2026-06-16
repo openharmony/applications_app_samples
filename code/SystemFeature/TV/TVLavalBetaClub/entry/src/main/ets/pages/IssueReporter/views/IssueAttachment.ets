@@ -25,6 +25,7 @@ import fileUtil from '../../../manager/utils/FileUtils';
 import { loadVideoThumb } from '../../../manager/VideoThumbLoader';
 import { emitter } from '@kit.BasicServicesKit';
 import { EventUtil } from '../../common/EventUtil';
+import LogManager from '../../../common/Log/LogManager';
 
 const TAG = 'issueAttachment';
 const sourceToolMouseClick: number = 7;
@@ -97,7 +98,7 @@ export default struct issueAttachment {
   isSelectPhotoFunc() {
     this.dialogController?.open();
     this.imageInfo.setData(AppStorage.get('photoGroupList') as PhotoModel[]);
-    console.info('issueAttachment aboutToAppear' + JSON.stringify(this.imageInfo.getAllData()));
+    LogManager.hilogI('issueAttachment aboutToAppear' + JSON.stringify(this.imageInfo.getAllData()));
   }
 
   aboutToAppear(): void {
@@ -243,7 +244,7 @@ export default struct issueAttachment {
         try {
           emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e);
+          LogManager.hilogEWithTag('err' , e);
         }
       }
     })
@@ -591,11 +592,11 @@ export struct ThumbnailShow {
 
   getFormattedDuration(milliSecond: number): string {
     if (milliSecond == null) {
-      console.error(TAG, 'getFormattedDuration, input is null!');
+      LogManager.hilogEWithTag(TAG, 'getFormattedDuration, input is null!');
       return '00:00';
     }
     if (milliSecond <= 0) {
-      console.error(TAG, 'getFormattedDuration, input is negative number!');
+      LogManager.hilogEWithTag(TAG, 'getFormattedDuration, input is negative number!');
       return '00:00';
     }
     if (milliSecond < this.MILLISECONDS_PER_SECOND) {
@@ -614,7 +615,7 @@ export struct ThumbnailShow {
 
   checkTime(time: number): string {
     if (time < 0) {
-      console.error(TAG, 'checkTime, input is negative number!');
+      LogManager.hilogEWithTag(TAG, 'checkTime, input is negative number!');
       return '00';
     }
     let formatTime: string = time.toString();

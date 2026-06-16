@@ -331,7 +331,7 @@ export default struct IssueReporterList {
             if (item.status == '5') {
               {
                 promptAction.showToast({
-                  message: '上传中...'
+                  message: $r('app.string.Uploading')
                 });
                 return;
               }

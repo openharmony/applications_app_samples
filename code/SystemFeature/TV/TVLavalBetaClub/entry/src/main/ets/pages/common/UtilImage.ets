@@ -14,6 +14,7 @@
  */
 import util from '@ohos.util';
 import { UploadImageInfo } from '../../common/Constants/TypeData';
+import LogManager from '../../common/Log/LogManager';
 
 export interface ThumbnailInfo {
   thumbnail: string,
@@ -34,8 +35,8 @@ export interface AttachmentParams {
  */
 export const setImageBase64 = async (imageNameRaw: string, readBuffer: ArrayBuffer): Promise<void> => {
   const thumbnailBase64 = encodeToBase64(readBuffer);
-  console.info('wbbBase', thumbnailBase64.length);
-  console.info('wbbBase', thumbnailBase64);
+  LogManager.hilogI('wbbBase' + thumbnailBase64.length);
+  LogManager.hilogI('wbbBase' + thumbnailBase64);
   let thumbnail: ThumbnailInfo = {
     thumbnail: thumbnailBase64,
     imageName: imageNameRaw
@@ -62,9 +63,9 @@ export const encodeToBase64 = (readBuffer: ArrayBuffer) => {
  * 提单成功之后，清除之前存储的数据
  */
 export const initImageCollection = (): void => {
-  //当点击提交的时候，清空上次的图片集合信息
+  // 当点击提交的时候，清空上次的图片集合信息
   AppStorage.setOrCreate('uploadImageArr', []);
-  //当点击提交的时候，清空上次的缩略图集合信息
+  // 当点击提交的时候，清空上次的缩略图集合信息
   AppStorage.setOrCreate('thumbnails', []);
 };
 
@@ -108,7 +109,7 @@ export const stringToObject = (input: string | Object | ArrayBuffer): Object | u
     try {
       return JSON.parse(input);
     } catch (e) {
-      console.info('The backend returned illegal data');
+      LogManager.hilogI('The backend returned illegal data');
     }
     return undefined;
   } else {

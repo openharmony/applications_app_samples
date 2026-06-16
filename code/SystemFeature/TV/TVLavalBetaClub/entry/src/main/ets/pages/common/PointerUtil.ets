@@ -15,6 +15,7 @@
 import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { JSON } from '@kit.ArkTS';
+import LogManager from '../../common/Log/LogManager';
 
 /**
  * 指针相关工具类
@@ -37,9 +38,9 @@ export class PointerUtil {
         svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
           try {
             pointer.setCustomCursorSync(AppStorage.get('windowId'), pixelMap, 25, 25);
-            console.log(`setCustomCursorSync success`);
+            LogManager.hilogI(`setCustomCursorSync success`);
           } catch (error) {
-            console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            LogManager.hilogI(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
         });
       });

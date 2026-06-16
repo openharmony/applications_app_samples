@@ -105,10 +105,10 @@ export default struct IssueReporterDetailItem {
         }
       },
       onCancel: () => {
-        console.info('DatePickerDialog:onCancel()');
+        LogManager.hilogI('DatePickerDialog:onCancel()');
       },
       onDateChange: (value: Date) => {
-        console.info('DatePickerDialog:onDateChange()' + value.toString());
+        LogManager.hilogI('DatePickerDialog:onDateChange()' + value.toString());
       }
     });
   }
@@ -133,10 +133,10 @@ export default struct IssueReporterDetailItem {
         }
       },
       onCancel: () => {
-        console.info('TextPickerDialog:onCancel()');
+        LogManager.hilogI('TextPickerDialog:onCancel()');
       },
       onChange: (value: TextPickerResult) => {
-        console.info('TextPickerDialog:onChange()' + JSON.stringify(value));
+        LogManager.hilogI('TextPickerDialog:onChange()' + JSON.stringify(value));
       }
     });
   }
@@ -233,7 +233,7 @@ export default struct IssueReporterDetailItem {
             .textAlign(TextAlign.End)
             .layoutWeight(1);
         } else {
-          Text('请选择故障时间')
+          Text($r('app.string.Please_choose_time'))
             .fontSize('60lpx')
             .fontColor(Color.Gray)
             .margin({ left: '40lpx', right: '40lpx' })
@@ -255,7 +255,7 @@ export default struct IssueReporterDetailItem {
             .textAlign(TextAlign.End)
             .layoutWeight(1);
         } else {
-          Text('请选择问题概率')
+          Text($r('app.string.Please_choose_probability'))
             .fontSize('60lpx')
             .fontColor(Color.Gray)
             .margin({ left: '40lpx', right: '40lpx' })
