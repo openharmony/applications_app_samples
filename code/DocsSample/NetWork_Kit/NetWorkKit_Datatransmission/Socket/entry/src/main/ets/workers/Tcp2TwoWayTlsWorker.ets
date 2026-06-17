@@ -169,7 +169,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
       workerPort.postMessage({ type: 'tlsConnectSuccess', message: 'TLS mutual authentication connection successful' });
       // [EndExclude tcp_Upgrade_to_tls_server]
     }).catch((e: BusinessError) => {
-      hilog.info(0x0000, 'testTag', 'tls connect fail');
+      hilog.error(0x0000, 'testTag', 'tls connect fail');
       // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'tlsConnectFailure', message: `TLS connection failed: ${e.message}` });
       // [EndExclude tcp_Upgrade_to_tls_server]

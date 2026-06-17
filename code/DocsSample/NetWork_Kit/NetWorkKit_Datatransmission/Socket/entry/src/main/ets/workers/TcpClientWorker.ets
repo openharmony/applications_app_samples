@@ -117,7 +117,7 @@ function sendMessage(tcpMessage: TcpMessage) {
         workerPort.postMessage({ type: 'sendMessageSuccess', message: tcpMessage.message });
         // [EndExclude tcp_client_worker_ipAddress]
       }).catch(() => {
-        hilog.info(0x0000, 'testTag', 'send fail');
+        hilog.error(0x0000, 'testTag', 'send fail');
         // [StartExclude tcp_client_worker_ipAddress]
         workerPort.postMessage({ type: 'sendMessageFailure', message: 'Sending message failed.' });
         // [EndExclude tcp_client_worker_ipAddress]

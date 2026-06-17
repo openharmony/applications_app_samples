@@ -105,10 +105,10 @@ function startLocalSocket(address: string, timeout: number, closeTime: number): 
     client.send(sendOpt).then(() => {
       hilog.info(0x0000, 'testTag', `send success`);
     }).catch((err: Object) => {
-      hilog.info(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
+      hilog.error(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
     });
   }).catch((err: Object) => {
-    hilog.info(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
+    hilog.error(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
   });
   // [End local_socket_worker_sendOpt]
 
@@ -147,7 +147,7 @@ function startLocalSocketServer(address: string): void {
   server.on('connect', (connection: socket.LocalSocketConnection) => {
     // 订阅LocalSocketConnection相关的事件。
     connection.on('error', (err: Object) => {
-      hilog.info(0x0000, 'testTag', 'on error success');
+      hilog.error(0x0000, 'testTag', 'on error received');
     });
 
     connection.on('message', (value: socket.LocalSocketMessageInfo) => {
