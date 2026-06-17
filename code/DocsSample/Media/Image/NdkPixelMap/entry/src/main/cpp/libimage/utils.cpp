@@ -14,7 +14,6 @@
  */
 
 // [Start ndk_pixelmap_extract_average_color]
-#include <cmath>
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
 

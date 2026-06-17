@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-// [Start ndk_pixelmap_bitmap_operations]
 #include <linux/kd.h>
 #include <string>
 
+// [Start ndk_pixelmap_bitmap_operations]
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
 
