@@ -17,4 +17,4 @@ add_library(entry SHARED napi_init.cpp sample_callback.cpp muxer.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so libnative_buffer.so libhilog_ndk.z.so librawfile.z.so libnative_avscreen_capture.so
    libace_ndk.z.so libnative_media_codecbase.so libnative_media_core.so libnative_media_venc.so libnative_window.so libnative_media_avdemuxer.so
    libnative_media_avsource.so libnative_image.so librawfile.z.so libnative_media_avmuxer.so  libnative_media_adec.so libnative_media_aenc.so
-   libnative_media_vdec.so)
+   libnative_media_vdec.so libability_runtime.so libnative_display_manager.so)

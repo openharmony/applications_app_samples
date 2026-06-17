@@ -83,6 +83,10 @@
     {
       "name": "allow_desc",
       "value": "允许"
+    },
+    {
+      "name": "arkts_saving_file_desc",
+      "value": "ArkTS录屏存文件"
     }
   ]
 }

@@ -87,6 +87,19 @@ export struct MenuSCComponent {
             console.info('Invoke pushUrl succeeded.');
           });
         })
+
+        MenuItem({ content: $r('app.string.arkts_saving_file_desc')})
+          .onChange((selected) => {
+          router.pushUrl({
+            url: 'pages/Scene6'
+          }, router.RouterMode.Single, (err) => {
+            if (err) {
+              console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info('Invoke pushUrl succeeded.');
+          });
+        })
       }
     }
   }
