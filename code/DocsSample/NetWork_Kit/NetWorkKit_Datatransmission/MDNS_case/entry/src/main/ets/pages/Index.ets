@@ -34,7 +34,7 @@ export function resourceToString(resId: number, context: Context): string {
     return context.resourceManager.getStringSync(resId);
   } catch (error) {
     hilog.error(0x0000, 'testTag', `resourceToString fail, ${JSON.stringify(error)}`);
-    return "";
+    return '';
   }
 }
 
