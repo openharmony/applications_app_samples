@@ -62,6 +62,7 @@ std::unique_ptr<Muxer> g_muxer;
 int32_t g_surfaceOutputFd = -1;
 int32_t g_fileOutputFd = -1;
 int32_t g_windowOutputFd = -1;
+int32_t g_windowId = -1;
 int32_t* g_missionIds = nullptr;
 int32_t* g_missionIds2 = nullptr;
 

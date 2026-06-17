@@ -339,10 +339,10 @@ void SetCaptureArea(OH_AVScreenCapture *capture)
 {
     // [Start screenCapture_buffer_setCaptureArea]
     OH_Rect* region = new OH_Rect;
-        region->x = 0;
-        region->y = 0;
-        region->width = 100;
-        region->height = 100;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
     uint64_t regionDisplayId = 0; // 传入矩形区域所在的屏幕Id。
     OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
     delete region;
@@ -365,6 +365,23 @@ void ExcludeContent(OH_AVScreenCapture *capture)
     OH_AVScreenCapture_ReleaseContentFilter(contentFilter);
     contentFilter = nullptr;
     // [End screenCapture_buffer_excludeContent]
+}
+
+void SetSpecifiedWindowIdForWindowCapture(OH_AVScreenCaptureConfig &config)
+{
+    // [Start screenCapture_withWindow_forID]
+    // 如果期望录制单个窗口，需传入单个窗口ID；如果期望同时录制多个窗口，需传入期望录制的窗口ID列表。
+    g_missionIds = new int32_t[1]{g_windowId}; // 指定录制的窗口ID。
+    config.videoInfo.videoCapInfo.missionIDs = g_missionIds.data();
+    int32_t missionIdsLen = sizeof(g_missionIds) / sizeof(g_missionIds[0]);
+    config.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+    config.captureMode = OH_CAPTURE_SPECIFIED_WINDOW; // 设置录屏模式为录制指定窗口。
+
+    // 设置为false，代表录屏启动后不弹出系统Picker，弹出隐私提示弹窗。
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+    // [End screenCapture_withWindow_forID]
 }
 
 // [Start screenCapture_config_buffer_callback]
@@ -750,6 +767,21 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
     return res;
 }
 
+static napi_value setWindowIdForWindow(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_typedarray_type type_napi;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    napi_get_value_int32(env, args[0], &g_windowId);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0x0, "setWindowIdForWindow", "get windowId %{public}d", g_windowId);
+
+    return nullptr;
+}
+
 // 开始窗口级录屏
 static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
 {
@@ -777,12 +809,15 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     config_.dataType = OH_CAPTURE_FILE;
     config_.recorderInfo = recorderInfo;
 
-    // [Start screenCapture_createCaptureStrategy]
+    // [Start screenCapture_withWindow_forPicker]
     // 通过弹出屏幕捕获Picker列表方式，选择已打开的应用窗口进行窗口级录屏。
     OH_AVScreenCapture_CaptureStrategy *strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPickerPopUp(strategy, true);
     OH_AVScreenCapture_SetCaptureStrategy(g_avCapture, strategy);
-    // [End screenCapture_createCaptureStrategy]
+    // [End screenCapture_withWindow_forPicker]
+
+    // 可选，传入期望录制的窗口ID进行录屏。
+    SetSpecifiedWindowIdForWindowCapture(config_);
 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMicrophone);
@@ -966,7 +1001,6 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
     return res;
 }
 
-
 // 调用老接口，仅提供代码实现，不建议使用
 void MockOnAudioBufferAvailable(OH_AVScreenCapture *screenCapture, bool isReady, OH_AudioCaptureSourceType type)
 {
@@ -1046,6 +1080,7 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"startScreenCaptureWithWindow", nullptr, StartScreenCapture_04, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"setWindowId", nullptr, setWindowIdForWindow, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
