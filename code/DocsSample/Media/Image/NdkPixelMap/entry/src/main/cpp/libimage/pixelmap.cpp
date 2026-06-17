@@ -46,17 +46,17 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
         data[i] = i + 1;
     }
     
-    // 创建参数结构体实例，并设置参数
+    // 创建参数结构体实例，并设置参数。
     OH_Pixelmap_InitializationOptions *createOpts;
     OH_PixelmapInitializationOptions_Create(&createOpts);
     OH_PixelmapInitializationOptions_SetWidth(createOpts, OPTS_WIDTH);
     OH_PixelmapInitializationOptions_SetHeight(createOpts, OPTS_HEIGHT);
     OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_RGBA_8888);
     OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
-    
+
     Image_ErrorCode errCode = OH_PixelmapNative_CreatePixelmap(data, DATA_SIZE, createOpts, pixelmap);
 
-    // 读取图像像素数据，结果写入数组里
+    // 读取图像像素数据，结果写入数组里。
     uint8_t destination[DATA_SIZE];
     size_t destinationSize = DATA_SIZE;
     errCode = OH_PixelmapNative_ReadPixels(*pixelmap, destination, &destinationSize);
@@ -65,7 +65,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
         return errCode;
     }
 
-    // 读取缓冲区中的图片数据，结果写入Pixelmap中
+    // 读取缓冲区中的图片数据，结果写入Pixelmap中。
     uint8_t source[DATA_SIZE];
     size_t sourceSize = DATA_SIZE;
     for (int i = 0; i < sourceSize; i++) {
@@ -77,7 +77,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
         return errCode;
     }
 
-    // 创建图片信息实例，并获取图像像素信息
+    // 创建图片信息实例，并获取图像像素信息。
     OH_Pixelmap_ImageInfo *imageInfo;
     OH_PixelmapImageInfo_Create(&imageInfo);
     errCode = OH_PixelmapNative_GetImageInfo(*pixelmap, imageInfo);
@@ -86,7 +86,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
         return errCode;
     }
 
-    // 获取图片的宽，高，pixel格式，透明度等信息
+    // 获取图片的宽、高、像素格式、透明度类型等信息。
     uint32_t width, height, rowStride;
     int32_t pixelFormat, alphaType;
     OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
@@ -98,13 +98,14 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
     OH_LOG_INFO(LOG_APP, "pixelmapTest GetImageInfo success, width:%{public}d, height:%{public}d, rowStride:"
         "%{public}d, pixelFormat:%{public}d, alphaType:%{public}d.", width, height, rowStride, pixelFormat, alphaType);
     
+    // 使用完毕后释放InitializationOptions实例。
     OH_PixelmapInitializationOptions_Release(createOpts);
     return IMAGE_SUCCESS;
 }
 
 static Image_ErrorCode PixelmapTest()
 {
-    // 创建Pixelmap实例
+    // 创建Pixelmap实例。
     OH_PixelmapNative *pixelmap = nullptr;
 
     Image_ErrorCode errCode = CreatePixelMap(&pixelmap);
@@ -112,42 +113,42 @@ static Image_ErrorCode PixelmapTest()
         return errCode;
     }
 
-    // 设置透明比率来让Pixelap达到对应的透明效果
+    // 设置透明比率来让Pixelmap达到对应的透明效果。
     errCode = OH_PixelmapNative_Opacity(pixelmap, OPACITY_VALUE);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
-    // 对图片进行缩放
+    // 对图片进行缩放。
     errCode = OH_PixelmapNative_Scale(pixelmap, SCALE_X, SCALE_Y);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Scale failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
-    // 对图片进行位置变换
+    // 对图片进行位置变换。
     errCode = OH_PixelmapNative_Translate(pixelmap, TRANSLATE_X, TRANSLATE_Y);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Translate failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
-    // 对图片进行旋转
+    // 对图片进行旋转。
     errCode = OH_PixelmapNative_Rotate(pixelmap, ROTATE_ANGLE);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Rotate failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
-    // 对图片进行翻转
+    // 对图片进行翻转。
     errCode = OH_PixelmapNative_Flip(pixelmap, true, true);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Flip failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
-    // 对图片进行裁剪
+    // 对图片进行裁剪。
     Image_Region region;
     region.x = REGION_X;
     region.y = REGION_Y;
@@ -159,8 +160,53 @@ static Image_ErrorCode PixelmapTest()
         return errCode;
     }
 
-    // 释放Pixelmap, InitializationOptions实例
+    // 使用完毕后释放Pixelmap实例。
     OH_PixelmapNative_Release(pixelmap);
     return IMAGE_SUCCESS;
+}
+
+// PixelMap预乘/非预乘格式转换示例。
+static Image_ErrorCode PixelmapConvertAlphaTypeTest()
+{
+    uint8_t data[DATA_SIZE];
+    for (int i = 0; i < DATA_SIZE; i++) {
+        data[i] = i + 1;
+    }
+
+    // 创建参数结构体实例，并设置参数。
+    OH_Pixelmap_InitializationOptions *createOpts;
+    OH_PixelmapInitializationOptions_Create(&createOpts);
+    OH_PixelmapInitializationOptions_SetWidth(createOpts, OPTS_WIDTH);
+    OH_PixelmapInitializationOptions_SetHeight(createOpts, OPTS_HEIGHT);
+    OH_PixelmapInitializationOptions_SetSrcPixelFormat(createOpts, PIXEL_FORMAT_RGBA_8888);
+    OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_RGBA_8888);
+    OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED);
+
+    // 创建非预乘格式的位图实例。
+    OH_PixelmapNative *srcPixelmap = nullptr;
+    Image_ErrorCode errCode = OH_PixelmapNative_CreatePixelmap(data, DATA_SIZE, createOpts, &srcPixelmap);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest CreateSrcPixelMap failed, errCode: %{public}d.", errCode);
+    }
+
+    // 创建预乘格式的位图实例，该dstPixelmap实例将用于保存srcPixelmap转换AlphaType后的数据。
+    OH_PixelmapNative *dstPixelmap = nullptr;
+    OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_PREMULTIPLIED);
+    errCode = OH_PixelmapNative_CreatePixelmap(data, DATA_SIZE, createOpts, &dstPixelmap);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest CreateDstPixelMap failed, errCode: %{public}d.", errCode);
+    }
+
+    // 转换AlphaType，srcPixelmap的数据将被转换为预乘格式，并保存到dstPixelmap中。
+    errCode = OH_PixelmapNative_ConvertAlphaFormat(srcPixelmap, dstPixelmap, true);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest ConvertAlphaFormat failed, errCode: %{public}d.", errCode);
+    }
+
+    // 释放Pixelmap、InitializationOptions实例。
+    OH_PixelmapNative_Release(srcPixelmap);
+    OH_PixelmapNative_Release(dstPixelmap);
+    OH_PixelmapInitializationOptions_Release(createOpts);
+    return errCode;
 }
 // [End ndk_pixelmap_bitmap_operations]

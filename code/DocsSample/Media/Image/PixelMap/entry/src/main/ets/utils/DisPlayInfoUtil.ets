@@ -16,7 +16,7 @@
 import { display } from '@kit.ArkUI';
 import Logger from '../common/Logger';
 
-export class DisPlayInfo {
+export class DisplayInfo {
   private screenWidth = 0;
   private screenHeight = 0;
   private static readonly STANDARD_WIDTH = 720;
@@ -31,12 +31,12 @@ export class DisPlayInfo {
   }
 
   public getWidth(width: number): PX {
-    let realWidth: number = Math.floor(width * this.screenWidth / DisPlayInfo.STANDARD_WIDTH);
+    let realWidth: number = Math.floor(width * this.screenWidth / DisplayInfo.STANDARD_WIDTH);
     return `${realWidth}px`;
   }
 
   public getHeight(height: number): PX {
-    let realHeight: number = Math.floor(height * this.screenWidth / DisPlayInfo.STANDARD_WIDTH);
+    let realHeight: number = Math.floor(height * this.screenWidth / DisplayInfo.STANDARD_WIDTH);
     return `${realHeight}px`;
   }
 
