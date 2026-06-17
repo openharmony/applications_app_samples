@@ -584,7 +584,7 @@ function foo5() {
 // [End finally_correctExample]
 
 // [EndExclude noESObject_app_incorrectExample]
-let obj1: I = getObject1(123);
+let obj1: ESObject = getObject1(123);
 // [End noESObject_app_incorrectExample]
 
 // [EndExclude noESObject_app_correctExample]
