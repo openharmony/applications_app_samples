@@ -50,8 +50,8 @@ entry/src/main/ets/
 ### 具体实现
 
 1. **智慧手势使能与监听注册**：在aboutToAppear中调用controller.enableSmartTapAndSlideGestures(true)开启手势，调用controller.registerMonitor(callback)注册监听回调；在aboutToDisappear中调用controller.clearMonitors()清空回调并调用enableSmartTapAndSlideGestures(false)关闭手势。
-2. **Monitor回调动态决策**：回调接收BaseGestureHandlingProposal参数，通过proposal.action判断手势动作类型（CLICK/SELECT/SCROLL_FORWARD/PAGE_FORWARD/BACK_PRESS/NONE），根据业务需求构造对应的ActionProposal（如ClickActionProposal(node)、ScrollActionProposal(node, distance)），设置到GestureHandlingResolution的selectedProposal属性返回，实现对系统默认动作的自定义覆写。
-3. **组件标记与节点定位**：交互组件通过.smartGestureShortcut({ action: GestureShortcut.PRIMARY, enabled: true, selectable: true })标记为智慧手势目标，通过.id()设置组件标识，在Monitor回调中通过this.getUIContext().getFrameNodeById(id)获取FrameNode用于构造ActionProposal。
+2. **Monitor回调动态决策**：回调接收BaseGestureHandlingProposal参数，BaseGestureHandlingProposal是基类，包含action（动作类型）和operateIntention（操作意图）；需将其转换为子类TargetedGestureProposal以获取目标组件节点（node属性），用于构造ActionProposal。通过proposal.action判断手势动作类型（CLICK/SELECT/SCROLL_FORWARD/PAGE_FORWARD/BACK_PRESS/NONE），根据业务需求构造对应的ActionProposal（如ClickActionProposal(node)、ScrollActionProposal(node, distance)），设置到GestureHandlingResolution的selectedProposal属性返回，实现对系统默认动作的自定义覆写。
+3. **组件标记与节点定位**：交互组件通过.smartGestureShortcut({ action: GestureShortcut.PRIMARY, enabled: true, selectable: true })标记为智慧手势目标，其中action指定手势动作类型，enabled控制是否响应，selectable控制是否可被选中。通过.id()设置组件标识，在Monitor回调中通过this.getUIContext().getFrameNodeById(id)获取FrameNode用于构造ActionProposal。
 4. **选中态手动控制**：通过controller.requestSelected(id)手动请求选中指定组件，通过controller.clearSelected()清空选中态，适用于需要跨页面选中或精确控制选中焦点的场景。
 
 ## 相关权限
