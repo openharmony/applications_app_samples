@@ -21,7 +21,6 @@ import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End MDNS_case_module_import]
 
-import { serviceOperateStatus } from '../common/ServiceOperateStatus';
 import { ComponentId } from '../common/ComponentId';
 
 // 定义设备信息的接口
@@ -30,18 +29,64 @@ interface DeviceInfo {
   text: string; // 设备信息文本
 }
 
-export function resourceToString(resource: Resource): string {
-  return getContext().resourceManager.getStringSync(resource);
+export function resourceToString(resId: number, context: Context): string {
+  try {
+    return context.resourceManager.getStringSync(resId);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', `resourceToString fail, ${JSON.stringify(error)}`);
+    return "";
+  }
+}
+
+interface ServiceOperateStatus {
+  ADD_SUCCESS: string;
+  ADD_FAIL: string;
+  ADDING: string;
+  RESOLVE_SUCCESS: string;
+  RESOLVE_FAIL: string;
+  RESOLVING: string;
+  REMOVE_SUCCESS: string;
+  REMOVE_FAIL: string;
+  REMOVING: string;
+  DISCOVERY_STARTED: string;
+  DISCOVERY_FAIL1: string;
+  DISCOVERY_FAIL2: string;
+  DISCOVERY_FAIL3: string;
+  DISCOVERY_STARTING: string;
+  STOPPED: string;
+  STOP_FAIL: string;
+  STOPPING: string;
 }
 
 @Entry
 @Component
 struct MdnsServiceDemo {
-  @State addServiceStatus: string = resourceToString($r('app.string.not_added')); // 添加本地服务状态展示
-  @State resolveServiceStatus: string = resourceToString($r('app.string.not_resolved')); // 解析本地服务状态展示
-  @State removeServiceStatus: string = resourceToString($r('app.string.not_removed')); // 移除本地服务状态展示
-  @State discoveryStatus: string = resourceToString($r('app.string.not_started')); // mDNS服务发现状态展示
+  context = this.getUIContext().getHostContext() as Context;
+  @State addServiceStatus: string = resourceToString($r('app.string.not_added').id, this.context); // 添加本地服务状态展示
+  @State resolveServiceStatus: string = resourceToString($r('app.string.not_resolved').id, this.context); // 解析本地服务状态展示
+  @State removeServiceStatus: string = resourceToString($r('app.string.not_removed').id, this.context); // 移除本地服务状态展示
+  @State discoveryStatus: string = resourceToString($r('app.string.not_started').id, this.context); // mDNS服务发现状态展示
   @State discoveredDevices: Array<DeviceInfo> = []; // 保存发现的设备信息
+
+  serviceOperateStatus:ServiceOperateStatus  = {
+    ADD_SUCCESS: resourceToString($r('app.string.ADD_SUCCESS').id, this.context),
+    ADD_FAIL: resourceToString($r('app.string.ADD_FAIL').id, this.context),
+    ADDING: resourceToString($r('app.string.ADDING').id, this.context),
+    RESOLVE_SUCCESS: resourceToString($r('app.string.RESOLVE_SUCCESS').id, this.context),
+    RESOLVE_FAIL: resourceToString($r('app.string.RESOLVE_FAIL').id, this.context),
+    RESOLVING: resourceToString($r('app.string.RESOLVING').id, this.context),
+    REMOVE_SUCCESS: resourceToString($r('app.string.REMOVE_SUCCESS').id, this.context),
+    REMOVE_FAIL: resourceToString($r('app.string.REMOVE_FAIL').id, this.context),
+    REMOVING: resourceToString($r('app.string.REMOVING').id, this.context),
+    DISCOVERY_STARTED: resourceToString($r('app.string.DISCOVERY_STARTED').id, this.context),
+    DISCOVERY_FAIL1: resourceToString($r('app.string.DISCOVERY_FAIL1').id, this.context),
+    DISCOVERY_FAIL2: resourceToString($r('app.string.DISCOVERY_FAIL2').id, this.context),
+    DISCOVERY_FAIL3: resourceToString($r('app.string.DISCOVERY_FAIL3').id, this.context),
+    DISCOVERY_STARTING: resourceToString($r('app.string.DISCOVERY_STARTING').id, this.context),
+    STOPPED: resourceToString($r('app.string.STOPPED').id, this.context),
+    STOP_FAIL: resourceToString($r('app.string.STOP_FAIL').id, this.context),
+    STOPPING: resourceToString($r('app.string.STOPPING').id, this.context)
+  };
 
   build() {
     Column() {
@@ -65,28 +110,28 @@ struct MdnsServiceDemo {
 
 
       // 显示添加本地服务状态的文本
-      Text(resourceToString($r('app.string.Add_Local_Service')) + ': ' + this.addServiceStatus)
+      Text(resourceToString($r('app.string.Add_Local_Service').id, this.context) + ': ' + this.addServiceStatus)
         .fontSize($r('app.float.size18'))
         .fontColor(Color.Black)
         .margin({ top: $r('app.float.margin10') })
         .id(ComponentId.SERVICE_ADD_STATUS)
 
       // 显示解析本地服务状态的文本
-      Text(resourceToString($r('app.string.Resolve_Local_Service')) + ': ' + this.resolveServiceStatus)
+      Text(resourceToString($r('app.string.Resolve_Local_Service').id, this.context) + ': ' + this.resolveServiceStatus)
         .fontSize($r('app.float.size18'))
         .fontColor(Color.Black)
         .margin({ top: $r('app.float.margin10') })
         .id(ComponentId.SERVICE_RESOLVE_STATUS)
 
       // 显示移除本地服务状态的文本
-      Text(resourceToString($r('app.string.remove_Local_Service')) + ': ' + this.removeServiceStatus)
+      Text(resourceToString($r('app.string.remove_Local_Service').id, this.context) + ': ' + this.removeServiceStatus)
         .fontSize($r('app.float.size18'))
         .fontColor(Color.Black)
         .margin({ top: $r('app.float.margin10') })
         .id(ComponentId.SERVICE_REMOVE_STATUS)
 
       // 显示mDNS服务发现状态的文本
-      Text(resourceToString($r('app.string.Start_mDNS_Service_Discovery')) + ': ' + this.discoveryStatus)
+      Text(resourceToString($r('app.string.Start_mDNS_Service_Discovery').id, this.context) + ': ' + this.discoveryStatus)
         .fontSize($r('app.float.size18'))
         .fontColor(Color.Black)
         .margin({ top: $r('app.float.margin10') })
@@ -179,19 +224,19 @@ struct MdnsServiceDemo {
   };
   // [StartExclude MDNS_add_local_service]
   private addLocalService(): void {
-    this.addServiceStatus = serviceOperateStatus.ADDING;
+    this.addServiceStatus = this.serviceOperateStatus.ADDING;
     // [EndExclude MDNS_add_local_service]
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // addLocalService添加本地服务。
     mdns.addLocalService(context, this.localServiceInfo).then((data) => {
       // [StartExclude MDNS_add_local_service]
-      this.addServiceStatus = serviceOperateStatus.ADD_SUCCESS;
+      this.addServiceStatus = this.serviceOperateStatus.ADD_SUCCESS;
       // [EndExclude MDNS_add_local_service]
       hilog.info(0x0000, 'testTag', `Local Service Added: ${JSON.stringify(data)}`);
     })
     // [StartExclude MDNS_add_local_service]
     .catch((err: BusinessError) => {
-      this.addServiceStatus = serviceOperateStatus.ADD_FAIL;
+      this.addServiceStatus = this.serviceOperateStatus.ADD_FAIL;
       hilog.error(0x0000, 'testTag', `Error adding local service: ${JSON.stringify(err)}`);
     });
   }
@@ -199,19 +244,19 @@ struct MdnsServiceDemo {
   // [End MDNS_add_local_service]
 
   private resolveLocalService(): void {
-    this.resolveServiceStatus = serviceOperateStatus.RESOLVING;
+    this.resolveServiceStatus = this.serviceOperateStatus.RESOLVING;
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // [Start MDNS_resolve_local_service]
     // resolveLocalService解析本地服务对象（非必要，根据需求使用）。
     mdns.resolveLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
       // [StartExclude MDNS_resolve_local_service]
-      this.resolveServiceStatus = serviceOperateStatus.RESOLVE_SUCCESS;
+      this.resolveServiceStatus = this.serviceOperateStatus.RESOLVE_SUCCESS;
       // [EndExclude  MDNS_resolve_local_service]
       hilog.info(0x0000, 'testTag', `Resolved Local Service: ${JSON.stringify(data)}`);
     })
     // [End MDNS_resolve_local_service]
     .catch((err: BusinessError) => {
-      this.resolveServiceStatus = serviceOperateStatus.RESOLVE_FAIL;
+      this.resolveServiceStatus = this.serviceOperateStatus.RESOLVE_FAIL;
       hilog.error(0x0000, 'testTag', `Error resolving local service: ${JSON.stringify(err)}`);
     });
   }
@@ -219,19 +264,19 @@ struct MdnsServiceDemo {
   
   
   private removeLocalService(): void {
-    this.removeServiceStatus = serviceOperateStatus.REMOVING;
+    this.removeServiceStatus = this.serviceOperateStatus.REMOVING;
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // [Start MDNS_remove_local_service]
     // removeLocalService移除本地服务。
     mdns.removeLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
       // [StartExclude MDNS_remove_local_service]
-      this.removeServiceStatus = serviceOperateStatus.REMOVE_SUCCESS;
+      this.removeServiceStatus = this.serviceOperateStatus.REMOVE_SUCCESS;
       // [EndExclude  MDNS_remove_local_service]
       hilog.info(0x0000, 'testTag', `Local Service Removed: ${JSON.stringify(data)}`);
     })
     // [End MDNS_remove_local_service]
     .catch((err: BusinessError) => {
-      this.removeServiceStatus = serviceOperateStatus.REMOVE_FAIL;
+      this.removeServiceStatus = this.serviceOperateStatus.REMOVE_FAIL;
       hilog.error(0x0000, 'testTag', `Error removing local service: ${JSON.stringify(err)}`);
     });
   }
@@ -241,9 +286,9 @@ struct MdnsServiceDemo {
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     
     // [StartExclude create_discovery_service_object]
-    this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTING;
+    this.discoveryStatus = this.serviceOperateStatus.DISCOVERY_STARTING;
     if (!context) {
-      this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL3;
+      this.discoveryStatus = this.serviceOperateStatus.DISCOVERY_FAIL3;
       hilog.error(0x0000, 'testTag', 'Context is undefined or null.');
       return;
     }
@@ -254,7 +299,7 @@ struct MdnsServiceDemo {
     // [End create_discovery_service_object]
 
     if (!discoveryService) {
-      this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL2;
+      this.discoveryStatus = this.serviceOperateStatus.DISCOVERY_FAIL2;
       hilog.error(0x0000, 'testTag', 'Failed to create discovery service.');
       return;
     }
@@ -286,16 +331,16 @@ struct MdnsServiceDemo {
       // 启动搜索局域网内的MDNS服务。
       discoveryService.startSearchingMDNS();
       // [End start_searching_MDNS_method]
-      this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTED;
+      this.discoveryStatus = this.serviceOperateStatus.DISCOVERY_STARTED;
     } catch (error) {
-      this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL1;
+      this.discoveryStatus = this.serviceOperateStatus.DISCOVERY_FAIL1;
       hilog.error(0x0000, 'testTag', `Error starting mDNS service discovery: ${JSON.stringify(error)}`);
     }
   }
 
   private async stopServiceDiscovery(): Promise<void> {
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    this.discoveryStatus = serviceOperateStatus.STOPPING;
+    this.discoveryStatus = this.serviceOperateStatus.STOPPING;
     let serviceType = '_print._tcp';
     let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
@@ -327,9 +372,9 @@ struct MdnsServiceDemo {
       });
       // [End discovery_service_off_method]
 
-      this.discoveryStatus = serviceOperateStatus.STOPPED;
+      this.discoveryStatus = this.serviceOperateStatus.STOPPED;
     } catch (err) {
-      this.discoveryStatus = serviceOperateStatus.STOP_FAIL;
+      this.discoveryStatus = this.serviceOperateStatus.STOP_FAIL;
       hilog.info(0x0000, 'testTag', `Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
     }
   }
