@@ -22,11 +22,14 @@ struct Parent {
   build() {
     Column() {
       Button(this.str1)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.str1 += '0';
         })
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -38,10 +41,13 @@ struct Child {
   build() {
     Column() {
       Button(this.str)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.str += '0';
         })
     }
+    .width('100%')
   }
 }
 // [End No_Twoway_Binding]

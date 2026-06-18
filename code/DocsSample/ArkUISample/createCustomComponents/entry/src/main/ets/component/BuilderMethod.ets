@@ -23,6 +23,8 @@ struct ParentComponent {
   @Builder
   doSomeRender() {
     Text(`Hello World`)
+      .fontSize(20)
+      .margin(10)
   }
 
   build() {
@@ -31,7 +33,10 @@ struct ParentComponent {
       this.doSomeRender()
       // 正例：参数可以为调用TS方法的返回值
       Text(this.calcTextValue())
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 

@@ -27,7 +27,10 @@ struct Detail {
   build() {
     Column() {
       Text(`Detail Page: ${this.params?.id} ${this.params?.info}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Child_Page]

@@ -22,26 +22,45 @@ struct LocalMapSample {
     Row() {
       Column() {
         ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
-          Text(`${item[0]}`).fontSize(30)
-          Text(`${item[1]}`).fontSize(30)
+          Text(`${item[0]}`)
+            .fontSize(30)
+            .margin(10)
+          Text(`${item[1]}`)
+            .fontSize(30)
+            .margin(10)
           Divider()
         })
         // 初始化Map类型变量，触发UI刷新
-        Button('init map').onClick(() => {
-          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
-        })
-        Button('set new one').onClick(() => {
-          this.message.set(4, 'd');
-        })
-        Button('clear').onClick(() => {
-          this.message.clear();
-        })
-        Button('replace the existing one').onClick(() => {
-          this.message.set(0, 'aa');
-        })
-        Button('delete the existing one').onClick(() => {
-          this.message.delete(0);
-        })
+        Button('init map')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
+          })
+        Button('set new one')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message.set(4, 'd');
+          })
+        Button('clear')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message.clear();
+          })
+        Button('replace the existing one')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message.set(0, 'aa');
+          })
+        Button('delete the existing one')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message.delete(0);
+          })
       }
       .width('100%')
     }

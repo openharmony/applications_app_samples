@@ -21,8 +21,12 @@ struct ToDoItem {
   build() {
     Column() {
       Text(`count(${this.count})`)
+        .fontSize(15)
+        .margin(10)
       Button(`count(${this.count}), count + 1`)
         .onClick(() => this.count += 1)
+        .width(150)
+        .margin(10)
     }
     .width('50%')
   }
@@ -55,8 +59,11 @@ struct ToDo {
     Column() {
       Button(`count(${this.count}), count + 1`)
         .onClick(() => this.count += 1)
+        .width(300)
+        .margin(10)
       ToDoDemo()
     }
+    .width('100%')
   }
 }
 // [End provide_consume_bidirectional_sync]

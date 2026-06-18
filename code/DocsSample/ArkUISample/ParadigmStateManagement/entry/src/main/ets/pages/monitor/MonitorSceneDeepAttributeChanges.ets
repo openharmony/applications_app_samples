@@ -70,11 +70,15 @@ struct Index {
       Text(`Important Value: ${this.textStyle.info.value}`)
         .fontColor(this.textStyle.color)
         .fontSize(this.textStyle.fontSize)
+        .margin(10)
       Button('change!')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.textStyle.info.value = Math.floor(Math.random() * 100) + 1;
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_scene_deep_attribute_changes]

@@ -32,13 +32,18 @@ struct PageFiveShareChange {
           Text(`${this.propA}`)
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
+            .margin(10)
 
           Button('Change propA')
+            .width(300)
+            .margin(10)
             .onClick(() => {
               this.propA = 100;
             })
 
           Button('Back PageFiveShare')
+            .width(300)
+            .margin(10)
             .onClick(() => {
               this.pathStack.pop();
             })

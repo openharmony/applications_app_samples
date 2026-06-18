@@ -21,22 +21,36 @@ struct SetSampleChild {
   build() {
     Column() {
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
-        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(30)
+          .margin(10)
         Divider()
       })
       // 子组件的Set类型可以同步回父组件
-      Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4]);
-      })
-      Button('set new one').onClick(() => {
-        this.message.add(5);
-      })
-      Button('clear').onClick(() => {
-        this.message.clear();
-      })
-      Button('delete the first one').onClick(() => {
-        this.message.delete(0);
-      })
+      Button('init set')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4]);
+        })
+      Button('set new one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.add(5);
+        })
+      Button('clear')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('delete the first one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.delete(0);
+        })
     }
     .width('100%')
   }

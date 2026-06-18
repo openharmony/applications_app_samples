@@ -43,15 +43,22 @@ struct Index {
   build() {
     Column() {
       Text(`name: ${this.info.name}, age: ${this.info.age}`)
+        .fontSize(20)
+        .margin(10)
       Button('change info')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info = new Info('Lucy', 18); // 能够监听到
         })
       Button('change info.name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.name = 'Jack'; // 监听不到
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_object_trace_comp_v2]

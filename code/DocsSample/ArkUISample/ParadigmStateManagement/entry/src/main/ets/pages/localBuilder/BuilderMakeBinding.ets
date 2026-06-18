@@ -24,6 +24,8 @@ struct Parent {
   citeLocalBuilder(params: Binding<string>) {
     Row() {
       Text(`UseStateVarByReference: ${params.value}`)
+        .fontSize(20)
+        .margin(10)
     }
   }
 
@@ -32,10 +34,13 @@ struct Parent {
       // 通过UIUtils.makeBinding()方法和Binding类，实现@Builder函数中状态变量的刷新
       this.citeLocalBuilder(UIUtils.makeBinding<string>(() => this.variableValue))
       Button('Click me')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.variableValue = 'Hi World';
         })
     }
+    .width('100%')
   }
 }
 // [End builder_make_binding]

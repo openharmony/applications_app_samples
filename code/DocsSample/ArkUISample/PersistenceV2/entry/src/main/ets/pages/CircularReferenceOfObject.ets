@@ -64,8 +64,11 @@ struct Page1 {
         // 第一次打开应用，界面显示'a, b'
         // 第二次打开应用，界面显示'aa, bb'
         Text(this.output.join('\n\n'))
-          .fontSize(24)
+          .fontSize(20)
+          .width(300)
+          .margin(10)
       }
+      .height('100%')
     }
     .width('100%')
   }

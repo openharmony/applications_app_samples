@@ -29,18 +29,29 @@ struct UsePropertyName {
 
   build() {
     Column() {
-      Text(`Number of apples: ${this.apple.toString()}`).fontSize(30)
-      Text(`Number of cabbages: ${this.cabbage.toString()}`).fontSize(30)
-      Text(`Total number of fruits: ${this.fruit.toString()}`).fontSize(30)
+      Text(`Number of apples: ${this.apple.toString()}`)
+        .fontSize(30)
+        .margin(10)
+      Text(`Number of cabbages: ${this.cabbage.toString()}`)
+        .fontSize(30)
+        .margin(10)
+      Text(`Total number of fruits: ${this.fruit.toString()}`)
+        .fontSize(30)
+        .margin(10)
       Button('Add apples')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.apple++;
         })
       Button('Add cabbages')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cabbage++;
         })
     }
+    .width('100%')
   }
 }
 

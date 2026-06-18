@@ -18,6 +18,7 @@ function myBuilder0(value: string, size: number) {
   Text(value)
     .fontSize(size)
     .fontColor(Color.Blue)
+    .margin(10)
 }
 
 @Builder
@@ -25,6 +26,7 @@ function yourBuilder(value: string, size: number) {
   Text(value)
     .fontSize(size)
     .fontColor(Color.Pink)
+    .margin(10)
 }
 
 const builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(myBuilder0), wrapBuilder(yourBuilder)];

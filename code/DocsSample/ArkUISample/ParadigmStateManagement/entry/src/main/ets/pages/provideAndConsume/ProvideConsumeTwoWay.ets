@@ -23,6 +23,7 @@ function buildText() {
   Column() {
     Child()
   }
+  .width('100%')
 }
 
 class TextNodeController extends NodeController {
@@ -92,6 +93,7 @@ struct Index {
         .onClick(() => {
           this.message += ' Provide';
         })
+        .margin(10)
 
       // 执行BuilderNode的build方法，构造Child自定义组件
       // 并将BuilderNode挂载在NodeContainer下
@@ -101,18 +103,24 @@ struct Index {
         .onClick(() => {
           this.controller.addBuilderNode();
         })
+        .width(300)
+        .margin(10)
       // 将BuilderNode下的节点从NodeContainer上移除
       // @Consume修饰的变量message从和@Provide配对的值变为default value，并回调@Consume的@Watch方法
       Button('remove Child')
         .onClick(() => {
           this.controller.removeBuilderNode();
         })
+        .width(300)
+        .margin(10)
 
       // 立即释放当前BuilderNode，BuilderNode下节点销毁，Child组件执行aboutToDisappear
       Button('dispose Child')
         .onClick(() => {
           this.controller.disposeNode();
         })
+        .width(300)
+        .margin(10)
       NodeContainer(this.controller)
         .width('100%')
         .height(100)
@@ -143,7 +151,9 @@ struct Child {
         .onClick(() => {
           this.message += ' Consume';
         })
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End provide_consume_Two_Way]

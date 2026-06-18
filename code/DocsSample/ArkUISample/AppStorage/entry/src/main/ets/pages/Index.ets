@@ -31,20 +31,28 @@ struct Index {
           Text(`${this.linkA}`)
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
+            .margin(10)
           Text(`${this.propB}`)
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
+            .margin(10)
           Button('Change linkA')
+            .width(300)
+            .margin(10)
             .onClick(() => {
               // 刷新UI，修改将会被同步回AppStorage
               this.linkA++;
             })
           Button('Change propB')
+            .width(300)
+            .margin(10)
             .onClick(() => {
               // 刷新UI，修改不会被同步回AppStorage
               this.propB++;
             })
           Button('To Page')
+            .width(300)
+            .margin(10)
             .onClick(() => {
               this.pageStack.pushPathByName('Page', null);
             })

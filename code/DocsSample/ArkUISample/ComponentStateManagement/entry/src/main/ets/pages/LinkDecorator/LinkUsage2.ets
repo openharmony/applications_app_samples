@@ -25,6 +25,8 @@ struct LinkChild2 {
 
   build() {
     Text(this.msg + this.info.info)
+      .fontSize(20)
+      .margin(10)
   }
 }
 
@@ -39,6 +41,7 @@ struct LinkExample2 {
       // 正确写法
       LinkChild2({msg: this.message, info: this.info})
     }
+    .width('100%')
   }
 }
 // [End link_usage_two]

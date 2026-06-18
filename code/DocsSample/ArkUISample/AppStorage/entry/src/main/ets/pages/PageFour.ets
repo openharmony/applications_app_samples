@@ -21,22 +21,26 @@ struct DateSample {
   build() {
     Column() {
       Button('set selectedDate to 2023-07-08')
+        .width(300)
         .margin(10)
         .onClick(() => {
           AppStorage.setOrCreate('date', new Date('2023-07-08'));
         })
       // 点击Button更新selectedDate年份数据，触发视图刷新
       Button('increase the year by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);

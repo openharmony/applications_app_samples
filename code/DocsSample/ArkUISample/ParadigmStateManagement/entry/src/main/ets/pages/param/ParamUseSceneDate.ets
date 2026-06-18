@@ -41,6 +41,7 @@ struct DateComponent {
         selected: this.selectedDate
       })
     }
+    .width('100%')
   }
 }
 
@@ -54,30 +55,35 @@ struct Index {
     Column() {
       // 对Date类型变量整体重新赋值，触发子组件更新。
       Button('parent update the new date')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate = new Date('2023-07-07');
         })
       // 调用Date的setFullYear方法修改年份，触发子组件更新。
       Button('increase the year by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setFullYear(this.parentSelectedDate.getFullYear() + 1);
         })
       // 调用Date的setMonth方法修改月份，触发子组件更新。
       Button('increase the month by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       // 调用Date的setDate方法修改日期，触发子组件更新。
       Button('parent increase the day by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
         })
       DateComponent({ selectedDate: this.parentSelectedDate })
     }
+    .width('100%')
   }
 }
 // [End Param_Use_Scene_Date]

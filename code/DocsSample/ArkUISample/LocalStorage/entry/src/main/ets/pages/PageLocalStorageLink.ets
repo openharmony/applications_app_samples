@@ -22,18 +22,23 @@ struct LocalStorageLinkComponent {
   build() {
     Column() {
       Text('@LocalStorageLink API Initialization, @LocalStorageLink Value')
+        .fontSize(20)
+        .margin(10)
       Text(`${this.linkA}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.linkA ? this.linkA = null : this.linkA = 1;
         })
       Text(`${this.linkB}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.linkB ? this.linkB = undefined : this.linkB = 1;
         })
     }
     .borderWidth(3).borderColor(Color.Green)
+    .width('95%')
   }
 }
 
@@ -45,19 +50,24 @@ struct LocalStoragePropComponent {
   build() {
     Column() {
       Text('@LocalStorageProp API Initialization, @LocalStorageProp Value')
+        .fontSize(20)
+        .margin(10)
       Text(`${this.propA}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.propA ? this.propA = null : this.propA = 1;
         })
       Text(`${this.propB}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.propB ? this.propB = undefined : this.propB = 1;
         })
     }
     .borderWidth(3)
     .borderColor(Color.Yellow)
+    .width('95%')
   }
 }
 

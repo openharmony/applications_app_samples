@@ -26,7 +26,8 @@ struct Page10 {
     Column() {
       Text(`${this.observedObj.id}`)
         .id('textobservedObj1')
-        .fontSize(50)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 通过getTarget获取其原始对象，将this.observedObj赋值为不可观察的数据
           let rawObj: Info= UIUtils.getTarget(this.observedObj);
@@ -36,12 +37,14 @@ struct Page10 {
 
       Text(`${this.observedObj.id}`)
         .id('textobservedObj2')
-        .fontSize(50)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 触发UI刷新，Text显示21
           this.observedObj.id++;
         })
     }
+    .width('100%')
   }
 }
 // [End getTarget_observedObj]

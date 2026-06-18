@@ -71,14 +71,20 @@ struct Index {
         Text(`Son ${this.son.age}`)
           .fontSize(this.isRender(1))
           .fontWeight(FontWeight.Bold)
+          .margin(10)
         Text(`Cousin ${this.cousin.age}`)
           .fontSize(this.isRender(2))
           .fontWeight(FontWeight.Bold)
+          .margin(10)
         Button('change Son age')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.son.age++;
           })
         Button('change Cousin age')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.cousin.age++;
           })

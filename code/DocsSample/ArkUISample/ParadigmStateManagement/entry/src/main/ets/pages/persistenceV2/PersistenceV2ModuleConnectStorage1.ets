@@ -64,16 +64,20 @@ struct Page1 {
           this.p1.father.childId += 1;
         })
         .fontSize(25)
+        .margin(10)
         .fontColor(Color.Red)
       Text('Key connect2: ' + this.p2.father.childId.toString())
         .onClick(() => {
           this.p2.father.childId += 1;
         })
         .fontSize(25)
+        .margin(10)
         .fontColor(Color.Red)
 
       // 跳转
       Button('Jump to newModule')
+        .width(300)
+        .margin(10)
         .onClick(() => { // 不同module之间使用，建议使用globalConnect
           let want: Want = {
             deviceId: '', // deviceId为空代表本设备

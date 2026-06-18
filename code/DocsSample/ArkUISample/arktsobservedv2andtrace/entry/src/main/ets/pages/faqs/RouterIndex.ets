@@ -41,11 +41,16 @@ struct RouterIndex {
   build() {
     Column() {
       Text('Parent page')
+        .fontSize(20)
+        .margin(10)
       Button('Jump')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.onJumpClick();
         })
     }
+    .width('100%')
   }
 }
 // [End Router_Index]

@@ -37,7 +37,10 @@ struct Parent {
   citeLocalBuilder(paramA1: string) {
     Row() {
       Text(`UseStateVarByValue: ${paramA1}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .height('100%')
   }
 
   build() {
@@ -46,6 +49,7 @@ struct Parent {
       // 改变@State修饰的label值时，@LocalBuilder函数内的值不会发生改变
       this.citeLocalBuilder(this.label)
     }
+    .width('100%')
   }
 }
 // [End pass_by_value]

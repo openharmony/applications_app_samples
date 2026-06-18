@@ -21,6 +21,7 @@ struct MyComponent {
     Row() {
       ChildComponent()
     }
+    .height('100%')
   }
 }
 

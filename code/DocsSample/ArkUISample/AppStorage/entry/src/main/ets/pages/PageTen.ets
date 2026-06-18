@@ -35,13 +35,18 @@ struct PageStorageProp {
   build() {
     Column() {
       Text(`${this.propA}`)
+        .fontSize(20)
+        .margin(10)
       Button('change')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           AppStorage.setOrCreate('propA', false);
           // 输出当前this.propA的值
           hilog.info(DOMAIN, TAG, `propA: ${this.propA}`);
         })
     }
+    .width('100%')
   }
 }
 

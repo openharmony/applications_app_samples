@@ -21,8 +21,11 @@ struct MyComponent {
   build() {
     Column() {
       Text(`${this.countDownFrom}`)
+        .fontSize(20)
+        .margin(10)
         .backgroundColor(this.color)
     }
+    .width('100%')
   }
 }
 
@@ -36,6 +39,7 @@ struct ParentComponent {
       // 创建MyComponent实例，并将创建MyComponent成员变量countDownFrom初始化为10，将成员变量color初始化为this.someColor
       MyComponent({ countDownFrom: 10, color: this.someColor })
     }
+    .width('100%')
   }
 }
 

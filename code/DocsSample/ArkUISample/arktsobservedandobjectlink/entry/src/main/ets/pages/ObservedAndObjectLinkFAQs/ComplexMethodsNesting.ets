@@ -75,6 +75,8 @@ struct CounterChild {
   @ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
   build() {
     Text(`${this.subValue.counter}`)
+      .fontSize(20)
+      .margin(10)
       .onClick(() => {
         this.subValue.counter += 1;
       })

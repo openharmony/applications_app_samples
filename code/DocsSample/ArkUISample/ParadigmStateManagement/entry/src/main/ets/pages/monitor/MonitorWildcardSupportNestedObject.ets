@@ -45,12 +45,16 @@ struct MonitorWildcardNestedObject {
   build() {
     Column({ space: 5 }) {
       Button('1. Class0 = new Class')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // @Monitor回调触发
           // 原因：class0, class1, person变更为新对象
           this.class0 = new Class0();
         })
       Button('2. Class0 = new Class, keep Class1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 当class0为Class0类型时，@Monitor回调不触发
           // 原因：即使class0变化了，路径'class0.class1.person.*'中通配符前最后一个确定值person也没有改变
@@ -61,6 +65,8 @@ struct MonitorWildcardNestedObject {
           }
         })
       Button('3. Class0.class1 = new Class1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 当class0为Class0类型时，@Monitor回调触发
           // 原因：class1、person变更为新对象
@@ -69,6 +75,8 @@ struct MonitorWildcardNestedObject {
           }
         })
       Button('4. Class0.class1.person = new Person')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 当class0为Class0类型时，@Monitor回调触发
           // 原因：person变更为新对象
@@ -77,6 +85,8 @@ struct MonitorWildcardNestedObject {
           }
         })
       Button('5. Class0....person.last update')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 当class0为Class0类型时，@Monitor回调触发
           // 原因：person的属性发生变化
@@ -85,6 +95,8 @@ struct MonitorWildcardNestedObject {
           }
         })
       Button('6. Class0 toggle number <=> new Class0')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // @Monitor回调触发
           // 原因：person在可访问与不可访问之间切换

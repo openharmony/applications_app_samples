@@ -21,10 +21,13 @@ struct Index {
 
   build() {
     Column() {
-      Text(`Index @Provider val: ${this.val}`).fontSize(30)
+      Text(`Index @Provider val: ${this.val}`)
+        .fontSize(30)
+        .margin(10)
       // @Provider装饰的变量val可以初始化@Param装饰的变量val2
       Parent({ val2: this.val })
     }
+    .width('100%')
   }
 }
 
@@ -35,14 +38,24 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent @Consumer val: ${this.val}`).fontSize(30)
-      Button('change val').onClick(() => {
-        this.val++;
-      })
-      Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
+      Text(`Parent @Consumer val: ${this.val}`)
+        .fontSize(30)
+        .margin(10)
+      Button('change val')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.val++;
+        })
+      Text(`Parent @Param val2: ${this.val2}`)
+        .fontSize(30)
+        .margin(10)
       // @Consumer装饰的变量val可以初始化@Param装饰的变量val
       Child({ val: this.val })
-    }.border({ width: 2, color: Color.Green })
+    }
+    .width('95%')
+    .border({ width: 2, color: Color.Green })
+    .height('45%')
   }
 }
 
@@ -52,8 +65,12 @@ struct Child {
 
   build() {
     Column() {
-      Text(`Child @Param val ${this.val}`).fontSize(30)
-    }.border({ width: 2, color: Color.Pink })
+      Text(`Child @Param val ${this.val}`)
+        .fontSize(30)
+        .margin(10)
+    }
+    .width('95%')
+    .border({ width: 2, color: Color.Pink })
   }
 }
 // [End Decorative_Initialized]

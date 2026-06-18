@@ -34,12 +34,16 @@ struct Index {
   build() {
     Column() {
       Button('change count to 1000')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           for (let i = 1; i <= 1000; i++) {
             this.frequency.count = i;
           }
         })
       Button('change count to 0 then to 1000')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           for (let i = 999; i >= 0; i--) {
             this.frequency.count = i;
@@ -47,6 +51,7 @@ struct Index {
           this.frequency.count = 1000; // 最终不触发onCountChange方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_last_write]

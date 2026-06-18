@@ -80,11 +80,16 @@ struct ViewChild {
   build() {
     Column({ space: 10 }) {
       Text(`childId: ${this.child.getChildId()}`)
+        .fontSize(20)
+        .margin(10)
       Button('Change childId')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.child.setChildId(this.child.getChildId() + 1);
         })
     }
+    .width('100%')
   }
 }
 
@@ -96,23 +101,34 @@ struct MyView {
   build() {
     Column({ space: 10 }) {
       Text(`parentId: ${this.cousin.parentId}`)
+        .fontSize(20)
+        .margin(10)
       Button('Change Parent.parentId')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cousin.parentId += 1;
         })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
+        .fontSize(20)
+        .margin(10)
       Button('Change Cousin.cousinId')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cousin.cousinId += 1;
         })
 
       ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
       Button('Change Cousin.Child.childId')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cousin.child.childId += 1;
         })
     }
+    .width('100%')
   }
 }
 // [End Basic_nesting]

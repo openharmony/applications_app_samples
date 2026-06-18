@@ -35,20 +35,24 @@ struct Index {
     Column() {
       Text(`length: ${this.arr.numberArr.length}`)
         .fontSize(40)
+        .margin(10)
       Divider()
       if (this.arr.numberArr.length >= 3) {
         Text(`${this.arr.numberArr[0]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[0]++;
           })
         Text(`${this.arr.numberArr[1]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[1]++;
           })
         Text(`${this.arr.numberArr[2]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[2]++;
           })
@@ -59,55 +63,75 @@ struct Index {
       ForEach(this.arr.numberArr, (item: number, index: number) => {
         Text(`${index} ${item}`)
           .fontSize(40)
+          .margin(10)
       })
 
       // numberArr是@Trace装饰的数组
       // 使用数组API操作numberArr时，可以观测到对应的变化
       Button('push')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.push(50);
         })
 
       Button('pop')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.pop();
         })
 
       Button('shift')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.shift();
         })
 
       Button('splice')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.splice(1, 0, 60);
         })
 
       Button('unshift')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.unshift(100);
         })
 
       Button('copywithin')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.copyWithin(0, 1, 2);
         })
 
       Button('fill')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.fill(0, 2, 4);
         })
 
       Button('reverse')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.reverse();
         })
 
       Button('sort')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.sort();
         })
     }
+    .width('100%')
   }
 }
 

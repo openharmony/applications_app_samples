@@ -80,34 +80,45 @@ struct Index {
   build() {
     Column() {
       Button('Change dimensionTwo')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 能够触发onDimensionTwoChange方法
           this.arrMonitor.dimensionTwo[0][0]++;
           this.arrMonitor.dimensionTwo[1][1]++;
         })
       Button('Change dimensionThree')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 能够触发onDimensionThreeChange方法
           this.arrMonitor.dimensionThree[0][0][0]++;
           this.arrMonitor.dimensionThree[1][1][0]++;
         })
       Button('Change info property')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 能够触发onInfoArrPropertyChange方法
           this.arrMonitor.infoArr[0].name = 'Tom';
           this.arrMonitor.infoArr[1].age = 19;
         })
       Button('Change whole infoArr')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 能够触发onInfoArrChange、onInfoArrPropertyChange、onInfoArrLengthChange方法
           this.arrMonitor.infoArr = [new Info('Cindy', 8)];
         })
       Button('Push new info to infoArr')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 能够触发onInfoArrPropertyChange、onInfoArrLengthChange方法
           this.arrMonitor.infoArr.push(new Info('David', 50));
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_array_support]

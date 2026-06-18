@@ -44,6 +44,7 @@ struct Parent {
         Child()
       }
       Button(this.showChild ? 'delete Child' : 'add Child')
+        .width(300)
         .margin(20)
         .backgroundColor(this.btnColor)
         .onClick(() => {
@@ -52,6 +53,7 @@ struct Parent {
           this.showChild = !this.showChild;
         })
     }
+    .width('100%')
   }
 }
 

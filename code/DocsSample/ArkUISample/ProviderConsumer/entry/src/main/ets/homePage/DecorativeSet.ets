@@ -21,26 +21,43 @@ struct Parent {
 
   build() {
     Column() {
-      Text('Parent').fontSize(30)
+      Text('Parent')
+        .fontSize(30)
+        .margin(10)
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
-        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(30)
+          .margin(10)
         Divider()
       })
       // message被@Provider装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
-      Button('init set').onClick(() => {
-        this.message = new Set([1, 2, 3, 4]);
-      })
-      Button('set new one').onClick(() => {
-        this.message.add(5);
-      })
-      Button('clear').onClick(() => {
-        this.message.clear();
-      })
-      Button('delete the first one').onClick(() => {
-        this.message.delete(1);
-      })
+      Button('init set')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message = new Set([1, 2, 3, 4]);
+        })
+      Button('set new one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.add(5);
+        })
+      Button('clear')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('delete the first one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.delete(1);
+        })
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -50,25 +67,42 @@ struct Child {
 
   build() {
     Column() {
-      Text('Child').fontSize(30)
+      Text('Child')
+        .fontSize(30)
+        .margin(10)
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
-        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(30)
+          .margin(10)
         Divider()
       })
       // message被@Consumer装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
-      Button('init set').onClick(() => {
-        this.message = new Set([1, 2, 3, 4, 5, 6]);
-      })
-      Button('set new one').onClick(() => {
-        this.message.add(7);
-      })
-      Button('clear').onClick(() => {
-        this.message.clear();
-      })
-      Button('delete the first one').onClick(() => {
-        this.message.delete(1);
-      })
+      Button('init set')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message = new Set([1, 2, 3, 4, 5, 6]);
+        })
+      Button('set new one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.add(7);
+        })
+      Button('clear')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('delete the first one')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.delete(1);
+        })
     }
+    .width('100%')
   }
 }
 // [End Decorative_Set]

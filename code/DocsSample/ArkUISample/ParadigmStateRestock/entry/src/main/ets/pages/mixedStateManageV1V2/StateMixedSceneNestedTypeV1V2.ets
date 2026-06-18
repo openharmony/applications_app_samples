@@ -57,6 +57,7 @@ struct NestedClassV1 {
     Column() {
       Text(`@State outer.outerValue can update ${this.outer.outerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // @State可以观察第一层的变化
           // 变化会通知@ObjectLink和@Param刷新
@@ -65,6 +66,7 @@ struct NestedClassV1 {
 
       Text(`@State outer.inner.innerValue cannot update ${this.outer.inner.innerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // @State无法观察第二层的变化
           // 但该变化会被@ObjectLink和@Param观察
@@ -87,6 +89,7 @@ struct NestedClassV1ObjectLink {
   build() {
     Text(`@ObjectLink inner.innerValue can update ${this.inner.innerValue}`)
       .fontSize(20)
+      .margin(10)
       .onClick(() => {
         // 可以触发刷新，和@Param是同一个对象的引用，@Param也会进行刷新
         this.inner.innerValue += '!';
@@ -102,12 +105,14 @@ struct NestedClassV2 {
     Column() {
       Text(`@Param outer.outerValue can update ${this.outer.outerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 可以观察第一层的变化
           this.outer.outerValue += '!';
         })
       Text(`@Param outer.inner.innerValue can update ${this.outer.inner.innerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 可以观察第二层的变化，和@ObjectLink是同一个对象的引用，也会触发刷新
           this.outer.inner.innerValue += '!';
@@ -116,18 +121,27 @@ struct NestedClassV2 {
       Repeat(this.outer.inner.arr)
         .each((item: RepeatItem<ArrayItem>) => {
           Text(`@Param outer.inner.arr index: ${item.index} item: ${item.item.value}`)
+            .fontSize(20)
+            .margin(10)
         })
 
-      Button('@Param push').onClick(() => {
-        // outer已经使能了V2观察能力，对于新增加的数据，则默认开启V2观察能力
-        this.outer.inner.arr.push(UIUtils.makeV1Observed(new ArrayItem(20)));
-      })
+      Button('@Param push')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // outer已经使能了V2观察能力，对于新增加的数据，则默认开启V2观察能力
+          this.outer.inner.arr.push(UIUtils.makeV1Observed(new ArrayItem(20)));
+        })
 
-      Button('@Param change the last Item').onClick(() => {
-        // 可以观察最后一个数组项的属性变化
-        this.outer.inner.arr[this.outer.inner.arr.length - 1].value++;
-      })
+      Button('@Param change the last Item')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // 可以观察最后一个数组项的属性变化
+          this.outer.inner.arr[this.outer.inner.arr.length - 1].value++;
+        })
     }
+    .width('100%')
   }
 }
 // [End state_mixed_scene_nested_type_v1_v2]

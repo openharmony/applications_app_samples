@@ -43,6 +43,7 @@ struct Index {
           this.info.name = 'Johny';
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_problem_param_positive_example_1]

@@ -47,7 +47,11 @@ struct Index {
   build() {
     Column({ space: 5 }) {
       Text(JSON.stringify(this.sample)) // 序列化sample变量并显示
+        .fontSize(20)
+        .margin(10)
       Button('Change Info')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 通过将类型转换为ESObject，再转为SampleChild，绕过了类型校验，故点击后不会触发notifyOnError。
           // 点击并重新运行后，由于此处存储的info为Array类型，但SampleChild中的info仍是string类型，故会触发notifyOnError。

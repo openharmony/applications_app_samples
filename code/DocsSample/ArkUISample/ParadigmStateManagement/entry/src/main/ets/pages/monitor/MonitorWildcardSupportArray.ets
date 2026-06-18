@@ -67,12 +67,16 @@ struct MonitorWildcardArray {
     Column() {
       // topArrayMonitor1Star与topArrayMonitorStar回调均触发
       Button('topArray = new TopArray')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.topArray = this.makeNewTopArray();
         })
 
       // 当topArray[1][0]存在时，topArrayMonitor1Star回调触发，topArrayMonitorStar回调不触发
       Button('topArray[1][0] = new Person')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 1 && this.topArray[1].length > 0) {
             this.topArray[1][0] = new Person();
@@ -81,6 +85,8 @@ struct MonitorWildcardArray {
 
       // 当topArray[0][1]存在时，topArrayMonitor1Star与topArrayMonitorStar回调均不触发
       Button('topArray[0][1] = new Person')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 0 && this.topArray[0].length > 1) {
             this.topArray[0][1] = new Person();
@@ -89,6 +95,8 @@ struct MonitorWildcardArray {
 
       // 当topArray[1]存在时，topArrayMonitor1Star回调触发，topArrayMonitorStar回调不触发
       Button('topArray[1].push')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 1 && this.topArray[1] instanceof ArrayOfPerson) {
             this.topArray[1].push(new Person());
@@ -97,6 +105,8 @@ struct MonitorWildcardArray {
 
       // 当topArray的length大于2时，topArrayMonitor1Star与topArrayMonitorStar回调均触发
       Button('topArray.shift (length>2)')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 2) {
             this.topArray.shift();
@@ -105,6 +115,8 @@ struct MonitorWildcardArray {
 
       // 当topArray[0]存在时，topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
       Button('topArray[0] = new ArrayOfPerson')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 0) {
             this.topArray[0] = new ArrayOfPerson(new Person(), new Person());
@@ -113,6 +125,8 @@ struct MonitorWildcardArray {
 
       // 当topArray[1][0]存在时，topArrayMonitor1Star与topArrayMonitorStar回调均不触发
       Button('topArray[1][0].last update')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           if (this.topArray.length > 1 && this.topArray[1].length > 0 && this.topArray[1][0] instanceof Person) {
             this.topArray[1][0].lastName += '~';
@@ -121,6 +135,8 @@ struct MonitorWildcardArray {
 
       // topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
       Button('topArray = new TopArray, keep [1]')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let newTop = this.makeNewTopArray();
           newTop[1] = this.topArray[1]; // topArray.1未改变，路径'topArray.1.*'中通配符前最后一个确定值未改变
@@ -129,10 +145,13 @@ struct MonitorWildcardArray {
 
       // topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
       Button('topArray.push')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.topArray.push(new ArrayOfPerson(new Person(), new Person()));
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_wildcard_support_array]

@@ -29,11 +29,14 @@ struct Page1 {
   build() {
     Column() {
       Text(`${this.message2.person.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // UI不会刷新，因为State只能观察到第一层的变化
           this.message2.person.age++;
         })
     }
+    .width('100%')
   }
 }
 //[End UI_will_not_refresh]

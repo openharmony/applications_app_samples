@@ -22,10 +22,13 @@ struct ArrayCompV1 {
 
   build() {
     Column() {
-      Text(`V1 ${this.arr[0]}`).onClick(() => {
-        // 点击触发ArrayCompV1和ArrayCompV2变化
-        this.arr[0]++;
-      })
+      Text(`V1 ${this.arr[0]}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          // 点击触发ArrayCompV1和ArrayCompV2变化
+          this.arr[0]++;
+        })
       // 传递给V2时，发现当前代理是makeV1Observed包装的，且使能V2观察能力
       // 在ArrayCompV2中Param不会再次包装代理，避免双重代理的问题
       ArrayCompV2({ arr: UIUtils.enableV2Compatibility(this.arr) })
@@ -41,11 +44,15 @@ struct ArrayCompV2 {
 
   build() {
     Column() {
-      Text(`V2 ${this.arr[0]}`).onClick(() => {
-        // 点击触发ArrayCompV1和ArrayCompV2变化
-        this.arr[0]++;
-      })
+      Text(`V2 ${this.arr[0]}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          // 点击触发ArrayCompV1和ArrayCompV2变化
+          this.arr[0]++;
+        })
     }
+    .width('100%')
   }
 }
 // [End state_mixed_scene_built_type_v1_v2_recommend]

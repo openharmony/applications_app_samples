@@ -65,6 +65,7 @@ struct Index {
           this.p.father.groupId += 1;
         })
         .fontSize(25)
+        .margin(10)
         .fontColor(Color.Red)
 
       // save接口
@@ -77,6 +78,7 @@ struct Index {
           this.refresh += 1;
         })
         .fontSize(25)
+        .margin(10)
     }
     .width('100%')
   }

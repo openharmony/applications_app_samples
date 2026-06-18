@@ -27,16 +27,26 @@ struct Page2 {
   @Local message: Info = UIUtils.makeObserved(new Info(20));
   build() {
     Column() {
-      Button(`change id`).onClick(() => {
-        this.message.id++;
-      })
-      Button(`change Info ${this.message.id}`).onClick(() => {
-        this.message = new Info(30);
-      })
-      Button(`change Info1 ${this.message.id}`).onClick(() => {
-        this.message = UIUtils.makeObserved(new Info(30));
-      })
+      Button(`change id`)
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message.id++;
+        })
+      Button(`change Info ${this.message.id}`)
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message = new Info(30);
+        })
+      Button(`change Info1 ${this.message.id}`)
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.message = UIUtils.makeObserved(new Info(30));
+        })
     }
+    .width('100%')
   }
 }
 // [End MakeObserved_only_applies_to_input_parameters]

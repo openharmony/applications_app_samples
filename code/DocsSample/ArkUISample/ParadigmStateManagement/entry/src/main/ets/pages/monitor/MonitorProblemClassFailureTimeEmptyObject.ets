@@ -51,6 +51,8 @@ struct Child {
   build() {
     Column() {
       Text(`${this.infoWrapper.info?.age}`)
+        .fontSize(20)
+        .margin(10)
     }
   }
 }
@@ -83,6 +85,8 @@ struct Index {
       if (this.showFlag) {
         Column() {
           Text('Children')
+            .fontSize(20)
+            .margin(10)
           ForEach(this.dataArray, (info: Info) => {
             Child({ infoWrapper: new InfoWrapper(info) })
           })
@@ -91,6 +95,7 @@ struct Index {
         .borderWidth(2)
       }
     }
+    .width('100%')
   }
 }
 // [End monitor_problem_class_failure_time_empty_object]

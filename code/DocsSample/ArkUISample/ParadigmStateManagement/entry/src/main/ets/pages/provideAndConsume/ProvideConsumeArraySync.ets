@@ -41,6 +41,7 @@ struct Index {
         .margin(10)
       Child()
     }
+    .width('100%')
   }
 }
 

@@ -24,22 +24,31 @@ struct LocalSetSample {
         ForEach(Array.from(this.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
+            .margin(10)
           Divider()
         })
         // 初始化Set类型变量，触发UI刷新
         Button('init set')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.memberSet = new Set([0, 1, 2, 3, 4]);
           })
         Button('set new one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.memberSet.add(5);
           })
         Button('clear')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.memberSet.clear();
           })
         Button('delete the first one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.memberSet.delete(0);
           })

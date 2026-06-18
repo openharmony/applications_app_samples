@@ -52,7 +52,10 @@ struct Parent {
 
   build() {
     Column() {
-      Text(this.info.person.name).height(40)
+      Text(this.info.person.name)
+        .fontSize(20)
+        .margin(10)
+        .height(40)
       Child({
         per: this.info.person, clickEvent: () => {
           hilog.info(DOMAIN, TAG, `:::clickEvent before ${this.info.person.name}`); // 1
@@ -61,6 +64,7 @@ struct Parent {
         }
       })
     }
+    .width('100%')
   }
 }
 
@@ -76,11 +80,14 @@ struct Child {
   build() {
     Column() {
       Button(this.per.name)
+        .width(300)
+        .margin(10)
         .height(40)
         .onClick(() => {
           this.onClickType();
         })
     }
+    .width('100%')
   }
 
   private onClickType() {

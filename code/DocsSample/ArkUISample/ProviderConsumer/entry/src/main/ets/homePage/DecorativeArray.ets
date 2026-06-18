@@ -23,19 +23,30 @@ struct Parent {
     Row() {
       Column() {
         ForEach(this.count, (item: number) => {
-          Text(`parent: ${item}`).fontSize(30)
+          Text(`parent: ${item}`)
+            .fontSize(30)
+            .margin(10)
           Divider()
         })
         // count被@Provider装饰，可以被观察到Array整体的赋值以及调用Array接口带来的变化
-        Button('push').onClick(() => {
-          this.count.push(111);
-        })
-        Button('reverse').onClick(() => {
-          this.count.reverse();
-        })
-        Button('fill').onClick(() => {
-          this.count.fill(6);
-        })
+        Button('push')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.count.push(111);
+          })
+        Button('reverse')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.count.reverse();
+          })
+        Button('fill')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.count.fill(6);
+          })
         Child()
       }
       .width('100%')
@@ -51,19 +62,30 @@ struct Child {
   build() {
     Column() {
       ForEach(this.count, (item: number) => {
-        Text(`child: ${item}`).fontSize(30)
+        Text(`child: ${item}`)
+          .fontSize(30)
+          .margin(10)
         Divider()
       })
       // count被@Consumer装饰，可以被观察到Array整体的赋值以及调用Array接口带来的变化
-      Button('push').onClick(() => {
-        this.count.push(222);
-      })
-      Button('reverse').onClick(() => {
-        this.count.reverse();
-      })
-      Button('fill').onClick(() => {
-        this.count.fill(8);
-      })
+      Button('push')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.count.push(222);
+        })
+      Button('reverse')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.count.reverse();
+        })
+      Button('fill')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.count.fill(8);
+        })
     }
     .width('100%')
   }

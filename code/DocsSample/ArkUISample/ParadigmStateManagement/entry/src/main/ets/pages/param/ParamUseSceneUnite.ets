@@ -39,6 +39,8 @@ struct Index {
       MyComponent({ count: this.count })
       // 修改联合类型值，触发子组件更新。
       Button('change')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.count = undefined;
         })
@@ -54,6 +56,8 @@ struct MyComponent {
   build() {
     Column() {
       Text(`count(${this.count})`)
+        .fontSize(30)
+        .margin(10)
     }
   }
 }

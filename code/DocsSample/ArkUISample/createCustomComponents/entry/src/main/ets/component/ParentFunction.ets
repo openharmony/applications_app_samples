@@ -24,9 +24,12 @@ struct Parent {
   build() {
     Column() {
       Text(`${this.cnt}`)
+        .fontSize(20)
+        .margin(10)
       // 父组件中的函数传递给子组件
       Son({ submitArrow: this.submit })
     }
+    .width('100%')
   }
 }
 
@@ -37,6 +40,8 @@ struct Son {
   build() {
     Row() {
       Button('add')
+        .width(300)
+        .margin(10)
         .width(80)
         .onClick(() => {
           if (this.submitArrow) {
@@ -44,7 +49,7 @@ struct Son {
           }
         })
     }
-    .height(56)
+    .height('100%')
   }
 }
 

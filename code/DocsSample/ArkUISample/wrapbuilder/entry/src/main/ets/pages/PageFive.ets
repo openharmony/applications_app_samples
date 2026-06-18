@@ -17,12 +17,14 @@
 function myBuilderFirst(value: string, size: number) {
   Text('MyBuilderFirst：' + value)
     .fontSize(size)
+    .margin(10)
 }
 
 @Builder
 function myBuilderSecond(value: string, size: number) {
   Text('MyBuilderSecond：' + value)
     .fontSize(size)
+    .margin(10)
 }
 
 interface BuilderModel {

@@ -29,22 +29,31 @@ struct SetSample {
         ForEach(Array.from(this.info.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
+            .margin(10)
           Divider()
         })
         // 被@Trace装饰的Set类型属性可以观测到调用API带来的变化
         Button('init set')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);
           })
         Button('set new one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.add(5);
           })
         Button('clear')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.clear();
           })
         Button('delete the first one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.delete(0);
           })

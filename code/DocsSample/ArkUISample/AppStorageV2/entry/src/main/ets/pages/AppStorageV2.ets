@@ -37,23 +37,31 @@ struct Index {
     Column() {
       // 修改@Trace装饰的类属性，UI能同步刷新
       Button(`Index userID: ${this.message.userID}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.userID += 1;
         })
       // 修改非@Trace装饰的类属性，UI不会同步刷新，但修改的类属性已同步回AppStorageV2
       Button(`Index userName: ${this.message.userName}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.userName += 'suf';
         })
       // remove key Message, 会从AppStorageV2中删除key为Message的对象
       // remove之后，修改父组件的userId，子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
       Button('remove key: Message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           AppStorageV2.remove<Message>(Message);
         })
       // connect key Message, 会从AppStorageV2中添加key为Message的对象
       // remove之后，重新添加，修改父子组件的userID，可以发现数据已经不同步，子组件重新connect之后，数据一致
       Button('connect key: Message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message = AppStorageV2.connect<Message>(Message, () => new Message(5, 'Rose'))!;
         })
@@ -75,23 +83,31 @@ struct Child {
     Column() {
       // 修改@Trace装饰的类属性，UI同步刷新，父组件能感知该变化
       Button(`Child userID: ${this.message.userID}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.userID += 5;
         })
       // 修改父组件中的userName属性，点击name可以同步父组件的类属性修改
       Button(`Child name: ${this.name}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.name = this.message.userName;
         })
       // remove key Message, 会从AppStorageV2中删除key为Message的对象
       // remove之后，修改父子组件的userID，父子组件同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
       Button('remove key: Message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           AppStorageV2.remove<Message>(Message);
         })
       // connect key Message, 会从AppStorageV2中添加key为Message的对象
       // remove之后，重新添加，修改父子组件的userID，可以发现数据已经不同步，父组件重新connect之后，数据一致
       Button('connect key: Message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message = AppStorageV2.connect<Message>(Message, () => new Message(10, 'Lucy'))!;
         })

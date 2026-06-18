@@ -21,11 +21,14 @@ struct HelloComponent {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row() {
       Text(this.message)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 状态变量message的改变驱动UI刷新，UI从'Hello, World!'刷新为'Hello, ArkUI!'
           this.message = 'Hello, ArkUI!';
         })
     }
+    .height('100%')
   }
 }
 
@@ -38,10 +41,13 @@ struct ParentComponent {
     Column() {
       // 多次创建HelloComponent，实现自定义组件的重用
       Text('ArkUI message')
+        .fontSize(20)
+        .margin(10)
       HelloComponent({ message: 'Hello World!' })
       Divider()
       HelloComponent({ message: 'Hello ArkTS!' })
     }
+    .width('100%')
   }
 }
 

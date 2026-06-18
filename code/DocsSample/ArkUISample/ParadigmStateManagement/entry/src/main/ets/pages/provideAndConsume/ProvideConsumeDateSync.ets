@@ -24,17 +24,21 @@ struct Child {
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
+        .width(300)
+        .margin(10)
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-09-09');
         })
+        .width(300)
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
     }
+    .width('100%')
   }
 }
 
@@ -51,11 +55,13 @@ struct Parent {
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
+        .width(300)
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-07-07');
         })
+        .width(300)
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
@@ -63,6 +69,7 @@ struct Parent {
       })
       Child()
     }
+    .width('100%')
   }
 }
 // [End provide_consume_date_sync]

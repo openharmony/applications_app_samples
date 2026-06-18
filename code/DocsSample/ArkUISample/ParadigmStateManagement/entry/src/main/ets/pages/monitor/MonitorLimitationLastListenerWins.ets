@@ -38,10 +38,13 @@ struct Index {
   build() {
     Column() {
       Button('change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.name = 'Jack'; // 仅会触发onNameChangeDuplicate方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_limitation_last_listener_wins]

@@ -17,6 +17,8 @@
 struct ChildComponent {
   build() {
     Button(`Hello World`)
+      .width('90%')
+      .margin(10)
   }
 }
 
@@ -27,10 +29,11 @@ struct MyComponent {
     Row() {
       // 属性设置给ChildComponent而不是ChildComponent中的Button
       ChildComponent()
-        .width(200)
+        .width(300)
         .height(300)
-        .backgroundColor(Color.Red)
+        .backgroundColor(Color.Pink)
     }
+    .height('100%')
   }
 }
 

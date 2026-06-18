@@ -45,6 +45,7 @@ struct Index {
           this.info.age = 25; // 状态变量age改变
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_problem_param_positive_example_2]

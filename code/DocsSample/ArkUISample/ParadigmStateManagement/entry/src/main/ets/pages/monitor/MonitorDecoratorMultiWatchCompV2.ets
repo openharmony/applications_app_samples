@@ -34,11 +34,14 @@ struct Index {
     Column() {
       // 点击Button更新message和name，触发onStrChange回调
       Button('change string')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message += '!';
           this.name = 'Jack';
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_multi_watch_comp_v2]

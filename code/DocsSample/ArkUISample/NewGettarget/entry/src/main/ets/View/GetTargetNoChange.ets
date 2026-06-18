@@ -35,8 +35,13 @@ struct GetTargetNoChange {
   build() {
     Column() {
       Text(`this.observedObject === observedClass: ${this.observedObject === observedClass}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`this.nonObservedObject === nonObservedClass: ${this.nonObservedObject === nonObservedClass}`) // false
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End nonObservedObject_1]

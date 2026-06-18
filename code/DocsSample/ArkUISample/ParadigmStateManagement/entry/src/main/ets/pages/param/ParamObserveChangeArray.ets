@@ -37,12 +37,24 @@ struct Index {
   build() {
     Column() {
       Text(`${this.numArr[0]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.numArr[1]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.numArr[2]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.dimensionTwo[0][0]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.dimensionTwo[1][1]}`)
+        .fontSize(20)
+        .margin(10)
       // 装饰的变量为简单类型数组时，可观察到数组项变化
       Button('change array item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.numArr[0]++;
           this.numArr[1] += 2;
@@ -51,6 +63,8 @@ struct Index {
         })
       // 装饰的变量为简单类型数组时，可观察到数组整体变化
       Button('change whole array')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.numArr = [5, 4, 3, 2, 1];
           this.dimensionTwo = [[7, 8, 9], [0, 1, 2]];
@@ -60,6 +74,7 @@ struct Index {
         dimensionTwo: this.dimensionTwo
       })
     }
+    .width('100%')
   }
 }
 
@@ -71,11 +86,22 @@ struct Child {
   build() {
     Column() {
       Text(`${this.numArr[0]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.numArr[1]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.numArr[2]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.dimensionTwo[0][0]}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.dimensionTwo[1][1]}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Param_Observe_Change_Array]

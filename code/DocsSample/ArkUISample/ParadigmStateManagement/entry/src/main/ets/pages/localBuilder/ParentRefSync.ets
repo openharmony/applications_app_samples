@@ -39,6 +39,8 @@ struct HelloComponent {
   build() {
     Row() {
       Text(`HelloComponent===${this.message}`)
+        .fontSize(20)
+        .margin(10)
     }
   }
 }
@@ -53,8 +55,11 @@ struct Parent {
     Row() {
       Column() {
         Text(`citeLocalBuilder===${$$.paramString}`)
+          .fontSize(20)
+          .margin(10)
         HelloComponent({ message: $$.paramString })
       }
+      .width('100%')
     }
   }
 
@@ -62,10 +67,14 @@ struct Parent {
     Column() {
       // 按引用传递参数，传入的参数发生变化，会引起citeLocalBuilder内的UI刷新
       this.citeLocalBuilder({ paramString: this.variableValue })
-      Button('Click me').onClick(() => {
-        this.variableValue = 'Hi World';
-      })
+      Button('Click me')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.variableValue = 'Hi World';
+        })
     }
+    .width('100%')
   }
 }
 // [End pass_by_reference_two]

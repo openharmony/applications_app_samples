@@ -55,10 +55,13 @@ struct Index {
   build() {
     Column() {
       Button('change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.name = 'Jack'; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_limitation_multiple_path_params]

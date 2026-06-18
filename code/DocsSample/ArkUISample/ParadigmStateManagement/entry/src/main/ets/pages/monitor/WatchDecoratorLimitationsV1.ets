@@ -40,18 +40,26 @@ struct Index {
       Column() {
         // 对象、数组中某一单个属性或数组项变化，不会触发UI刷新
         Button('change info name')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.name = 'Jack';
           })
         Button('change info age')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.age = 30;
           })
         Button('change numArr[2]')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.numArr[2] = 5;
           })
         Button('change numArr[3]')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.numArr[3] = 6;
           })

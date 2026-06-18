@@ -33,6 +33,7 @@ struct Index {
     Column() {
       UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] })
     }
+    .width('100%')
   }
 }
 
@@ -45,17 +46,28 @@ struct UserChild {
     Column() {
       // 比较结果为false说明@Prop经过深拷贝后得到的对象与原对象已不是同一个对象
       Text(`firstUserByObjectLink equals firstUserByProp? : ${this.firstUserByObjectLink === this.firstUserByProp}`)
+        .fontSize(20)
+        .margin(10)
       Text(`UserChild firstUserByObjectLink.id: ${this.firstUserByObjectLink.id}`) // Text1
+        .fontSize(20)
+        .margin(10)
       Text(`UserChild firstUserByProp.id: ${this.firstUserByProp.id}`) // Text2
+        .fontSize(20)
+        .margin(10)
       Button('change @ObjectLink value')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.firstUserByObjectLink.id++;
         })
       Button('change @Prop value')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.firstUserByProp.id++;
         })
     }
+    .width('100%')
   }
 }
 // [End Differences_Prop_ObjectLink]

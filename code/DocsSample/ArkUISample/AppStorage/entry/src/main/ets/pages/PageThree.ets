@@ -21,15 +21,24 @@ struct StorageLinkComponent {
   build() {
     Column() {
       Text('@StorageLink接口初始化，@StorageLink取值')
+        .fontSize(20)
+        .margin(10)
       // linkA为null时，点击后会切换为1；linkA为1时，点击后会切换为null
-      Text(`${this.linkA}`).fontSize(20).onClick(() => {
-        this.linkA ? this.linkA = null : this.linkA = 1;
-      })
-      Text(`${this.linkB}`).fontSize(20).onClick(() => {
-        this.linkB ? this.linkB = undefined : this.linkB = 1;
-      })
+      Text(`${this.linkA}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          this.linkA ? this.linkA = null : this.linkA = 1;
+        })
+      Text(`${this.linkB}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          this.linkB ? this.linkB = undefined : this.linkB = 1;
+        })
     }
     .borderWidth(3).borderColor(Color.Red)
+    .width('100%')
   }
 }
 
@@ -41,14 +50,23 @@ struct StoragePropComponent {
   build() {
     Column() {
       Text('@StorageProp接口初始化，@StorageProp取值')
-      Text(`${this.propA}`).fontSize(20).onClick(() => {
-        this.propA ? this.propA = null : this.propA = 1;
-      })
-      Text(`${this.propB}`).fontSize(20).onClick(() => {
-        this.propB ? this.propB = undefined : this.propB = 1;
-      })
+        .fontSize(20)
+        .margin(10)
+      Text(`${this.propA}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          this.propA ? this.propA = null : this.propA = 1;
+        })
+      Text(`${this.propB}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          this.propB ? this.propB = undefined : this.propB = 1;
+        })
     }
     .borderWidth(3).borderColor(Color.Blue)
+    .width('100%')
   }
 }
 

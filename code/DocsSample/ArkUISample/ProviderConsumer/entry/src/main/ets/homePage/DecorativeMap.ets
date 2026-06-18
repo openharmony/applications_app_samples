@@ -21,30 +21,50 @@ struct Parent {
 
   build() {
     Column() {
-      Text('Parent').fontSize(30)
+      Text('Parent')
+        .fontSize(20)
+        .margin(5)
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
-        Text(`${item[0]}`).fontSize(30)
-        Text(`${item[1]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(20)
+        Text(`${item[1]}`)
+          .fontSize(20)
         Divider()
       })
       // message被@Provider装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
-      Button('init map').onClick(() => {
-        this.message = new Map([[0, 'aa'], [1, 'bb'], [3, 'cc']]);
-      })
-      Button('set new one').onClick(() => {
-        this.message.set(4, 'd');
-      })
-      Button('clear').onClick(() => {
-        this.message.clear();
-      })
-      Button('replace the first one').onClick(() => {
-        this.message.set(0, 'a~');
-      })
-      Button('delete the first one').onClick(() => {
-        this.message.delete(0);
-      })
+      Button('init map')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message = new Map([[0, 'aa'], [1, 'bb'], [3, 'cc']]);
+        })
+      Button('set new one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.set(4, 'd');
+        })
+      Button('clear')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('replace the first one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.set(0, 'a~');
+        })
+      Button('delete the first one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.delete(0);
+        })
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -54,29 +74,49 @@ struct Child {
 
   build() {
     Column() {
-      Text('Child').fontSize(30)
+      Text('Child')
+        .fontSize(20)
+        .margin(5)
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
-        Text(`${item[0]}`).fontSize(30)
-        Text(`${item[1]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(20)
+        Text(`${item[1]}`)
+          .fontSize(20)
         Divider()
       })
       // message被@Consumer装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
-      Button('init map').onClick(() => {
-        this.message = new Map([[0, 'dd'], [1, 'ee'], [3, 'ff']]);
-      })
-      Button('set new one').onClick(() => {
-        this.message.set(4, 'g');
-      })
-      Button('clear').onClick(() => {
-        this.message.clear();
-      })
-      Button('replace the first one').onClick(() => {
-        this.message.set(0, 'a*');
-      })
-      Button('delete the first one').onClick(() => {
-        this.message.delete(0);
-      })
+      Button('init map')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message = new Map([[0, 'dd'], [1, 'ee'], [3, 'ff']]);
+        })
+      Button('set new one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.set(4, 'g');
+        })
+      Button('clear')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('replace the first one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.set(0, 'a*');
+        })
+      Button('delete the first one')
+        .width(300)
+        .margin(5)
+        .onClick(() => {
+          this.message.delete(0);
+        })
     }
+    .width('100%')
   }
 }
 // [End Decorative_Map]

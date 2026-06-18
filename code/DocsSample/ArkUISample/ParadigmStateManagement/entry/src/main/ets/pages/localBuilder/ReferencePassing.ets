@@ -41,6 +41,8 @@ struct Parent {
   citeLocalBuilder(params: ReferenceType) {
     Row() {
       Text(`UseStateVarByReference: ${params.paramString}`)
+        .fontSize(20)
+        .margin(10)
     }
   };
 
@@ -48,10 +50,14 @@ struct Parent {
     Column() {
       // 按键值对写法进行传值，传入的参数发生变化，会引起citeLocalBuilder内的UI刷新
       this.citeLocalBuilder({ paramString: this.variableValue })
-      Button('Click me').onClick(() => {
-        this.variableValue = 'Hi World';
-      })
+      Button('Click me')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.variableValue = 'Hi World';
+        })
     }
+    .width('100%')
   }
 }
 // [End pass_by_reference_one]

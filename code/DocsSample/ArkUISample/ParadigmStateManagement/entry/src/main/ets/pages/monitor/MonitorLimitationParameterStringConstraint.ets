@@ -60,34 +60,49 @@ struct Index {
   build() {
     Column() {
       Button('Change t1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t1++; // 能够触发onT1Change方法
         })
       Button('Change t2')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t2++; // 能够触发onT2Change方法
         })
       Button('Change t3')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t3++; // 能够触发onT3Change方法
         })
       Button('Change t4')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t4++; // 能够触发onT4Change方法
         })
       Button('Change var t4 to t5')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           t4 = 't5'; // 更改变量值为't5'
         })
       Button('Change t5')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t5++; // onT4Change仍监听t4，不会触发
         })
       Button('Change t4 again')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.t4++; // 能够触发onT4Change方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_limitation_parameter_string_constraint]

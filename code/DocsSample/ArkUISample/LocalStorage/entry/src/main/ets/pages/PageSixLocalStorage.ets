@@ -32,6 +32,7 @@ struct TestIndex {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+          .margin(10)
         // 使用LocalStorage实例localStorageTwo
         ChildSix({ count: this.count }, localStorageTwo)
       }
@@ -52,6 +53,7 @@ struct ChildSix {
     Text(this.propB)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
+      .margin(10)
   }
 }
 

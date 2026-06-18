@@ -35,19 +35,30 @@ struct Page {
 
   build() {
     Column() {
-      Text(`User age ${this.user?.age}`).fontSize(20)
-      Button('set user to undefined').onClick(() => {
-        // age：可访问 -> 不可访问
-        this.user = undefined;
-      })
-      Button('set user to User').onClick(() => {
-        // age：不可访问 ->可访问
-        this.user = new User();
-      })
-      Button('set user to null').onClick(() => {
-        // age：可访问->不可访问
-        this.user = null;
-      })
+      Text(`User age ${this.user?.age}`)
+        .fontSize(20)
+        .margin(10)
+      Button('set user to undefined')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // age：可访问 -> 不可访问
+          this.user = undefined;
+        })
+      Button('set user to User')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // age：不可访问 ->可访问
+          this.user = new User();
+        })
+      Button('set user to null')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // age：可访问->不可访问
+          this.user = null;
+        })
     }
   }
 }

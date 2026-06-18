@@ -41,15 +41,22 @@ struct Page1 {
           .each(ri => {
             Row() {
               Text(`Item: `)
+                .fontSize(20)
+                .margin(10)
               Text(ri.item?.classAToString ? ri.item?.classAToString(): `classAToString() missing from object, propA: ${ri.item?.propA}`)
+                .fontSize(20)
+                .margin(10)
             }
           })
           .key((item: ClassA, index: number) => `${index} - ${item?.propA}`)
       }
+      .width('100%')
 
       Divider().width('100%')
       // 点击'array.push(0)'，重启应用，Repeat数组项是：1, 2, 0
       Button('array.push(0)')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let temp = new ClassA();
           temp.propA = 0;
@@ -58,18 +65,23 @@ struct Page1 {
         .fontSize(24)
       // 点击'array.pop()'，重启应用，Repeat数组项是：1, 2
       Button('array.pop()')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.pop();
         })
         .fontSize(24)
       // 点击'array.splice(0)'，重启应用，Repeat数组项为空
       Button('array.splice(0)')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.splice(0);
         })
         .fontSize(24)
       // 点击'splice(1, 0, random)'，重启应用：Repeat组件再次显示相同的数组项
       Button('array.splice(1, 0, random)')
+        .margin(10)
         .onClick(() => {
           let temp = new ClassA();
           temp.propA = Math.round(100 * Math.random());
@@ -79,6 +91,7 @@ struct Page1 {
       // 点击'array.splice(0, 2, random, random)'，前两个数组项目被替换，记录下来
       // 重启应用：Repeat组件再次显示数组项
       Button('array.splice(0, 2, random, random)')
+        .margin(10)
         .onClick(() => {
           let tempA = new ClassA();
           tempA.propA = Math.round(100 * Math.random());
@@ -86,15 +99,19 @@ struct Page1 {
             UIUtils.makeObserved(tempA),
             UIUtils.makeObserved(tempA));
         })
-        .fontSize(24)
+        .fontSize(18)
       // 点击'array.sort', 对数组项升序排列，重启应用，Repeat组件展示升序数组
       Button('array.sort')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.sort((tempA, tempB)=> tempA?.propA - tempB?.propA);
         })
         .fontSize(24)
       // 点击'array.reverse', 对数组项降序排列，重启应用，Repeat组件展示降序数组
       Button('array.reverse')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.reverse();
         })
