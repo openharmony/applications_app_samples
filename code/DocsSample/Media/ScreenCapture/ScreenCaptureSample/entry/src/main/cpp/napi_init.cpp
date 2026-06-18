@@ -41,6 +41,30 @@ void OpenFile(std::string fileName)
     }
 }
 
+void OpenFile02()
+{
+    // 获取沙箱路径
+    char *fileDirPath;
+    int32_t bufferSize = 1000;
+    int32_t writeLength = 0;
+    AbilityRuntime_ErrorCode result = OH_AbilityRuntime_ApplicationContextGetFilesDir(fileDirPath,
+        bufferSize, &writeLength);
+    if (!fileDirPath) {
+        return;
+    }
+    const std::string filePath = fileDirPath;
+    g_fileOutputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT,
+        FILE_PERMISSION_FULL_ACCESS);
+    if (g_fileOutputFd < 0) {
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_fileOutputFd open failed.");
+    }
+    g_windowOutputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
+        FILE_PERMISSION_FULL_ACCESS);
+    if (g_windowOutputFd < 0) {
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_fileOutputFd open failed.");
+    }
+}
+
 void CloseFile(void)
 {
     if (g_micFile != nullptr) {
@@ -516,7 +540,8 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     result = OH_AVScreenCapture_Init(g_avCapture, config);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_ERROR(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_ERROR(LOG_APP,
+            "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
     g_missionIds.clear();
@@ -550,18 +575,6 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
     OH_AVScreenCaptureConfig config_;
 
     OH_RecorderInfo recorderInfo;
-    // 获取沙箱路径
-    char *fileDirPath;
-    int32_t bufferSize = 1000;
-    int32_t writeLength = 0;
-    AbilityRuntime_ErrorCode result = OH_AbilityRuntime_ApplicationContextGetFilesDir(fileDirPath, bufferSize, &writeLength);
-    if (!fileDirPath) {
-        napi_value errCode;
-        napi_create_double(env, result, &errCode);
-        return errCode;
-    }
-    const std::string filePath = fileDirPath;
-    g_fileOutputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
     std::string fileUrl = "fd://" + std::to_string(g_fileOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
@@ -577,7 +590,8 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
     OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP,
+            "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
     // [Start screenCapture_startScreenRecording_for_file]
@@ -749,7 +763,8 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
     OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
     int result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP,
+            "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
     (void)GetInputSurface();
@@ -785,19 +800,6 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     OH_AVScreenCaptureConfig config_;
 
     OH_RecorderInfo recorderInfo;
-    // 获取沙箱路径
-    char *fileDirPath;
-    int32_t bufferSize = 1000;
-    int32_t writeLength = 0;
-    AbilityRuntime_ErrorCode result = OH_AbilityRuntime_ApplicationContextGetFilesDir(fileDirPath, bufferSize, &writeLength);
-    if (!fileDirPath) {
-        napi_value errCode;
-        napi_create_double(env, result, &errCode);
-        return errCode;
-    }
-    const std::string filePath = fileDirPath;
-    g_windowOutputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
-        FILE_PERMISSION_FULL_ACCESS);
     std::string fileUrl = "fd://" + std::to_string(g_windowOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
@@ -827,7 +829,8 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP,
+            "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
     // [Start screenCapture_startScreenRecording]
@@ -901,8 +904,8 @@ static napi_value StartScreenCapture_05(napi_env env, napi_callback_info info)
     SetConfig05(config);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(g_avCapture, config);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_ERROR(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d",
-            result);
+        OH_LOG_ERROR(LOG_APP,
+            "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     // 1. 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0, 0）为起点的长100，宽100的矩形区域。
     OH_Rect* region = new OH_Rect;

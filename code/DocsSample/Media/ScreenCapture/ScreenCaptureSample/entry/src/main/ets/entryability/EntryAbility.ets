@@ -49,7 +49,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
 }
 
 export default class EntryAbility extends UIAbility {
-  windowId: number = -1;
+  private windowId: number = -1;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
