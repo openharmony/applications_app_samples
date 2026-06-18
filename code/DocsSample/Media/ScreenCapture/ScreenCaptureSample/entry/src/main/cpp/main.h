@@ -30,7 +30,18 @@
 #include <fcntl.h>
 #include <string>
 // [End screenCapture_import]
+// [Start screenCapture_import_buffer]
+#include "hilog/log.h"
+#include "napi/native_api.h"
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
+#include <multimedia/player_framework/native_avscreen_capture.h>
+#include <multimedia/player_framework/native_avscreen_capture_base.h>
+#include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
+#include <native_buffer/native_buffer.h>
+#include <vector>
+// [End screenCapture_import_buffer]
 
 
 #include "multimedia/player_framework/native_avcodec_videodecoder.h"
@@ -61,8 +72,9 @@ std::unique_ptr<Muxer> g_muxer;
 int32_t g_surfaceOutputFd = -1;
 int32_t g_fileOutputFd = -1;
 int32_t g_windowOutputFd = -1;
-int32_t* g_missionIds = nullptr;
-int32_t* g_missionIds2 = nullptr;
+int32_t g_windowId = -1;
+std::vector<int32_t> g_missionIds;
+std::vector<int32_t> g_missionIds2;
 
 extern char g_filename[100];
 bool g_isRunning = false;
@@ -92,3 +104,5 @@ int64_t g_lastFrameEncodePts = 0;
 constexpr int32_t FILE_PERMISSION_FULL_ACCESS = 0777;
 constexpr int32_t PRIVACY_MASK_MODE_FULL_SCREEN = 0;
 constexpr int32_t PRIVACY_MASK_MODE_WINDOW = 1;
+constexpr int32_t CAPTURE_REGION_SIZE = 100;
+constexpr int32_t CAPTURE_VIDEO_FRAME_RATE = 30;
