@@ -35,7 +35,7 @@ struct Page {
       Text(`${this.count}`)
       Button('change count')
         .onClick(() => {
-        this.count++;
+          this.count++;
         })
         // [StartExclude CallInMonitor]
         .id('CallInMonitor')

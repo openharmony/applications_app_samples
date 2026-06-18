@@ -111,6 +111,11 @@ export struct TapImage {
       this.onTapIndexChange(data);
     });
   }
+  
+  aboutToDisappear(): void {
+    let innerEvent: emitter.InnerEvent = { eventId: this.index };
+    emitter.off(innerEvent.eventId);
+  }
 
   build() {
     Column() {

@@ -20,9 +20,9 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index');
-    let window = windowStage.getMainWindow();
-    window.then(window => {
-      let uiContext = window.getUIContext();
+    let mainWindow = windowStage.getMainWindow();
+    mainWindow.then(mainWindowInstance => {
+      let uiContext = mainWindowInstance.getUIContext();
       // Environment在UIContext.runScopedTask里调用明确上下文
       uiContext.runScopedTask(() => {
         Environment.envProp('languageCode', 'en');

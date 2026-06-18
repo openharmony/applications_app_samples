@@ -54,7 +54,7 @@ struct Comp {
               .margin(10)
           }
         })
-      // 点击'add item',显示`propA 'a' propB 'b'report?.'a' - 'b'`, 杀掉应用，再次进入，会显示上次的结果
+      // 点击'add item',显示`propA 'a' propB 'b'report?.()'a - b'`, 杀掉应用，再次进入，会显示上次的结果
       Button('add item')
         .width(300)
         .margin(10)

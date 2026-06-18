@@ -44,7 +44,7 @@ export default class TaskListModel {
         return newTask;
       });
     } catch (e) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to getRawFileContent', JSON.stringify(e) ?? '');
+      hilog.error(DOMAIN, 'testTag', 'Failed to getRawFileContent: %{public}s', JSON.stringify(e) ?? '');
     }
   }
 }

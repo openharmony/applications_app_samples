@@ -47,12 +47,11 @@ struct ChildOne {
   build() {
     Column({ space: 15 }) {
       // 当ParentOne改变时，当前storagePropTwo不会改变，显示47
-      Text(`ParentOne from LocalStorage ${this.storagePropTwo}`)
+      Text(`ChildOne from LocalStorage ${this.storagePropTwo}`)
         .fontSize(20)
         .margin(10)
     }
     .width('100%')
   }
 }
-
 // [End localStorage_page_two_single_syn]

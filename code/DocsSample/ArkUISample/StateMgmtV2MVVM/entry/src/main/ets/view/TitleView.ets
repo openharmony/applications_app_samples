@@ -25,7 +25,7 @@ export default struct TitleView {
       Text('To do')
         .fontSize(40)
         .margin(10)
-      Text(`All Not Completed：${this.tasksUnfinished}`)
+      Text(`Unfinished task：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }

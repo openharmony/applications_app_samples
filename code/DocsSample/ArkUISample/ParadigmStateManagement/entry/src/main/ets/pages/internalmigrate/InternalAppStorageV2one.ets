@@ -29,7 +29,7 @@ struct Index {
 
   build() {
     Column() {
-      Text(`EntryAbility1 count: ${this.storage.count}`)
+      Text(`EntryAbility count: ${this.storage.count}`)
         .fontSize(50)
         .onClick(() => {
           this.storage.count++;

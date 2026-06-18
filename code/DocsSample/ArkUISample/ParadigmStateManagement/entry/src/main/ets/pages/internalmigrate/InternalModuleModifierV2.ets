@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 
 class MyModifier extends TextModifier {
-  applyNormalAttribute(instance: TextModifier): void {
+  applyNormalAttribute(instance: TextAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 

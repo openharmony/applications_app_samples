@@ -45,7 +45,7 @@ struct ListExample {
           }.backgroundColor(Color.Pink)
         })
       }
-      .childrenMainSize(this.listChildrenSize) // 10
+      .childrenMainSize(this.listChildrenSize)
     }
   }
 }
