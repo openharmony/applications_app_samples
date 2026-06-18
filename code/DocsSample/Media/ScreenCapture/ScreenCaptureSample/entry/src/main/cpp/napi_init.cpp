@@ -573,7 +573,7 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
         OH_LOG_ERROR(LOG_APP, "create screen capture failed");
     }
     OH_AVScreenCaptureConfig config_;
-
+    OpenFile02();
     OH_RecorderInfo recorderInfo;
     std::string fileUrl = "fd://" + std::to_string(g_fileOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
@@ -798,7 +798,7 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
         OH_LOG_ERROR(LOG_APP, "create screen capture failed");
     }
     OH_AVScreenCaptureConfig config_;
-
+    OpenFile02();
     OH_RecorderInfo recorderInfo;
     std::string fileUrl = "fd://" + std::to_string(g_windowOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
