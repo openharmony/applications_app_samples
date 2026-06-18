@@ -396,7 +396,7 @@ void SetSpecifiedWindowIdForWindowCapture(OH_AVScreenCaptureConfig &config)
     // 设置为false，代表录屏启动后不弹出系统Picker，弹出隐私提示弹窗。
     OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
-    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+    OH_AVScreenCapture_SetCaptureStrategy(g_avCapture, strategy);
     // [End screenCapture_withWindow_forID]
 }
 
@@ -532,18 +532,18 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
     // 可选，排除指定窗口/指定音频类型 end
     // 可选，设置是否捕获光标
     // [Start screenCapture_buffer_showCursor]
-    OH_AVScreenCapture_ShowCursor(capture, false);
+    OH_AVScreenCapture_ShowCursor(g_avCapture, false);
     // [End screenCapture_buffer_showCursor]
     // 可选，设置最大帧率
     // [Start screenCapture_buffer_setMaxVideoFrameRate]
-    OH_AVScreenCapture_SetMaxVideoFrameRate(capture, CAPTURE_VIDEO_FRAME_RATE);
+    OH_AVScreenCapture_SetMaxVideoFrameRate(g_avCapture, CAPTURE_VIDEO_FRAME_RATE);
     // [End screenCapture_buffer_setMaxVideoFrameRate]
     // 可选，设置屏幕分辨率
     // [Start screenCapture_buffer_resizeCanvas]
-    OH_AVScreenCapture_ResizeCanvas(capture, CANVAS_RESIZE_WIDTH, CANVAS_RESIZE_HEIGHT);
+    OH_AVScreenCapture_ResizeCanvas(g_avCapture, CANVAS_RESIZE_WIDTH, CANVAS_RESIZE_HEIGHT);
     // [End screenCapture_buffer_resizeCanvas]
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
-    result = OH_AVScreenCapture_Init(g_avCapture, config);
+    result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
         OH_LOG_ERROR(LOG_APP,
             "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
@@ -873,9 +873,7 @@ void SetConfig05(OH_AVScreenCaptureConfig &config)
     NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
     ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
     if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
-        napi_value res;
-        napi_create_int32(env, ret, &res);
-        return res;
+        return;
     }
     int32_t screenWidth = displayInfo->width;
     int32_t screenHeight = displayInfo->height;
@@ -919,7 +917,7 @@ static napi_value StartScreenCapture_05(napi_env env, napi_callback_info info)
     region->height = CAPTURE_REGION_SIZE;
     // 2.传入矩形区域所在的屏幕Id。
     uint64_t regionDisplayId = 0;
-    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
+    OH_AVScreenCapture_SetCaptureArea(g_avCapture, regionDisplayId, region);
     // 开始录屏。
     result = OH_AVScreenCapture_StartScreenCapture(g_avCapture);
     // [End screenCapture_startScreenCapture_rectangular]
