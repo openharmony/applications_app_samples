@@ -15,7 +15,6 @@
 
 #ifndef AVSCREENCAPTURENDKDEMO_MAIN_H
 #define AVSCREENCAPTURENDKDEMO_MAIN_H
-#endif // AVSCREENCAPTURENDKDEMO_MAIN_H
 
 // [Start screenCapture_import]
 #include "hilog/log.h"
@@ -106,3 +105,5 @@ constexpr int32_t PRIVACY_MASK_MODE_FULL_SCREEN = 0;
 constexpr int32_t PRIVACY_MASK_MODE_WINDOW = 1;
 constexpr int32_t CAPTURE_REGION_SIZE = 100;
 constexpr int32_t CAPTURE_VIDEO_FRAME_RATE = 30;
+
+#endif // AVSCREENCAPTURENDKDEMO_MAIN_H
