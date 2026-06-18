@@ -22,7 +22,7 @@ FILE *g_micFile = nullptr;
 FILE *g_vFile = nullptr;
 FILE *g_innerFile = nullptr;
 struct OH_AVScreenCapture *g_avCapture = {};
-char filename[100] = {0};
+char g_filename[100] = {0};
 
 void OpenFile(std::string fileName)
 {
