@@ -49,6 +49,8 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
 }
 
 export default class EntryAbility extends UIAbility {
+  private windowId: number = -1;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
@@ -62,6 +64,14 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     reqPermissionsFromUser(permissions, this.context);
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      this.windowId = windowClass.getWindowProperties().id;
+      AppStorage.setOrCreate<number>('windowId', this.windowId);
+      console.info(`Succeeded in obtaining the main window.`);
+    } catch (exception) {
+      console.error(`Failed to obtain the main window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));

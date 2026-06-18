@@ -20,6 +20,7 @@ import testNapi from 'libentry.so';
 export struct Scene5 {
   @State isCapturing: boolean = false;
   @Consume('pageInfos') pageInfos: NavPathStack;
+  @StorageLink('windowId') windowId: number = 0;
 
   build() {
     NavDestination() {
@@ -39,6 +40,7 @@ export struct Scene5 {
                 .width(90)
                 .height(90)
                 .onClick(() => {
+                  testNapi.setWindowId(this.windowId);
                   if (testNapi.startScreenCaptureWithWindow() == 0) {
                     this.isCapturing = true;
                   }
