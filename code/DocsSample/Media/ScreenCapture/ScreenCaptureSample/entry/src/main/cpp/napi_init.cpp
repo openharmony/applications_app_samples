@@ -21,6 +21,8 @@ using namespace std;
 FILE *g_micFile = nullptr;
 FILE *g_vFile = nullptr;
 FILE *g_innerFile = nullptr;
+struct OH_AVScreenCapture *g_avCapture = {};
+char filename[100] = {0};
 
 void OpenFile(std::string fileName)
 {
@@ -609,7 +611,7 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
-    m_scSaveFileIsRunning = true;
+    g_scSaveFileIsRunning = true;
     napi_value res;
     napi_create_int32(env, result, &res);
     return res;
@@ -618,16 +620,16 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
 // 开始录屏原始码流SurfaceMode
 void ThreadVideoRunMethod()
 {
-    while (m_scSurfaceIsRunning) {
-        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ThreadVideoRunMethod m_scSurfaceIsRunning %{public}d",
-            m_scSurfaceIsRunning);
-        if (!isStarted_.load()) {
+    while (g_scSurfaceIsRunning) {
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ThreadVideoRunMethod g_scSurfaceIsRunning %{public}d",
+            g_scSurfaceIsRunning);
+        if (!g_isStarted.load()) {
             return;
         }
         std::unique_lock<std::mutex> lock(g_encContext->outputMutex_);
         bool condRet = g_encContext->outputCond_.wait_for(
-            lock, 2s, [&]() { return !isStarted_.load() || !g_encContext->outputBufferInfoQueue_.empty(); });
-        if (!isStarted_.load()) {
+            lock, 2s, [&]() { return !g_isStarted.load() || !g_encContext->outputBufferInfoQueue_.empty(); });
+        if (!g_isStarted.load()) {
             return;
         }
         if (g_encContext->outputBufferInfoQueue_.empty()) {
@@ -679,13 +681,13 @@ int SetFormat()
     // 配置比特率
     int64_t bitRate = 2000000;
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
-    sampleInfo_.videoWidth = DEFAULT_WIDTH;
+    g_sampleInfo.videoWidth = DEFAULT_WIDTH;
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
-    sampleInfo_.videoHeight = DEFAULT_HEIGHT;
+    g_sampleInfo.videoHeight = DEFAULT_HEIGHT;
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-    sampleInfo_.frameRate = frameRate;
-    sampleInfo_.videoCodecMime = sampleInfo_.codecMime.data();
+    g_sampleInfo.frameRate = frameRate;
+    g_sampleInfo.videoCodecMime = g_sampleInfo.codecMime.data();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
@@ -711,7 +713,7 @@ int GetInputSurface()
     OpenFile02();
     g_muxer->Create(g_surfaceOutputFd);
     g_encContext = new CodecUserData;
-    g_encContext->sampleInfo = &sampleInfo_;
+    g_encContext->sampleInfo = &g_sampleInfo;
     // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
     OH_VideoEncoder_RegisterCallback(g_videoEnc,
                                      {SampleCallback::OnError, SampleCallback::OnStreamChanged,
@@ -727,15 +729,15 @@ int GetInputSurface()
         return result;
     }
     result = OH_VideoEncoder_Prepare(g_videoEnc);
-    g_muxer->Config(sampleInfo_);
+    g_muxer->Config(g_sampleInfo);
     g_muxer->Start();
     // 启动编码器
     result = OH_VideoEncoder_Start(g_videoEnc);
-    isStarted_.store(true);
-    m_scSurfaceIsRunning = true;
+    g_isStarted.store(true);
+    g_scSurfaceIsRunning = true;
     g_lastFrameTimestampPts = 0;
     g_lastFrameEncodePts = 0;
-    inputVideoThread_ = std::make_unique<std::thread>(ThreadVideoRunMethod);
+    g_inputVideoThread = std::make_unique<std::thread>(ThreadVideoRunMethod);
     // 指定surface开始录屏
     result = OH_AVScreenCapture_StartScreenCaptureWithSurface(g_avCapture, nativeWindow);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
@@ -750,8 +752,8 @@ int GetInputSurface()
 
 static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
 {
-    isStarted_.store(false);
-    inputVideoThread_ = nullptr;
+    g_isStarted.store(false);
+    g_inputVideoThread = nullptr;
     g_encContext = nullptr;
     g_avCapture = OH_AVScreenCapture_Create();
     if (g_avCapture == nullptr) {
@@ -849,7 +851,7 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
-    m_scSaveFileIsRunning = true;
+    g_scSaveFileIsRunning = true;
     napi_value res;
     napi_create_int32(env, result, &res);
     return res;
@@ -939,7 +941,7 @@ static napi_value StartScreenCapture_05(napi_env env, napi_callback_info info)
 
 static void StopSurfaceCapture()
 {
-    if (!m_scSurfaceIsRunning) {
+    if (!g_scSurfaceIsRunning) {
         return;
     }
     (void)OH_VideoEncoder_NotifyEndOfStream(g_videoEnc);
@@ -948,10 +950,10 @@ static void StopSurfaceCapture()
     g_videoEnc = nullptr;
     g_muxer->Stop();
     g_muxer.reset();
-    m_scSurfaceIsRunning = false;
-    isStarted_.store(false);
-    if (inputVideoThread_ && inputVideoThread_->joinable()) {
-        inputVideoThread_->join();
+    g_scSurfaceIsRunning = false;
+    g_isStarted.store(false);
+    if (g_inputVideoThread && g_inputVideoThread->joinable()) {
+        g_inputVideoThread->join();
     }
     if (g_surfaceOutputFd != -1) {
         close(g_surfaceOutputFd);
@@ -968,7 +970,7 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
     if (g_avCapture == nullptr) {
         OH_LOG_ERROR(LOG_APP, "capture_ is null.");
     }
-    if (m_scSaveFileIsRunning) {
+    if (g_scSaveFileIsRunning) {
         // [Start screenCapture_stopScreenRecording]
         result = OH_AVScreenCapture_StopScreenRecording(g_avCapture);
         // [End screenCapture_stopScreenRecording]
@@ -984,7 +986,7 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         }
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         g_avCapture = nullptr;
-        m_scSaveFileIsRunning = false;
+        g_scSaveFileIsRunning = false;
         if (g_fileOutputFd != -1) {
             close(g_fileOutputFd);
             g_fileOutputFd = -1;

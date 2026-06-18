@@ -63,7 +63,7 @@
 #include "sample_callback.h"
 #include "muxer.h"
 
-static struct OH_AVScreenCapture *g_avCapture = {};
+extern struct OH_AVScreenCapture *g_avCapture;
 extern FILE *g_micFile;
 extern FILE *g_vFile;
 extern FILE *g_innerFile;
@@ -75,7 +75,7 @@ int32_t g_windowId = -1;
 std::vector<int32_t> g_missionIds;
 std::vector<int32_t> g_missionIds2;
 
-static char filename[100] = {0};
+extern char filename[100];
 bool g_isRunning = false;
 bool m_scSaveFileIsRunning = false;
 bool m_scSurfaceIsRunning = false;
