@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/GlobalReuseDefault",
+    "pages/GlobalReusePool",
+    "pages/GlobalReusePoolGet",
+    "pages/GlobalReusePoolMultiLevel",
+    "pages/GlobalReusePoolPerInstance",
+    "pages/GlobalReusePoolPrerender",
+    "pages/GlobalReusePoolReuseID",
+    "pages/GlobalReusePoolShared"
+  ]
+}
