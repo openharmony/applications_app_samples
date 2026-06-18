@@ -61,7 +61,12 @@ void OpenFile02()
     g_windowOutputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
         FILE_PERMISSION_FULL_ACCESS);
     if (g_windowOutputFd < 0) {
-        OH_LOG_ERROR(LOG_APP, "OpenFile g_fileOutputFd open failed.");
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_windowOutputFd open failed.");
+    }
+    g_surfaceOutputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT,
+        FILE_PERMISSION_FULL_ACCESS);
+    if (g_surfaceOutputFd < 0) {
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_surfaceOutputFd open failed.");
     }
 }
 
@@ -703,8 +708,7 @@ int GetInputSurface()
     const char *name = OH_AVCapability_GetName(capability);
     g_videoEnc = OH_VideoEncoder_CreateByName(name);
     g_muxer = std::make_unique<Muxer>();
-    const std::string filePath = "/data/storage/el2/base/files/";
-    g_surfaceOutputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
+    OpenFile02();
     g_muxer->Create(g_surfaceOutputFd);
     g_encContext = new CodecUserData;
     g_encContext->sampleInfo = &sampleInfo_;
