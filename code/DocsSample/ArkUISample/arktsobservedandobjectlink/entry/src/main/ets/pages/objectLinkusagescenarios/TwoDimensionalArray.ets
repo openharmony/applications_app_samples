@@ -26,7 +26,9 @@ struct Item {
     Row() {
       ForEach(this.itemArr, (item: string, index: number) => {
         Text(`${index}: ${item}`)
-          .width(100)
+          .fontSize(20)
+          .margin(5)
+          .width(120)
           .height(100)
       }, (item: string) => item)
     }
@@ -52,29 +54,34 @@ struct IndexPage {
       Divider()
 
       Button('push two-dimensional array item')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.arr[0].push('strawberry');
         })
 
       Button('push array item')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.arr.push(new ObservedArray<string>('pear'));
         })
 
       Button('change two-dimensional array first item')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.arr[0][0] = 'APPLE';
         })
 
       Button('change array first item')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.arr[0] = new ObservedArray<string>('watermelon');
         })
     }
+    .width('100%')
   }
 }
 

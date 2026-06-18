@@ -26,16 +26,23 @@ struct GetTargetObject {
   build() {
     Column() {
       Text(`info.name: ${this.info.name}`)
+        .fontSize(20)
+        .margin(10)
       Button('Change Proxy Object Properties')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.name = 'Alice'; // Text组件能够刷新
         })
       Button('Change Original Object Properties')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let rawInfo: Info = UIUtils.getTarget(this.info);
           rawInfo.name = 'Bob'; // Text组件不能刷新
         })
     }
+    .width('100%')
   }
 }
 // [End Changes_to_the_content_in_the_original]

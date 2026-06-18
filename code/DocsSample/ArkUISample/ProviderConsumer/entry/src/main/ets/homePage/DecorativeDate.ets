@@ -22,25 +22,36 @@ struct Parent {
   build() {
     Column() {
       Text(`parent: ${this.selectedDate}`)
+        .fontSize(20)
+        .margin(10)
       // selectedDate被@Provider装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('update the new date')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-07-07');
         })
       Button('increase the year by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -51,24 +62,35 @@ struct Child {
   build() {
     Column() {
       Text(`child: ${this.selectedDate}`)
+        .fontSize(20)
+        .margin(10)
       // selectedDate被@Consumer装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('update the new date')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2025-01-01');
         })
       Button('increase the year by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
     }
+    .width('100%')
   }
 }
 // [End Decorative_Date]

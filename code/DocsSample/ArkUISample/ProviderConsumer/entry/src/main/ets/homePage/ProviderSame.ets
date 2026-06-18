@@ -23,6 +23,7 @@ struct Index {
     Column() {
       Parent()
     }
+    .width('100%')
   }
 }
 
@@ -34,8 +35,11 @@ struct Parent {
   build() {
     Column() {
       Text(`${this.val2}`)
+        .fontSize(20)
+        .margin(10)
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -46,7 +50,10 @@ struct Child {
   build() {
     Column() {
       Text(`${this.val}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Provider_Same]

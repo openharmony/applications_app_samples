@@ -29,12 +29,15 @@ struct CompV1 {
   build() {
     Column() {
       Text(`@State observedClass: ${this.observedClass.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.observedClass.name += 'a'; // 触发刷新
         })
       // 调用UIUtils.enableV2Compatibility使V1的状态变量可在@ComponentV2中有观察能力。
       CompV2({ observedClass: UIUtils.enableV2Compatibility(this.observedClass) })
     }
+    .width('100%')
   }
 }
 
@@ -46,15 +49,21 @@ struct CompV2 {
     Column() {
       // V1状态变量在使能V2观察能力后，可以在V2观察第一层的变化
       Text(`@Param observedClass: ${this.observedClass.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.observedClass.name += '!'; // 刷新
         })
 
       // 使用非@Track的变量在V2中不会崩溃，但不会响应更新
-      Text(`count: ${this.observedClass.count}`).onClick(() => {
-        this.observedClass.count++; // 不触发刷新
-      })
+      Text(`count: ${this.observedClass.count}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          this.observedClass.count++; // 不触发刷新
+        })
     }
+    .width('100%')
   }
 }
 // [End state_mixed_scene_observed_class_v1_v2]

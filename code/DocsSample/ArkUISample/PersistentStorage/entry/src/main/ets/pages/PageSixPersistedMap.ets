@@ -29,9 +29,12 @@ struct PersistedMap {
       ListItem() {
         Column() {
           Text(`Persisted Map String is `)
+            .fontSize(20)
             .margin(20)
           ForEach(Array.from(this.persistedMapString.entries()), (item: [number, string]) => {
             Text(`${item[0]} ${item[1]}`)
+              .fontSize(20)
+              .margin(10)
           })
 
           Button() {
@@ -51,8 +54,8 @@ struct PersistedMap {
             // 点击Button改变persistedMapString的值，视图会随之刷新
             this.persistMapString();
           })
-
-        }.width('100%')
+        }
+        .width('100%')
       }
     }
   }

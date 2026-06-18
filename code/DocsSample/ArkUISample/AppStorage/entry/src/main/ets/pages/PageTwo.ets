@@ -44,6 +44,8 @@ struct TestStorageProp {
     Column({ space: 20 }) {
       // @StorageLink与AppStorage建立双向联系，更改数据会同步回AppStorage中key为'propA'的值
       Text(`storageLink ${this.storageLink}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.storageLink += 1;
         })
@@ -51,6 +53,8 @@ struct TestStorageProp {
       // @StorageProp与AppStorage建立单向联系，更改数据不会同步回AppStorage中key为'propA'的值
       // 但能被AppStorage的set/setorCreate更新值
       Text(`storageProp ${this.storageProp}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.storageProp += 1;
         })
@@ -58,21 +62,28 @@ struct TestStorageProp {
       // AppStorage的API虽然能获取值，但是不具有刷新UI的能力，日志能看到数值更改
       // 依赖@StorageLink/@StorageProp才能建立起与自定义组件的联系，刷新UI
       Text(`change by AppStorage: ${AppStorage.get<number>('propA')}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           hilog.info(DOMAIN, TAG, `Appstorage.get: ${AppStorage.get<number>('propA')}`);
           AppStorage.set<number>('propA', 100);
         })
 
       Text(`storageLinkObject ${this.storageLinkObject.code}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.storageLinkObject.code += 1;
         })
 
       Text(`storagePropObject ${this.storagePropObject.code}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.storagePropObject.code += 1;
         })
     }
+    .width('100%')
   }
 }
 

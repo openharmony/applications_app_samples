@@ -63,6 +63,7 @@ struct CounterComp {
       CounterChild({ subValue: this.value.subCounter })
       Divider().height(2)
     }
+    .width('100%')
   }
 }
 
@@ -72,6 +73,7 @@ struct CounterChild {
 
   build() {
     Text(`${this.subValue.counter}`)
+      .fontSize(20)
       .onClick(() => {
         this.subValue.counter += 1;
       })
@@ -99,22 +101,29 @@ struct ParentComp {
         )
         Divider().height(5)
         Text('Parent: reset entire counter')
-          .fontSize(20).height(50)
+          .fontSize(20)
+          .margin(5)
+          .height(50)
           .onClick(() => {
             this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
           })
         Text('Parent: incr counter[0].counter')
-          .fontSize(20).height(50)
+          .fontSize(20)
+          .margin(5)
+          .height(50)
           .onClick(() => {
             this.counter[0].incrCounter();
             this.counter[0].incrSubCounter(10);
           })
         Text('Parent: set.counter to 10')
-          .fontSize(20).height(50)
+          .fontSize(20)
+          .margin(5)
+          .height(50)
           .onClick(() => {
             this.counter[0].setSubCounter(10);
           })
       }
+      .width('100%')
     }
   }
 }

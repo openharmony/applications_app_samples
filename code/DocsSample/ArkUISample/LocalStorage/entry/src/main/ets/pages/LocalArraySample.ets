@@ -54,6 +54,7 @@ struct Index {
         .width(300)
         .margin(10)
     }
+    .width('100%')
   }
 }
 // [End localStorage_local_array_sample]

@@ -61,25 +61,39 @@ struct Index {
       ForEach(this.infoArr, (info: Info) => {
         Row() {
           Text(`name: ${info.name}`)
+            .fontSize(15)
+            .margin(10)
           Text(`region: ${info.region.x}-${info.region.y}`)
+            .fontSize(15)
+            .margin(10)
         }
       })
       Row() {
         Text(`Origin name: ${this.originInfo.name}`)
+          .fontSize(15)
+          .margin(10)
         Text(`Origin region: ${this.originInfo.region.x}-${this.originInfo.region.y}`)
+          .fontSize(15)
+          .margin(10)
       }
 
       Button('change infoArr item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 由于属性name被@Trace装饰，所以能够观察到
           this.infoArr[0].name = 'Win';
         })
       Button('change originInfo')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 由于变量originInfo被@Local装饰，所以能够观察到
           this.originInfo = new Info('Origin', 100, 100);
         })
       Button('change originInfo region')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 由于属性x、y被@Trace装饰，所以能够观察到
           this.originInfo.region.x = 25;
@@ -90,6 +104,7 @@ struct Index {
         originInfo: this.originInfo
       })
     }
+    .width('100%')
   }
 }
 
@@ -103,14 +118,23 @@ struct Child {
       ForEach(this.infoArr, (info: Info) => {
         Row() {
           Text(`name: ${info.name}`)
+            .fontSize(15)
+            .margin(10)
           Text(`region: ${info.region.x}-${info.region.y}`)
+            .fontSize(15)
+            .margin(10)
         }
       })
       Row() {
         Text(`Origin name: ${this.originInfo.name}`)
+          .fontSize(15)
+          .margin(10)
         Text(`Origin region: ${this.originInfo.region.x}-${this.originInfo.region.y}`)
+          .fontSize(15)
+          .margin(10)
       }
     }
+    .width('100%')
   }
 }
 // [End Param_Observe_Change_Nested_Class]

@@ -22,7 +22,10 @@ struct ChildComponent {
   build() {
     Column() {
       Text(`onceParam: ${this.onceParam}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 
@@ -45,12 +48,17 @@ struct MyComponent {
   build() {
     Column() {
       Text(`Parent message: ${this.message}`)
+        .fontSize(20)
+        .margin(10)
       Button('change message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message = 'Hello Tomorrow';
         })
       ChildComponent({ onceParam: this.message })
     }
+    .width('100%')
   }
   // [EndExclude once_param_componentV2_pair]
   // [EndExclude once_param_order_irrelevant]

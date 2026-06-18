@@ -29,6 +29,7 @@ struct ChildFour {
         .width(50)
         .height(60)
         .fontSize(12)
+        .margin(10)
       Text(`playCountLink ${this.playCountLink}: inc by 1`)
         .onClick(() => {
           this.playCountLink += 1;
@@ -36,6 +37,7 @@ struct ChildFour {
         .width(200)
         .height(60)
         .fontSize(12)
+        .margin(10)
     }
     .width(300)
     .height(60)
@@ -54,6 +56,7 @@ struct ParentFour {
           .width(50)
           .height(60)
           .fontSize(12)
+          .margin(10)
         Text(`playCount ${this.playCount} dec by 1`)
           .onClick(() => {
             this.playCount -= 1;
@@ -61,6 +64,7 @@ struct ParentFour {
           .width(250)
           .height(60)
           .fontSize(12)
+          .margin(10)
       }
       .width(300)
       .height(60)
@@ -70,6 +74,7 @@ struct ParentFour {
           .width(50)
           .height(60)
           .fontSize(12)
+          .margin(10)
         Text(`countStorage ${this.playCount} incr by 1`)
           .onClick(() => {
             storageFour.set<number | undefined>('countStorage', Number(storageFour.get<number>('countStorage')) + 1);
@@ -77,6 +82,7 @@ struct ParentFour {
           .width(250)
           .height(60)
           .fontSize(12)
+          .margin(10)
       }
       .width(300)
       .height(60)
@@ -88,7 +94,9 @@ struct ParentFour {
         .width(300)
         .height(60)
         .fontSize(12)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 

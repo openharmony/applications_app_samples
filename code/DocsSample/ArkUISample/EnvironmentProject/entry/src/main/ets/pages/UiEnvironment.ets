@@ -27,8 +27,12 @@ struct UiEnvironment {
       Column() {
         // 输出当前设备的languageCode
         Text(this.languageCode)
+          .fontSize(20)
+          .margin(10)
       }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 // [End ui_Environment]

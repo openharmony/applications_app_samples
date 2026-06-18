@@ -21,7 +21,10 @@ class Tmp {
 function overBuilder(param: Tmp) {
   Column() {
     Text(`wrapBuildervalue:${param.paramA2}`)
+      .fontSize(20)
+      .margin(10)
   }
+  .width('100%')
 }
 
 const wBuilder: WrappedBuilder<[Tmp]> = wrapBuilder(overBuilder);
@@ -35,10 +38,14 @@ struct Parent {
     Column() {
       // 引用传递参数，label.paramA2的改变会引起overBuilder内的UI刷新
       wBuilder.builder({ paramA2: this.label.paramA2 });
-      Button('Click me').onClick(() => {
-        this.label.paramA2 = 'ArkUI';
-      })
+      Button('Click me')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.label.paramA2 = 'ArkUI';
+        })
     }
+    .width('100%')
   }
 }
 // [End wrapbuilder_page_four]

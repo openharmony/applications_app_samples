@@ -59,19 +59,26 @@ struct ParentComponent {
         .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text7').id) :
         this.getUIContext()
           .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text8').id)}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.type2} ${this.taskB.isFinished ? this.getUIContext()
         .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text7').id) :
         this.getUIContext()
           .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text8').id)}`)
+        .fontSize(20)
+        .margin(10)
       ChildComponent({ taskA: this.taskA, taskB: this.taskB })
       // 请将$r('app.string.watch_text9')替换为实际资源文件，在本示例中该资源文件的value值为"切换任务状态"
       Button(this.getUIContext()
         .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text9').id))
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.taskB = new Task(!this.taskB.isFinished);
           this.taskA = new Task(!this.taskA.isFinished);
         })
     }
+    .width('100%')
   }
 }
 
@@ -105,11 +112,16 @@ struct ChildComponent {
         .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text7').id) :
         this.getUIContext()
           .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text8').id)}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.type2} ${this.taskB.isFinished ? this.getUIContext()
         .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text7').id) :
         this.getUIContext()
           .getHostContext()!.resourceManager.getStringSync($r('app.string.watch_text8').id)}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 

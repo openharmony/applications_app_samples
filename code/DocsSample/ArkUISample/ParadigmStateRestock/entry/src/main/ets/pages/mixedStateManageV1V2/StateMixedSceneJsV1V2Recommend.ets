@@ -15,7 +15,6 @@
 // [Start state_mixed_scene_js_v1_v2_recommend]
 import { UIUtils } from '@kit.ArkUI';
 
-@Observed
 class ObservedClass {
   public name: string = 'Tom';
 }
@@ -28,12 +27,15 @@ struct CompV1 {
   build() {
     Column() {
       Text(`@State observedClass: ${this.observedClass.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.observedClass.name += '!'; // 刷新
         })
       // 调用UIUtils.enableV2Compatibility使V1的状态变量可在@ComponentV2中有观察能力。
       CompV2({ observedClass: UIUtils.enableV2Compatibility(this.observedClass) })
     }
+    .width('100%')
   }
 }
 
@@ -44,6 +46,8 @@ struct CompV2 {
   build() {
     // V1状态变量在使能V2观察能力后，可以在V2观察第一层的变化
     Text(`@Param observedClass: ${this.observedClass.name}`)
+      .fontSize(20)
+      .margin(10)
       .onClick(() => {
         this.observedClass.name += '!'; // 刷新
       })

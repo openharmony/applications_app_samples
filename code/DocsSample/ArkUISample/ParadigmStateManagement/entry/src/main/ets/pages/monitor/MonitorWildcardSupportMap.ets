@@ -35,15 +35,23 @@ struct MonitorWildcardMap {
   build() {
     Column({ space: 5 }) {
       Text(`map.size: ${this.map.size}`)
+        .fontSize(20)
+        .margin(10)
       Text(`map.get('one'): ${this.map.get('one')}`)
+        .fontSize(20)
+        .margin(10)
       // 在首次点击时，onMapSizeChanged、onMapChanged回调都触发
       Button(`Init, map.set('one', 'A'), map.set('two', 'B')`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.map.set('one', 'A');
           this.map.set('two', 'B');
         })
       // onMapSizeChanged、onMapChanged回调都触发
       Button(`Add new, map.set('three' + this.cnt, 'C')`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cnt++;
           this.map.set('three' + this.cnt, 'C')
@@ -51,24 +59,32 @@ struct MonitorWildcardMap {
       // 当'one'不存在时，onMapSizeChanged、onMapChanged回调都不触发
       // 当'one'存在时，onMapSizeChanged、onMapChanged回调都触发
       Button(`Delete from map: map.delete('one')`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.map.delete('one')
         })
       // 当map不为空时，onMapSizeChanged、onMapChanged回调都触发
       // 当map为空时，onMapSizeChanged、onMapChanged回调都不触发
       Button(`Clear map`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.map.clear();
         })
       // 在首次点击且假设存在（'one' -> 'A'）时，仅onMapChanged回调触发
       // 若已经设置过（'one' -> 'TWO'），则onMapSizeChanged、onMapChanged回调都不触发
       Button(`Update one to 'TWO' - map.set('one', 'TWO')`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.map.set('one', 'TWO');
         })
       // 当Map不存在'one'时，onMapSizeChanged、onMapChanged回调都触发
       // 当Map存在'one'时，onMapSizeChanged、onMapChanged回调都不会触发
       Button(`Update one to the same - map.set('one', sameval)`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           const sameval = this.map.get('one') ?? 'one';
           this.map.set('one', sameval);
@@ -76,6 +92,8 @@ struct MonitorWildcardMap {
       // 当Map不存在'one'时，onMapSizeChanged、onMapChanged回调都触发
       // 当Map存在'one'时，仅onMapChanged回调触发
       Button(`Update one to new value - map.set('one', newval)`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let newval = 'x' + (++this.cnt);
           this.map.set('one', newval);
@@ -83,11 +101,12 @@ struct MonitorWildcardMap {
       // 当map为空时，仅onMapChanged回调触发
       // 当map不为空时，onMapChanged、onMapSizeChanged回调都触发
       Button(`new map`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.map = new Map();
         })
     }
-    .border({ style: BorderStyle.Solid, width: 2, color: Color.Green })
   }
 }
 // [End monitor_wildcard_support_map]

@@ -63,6 +63,8 @@ struct SerializationAndDeserialization {
   build() {
     Column() {
       Text(`name: ${this.person?.info?.name}, age: ${this.person?.info?.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           if (this.person?.info?.age) {
             this.person!.info!.age++; // 修改可观察
@@ -70,6 +72,8 @@ struct SerializationAndDeserialization {
         })
       ForEach(this.person?.friends, (item: Info) => {
         Text(`friend name: ${item.name}, age: ${item.age}`)
+          .fontSize(20)
+          .margin(10)
           .onClick(() => {
             if (item.age) {
               item.age++; // 修改可观察
@@ -78,6 +82,8 @@ struct SerializationAndDeserialization {
       })
 
       Button('Refresh Info')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let json: string =
             `{
@@ -102,6 +108,7 @@ struct SerializationAndDeserialization {
           this.person = plainToInstance(Person, JSON.parse(json.replaceAll('__ob_', '')));
         })
     }
+    .width('100%')
   }
 }
 // [End Serialization_And_Deserialization]

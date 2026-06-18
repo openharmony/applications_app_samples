@@ -28,8 +28,9 @@ struct BookCard {
   build() {
     Column() {
       Text(`BookCard: ${this.book.name}`) // 可以观察到name的变化
-        .width(320)
+        .fontSize(20)
         .margin(10)
+        .width(320)
         .textAlign(TextAlign.Center)
 
       Button('change book.name')
@@ -39,6 +40,7 @@ struct BookCard {
           this.book.name = 'C++';
         })
     }
+    .width('100%')
   }
 }
 

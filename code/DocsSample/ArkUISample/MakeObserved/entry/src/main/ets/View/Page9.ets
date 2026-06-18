@@ -33,6 +33,8 @@ struct Page9 {
     RelativeContainer() {
       Text(`${this.message.id}`)
         .id('textNumber')
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.message.id++;
         })

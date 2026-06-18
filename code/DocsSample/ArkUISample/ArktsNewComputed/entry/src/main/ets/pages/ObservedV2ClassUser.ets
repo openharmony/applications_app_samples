@@ -41,12 +41,20 @@ struct ObservedV2ClassUser {
   build() {
     Column() {
       Text(this.name1.fullName)
+        .fontSize(20)
+        .margin(10)
       Text(this.name1.fullName)
+        .fontSize(20)
+        .margin(10)
       // 点击Button改变lastName，触发fullName重新计算，且只被计算一次
-      Button('changed lastName').onClick(() => {
-        this.name1.lastName += 'a';
-      })
+      Button('changed lastName')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.name1.lastName += 'a';
+        })
     }
+    .width('100%')
   }
 }
 // [End ObservedV2_Class_User]

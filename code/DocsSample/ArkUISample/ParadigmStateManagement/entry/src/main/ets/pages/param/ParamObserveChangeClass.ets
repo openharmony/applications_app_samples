@@ -54,14 +54,22 @@ struct Index {
   build() {
     Column() {
       Text(`${this.rawObject.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.observedObject.name}`)
+        .fontSize(20)
+        .margin(10)
       Button('change object')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 对类对象整体的修改均能观察到
           this.rawObject = new RawObject('new rawObject');
           this.observedObject = new ObservedObject('new observedObject');
         })
       Button('change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // @Local与@Param均不具备观察类对象属性的能力，因此对rawObject.name的修改无法观察到
           this.rawObject.name = 'new rawObject name';
@@ -73,6 +81,7 @@ struct Index {
         observedObject: this.observedObject
       })
     }
+    .width('100%')
   }
 }
 
@@ -84,8 +93,13 @@ struct Child {
   build() {
     Column() {
       Text(`${this.rawObject.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.observedObject.name}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Param_Observe_Change_Class]

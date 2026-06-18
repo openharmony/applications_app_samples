@@ -38,6 +38,8 @@ struct Child {
     Column() {
       // data被@Observed和@ObjectLink装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('child increase the day by 1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.data.setDate(this.data.getDate() + 1);
         })
@@ -47,6 +49,7 @@ struct Child {
         selected: this.data
       })
     }
+    .width('100%')
   }
 }
 
@@ -60,14 +63,19 @@ struct Parent {
       Child({ label: 'date', data: this.newData.data })
 
       Button('parent update the new date')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.newData.data = new DateClass('2023-07-07');
         })
-      Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
+      Button(`2023-08-20`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.newData = new NewDate(new DateClass('2023-08-20'));
         })
     }
+    .width('100%')
   }
 }
 // [End Observation_ChangeInheritance]

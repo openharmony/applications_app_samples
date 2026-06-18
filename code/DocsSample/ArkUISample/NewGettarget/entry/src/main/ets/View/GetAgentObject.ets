@@ -34,8 +34,13 @@ struct GetAgentObject {
   build() {
     Column() {
       Text(`this.observedObject === globalObservedObject ${this.observedObject === globalObservedObject}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`this.numberList === globalNumberList ${this.numberList === globalNumberList}`) // false
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End observedObject_globalObservedObject]

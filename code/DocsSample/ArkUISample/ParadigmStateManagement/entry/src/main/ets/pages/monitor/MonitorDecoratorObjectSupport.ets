@@ -55,18 +55,25 @@ struct Index {
   build() {
     Column() {
       Button('Step1: Only change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.person = new Person('Jack', 25); // 能够触发onNameChange方法，不触发onAgeChange方法
         })
       Button('Step2: Only change age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.person = new Person('Jack', 18); // 能够触发onAgeChange方法，不触发onNameChange方法
         })
       Button('Step3: Change name and age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.person = new Person('Lucy', 19); // 能够触发onNameChange、onAgeChange方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_object_support]

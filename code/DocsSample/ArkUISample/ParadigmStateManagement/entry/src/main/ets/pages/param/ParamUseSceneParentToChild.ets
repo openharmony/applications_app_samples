@@ -65,12 +65,15 @@ struct Index {
       })
       // 修改数组元素及对象属性，触发MiddleComponent和SubComponent更新。
       Button('change')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.infoList[0] = new Info('Atom', 40, 27, 90);
           this.infoList[1].name = 'Bob';
           this.infoList[2].region = new Region(7, 9);
         })
     }
+    .width('100%')
   }
 }
 
@@ -82,10 +85,15 @@ struct MiddleComponent {
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`age: ${this.info.age}`)
+        .fontSize(20)
+        .margin(10)
       // 将Region对象继续传递给子组件的@Param。
       SubComponent({ region: this.info.region })
     }
+    .width('100%')
   }
 }
 
@@ -97,7 +105,10 @@ struct SubComponent {
   build() {
     Column() {
       Text(`region: ${this.region.x}-${this.region.y}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Param_Use_Scene_Parent_To_Child]

@@ -30,11 +30,14 @@ struct Child {
   build() {
     Column() {
       Text(`num value: ${this.num.count}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 正确写法，可以更改@ObjectLink装饰变量的成员属性
           this.num.count = 20;
         })
     }
+    .width('100%')
   }
 }
 
@@ -46,13 +49,18 @@ struct Parent {
   build() {
     Column() {
       Text(`count value: ${this.num.count}`)
+        .fontSize(20)
+        .margin(10)
       Button('click')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 可以在父组件做整体替换
           this.num = new Info(30);
         })
       Child({ num: this.num })
     }
+    .width('100%')
   }
 }
 // [End variables_decorated_ObjectLink_read_only]

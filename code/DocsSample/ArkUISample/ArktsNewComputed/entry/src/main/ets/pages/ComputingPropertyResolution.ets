@@ -55,8 +55,12 @@ struct ComputedPropertyResolution {
           })
       }
 
-      Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`).fontSize(40)
-      Text(`Kelvin ${this.kelvin.toFixed(2)}`).fontSize(40)
+      Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`)
+        .fontSize(40)
+        .margin(10)
+      Text(`Kelvin ${this.kelvin.toFixed(2)}`)
+        .fontSize(40)
+        .margin(10)
     }
     .width('100%')
   }

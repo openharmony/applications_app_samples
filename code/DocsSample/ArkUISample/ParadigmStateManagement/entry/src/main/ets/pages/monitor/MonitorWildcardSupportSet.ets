@@ -41,6 +41,8 @@ struct MonitorWildcardSet {
     Column({ space: 5 }) {
       // onSetChanged、onSetSizeChanged回调都触发
       Button(`Add three<Num> to the set`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cnt++;
           this.set.add('three' + this.cnt);
@@ -48,24 +50,32 @@ struct MonitorWildcardSet {
       // 当元素不存在时，onSetChanged、onSetSizeChanged回调都不触发
       // 当元素存在时，onSetChanged、onSetSizeChanged回调都触发
       Button(`Delete 'three<Num>' from the set - set.delete(...)`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.set.delete('three' + this.cnt);
         })
       // 当set不为空时，onSetChanged、onSetSizeChanged回调都触发
       // 当set为空时，onSetChanged、onSetSizeChanged回调都不触发
       Button(`Clear the set - set.clear()`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.set.clear();
         })
       // 当set不为空时，onSetChanged、onSetSizeChanged回调都触发
       // 当set为空时，仅onSetChanged回调触发
       Button(`Assign new set`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.set = new Set();
         })
       // 当set不包含'one'时，onSetChanged、onSetSizeChanged回调都触发
       // 当set包含'one'时，onSetChanged、onSetSizeChanged回调都不触发
       Button(`Add 'one' to the set`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.set.add('one');
         })

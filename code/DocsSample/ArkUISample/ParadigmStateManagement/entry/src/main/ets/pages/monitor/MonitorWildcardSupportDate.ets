@@ -30,21 +30,29 @@ struct MonitorWildcardDate {
     Column({ space: 5 }) {
       // API调用触发onDateChanged
       Button(`date.setMilliseconds(1000)`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.date.setMilliseconds(1000);
         })
       // API调用触发onDateChanged
       Button(`date.setTime(1000)`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.date.setTime(1000000);
         })
       // API调用触发onDateChanged
       Button(`Assign new Date`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.date = new Date();
         })
       // 整体赋相同值，不触发onDateChanged
       Button(`Re-assign the same Date`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let sameDate = this.date;
           this.date = sameDate;

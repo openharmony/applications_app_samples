@@ -35,17 +35,28 @@ struct Index {
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`age: ${this.info.age}`)
+        .fontSize(20)
+        .margin(10)
       Text(`jobName: ${this.info.job.jobName}`)
+        .fontSize(20)
+        .margin(10)
       Button('change age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.age++;
         })
       Button('Change job')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.job.jobName = 'Doctor';
         })
     }
+    .width('100%')
   }
 }
 

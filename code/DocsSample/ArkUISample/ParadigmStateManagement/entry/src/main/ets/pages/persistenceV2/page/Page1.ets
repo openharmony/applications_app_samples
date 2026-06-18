@@ -38,11 +38,15 @@ struct Page1 {
     Navigation(this.pageStack) {
       Column() {
         Button('Go to page2')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.pageStack.pushPathByName('Page2', null);
           })
 
         Button('Page1 connect the key Sample')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             // 在PersistenceV2中创建一个key为Sample的键值对（如果存在，则返回PersistenceV2中的数据），并且和prop关联
             // 不建议对prop属性换connect的对象
@@ -50,12 +54,16 @@ struct Page1 {
           })
 
         Button('Page1 remove the key Sample')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             // 从PersistenceV2中删除后，prop将不会再与key为Sample的值关联
             PersistenceV2.remove(Sample);
           })
 
         Button('Page1 save the key Sample')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             // 如果处于connect状态，持久化key为Sample的键值对
             PersistenceV2.save(Sample);
@@ -63,12 +71,14 @@ struct Page1 {
 
         Text(`Page1 add 1 to prop.p1: ${this.prop.f.p1}`)
           .fontSize(30)
+          .margin(10)
           .onClick(() => {
             this.prop.f.p1++;
           })
 
         Text(`Page1 add 1 to prop.p2: ${this.prop.f.p2}`)
           .fontSize(30)
+          .margin(10)
           .onClick(() => {
             // 页面不刷新，但是p2的值改变了
             this.prop.f.p2++;
@@ -77,7 +87,9 @@ struct Page1 {
         // 获取当前PersistenceV2里面的所有key
         Text(`all keys in PersistenceV2: ${PersistenceV2.keys()}`)
           .fontSize(30)
+          .margin(10)
       }
+        .width('100%')
     }
   }
 }

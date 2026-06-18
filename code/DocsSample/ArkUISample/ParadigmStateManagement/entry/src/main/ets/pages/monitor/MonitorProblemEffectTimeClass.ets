@@ -43,6 +43,8 @@ struct Index {
   build() {
     Column() {
       Button('change message')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.message = 'Index click to change message';
         })

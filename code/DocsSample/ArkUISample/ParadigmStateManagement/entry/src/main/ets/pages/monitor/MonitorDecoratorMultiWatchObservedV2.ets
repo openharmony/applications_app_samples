@@ -54,22 +54,31 @@ struct Index {
   build() {
     Column() {
       Button('change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.name = 'Jack'; // 能够触发onNameChange方法
         })
       Button('change age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.age = 26; // 不能够触发onAgeChange方法
         })
       Button('change region')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.region = 'South'; // 能够触发onChange方法
         })
       Button('change job')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.job = 'Driver'; // 能够触发onChange方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_multi_watch_observed_v2]

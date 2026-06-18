@@ -25,6 +25,8 @@ struct LinkChild {
 
   build() {
     Text(this.test.value)
+      .fontSize(20)
+      .margin(10)
   }
 }
 
@@ -38,6 +40,7 @@ struct LinkExample {
       // 在父组件中，使用@State装饰的info变量初始化LinkChild组件的test变量
       LinkChild({test: this.info})
     }
+    .width('100%')
   }
 }
 // [End link_usage]

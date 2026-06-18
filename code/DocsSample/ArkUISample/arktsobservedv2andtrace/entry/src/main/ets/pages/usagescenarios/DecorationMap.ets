@@ -29,28 +29,40 @@ struct MapSample {
         ForEach(Array.from(this.info.memberMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`)
             .fontSize(30)
+            .margin(10)
           Text(`${item[1]}`)
             .fontSize(30)
+            .margin(10)
           Divider()
         })
         // 被@Trace装饰的Map类型属性可以观测到调用API带来的变化
         Button('init map')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
           })
         Button('set new one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.set(4, 'd');
           })
         Button('clear')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.clear();
           })
         Button('set the key: 0')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.set(0, 'aa');
           })
         Button('delete the first one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.delete(0);
           })

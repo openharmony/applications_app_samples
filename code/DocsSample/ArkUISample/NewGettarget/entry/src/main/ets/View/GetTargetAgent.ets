@@ -43,17 +43,30 @@ struct GetTargetAgent {
     Column() {
       Text(`this.observedObject === observedClass: ${this.observedObject ===
         observedClass}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`UIUtils.getTarget(this.nonObservedObject) === nonObservedClass: ${UIUtils.getTarget(this.nonObservedObject) ===
         nonObservedClass}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`UIUtils.getTarget(this.numberList) === globalNumberList: ${UIUtils.getTarget(this.numberList) ===
         globalNumberList}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMap: ${UIUtils.getTarget(this.sampleMap) ===
         globalSampleMap}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`UIUtils.getTarget(this.sampleSet) === globalSampleSet: ${UIUtils.getTarget(this.sampleSet) ===
         globalSampleSet}`) // true
+        .fontSize(20)
+        .margin(10)
       Text(`UIUtils.getTarget(this.sampleDate) === globalSampleDate: ${UIUtils.getTarget(this.sampleDate) ===
         globalSampleDate}`) // true
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End nonObservedClass_out]

@@ -31,10 +31,13 @@ struct Index {
     Column() {
       // 当点击改变age时，Text组件会刷新
       Text(`${this.father.son.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.father.son.age++;
         })
     }
+    .width('100%')
   }
 }
 

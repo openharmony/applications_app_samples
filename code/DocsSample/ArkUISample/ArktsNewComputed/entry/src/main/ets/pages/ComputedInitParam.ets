@@ -44,9 +44,12 @@ struct ComputingInitParam {
     Column() {
       Text(`Shopping List: `)
         .fontSize(30)
+        .margin(10)
       ForEach(this.shoppingBasket, (item: Article) => {
         Row() {
           Text(`unitPrice: ${item.unitPrice}`)
+            .fontSize(20)
+            .margin(10)
           // 点击Button减少quantity，触发total和qualifiesForDiscount重新计算
           Button('-')
             .onClick(() => {
@@ -55,17 +58,21 @@ struct ComputingInitParam {
               }
             })
           Text(`quantity: ${item.quantity}`)
+            .fontSize(20)
+            .margin(10)
           // 点击Button增加quantity，触发total和qualifiesForDiscount重新计算
           Button('+')
             .onClick(() => {
               item.quantity++;
             })
         }
+        .width('100%')
 
         Divider()
       })
       Child({ total: this.total, qualifiesForDiscount: this.qualifiesForDiscount })
-    }.alignItems(HorizontalAlign.Start)
+    }
+    .alignItems(HorizontalAlign.Start)
   }
 }
 
@@ -78,8 +85,10 @@ struct Child {
     Row() {
       Text(`Total: ${this.total} `)
         .fontSize(30)
+        .margin(10)
       Text(`Discount: ${this.qualifiesForDiscount} `)
         .fontSize(30)
+        .margin(10)
     }
   }
 }

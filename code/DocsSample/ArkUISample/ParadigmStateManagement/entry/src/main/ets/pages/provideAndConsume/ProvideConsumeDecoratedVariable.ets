@@ -38,8 +38,13 @@ struct Parent {
       Row() {
         Column() {
           Text(`${this.provideOne}`)
+            .fontSize(20)
+            .margin(10)
           Text(`${this.provideTwo}`)
+            .fontSize(20)
+            .margin(10)
         }
+        .width('100%')
 
         Column() {
           // 点击change provideOne按钮，provideOne和子组件中的textOne属性会同时变化
@@ -47,20 +52,27 @@ struct Parent {
             .onClick(() => {
               this.provideOne = undefined;
             })
+            .width(300)
+            .margin(10)
           // 点击change provideTwo按钮，provideTwo和子组件中的textTwo属性会同时变化
           Button('change provideTwo')
             .onClick(() => {
               this.provideTwo = 'the next provider';
             })
+            .width(300)
+            .margin(10)
         }
+        .width('100%')
       }
 
       Row() {
         Column() {
           Child()
         }
+        .width('100%')
       }
     }
+    .width('100%')
   }
 }
 
@@ -76,19 +88,30 @@ struct Child {
   build() {
     Column() {
       Text(`${this.textOne}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.textTwo}`)
+        .fontSize(20)
+        .margin(10)
       Text(`${this.textThree}`)
+        .fontSize(20)
+        .margin(10)
       // 点击change textOne按钮，textOne和父组件的provideOne会同时变化
       Button('change textOne')
         .onClick(() => {
           this.textOne = 'not undefined';
         })
+        .width(300)
+        .margin(10)
       // 点击change textTwo按钮，textTwo和父组件的provideTwo会同时变化
       Button('change textTwo')
         .onClick(() => {
           this.textTwo = 'change textTwo';
         })
+        .width(300)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Provide_Consume_Decorated_Variable2]

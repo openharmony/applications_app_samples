@@ -44,6 +44,7 @@ struct Child {
         Text(`name: ${this.son.name} age: ${this.son.age}`)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+          .margin(10)
           .onClick(() => {
             this.son.age++;
           })
@@ -63,6 +64,7 @@ struct Index {
     Column() {
       Child({ son: this.father.son })
     }
+    .width('100%')
   }
 }
 

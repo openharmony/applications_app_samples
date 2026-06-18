@@ -41,7 +41,11 @@ struct Page1 {
           .each(ri => {
             Row() {
               Text(`Item: `)
+                .fontSize(20)
+                .margin(10)
               Text(`${ri.item}`)
+                .fontSize(20)
+                .margin(10)
             }
           })
           .key((item: number, index: number) => `${index} - ${item}`)
@@ -52,44 +56,51 @@ struct Page1 {
         .onClick(() => {
           this.array.push(Math.round(0));
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'array.pop()'，重启应用，Repeat数组项是：1, 2
       Button('array.pop()')
         .onClick(() => {
           this.array.pop();
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'array.splice(0)'，重启应用，Repeat数组项为空
       Button('array.splice(0)')
         .onClick(() => {
           this.array.splice(0);
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'splice(1, 0, random)'，重启应用：Repeat组件再次显示相同的数组项
       Button('array.splice(1, 0, random)')
         .onClick(() => {
           this.array.splice(1, 0, Math.round(100*Math.random()));
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'array.splice(0, 2, random, random)'，前两个数组项目被替换，记录下来
       // 重启应用：Repeat组件再次显示数组项
       Button('array.splice(0, 2, random, random)')
         .onClick(() => {
           this.array.splice(2, 2, Math.round(100*Math.random()), Math.round(100*Math.random()));
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'array.sort', 对数组项升序排列，重启应用，Repeat组件展示升序数组
       Button('array.sort')
         .onClick(() => {
           this.array.sort((a, b) => a -b);
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
       // 点击'array.reverse', 对数组项降序排列，重启应用，Repeat组件展示降序数组
       Button('array.reverse')
         .onClick(() => {
           this.array.reverse();
         })
-        .fontSize(24)
+        .width(300)
+        .margin(10)
     }
     .width('100%')
   }

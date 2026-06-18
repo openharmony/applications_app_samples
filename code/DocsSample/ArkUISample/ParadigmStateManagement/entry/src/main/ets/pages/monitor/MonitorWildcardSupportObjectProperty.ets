@@ -40,18 +40,25 @@ struct MonitorWildcardObject {
   build() {
     Column() {
       Button(`Change propA: ${this.cls.propA}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cls.propA += 1; // 触发onClsChanged
         })
       Button(`Change propB: ${this.cls.propB}`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cls.propB += 1; // 触发onClsChanged
         })
       Button('Assign new object')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.cls = new ClassA(-200, -200); // 触发onClsChanged
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_wildcard_support_object_property]

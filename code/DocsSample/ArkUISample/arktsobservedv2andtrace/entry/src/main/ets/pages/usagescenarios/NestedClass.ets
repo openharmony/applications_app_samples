@@ -51,17 +51,23 @@ struct Page {
     Column() {
       Text('pencil length' + this.son.bag.pencil.length)
         .fontSize(this.isRender(1)) // UINode (1)
+        .margin(10)
       Button('change length')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 点击更改length值，UINode（1）会刷新
           this.son.bag.pencil.length += 100;
         })
       Button('assign Son')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 由于变量son非状态变量，因此无法刷新UINode（1）
           this.son = new Son();
         })
     }
+    .width('100%')
   }
 }
 

@@ -30,10 +30,13 @@ struct Index {
     Column() {
       // 当点击改变name时，Text组件会刷新
       Text(`${this.son.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.son.name = 'Jack';
         })
     }
+    .width('100%')
   }
 }
 

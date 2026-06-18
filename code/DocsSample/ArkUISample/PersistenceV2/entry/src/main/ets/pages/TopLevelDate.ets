@@ -29,8 +29,10 @@ struct Page1 {
     Column({ space: 40 }) {
       Text(`date: ${this.date.toISOString()}`)
         .fontSize(24)
+        .margin(10)
       // 点击'date.setTime( Date.now() )', 杀掉应用，进入应用后，显示日期
       Button('date.setTime( Date.now() )')
+        .margin(10)
         .onClick(() => {
           this.date.setTime(Date.now());
         })

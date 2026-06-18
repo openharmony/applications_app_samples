@@ -34,12 +34,17 @@ struct Test {
   build() {
     Column() {
       Text(`count value: ${this.count}`)
+        .fontSize(20)
+        .margin(10)
       Button('change')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 自定义组件外改变状态变量，触发UI刷新
           model.call('count', this.count + 1);
         })
     }
+    .width('100%')
   }
 }
 

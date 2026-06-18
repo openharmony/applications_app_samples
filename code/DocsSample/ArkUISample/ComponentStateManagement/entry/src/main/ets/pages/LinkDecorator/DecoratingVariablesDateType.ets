@@ -22,10 +22,13 @@ struct DateComponent {
     Column() {
       // 子组件的Date类型可以同步回父组件
       Button(`child increase the year by 1`)
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('child update the new date')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-09-09');
@@ -36,6 +39,7 @@ struct DateComponent {
         selected: this.selectedDate
       })
     }
+    .width('100%')
   }
 }
 
@@ -47,11 +51,13 @@ struct ParentComponent {
   build() {
     Column() {
       Button('parent increase the month by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       Button('parent update the new date')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate = new Date('2023-07-07');
@@ -64,6 +70,7 @@ struct ParentComponent {
 
       DateComponent({ selectedDate:this.parentSelectedDate })
     }
+    .width('100%')
   }
 }
 // [End link_data_type]

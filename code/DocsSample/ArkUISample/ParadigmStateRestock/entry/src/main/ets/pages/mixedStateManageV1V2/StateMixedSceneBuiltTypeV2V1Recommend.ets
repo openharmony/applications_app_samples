@@ -22,10 +22,13 @@ struct ArrayCompV2 {
 
   build() {
     Column() {
-      Text(`V2 ${this.arr[0]}`).fontSize(20).onClick(() => {
-        // 点击触发V2变化，且同步给V1 @ObjectLink
-        this.arr[0]++;
-      })
+      Text(`V2 ${this.arr[0]}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          // 点击触发V2变化，且同步给V1 @ObjectLink
+          this.arr[0]++;
+        })
       ArrayCompV1({ arr: this.arr })
     }
     .height('100%')
@@ -39,11 +42,15 @@ struct ArrayCompV1 {
 
   build() {
     Column() {
-      Text(`V1 ${this.arr[0]}`).fontSize(20).onClick(() => {
-        // 点击触发V1变化，且双向同步回给V2
-        this.arr[0]++;
-      })
+      Text(`V1 ${this.arr[0]}`)
+        .fontSize(20)
+        .margin(10)
+        .onClick(() => {
+          // 点击触发V1变化，且双向同步回给V2
+          this.arr[0]++;
+        })
     }
+    .width('100%')
   }
 }
 // [End state_mixed_scene_built_type_v2_v1_recommend]

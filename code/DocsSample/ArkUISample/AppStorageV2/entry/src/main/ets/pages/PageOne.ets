@@ -27,17 +27,23 @@ struct PageOne {
     Navigation(this.pageStack) {
       Column() {
         Button('Go to pageTwo')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.pageStack.pushPathByName('PageTwo', null);
           })
 
         Button('PageOne connect the key Sample')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
             this.prop = AppStorageV2.connect(Sample, 'Sample', () => new Sample())!;
           })
 
         Button('PageOne remove the key Sample')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             // 从AppStorageV2中删除后，prop将不会再与key为Sample的值关联
             AppStorageV2.remove(Sample);
@@ -45,12 +51,14 @@ struct PageOne {
 
         Text(`PageOne add 1 to prop.p1: ${this.prop.p1}`)
           .fontSize(30)
+          .margin(10)
           .onClick(() => {
             this.prop.p1++;
           })
 
         Text(`PageOne add 1 to prop.p2: ${this.prop.p2}`)
           .fontSize(30)
+          .margin(10)
           .onClick(() => {
             // 页面不刷新，但是p2的值改变了
             this.prop.p2++;
@@ -59,6 +67,7 @@ struct PageOne {
         // 获取当前AppStorageV2里面的所有key
         Text(`all keys in AppStorage: ${AppStorageV2.keys()}`)
           .fontSize(30)
+          .margin(10)
       }
     }
   }

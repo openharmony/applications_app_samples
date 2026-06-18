@@ -54,7 +54,7 @@ struct Gallery {
         })
       }.columnsTemplate('1fr 1fr')
     }
-
+    .width('100%')
   }
 }
 

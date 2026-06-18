@@ -21,8 +21,12 @@ struct Child {
   build() {
     Column() {
       Text(`count(${this.count})`)
+        .fontSize(20)
+        .margin(10)
       Button(`count(${this.count}), Child`)
         .onClick(() => this.count = 'Ancestors')
+        .width(300)
+        .margin(10)
     }
     .width('50%')
   }
@@ -47,8 +51,11 @@ struct Ancestors {
     Column() {
       Button(`count(${this.count}), Child`)
         .onClick(() => this.count = undefined)
+        .width(300)
+        .margin(10)
       Parent()
     }
+    .width('100%')
   }
 }
 // [End provide_consume_Provide_Consume]

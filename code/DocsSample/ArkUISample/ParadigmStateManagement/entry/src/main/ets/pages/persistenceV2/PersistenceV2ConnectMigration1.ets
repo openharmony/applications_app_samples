@@ -53,6 +53,7 @@ struct Page1 {
           this.p.father.childId += 1;
         })
         .fontSize(25)
+        .margin(10)
         .fontColor(Color.Red)
 
       // save接口
@@ -65,6 +66,7 @@ struct Page1 {
           this.refresh += 1;
         })
         .fontSize(25)
+        .margin(10)
     }
     .width('100%')
   }

@@ -33,15 +33,25 @@ struct TestCase6 {
         Text(this.p + '')
           .fontSize(FONT_SIZE_LARGE)
           .fontWeight(FontWeight.Bold)
-        Button('changeToNumber').onClick(() => {
-          this.p = DEFAULT_NUMBER;
-        })
-        Button('changeTo undefined').onClick(() => {
-          this.p = undefined;
-        })
-        Button('changeTo null').onClick(() => {
-          this.p = null;
-        })
+          .margin(10)
+        Button('changeToNumber')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.p = DEFAULT_NUMBER;
+          })
+        Button('changeTo undefined')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.p = undefined;
+          })
+        Button('changeTo null')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.p = null;
+          })
       }
       .width('100%')
     }

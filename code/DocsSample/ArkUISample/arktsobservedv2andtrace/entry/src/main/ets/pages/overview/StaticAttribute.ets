@@ -25,10 +25,13 @@ struct Index {
     Column() {
       // 当点击改变count时，Text组件会刷新
       Text(`${Manager.count}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           Manager.count++;
         })
     }
+    .width('100%')
   }
 }
 

@@ -26,22 +26,28 @@ struct HomePage {
   @Builder
   builder2($$: Tmp) {
     Text(`${$$.name} test`)
+      .fontSize(20)
+      .margin(10)
   }
 
   build() {
     Column() {
-      Button('Hello').onClick(() => {
-        if (this.name == 'ddd') {
-          this.name = 'abc';
-        } else {
-          this.name = 'ddd';
-        }
-      })
+      Button('Hello')
+        .onClick(() => {
+          if (this.name == 'ddd') {
+            this.name = 'abc';
+          } else {
+            this.name = 'ddd';
+          }
+          })
+          .width(300)
+          .margin(10)
       // 修正点2：CustomWidget不再声明@Provide，仅作为容器传递builder
       CustomWidget() {
         CustomWidgetChild({ builder: this.builder2 })
       }
     }
+    .width('100%')
   }
 }
 
@@ -66,6 +72,7 @@ struct CustomWidgetChild {
     Column() {
       this.builder({ name: this.name })
     }
+    .width('100%')
   }
 }
 // [End provide_consume_Two_Way]

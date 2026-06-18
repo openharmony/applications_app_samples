@@ -42,24 +42,42 @@ struct Parent {
   componentBuilder($$: Data) {
     // 点击Button 触发UI刷新
     Text('builder + $$')
+      .fontSize(20)
+      .margin(10)
     Text(`${'this -> ' + this.label}`)
+      .fontSize(20)
+      .margin(10)
     Text(`${'size : ' + $$.size}`)
+      .fontSize(20)
+      .margin(10)
   }
 
   @LocalBuilder
   componentLocalBuilder($$: Data) {
     // 点击Button 不会触发UI刷新
     Text('LocalBuilder + $$ data')
+      .fontSize(20)
+      .margin(10)
     Text(`${'this -> ' + this.label}`)
+      .fontSize(20)
+      .margin(10)
     Text(`${'size : ' + $$.size}`)
+      .fontSize(20)
+      .margin(10)
   }
 
   @LocalBuilder
   contentLocalBuilderNoArgument() {
     // 点击Button 触发UI刷新
     Text('LocalBuilder + local data')
+      .fontSize(20)
+      .margin(10)
     Text(`${'this -> ' + this.label}`)
+      .fontSize(20)
+      .margin(10)
     Text(`${'size : ' + this.data.size}`)
+      .fontSize(20)
+      .margin(10)
   }
 
   build() {
@@ -71,6 +89,7 @@ struct Parent {
         data: this.data
       })
     }
+    .width('100%')
   }
 }
 
@@ -93,10 +112,13 @@ struct Child {
       this.contentLocalBuilder({ size: this.data.size })
       this.contentLocalBuilderNoArgument()
       Button('add child size')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.data.size += 1;
         })
     }
+    .width('100%')
   }
 }
 // [End pass_by_reference_three]

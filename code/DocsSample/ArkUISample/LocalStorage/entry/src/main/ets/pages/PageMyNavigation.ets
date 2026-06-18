@@ -70,6 +70,8 @@ struct PageOneStack {
         NavigationContentMsgStack()
         // 显示绑定的LocalStorage中'PropA'对应的值'propA'
         Text(`${this.propA}`)
+          .fontSize(20)
+          .margin(10)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -97,6 +99,8 @@ struct PageTwoStack {
         NavigationContentMsgStack()
         // 如果绑定的LocalStorage中没有'PropB',显示本地初始化的值'Hello World'
         Text(`${this.propB}`)
+          .fontSize(20)
+          .margin(10)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -126,6 +130,8 @@ struct PageThreeStack {
 
         // 如果绑定的LocalStorage中没有'PropC',显示本地初始化的值'pageThreeStack'
         Text(`${this.propC}`)
+          .fontSize(20)
+          .margin(10)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -152,7 +158,9 @@ struct NavigationContentMsgStack {
       Text(`${this.propA}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 

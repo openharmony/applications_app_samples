@@ -50,6 +50,8 @@ struct Child {
   build() {
     Column() {
       Text(`${this.infoWrapper.info?.age}`)
+        .fontSize(20)
+        .margin(10)
     }
   }
 }
@@ -70,10 +72,14 @@ struct Index {
     Column() {
       // 点击Button切换showFlag，触发Child组件的创建/销毁
       Button('change showFlag')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.showFlag = !this.showFlag;
         })
       Button('change number')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           hilog.info(0xFF00, 'testTag', '%{public}s', 'click to change age');
           this.dataArray.forEach((info: Info) => {
@@ -83,6 +89,8 @@ struct Index {
       if (this.showFlag) {
         Column() {
           Text('Children')
+            .fontSize(20)
+            .margin(10)
           ForEach(this.dataArray, (info: Info) => {
             Child({ infoWrapper: new InfoWrapper(info) })
           })

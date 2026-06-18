@@ -31,12 +31,15 @@ struct CompV2 {
       // 又调用UIUtils.enableV2Compatibility使其在V2中可观察
       // 所以当前可观察第一层属性的变化
       Text(`@Local observedClass: ${this.observedClass.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.observedClass.name += '!'; // 刷新
         })
       // @ObjectLink可接收@Observed装饰class的实例或者makeV1Observed的返回值
       CompV1({ observedClass: this.observedClass })
     }
+    .width('100%')
   }
 }
 
@@ -47,6 +50,8 @@ struct CompV1 {
   build() {
     // 在CompV1中可观察第一层的变化
     Text(`@ObjectLink observedClass: ${this.observedClass.name}`)
+      .fontSize(20)
+      .margin(10)
       .onClick(() => {
         this.observedClass.name += '!'; // 刷新
       })

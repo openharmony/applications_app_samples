@@ -39,9 +39,17 @@ struct Index {
   build() {
     Column() {
       Text(`Local ${this.count}`)
+        .fontSize(20)
+        .margin(10)
       Text(`Local ${this.message}`)
+        .fontSize(20)
+        .margin(10)
       Text(`Local ${this.flag}`)
+        .fontSize(20)
+        .margin(10)
       Button('change Local')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 对数据源的更改会同步给子组件
           this.count++;
@@ -54,6 +62,7 @@ struct Index {
         flag: this.flag
       })
     }
+    .width('100%')
   }
 }
 
@@ -66,9 +75,16 @@ struct Child {
   build() {
     Column() {
       Text(`Param ${this.count}`)
+        .fontSize(20)
+        .margin(10)
       Text(`Param ${this.message}`)
+        .fontSize(20)
+        .margin(10)
       Text(`Param ${this.flag}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Param_Observe_Change_Variable]

@@ -27,21 +27,25 @@ struct DateSample {
     Column() {
       // @Trace装饰的Date类型属性可以观测调用API带来的变化
       Button('set selectedDate to 2023-07-08')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate = new Date('2023-07-08');
         })
       Button('increase the year by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setFullYear(this.info.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setMonth(this.info.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setDate(this.info.selectedDate.getDate() + 1);
@@ -51,7 +55,8 @@ struct DateSample {
         end: new Date('2100-1-1'),
         selected: this.info.selectedDate
       })
-    }.width('100%')
+    }
+    .width('100%')
   }
 }
 

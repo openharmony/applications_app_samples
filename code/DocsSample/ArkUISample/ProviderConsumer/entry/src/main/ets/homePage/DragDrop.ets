@@ -28,8 +28,11 @@ struct Parent {
   build() {
     Column() {
       Text(`child position x: ${this.childX}, y: ${this.childY}`)
+        .fontSize(20)
+        .margin(10)
       Child()
     }
+    .width('100%')
   }
 }
 
@@ -39,6 +42,8 @@ struct Child {
 
   build() {
     Button('changed')
+      .width(300)
+      .margin(10)
       .draggable(true)
       .onDragStart((event: DragEvent) => {
         // 当前预览器上不支持通用拖拽事件

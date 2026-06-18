@@ -57,6 +57,7 @@ struct NestedClassV2 {
     Column() {
       Text(`@Local outer.outerValue can update ${this.outer.outerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 可观察第一层的变化
           this.outer.outerValue += '!';
@@ -64,6 +65,7 @@ struct NestedClassV2 {
 
       Text(`@Local outer.inner.innerValue can update ${this.outer.inner.innerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 可观察第二层的变化
           this.outer.inner.innerValue += '!';
@@ -84,12 +86,14 @@ struct NestedClassV1ObjectLink {
     Column() {
       Text(`@ObjectLink inner.innerValue can update ${this.inner.innerValue}`)
         .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // 可以触发刷新
           this.inner.innerValue += '!';
         })
       NestedClassV1ObjectLinkArray({ arr: this.inner.arr })
     }
+    .width('100%')
   }
 }
 
@@ -105,15 +109,22 @@ struct NestedClassV1ObjectLinkArray {
         return item.value.toString() + index.toString();
       })
 
-      Button('@ObjectLink push').onClick(() => {
-        this.arr.push(UIUtils.makeV1Observed(new ArrayItem(20)));
-      })
+      Button('@ObjectLink push')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(new ArrayItem(20)));
+        })
 
-      Button('@ObjectLink change the last Item').onClick(() => {
-        // 在NestedClassV1ObjectLinkArrayItem中可以观察最后一个数组项的属性变化
-        this.arr[this.arr.length - 1].value++;
-      })
+      Button('@ObjectLink change the last Item')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // 在NestedClassV1ObjectLinkArrayItem中可以观察最后一个数组项的属性变化
+          this.arr[this.arr.length - 1].value++;
+        })
     }
+    .width('100%')
   }
 }
 
@@ -123,6 +134,8 @@ struct NestedClassV1ObjectLinkArrayItem {
 
   build() {
     Text(`@ObjectLink outer.inner.arr item: ${this.item.value}`)
+      .fontSize(20)
+      .margin(10)
   }
 }
 // [End state_mixed_scene_nested_type_v2_v1]

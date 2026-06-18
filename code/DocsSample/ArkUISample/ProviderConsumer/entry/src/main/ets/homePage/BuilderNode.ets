@@ -74,27 +74,37 @@ struct RemoChildDisconnectProvider {
   build() {
     Column({ space: 8 }) {
       Text(`Provider: ${this.content}`)
+        .fontSize(20)
+        .margin(10)
 
       // 添加BuilderNode，@Consumer与@Provider建立双向同步
       Button('add child')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.controllerIndex.addBuilderNode();
         })
 
       // 移除BuilderNode，@Consumer与@Provider断开连接，恢复默认值
       Button('remove child')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.controllerIndex.removeBuilderNode();
         })
 
       // 释放BuilderNode的子节点TestRemove，随后该子节点销毁，触发子节点的aboutToDisappear回调
       Button('dispose child')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.controllerIndex.disposeNode();
         })
 
       // @Provider/@Consumer双向同步更新
       Button('change Provider')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.content += 'Pro';
         })
@@ -120,13 +130,18 @@ struct TestRemove {
   build() {
     Column() {
       Text('Consumer ' + this.content)
+        .fontSize(20)
+        .margin(10)
 
       // @Provider和@Consumer绑定的Text组件刷新，并回调@Provider和@Consumer的@Monitor方法
       Button('change cc')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.content += 'cc';
         })
     }
+    .width('100%')
   }
 }
 // [End Builder_Node]

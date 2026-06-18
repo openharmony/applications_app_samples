@@ -56,6 +56,8 @@ struct Index {
   build() {
     Column() {
       Button('change Info')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info = new Info(100, 100);
         })
@@ -67,6 +69,7 @@ struct Index {
         infoState: this.info
       })
     }
+    .width('100%')
   }
 }
 
@@ -82,8 +85,13 @@ struct Child {
   build() {
     Column() {
       Text(`ObjectLink region: ${this.region.x}-${this.region.y}`)
+        .fontSize(20)
+        .margin(10)
       Text(`Prop regionProp: ${this.regionProp.x}-${this.regionProp.y}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Param_Decorator_Limitations]

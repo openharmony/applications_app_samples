@@ -23,13 +23,17 @@ struct Item {
     Row() {
       ForEach(this.itemArr, (item: string, index: number) => {
         Text(`${index}: ${item}`)
+          .fontSize(20)
+          .margin(5)
       }, (item: string) => item + Math.random())
       // 新增数组元素
       Button('@ObjectLink push')
+        .width('40%')
         .onClick(() => {
           this.itemArr.push('ObjectLink');
         })
     }
+    .height('100%')
   }
 }
 
@@ -48,25 +52,34 @@ struct IndexPage {
       Divider()
       // 数组arr[0]新增元素
       Button('@Local push two-dimensional array item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr[0].push('strawberry');
         })
       // 数组arr新增元素
       Button('@Local push array item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.push(UIUtils.makeV1Observed(['pear']));
         })
       // 修改数组项arr[0][0]的值
       Button('@Local change two-dimensional array first item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr[0][0] = 'APPLE';
         })
       // 修改数组arr的第一个元素
       Button('@Local change array first item')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
         })
     }
+    .width('100%')
   }
 }
 // [End state_mixed_scene_two_bit_array_v2_v1]

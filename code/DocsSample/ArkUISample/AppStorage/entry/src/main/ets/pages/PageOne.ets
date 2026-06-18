@@ -27,33 +27,34 @@ struct ArraySample {
       })
       // 新增数组元素，触发UI刷新
       Button('Push element')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.push(4);
         })
-        .width(300)
-        .margin(10)
       // 删除数组元素，触发UI刷新
       Button('Pop element')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.pop();
         })
-        .width(300)
-        .margin(10)
       // 对数组整体重新赋值，触发UI刷新
       Button('Reset array')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message = [9, 8, 7, 6];
         })
-        .width(300)
-        .margin(10)
       // 更新数组元素，触发UI刷新
       Button('Modify element[0]')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message[0] = 10;
         })
-        .width(300)
-        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End appstorage_page_one]

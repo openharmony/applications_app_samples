@@ -51,10 +51,13 @@ struct Index {
   build() {
     Column() {
       Button('change name')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.derived.name = 'BBB'; // 能够先后触发onBaseNameChange、onDerivedNameChange方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_inheritance_support_observed_v2]

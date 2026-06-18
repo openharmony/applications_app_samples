@@ -39,10 +39,13 @@ struct Index {
   build() {
     Column() {
       Button('change num')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.outer.inner.num = 100; // 能够触发onChange方法
         })
     }
+    .width('100%')
   }
 }
 // [End monitor_decorator_object_trace_observed_v2]
