@@ -22,11 +22,6 @@ let offCanvas: OffscreenCanvas = new OffscreenCanvas(150, 150);
 let ctx = offCanvas.getContext('2d');
 
 class DrawingRenderNode extends RenderNode {
-  private verts_: Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360];
-
-  setVerts(verts: Array<number>): void {
-    this.verts_ = verts
-  }
 
   async draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -34,7 +29,6 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush(); // 只支持brush，使用pen没有绘制效果。
     canvas.attachBrush(brush);
     let verts: number[] = [0, 0, 410, 0, 50, 0, 0, 180, 50, 180, 410, 180, 0, 360, 410, 360, 50, 360];
-    ; // 18
     canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
     canvas.detachBrush();
   }

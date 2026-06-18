@@ -43,7 +43,7 @@ struct ViewPort1 {
 
       Row({ space: 10 }) {
         Column() {
-          // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为75的viewPort。
+          // 创建一个宽高都为150的shape组件，背景色为青绿色，一个宽高都为75的viewPort。
           // 用一个蓝色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
           // 绘制结束，viewPort会根据组件宽高放大两倍。
           // 请将$r('app.string.EnlargedCircle')替换为实际资源文件，在本示例中该资源文件的value值为"shape内放大的Circle组件"
@@ -59,8 +59,8 @@ struct ViewPort1 {
         }
 
         Column() {
-          // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为300的viewPort。
-          // 用一个绿色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
+          // 创建一个宽高都为150的shape组件，背景色为青绿色，一个宽高都为300的viewPort。
+ 	        // 用一个灰色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
           // 绘制结束，viewPort会根据组件宽高缩小两倍。
           // 请将$r('app.string.ShrunkCircle')替换为实际资源文件，在本示例中该资源文件的value值为"Shape内缩小的Circle组件"
           Text($r('app.string.ShrunkCircle'))
