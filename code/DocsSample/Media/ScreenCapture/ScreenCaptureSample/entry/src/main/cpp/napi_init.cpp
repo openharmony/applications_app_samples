@@ -818,12 +818,12 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     config_.dataType = OH_CAPTURE_FILE;
     config_.recorderInfo = recorderInfo;
 
-    // [Start screenCapture_withWindow_forPicker]
+    // [Start screenCapture_createCaptureStrategy]
     // 通过弹出屏幕捕获Picker列表方式，选择已打开的应用窗口进行窗口级录屏。
     OH_AVScreenCapture_CaptureStrategy *strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPickerPopUp(strategy, true);
     OH_AVScreenCapture_SetCaptureStrategy(g_avCapture, strategy);
-    // [End screenCapture_withWindow_forPicker]
+    // [End screenCapture_createCaptureStrategy]
 
     // 可选，传入期望录制的窗口ID进行录屏。
     SetSpecifiedWindowIdForWindowCapture(config_);
