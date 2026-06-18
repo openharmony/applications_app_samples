@@ -314,11 +314,14 @@ struct Index {
   private cropImage() {
     if (this.pixelMap != undefined) {
       // [Start pixelmap_crop_image]
+      const imageInfo = this.pixelMap.getImageInfoSync();
+      const cropWidth = Math.min(400, imageInfo.size.width); // 原图宽度小于400时防止裁剪区域超出范围。
+      const cropHeight = Math.min(400, imageInfo.size.height); // 原图高度小于400时防止裁剪区域超出范围。
       // x：裁剪起始点横坐标0。
       // y：裁剪起始点纵坐标0。
-      // height：裁剪高度400，方向为从上往下（裁剪后的图片高度为400）。
-      // width：裁剪宽度400，方向为从左到右（裁剪后的图片宽度为400）。
-      this.pixelMap.crop({ x: 0, y: 0, size: { height: 400, width: 400 } }).then(() => {
+      // width：原图宽度不小于400时，裁剪宽度400，方向为从左到右（裁剪后的图片宽度为400）。
+      // height：原图高度不小于400时，裁剪高度400，方向为从上往下（裁剪后的图片高度为400）。
+      this.pixelMap.crop({ x: 0, y: 0, size: { width: cropWidth, height: cropHeight } }).then(() => {
         // [StartExclude pixelmap_crop_image]
         this.updateImageInfo();
         // [EndExclude pixelmap_crop_image]
