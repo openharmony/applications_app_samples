@@ -32,13 +32,13 @@ const imagePackerApi = image.createImagePacker();
  * @param pixelMap - 位图操作对象。
  * @param isHdr - 是否为HDR格式。
  **/
-export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:boolean) {
+export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr: boolean) {
   const path: string = context.cacheDir + '/pixel_map.jpg';
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   // [Start pixelmap_set_image_packer_option]
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
   // [End pixelmap_set_image_packer_option]
-  if(isHdr == true) {
+  if (isHdr == true) {
     // [Start pixelmap_hdr_content_encoding]
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
     // [End pixelmap_hdr_content_encoding]
@@ -49,7 +49,7 @@ export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:b
     fs.write(file.fd, data);
     Logger.info('Succeeded to pack the image and write to the file.');
   }).catch((error: BusinessError) => {
-    Logger.error('Failed to pack the image. And the error is: ', String(error));
+    Logger.error('Failed to pack the image. The error is: ', String(error));
   }).finally(()=>{
     fs.closeSync(file.fd);
   })
@@ -62,9 +62,9 @@ export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:b
  * @param pixelMap - 位图操作对象。
  * @param isHdr - 是否为HDR格式。
  **/
-export async function encodeToStreamByImageSource(imageSource:image.ImageSource,isHdr:boolean){
+export async function encodeToStreamByImageSource(imageSource: image.ImageSource, isHdr: boolean) {
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
-  if(isHdr == true) {
+  if (isHdr == true) {
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   }
   const path: string = context.cacheDir + '/pixel_map.jpg';
@@ -74,8 +74,8 @@ export async function encodeToStreamByImageSource(imageSource:image.ImageSource,
     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
     fs.write(file.fd, data);
     Logger.info('Succeeded to pack the image and write to the file.');
-  }).catch((error : BusinessError) => {
-    Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).catch((error: BusinessError) => {
+    Logger.error('Failed to pack the image. The error is: ', String(error));
   }).finally(()=>{
     fs.closeSync(file.fd);
   })
@@ -88,9 +88,9 @@ export async function encodeToStreamByImageSource(imageSource:image.ImageSource,
  * @param pixelMap - 位图操作对象。
  * @param isHdr - 是否为HDR格式。
  **/
-export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:boolean) {
+export async function encodeToFileByPixelMap(pixelMap: image.PixelMap, isHdr: boolean) {
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
-  if(isHdr == true) {
+  if (isHdr == true) {
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   }
   // [Start pixelmap_encoding_into_file_through_pixelmap]
@@ -99,8 +99,8 @@ export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:bool
   await imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
     // 直接打包进文件
     Logger.info('Succeeded to pack the image and write to the file.');
-  }).catch((error : BusinessError) => {
-    Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).catch((error: BusinessError) => {
+    Logger.error('Failed to pack the image. The error is: ', String(error));
   }).finally(()=>{
     fs.closeSync(file.fd);
   })
@@ -113,9 +113,9 @@ export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:bool
  * @param pixelMap - 位图操作对象。
  * @param isHdr - 是否为HDR格式。
  **/
-export async function encodeToFileByImageSource(imageSource:image.ImageSource,isHdr:boolean) {
+export async function encodeToFileByImageSource(imageSource: image.ImageSource, isHdr: boolean) {
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
-  if(isHdr == true) {
+  if (isHdr == true) {
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   }
   // [Start pixelmap_encoding_into_file_through_image_source]
@@ -124,8 +124,8 @@ export async function encodeToFileByImageSource(imageSource:image.ImageSource,is
   imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
     // 直接打包进文件
     Logger.info('Succeeded to pack the image and write to the file.');
-  }).catch((error : BusinessError) => {
-    Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).catch((error: BusinessError) => {
+    Logger.error('Failed to pack the image. The error is: ', String(error));
   }).finally(()=>{
     fs.closeSync(file.fd);
   })
