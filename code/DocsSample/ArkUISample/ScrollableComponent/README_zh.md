@@ -63,6 +63,7 @@ entry/src/main/ets/
 |   |       |---GridLayout.ets
 |   |       |---GridScrollbar.ets
 |   |       |---GridSideToSide.ets
+|   |       |---GridSwipeSelect.ets
 |   |       |---index.ets
 |   |       |---LongGrid.ets
 |   |       |---ScrollableGrid.ets
@@ -80,6 +81,7 @@ entry/src/main/ets/
 |   |       |---ListDataSource.ets
 |   |       |---ListIteration.ets
 |   |       |---ListLayout.ets
+|   |       |---ListSwipeSelect.ets
 |   |       |---LongList.ets
 |   |       |---ResponsiveScrollPositionList.ets
 |   |       |---StickyHeaderList.ets
