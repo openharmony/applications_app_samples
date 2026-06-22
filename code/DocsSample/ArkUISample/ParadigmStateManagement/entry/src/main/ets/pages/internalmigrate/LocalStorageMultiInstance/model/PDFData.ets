@@ -40,7 +40,7 @@ export default class PDFData {
     return this.data;
   }
 
-  setFlage(value: string) {
+  setFlag(value: string) {
     this.flag = value;
   }
 

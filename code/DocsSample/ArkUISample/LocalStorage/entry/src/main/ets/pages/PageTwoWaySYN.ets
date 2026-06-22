@@ -17,7 +17,7 @@
 let paraOne: Record<string, number> = { 'PropA': 47 };
 let storageOne: LocalStorage = new LocalStorage(paraOne);
 // 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA: SubscribedAbstractProperty<object> = storageOne.link('PropA');
+let linkToPropA: SubscribedAbstractProperty<number> = storageOne.link('PropA');
 
 @Entry(storageOne)
 @Component
@@ -43,5 +43,4 @@ struct ParentTwo {
     .width('100%')
   }
 }
-
 // [End localStorage_page_two_way_syn]

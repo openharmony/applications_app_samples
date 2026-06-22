@@ -33,13 +33,13 @@ struct Index {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', '%{public}s', `Index ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 
   build() {
     Column() {
-      Text(`EntryAbility1 count: ${this.count}`)
+      Text(`EntryAbility count: ${this.count}`)
         .fontSize(25)
         .onClick(() => {
           this.count++;

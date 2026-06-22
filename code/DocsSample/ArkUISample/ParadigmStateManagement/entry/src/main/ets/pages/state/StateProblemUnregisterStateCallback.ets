@@ -42,7 +42,6 @@ let model: Model = new Model();
 @Component
 struct Test {
   @State count: number = 10;
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear(): void {
     model.add(() => {

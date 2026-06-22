@@ -51,7 +51,7 @@ struct TestStorageProp {
         })
 
       // @StorageProp与AppStorage建立单向联系，更改数据不会同步回AppStorage中key为'propA'的值
-      // 但能被AppStorage的set/setorCreate更新值
+      // 但能被AppStorage的set/setOrCreate更新值
       Text(`storageProp ${this.storageProp}`)
         .fontSize(20)
         .margin(10)
@@ -86,5 +86,4 @@ struct TestStorageProp {
     .width('100%')
   }
 }
-
 // [End appstorage_page_two]

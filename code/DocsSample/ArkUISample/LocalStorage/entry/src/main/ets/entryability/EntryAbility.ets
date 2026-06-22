@@ -32,7 +32,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 当前用例需要开发者手动修改为windowStage.loadContent('pages/PageFiveShare', this.storage);
     windowStage.loadContent('pages/Index', this.storage).catch(() => {
-      hilog.error(DOMAIN, 'testTag', '%{public}s', 'Ability onCreonWindowStageCreateate');
+      hilog.error(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     });
   }
 

@@ -83,7 +83,7 @@ struct Page1 {
       // 重启应用：Repeat组件再次显示数组项
       Button('array.splice(0, 2, random, random)')
         .onClick(() => {
-          this.array.splice(2, 2, Math.round(100*Math.random()), Math.round(100*Math.random()));
+          this.array.splice(0, 2, Math.round(100*Math.random()), Math.round(100*Math.random()));
         })
         .width(300)
         .margin(10)

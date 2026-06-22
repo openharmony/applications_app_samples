@@ -95,7 +95,7 @@ struct Page1 {
         .onClick(() => {
           let tempA = new ClassA();
           tempA.propA = Math.round(100 * Math.random());
-          this.arr.splice(2, 2,
+          this.arr.splice(0, 2,
             UIUtils.makeObserved(tempA),
             UIUtils.makeObserved(tempA));
         })

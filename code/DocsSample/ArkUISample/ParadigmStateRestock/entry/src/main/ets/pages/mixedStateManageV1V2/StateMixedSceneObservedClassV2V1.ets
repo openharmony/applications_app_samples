@@ -23,7 +23,7 @@ class ObservedClass {
 
 @Entry
 @ComponentV2
-struct CompV1 {
+struct CompV2 {
   @Local observedClass: ObservedClass = UIUtils.enableV2Compatibility(new ObservedClass());
 
   build() {
@@ -43,19 +43,19 @@ struct CompV1 {
           this.observedClass.count++;
         })
 
-      CompV2({ observedClass: this.observedClass })
+      CompV1({ observedClass: this.observedClass })
     }
     .width('100%')
   }
 }
 
 @Component
-struct CompV2 {
+struct CompV1 {
   @ObjectLink observedClass: ObservedClass;
 
   build() {
     Column() {
-      Text(`count: ${this.observedClass.name}`)
+      Text(`name: ${this.observedClass.name}`)
         .fontSize(20)
         .margin(10)
         .onClick(() => {
@@ -74,7 +74,7 @@ export struct StateMixedSceneObservedClassV2V1 {
 
   build() {
     NavDestination() {
-      CompV1()
+      CompV2()
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.state_mixed_scene_observed_class_v2_v1'))

@@ -56,7 +56,7 @@ struct ForEachThingComponent {
   @Prop thing: string;
 
   build() {
-    // 待办事项1
+      // 待办事项
     Row({ space: 15 }) {
       if (this.isFinished) {
         // 请将$r('app.media.finished')替换为实际资源文件
@@ -110,7 +110,6 @@ struct ForEachIndex {
     // 请将$r('app.string.sleep')替换为实际资源文件，在本示例中该资源文件的value值为"1.30 睡觉"
     $r('app.string.sleep')
   ];
-  context1 = this.getUIContext().getHostContext();
 
   aboutToAppear(): void {
     for (let i = 0; i < this.planList.length; i++) {
@@ -128,7 +127,7 @@ struct ForEachIndex {
 
       List() {
         ForEach(this.planList, (item: string) => {
-          // 待办事项1
+          // 待办事项
           ForEachThingComponent({ isFinished: this.isFinished, thing: item })
             .margin(5)
         })

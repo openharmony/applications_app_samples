@@ -27,10 +27,6 @@ struct Index {
       Text('使用文件管理器，使用本应用打开多个PDF')
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
       Button('Jump to PDF_A').onClick(() => {
         let wantInfo: Want = {
           bundleName: 'com.samples.paradigmstatemanagement',
