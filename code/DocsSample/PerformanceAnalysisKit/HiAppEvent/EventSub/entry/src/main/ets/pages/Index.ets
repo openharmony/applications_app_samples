@@ -26,7 +26,7 @@ import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
 // [End PssLeakEvent_Header]
 // [start ArkWeb_Fling_Jank_Header]
-import { router } from '@kit.ArkUI';
+import { ArkWebPage } from './ArkWebPage';
 // [End ArkWeb_Fling_Jank_Header]
 @Entry
 @Component
@@ -35,106 +35,119 @@ struct Index {
   // [Start AppKillEvent_Button]
   @State message: string = 'Start To Leak';
   // [End AppKillEvent_Button]
-  build() {
-    Row() {
-      Column() {
-        // [Start AppEvent_Crash_Button]
-        Button('WatchAppCrash ArkTS&C++')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            // 在按钮点击函数中构造一个crash场景，触发崩溃事件
-            let result: object = JSON.parse('');
-          })
-        // [End AppEvent_Crash_Button]
-        // [Start AppEvent_Click_ArkTS_Button]
-        Button('writeEvent ArkTS')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            // 在按钮点击函数中进行事件打点，以记录按钮点击事件
-            let eventParams: Record<string, number> = {'clickTime': 100};
-            let eventInfo: hiAppEvent.AppEventInfo = {
-              // 事件领域定义
-              domain: 'button',
-              // 事件名称定义
-              name: 'click',
-              // 事件类型定义
-              eventType: hiAppEvent.EventType.BEHAVIOR,
-              // 事件参数定义
-              params: eventParams,
-            };
-            hiAppEvent.write(eventInfo).then(() => {
-              hilog.info(0x0000, 'testTag', `AppEvents writeEvent ArkTS success`);
-            }).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'testTag', `AppEvents HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
-            });
-          })
-        // [End AppEvent_Click_ArkTS_Button]
-        // [Start JsError_CrashEvent_Button]
-        Button('JsError')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
-            JSON.parse('');
-          })
-        // [End JsError_CrashEvent_Button]
-        // [Start Native_CrashEvent_Button]
-        Button('NativeCrash')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
-            testNapi.testNullptr();
-          })
-        // [End Native_CrashEvent_Button]
-        // [Start Native_CrashEvent_Log]
-        Button('MergeLogNativeCrash')
-        .type(ButtonType.Capsule)
-        .margin({
-          top: 20
-        })
-        .backgroundColor('#0D9FFB')
-        .width('80%')
-        .height('5%')
-        .onClick(() => {
-          // 模拟创建 applog，假设应用包名为 com.samples.eventsub
-          let filePath : string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
-          let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
-          let str: string = "only test for merge app log!";
-          
-          let writeLen = fileIo.writeSync(file.fd, str);
-          console.info("hiappevent write data to file succeed and size is:" + writeLen);
-          fileIo.closeSync(file);
 
-          // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
-          testNapi.testNullptr();
-        })
-        // [End Native_CrashEvent_Log]
-        // [Start PssLeakEventTS_Button]
-        // [Start PssLeakEvent_Button]
-        Button('pss leak')
+  // [start ArkWeb_Fling_Jank_Nav]
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  @Builder
+  PageMap(name: string) {
+    if (name === 'ArkWebPage') {
+      ArkWebPage();
+    }
+  }
+  // [End ArkWeb_Fling_Jank_Nav]
+
+  build() {
+    Navigation(this.navPathStack) {
+      Row() {
+        Column() {
+          // [Start AppEvent_Crash_Button]
+          Button('WatchAppCrash ArkTS&C++')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 在按钮点击函数中构造一个crash场景，触发崩溃事件
+              let result: object = JSON.parse('');
+            })
+          // [End AppEvent_Crash_Button]
+          // [Start AppEvent_Click_ArkTS_Button]
+          Button('writeEvent ArkTS')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 在按钮点击函数中进行事件打点，以记录按钮点击事件
+              let eventParams: Record<string, number> = { 'clickTime': 100 };
+              let eventInfo: hiAppEvent.AppEventInfo = {
+                // 事件领域定义
+                domain: 'button',
+                // 事件名称定义
+                name: 'click',
+                // 事件类型定义
+                eventType: hiAppEvent.EventType.BEHAVIOR,
+                // 事件参数定义
+                params: eventParams,
+              };
+              hiAppEvent.write(eventInfo).then(() => {
+                hilog.info(0x0000, 'testTag', `AppEvents writeEvent ArkTS success`);
+              }).catch((err: BusinessError) => {
+                hilog.error(0x0000, 'testTag',
+                  `AppEvents HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+              });
+            })
+          // [End AppEvent_Click_ArkTS_Button]
+          // [Start JsError_CrashEvent_Button]
+          Button('JsError')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+              JSON.parse('');
+            })
+          // [End JsError_CrashEvent_Button]
+          // [Start Native_CrashEvent_Button]
+          Button('NativeCrash')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+              testNapi.testNullptr();
+            })
+          // [End Native_CrashEvent_Button]
+          // [Start Native_CrashEvent_Log]
+          Button('MergeLogNativeCrash')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 模拟创建 applog，假设应用包名为 com.samples.eventsub
+              let filePath: string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
+              let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+              let str: string = "only test for merge app log!";
+
+              let writeLen = fileIo.writeSync(file.fd, str);
+              console.info("hiappevent write data to file succeed and size is:" + writeLen);
+              fileIo.closeSync(file);
+
+              // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+              testNapi.testNullptr();
+            })
+          // [End Native_CrashEvent_Log]
+          // [Start PssLeakEventTS_Button]
+          // [Start PssLeakEvent_Button]
+          Button('pss leak')
             .type(ButtonType.Capsule)
             .margin({
               top: 20
@@ -147,130 +160,134 @@ struct Index {
               hilog.info(0x0000, 'testTag', 'click pss leak button');
               testNapi.leakMB(3072);
             })
-        // [End PssLeakEvent_Button]
-        Button('js leak')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            for (let i = 0; i < 10000; i++) {
-              this.leakedArray.push(new Array(500000).fill(1));
-            }
-          })
-        // [End PssLeakEventTS_Button]
-        // [Start AppKillEvent_Button]
-        Button(this.message)
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            if (this.message != 'Leaking') {
-              this.message = 'Leaking';
-              hilog.info(0x0000, 'testTag', 'Start leaking');
-              testNapi.leak();
-            }
-          })
-        // [End AppKillEvent_Button]
-        // [Start TimeOutEvent_Button]
-        Button($r('app.string.TimeOut_Button'))
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            let t = Date.now();
-            while (Date.now() - t <= 350) {
-            }
-          })
-          // [End TimeOutEvent_Button]
-      }
-      .width('50%')
-
-      Column() {
-        // [Start AppEvent_CPP_Button]
-        Button('writeEvent C++')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            testNapi.writeAppEvent();
-          })
-        // [End AppEvent_CPP_Button]
-        // [Start FreezeEvent_Button]
-        Button($r('app.string.Freeze_Button'))
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            setTimeout(() => {
-              while (true) {
+          // [End PssLeakEvent_Button]
+          Button('js leak')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              for (let i = 0; i < 10000; i++) {
+                this.leakedArray.push(new Array(500000).fill(1));
               }
-            }, 1000)
-          })
-        // [End FreezeEvent_Button]
-        // [Start AsanEvent_Button]
-        Button('address-sanitizer')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            testNapi.addressSanitizerTest();
-          })
-        // [End AsanEvent_Button]
-        // [Start hicollie_timer_ndk_Button]
-        // 添加点击事件，触发TestHiCollieTimerNdk方法。
-        Button('TestHiCollieTimerNdk')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            testNapi.TestHiCollieTimerNdk();
-          })
-        // [End hicollie_timer_ndk_Button]
-        // [Start ArkWeb_Fling_Jank_ArkTs_Button]
-        //按钮跳转到易出现滑动丢帧的web场景，触发ArkWeb抛滑丢帧事件。
-        Button('ArkWebFlingJank ArkTs')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            router.pushUrl({url: 'pages/ArkWebPage'});
-          })
-        // [End ArkWeb_Fling_Jank_ArkTs_Button]
+            })
+          // [End PssLeakEventTS_Button]
+          // [Start AppKillEvent_Button]
+          Button(this.message)
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              if (this.message != 'Leaking') {
+                this.message = 'Leaking';
+                hilog.info(0x0000, 'testTag', 'Start leaking');
+                testNapi.leak();
+              }
+            })
+          // [End AppKillEvent_Button]
+          // [Start TimeOutEvent_Button]
+          Button($r('app.string.TimeOut_Button'))
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              let t = Date.now();
+              while (Date.now() - t <= 350) {
+              }
+            })
+          // [End TimeOutEvent_Button]
+        }
+        .width('50%')
+
+        Column() {
+          // [Start AppEvent_CPP_Button]
+          Button('writeEvent C++')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              testNapi.writeAppEvent();
+            })
+          // [End AppEvent_CPP_Button]
+          // [Start FreezeEvent_Button]
+          Button($r('app.string.Freeze_Button'))
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              setTimeout(() => {
+                while (true) {
+                }
+              }, 1000)
+            })
+          // [End FreezeEvent_Button]
+          // [Start AsanEvent_Button]
+          Button('address-sanitizer')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              testNapi.addressSanitizerTest();
+            })
+          // [End AsanEvent_Button]
+          // [Start hicollie_timer_ndk_Button]
+          // 添加点击事件，触发TestHiCollieTimerNdk方法。
+          Button('TestHiCollieTimerNdk')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              testNapi.TestHiCollieTimerNdk();
+            })
+          // [End hicollie_timer_ndk_Button]
+          // [Start ArkWeb_Fling_Jank_ArkTs_Button]
+          //按钮跳转到易出现滑动丢帧的web场景，触发ArkWeb抛滑丢帧事件。
+          Button('ArkWebFlingJank ArkTs')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              this.navPathStack.pushPath({ name: 'ArkWebPage' });
+            })
+          // [End ArkWeb_Fling_Jank_ArkTs_Button]
+        }
+        .width('50%')
       }
-      .width('50%')
+      .height('100%')
     }
-    .height('100%')
+    .navDestination(this.PageMap)
+    .hideTitleBar(true)
+    .mode(NavigationMode.Stack)
   }
 }
