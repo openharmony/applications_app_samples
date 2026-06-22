@@ -203,7 +203,7 @@ async function init() {
         // [EndExclude create_audiorender]
       }
     } else {
-      console.info(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude render_process]
       globalLogUpdate(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`, false);
       // [EndExclude render_process]
@@ -332,6 +332,8 @@ async function release() {
     // 释放资源。
     // [EndExclude render_release]
     audioRenderer.release((err: BusinessError) => {
+      // 关闭沙箱文件。
+      await context.resourceManager.closeRawFd('S16LE_2_48000.pcm');
       if (err) {
         console.error(`Failed to release audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_release]
@@ -340,7 +342,6 @@ async function release() {
         // [EndExclude render_process]
         // [EndExclude render_release]
       } else {
-        // 关闭沙箱文件。
         console.info('Succeeded in releasing audio renderer.');
         // [StartExclude render_release]
         // [StartExclude render_process]
