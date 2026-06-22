@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { LayoutConstraint, LazyLayoutHelper, LazyCustomLayoutAlgorithm, ExpandMode, LazyLayoutDirection, ChildrenCountMode} from '@kit.ArkUI'
+import { LayoutConstraint, LazyLayoutHelper, LazyCustomLayoutAlgorithm, ExpandMode, LazyLayoutDirection, ChildrenCountMode, LengthMetrics, LengthUnit, UIContext} from '@kit.ArkUI'
 
 /**
  * ItemPos - 元素位置信息
@@ -61,6 +61,13 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   private rowGap: number = 0;               // 行间距
   private columnHeights: number[] = [];     // 每列的当前高度数组
   private columnTops: number[] = [];        // 每列的当前顶部位置数组
+  private leftPadding: number = 0;          // 左内边距
+  private rightPadding: number = 0;         // 右内边距
+  private topPadding: number = 0;           // 上内边距
+  private bottomPadding: number = 0;        // 下内边距
+
+  // === UI上下文（用于单位转换） ===
+  private uiContext?: UIContext;
 
   // === 状态追踪 ===
   private prevColumns: number = 2;          // 上一次的列数（用于检测变化）
@@ -70,6 +77,49 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   // === 锚点信息（列数切换时保持滚动稳定） ===
   private anchorChildIndex: number = -1;              // 锚点元素的索引
   private anchorChildRelativePos: number = 0;        // 锚点距离可视区域顶部的距离
+
+  constructor(uiContext?: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
+  setUIContext(context: UIContext): void {
+    this.uiContext = context;
+  }
+
+  private convertToPx(lengthMetrics: LengthMetrics | undefined, referenceSize?: number): number {
+    if (!lengthMetrics) {
+      return 0;
+    }
+    
+    const value = lengthMetrics.value;
+    const unit = lengthMetrics.unit ?? LengthUnit.VP;
+    
+    switch (unit) {
+      case LengthUnit.PX:
+        return value;
+      case LengthUnit.VP:
+        return this.uiContext ? this.uiContext.vp2px(value) : value;
+      case LengthUnit.PERCENT:
+        return referenceSize ? (value / 100) * referenceSize : 0;
+      case LengthUnit.FP:
+        return this.uiContext ? this.uiContext.fp2px(value) : value;
+      case LengthUnit.LPX:
+        return this.uiContext ? this.uiContext.lpx2px(value) : value;
+      default:
+        return value;
+    }
+  }
+
+  private updatePadding(self: FrameNode, constraint: LayoutConstraint): void {
+    const padding = self.getUserConfigPadding();
+    const containerWidth = constraint.percentReference.width;
+    
+    this.leftPadding = this.convertToPx(padding?.left, containerWidth);
+    this.rightPadding = this.convertToPx(padding?.right, containerWidth);
+    this.topPadding = this.convertToPx(padding?.top, containerWidth);
+    this.bottomPadding = this.convertToPx(padding?.bottom, containerWidth);
+  }
 
   setColumns(value: number): void {
     if (this.columns === value) {
@@ -244,29 +294,34 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
    *
    * 流程：
    * 1. 计算列宽
-   * 2. 处理空子元素或非Lazy布局
-   * 3. 保存锚点信息
-   * 4. 列数切换时清空旧数据
-   * 5. 测量可视范围内的元素
-   * 6. 回收不再可见的元素
-   * 7. 调整锚点位置保持滚动稳定
+   * 2. 计算并保存内边距
+   * 3. 处理空子元素或非懒加载布局
+   * 4. 保存锚点信息
+   * 5. 列数切换时清空旧数据
+   * 6. 测量可视范围内的元素
+   * 7. 回收不再可见的元素
+   * 8. 调整锚点位置保持滚动稳定
    */
   onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelper): void {
     this.childCnt = self.getChildrenCount(ChildrenCountMode.ALL_NOT_EXPAND);
     this.selfNode = self;
 
+    this.updatePadding(self, constraint);
+    const verticalPadding = this.topPadding + this.bottomPadding;
+
     // 计算列宽
-    this.columnWidth = (constraint.maxSize.width - (this.columns - 1) * this.columnGap) / this.columns;
+    let contentWidth = constraint.maxSize.width - this.leftPadding - this.rightPadding;
+    this.columnWidth = (contentWidth - (this.columns - 1) * this.columnGap) / this.columns;
 
     if (this.childCnt === 0) {
       this.clearMeasureState();
-      self.setMeasuredSize({ width: constraint.maxSize.width, height: 0 });
+      self.setMeasuredSize({ width: constraint.maxSize.width, height: verticalPadding });
       return;
     }
 
     if (!helper || this.childCnt < this.columns) {
       this.measureAllChildren(self, constraint);
-      self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight });
+      self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight + verticalPadding });
       this.prevColumns = this.columns;
       return;
     }
@@ -296,7 +351,7 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
     // 调整锚点位置保持滚动稳定
     this.adjustAnchorPosition(helper);
 
-    self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight });
+    self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight + verticalPadding });
   }
 
   /**
@@ -939,9 +994,8 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
         if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
           const item = this.itemArr[arrayIndex];
 
-          // 根据列号计算 x 坐标
-          const x = item.column * (this.columnWidth + this.columnGap);
-          const y = item.start;
+          const x = item.column * (this.columnWidth + this.columnGap) + this.leftPadding;
+          const y = item.start + this.topPadding;
 
           child.layout({x: x, y: y});
         }

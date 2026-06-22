@@ -73,7 +73,7 @@ export struct CustomLazyGridLayoutSample {
   @State @Watch('onRowGapChange') rowGap: number = 5;
   @State @Watch('onColumnGapChange') columnGap: number = 5;
   private arr: MyDataSource<string> = new MyDataSource<string>();
-  private lazyAlgorithm: LazyGridLayoutAlgorithm = new LazyGridLayoutAlgorithm();
+  private lazyAlgorithm: LazyGridLayoutAlgorithm = new LazyGridLayoutAlgorithm(this.getUIContext());
 
   onColumnsChange(): void {
     this.lazyAlgorithm.setColumns(this.columns);
