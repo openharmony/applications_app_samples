@@ -11,7 +11,7 @@
 5. 全局屏保检测：应用无操作超过设定时长后自动跳转至屏保页面，任意交互可退出屏保并回到原页面
 6. 遥控器焦点导航：完整支持遥控器方向键焦点流转，聚焦元素高亮反馈
 
-相关概念
+### 相关概念
 
 1. ArkUI 组件：使用 Swiper、List、Stack、Column、Row 等基础容器组件构建 TV 大屏 UI 布局
 2. 路由导航：使用 [@kit.ArkUI](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md) 的 router 实现页面跳转与参数传递
@@ -28,7 +28,7 @@
 |---|---|
 | ![smartLife](./entry/src/main/resources/base/media/ChildCare.jpg) | ![support](./entry/src/main/resources/base/media/service.png) |
 
-使用说明
+### 使用说明
 
 1. 启动应用后，默认展示"产品规格"页面，显示当前设备对应的电视产品参数
 2. 点击或遥控器选择底部导航栏中的"功能特性"，进入功能卡片列表，使用方向键或鼠标左右浏览，点击卡片进入功能详情页查看详细介绍
@@ -38,7 +38,7 @@
 
 ### 工程目录
 
-```
+```text
 entry/src/main/ets/
 |---Component
 |   |---FeatureComponent.ets          // 功能特性详情页组件
@@ -64,10 +64,10 @@ entry/src/main/ets/
 
 ### 具体实现
 
-1. 底部导航与页面切换：`Index.ets` 中使用 `Stack` 嵌套 `Column`，底部自定义 `buildTabBar` 构建 Tab 栏，通过 `@State currentTab` 状态变量驱动子页面的条件渲染切换，使用 `focusControl.requestFocus` 实现 Tab 焦点精准控制
-2. 功能特性详情页：`FeatureComponent.ets` 使用 Swiper 组件承载七大功能详情，通过路由参数 `index` 控制初始显示项，左右导航箭头调用 `SwiperController` 实现翻页
-3. 智慧生活详情页：`SmartLifeComponent.ets` 集成 Video 组件实现场景视频自动播放，`currentIndex` 状态控制视频按需加载，切换时自动暂停避免性能浪费
-4. 全局屏保检测：`GlobalScreenSaver.ets` 实现单例模式的 `GlobalIdleDetector` 类，通过 `setTimeout` 定时检测用户无操作时长，超时后调用 `router.pushUrl` 跳转屏保页，退出时精准返回触发前页面
+- 底部导航与页面切换：[Index.ets](entry/src/main/ets/pages/Index.ets) 中使用 `Stack` 嵌套 `Column`，底部自定义 `buildTabBar` 构建 Tab 栏，通过 `@State currentTab` 状态变量驱动子页面的条件渲染切换，使用 `focusControl.requestFocus` 实现 Tab 焦点精准控制
+- 功能特性详情页：[FeatureComponent.ets](entry/src/main/ets/Component/FeatureComponent.ets) 使用 Swiper 组件承载七大功能详情，通过路由参数 `index` 控制初始显示项，左右导航箭头调用 `SwiperController` 实现翻页
+- 智慧生活详情页：[SmartLifeComponent.ets](entry/src/main/ets/Component/SmartLifeComponent.ets) 集成 Video 组件实现场景视频自动播放，`currentIndex` 状态控制视频按需加载，切换时自动暂停避免性能浪费
+- 全局屏保检测：[GlobalScreenSaver.ets](entry/src/main/ets/utils/GlobalScreenSaver.ets) 实现单例模式的 `GlobalIdleDetector` 类，通过 `setTimeout` 定时检测用户无操作时长，超时后调用 `router.pushUrl` 跳转屏保页，退出时精准返回触发前页面
 
 ### 相关权限
 
@@ -87,10 +87,10 @@ entry/src/main/ets/
 
 如需单独下载本工程，执行如下命令：
 
-```
+```bash
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/TV/TVDemonstration/ > .git/info/sparse-checkout
+echo code/SystemFeature/TV/TVDemonstration/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
