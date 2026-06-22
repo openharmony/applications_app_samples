@@ -99,7 +99,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
     // [StartExclude update_by_message_form_ability]
     // 删除之前持久化的卡片实例数据
-    // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+    // 此接口请根据实际情况实现，具体请参考：FormExtensionAbility Stage模型卡片实例
     // [EndExclude update_by_message_form_ability]
   }
 
