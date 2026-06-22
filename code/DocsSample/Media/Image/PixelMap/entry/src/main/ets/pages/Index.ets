@@ -428,20 +428,20 @@ struct Index {
     if (this.pixelMap != undefined) {
       // [Start pixelmap_get_pixelmap_info]
       // 获取图像像素的总字节数。
-      let pixelBytesNumber: number = this.pixelMap.getPixelBytesNumber();
-      Logger.info('Total bytes: ', pixelBytesNumber.toString());
+      const totalPixelBytes: number = this.pixelMap.getPixelBytesNumber();
+      Logger.info('Total bytes: ', totalPixelBytes.toString());
       // 获取图像像素的每行字节数。
-      let rowBytes: number = this.pixelMap.getBytesNumberPerRow();
+      const rowBytes: number = this.pixelMap.getBytesNumberPerRow();
       Logger.info('Row bytes: ', rowBytes.toString());
       // 获取当前图像的像素密度。像素密度是指每英寸图片所拥有的像素数量，像素密度越大，图片越精细。
-      let getDensity: number = this.pixelMap.getDensity();
-      Logger.info('Density: ', getDensity.toString());
+      const density: number = this.pixelMap.getDensity();
+      Logger.info('Density: ', density.toString());
       // [End pixelmap_get_pixelmap_info]
 
       // [Start pixelmap_bitmap_operation_all]
       // 场景一：读取并修改整张图像数据。
       // 读取整个PixelMap的像素数据，并按照PixelMap的像素格式写入缓冲区。
-      const buffer = new ArrayBuffer(pixelBytesNumber);
+      const buffer = new ArrayBuffer(totalPixelBytes);
       await this.pixelMap.readPixelsToBuffer(buffer).then(() => {
         Logger.info('Succeeded in reading image pixel data.');
       }).catch((error: BusinessError) => {
