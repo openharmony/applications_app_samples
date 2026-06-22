@@ -204,7 +204,7 @@ export struct LazyLayoutGroup {
               .rowsGap(LengthMetrics.vp(2))
               .columnsGap(LengthMetrics.vp(2))
               // [EndExclude lazy_layout_header]
-              .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount()))
+              .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount())) // 内层分组header：显示月份标题
               // [StartExclude lazy_layout_header]
               .sticky(StickyStyle.Header) // header吸顶
               // [EndExclude lazy_layout_header]
@@ -215,7 +215,7 @@ export struct LazyLayoutGroup {
           // [StartExclude lazy_layout_footer]
           .space(LengthMetrics.vp(12))
           // [EndExclude lazy_layout_footer]
-          .footer(this.GroupFooterBuilder())
+          .footer(this.GroupFooterBuilder()) // 外层footer：显示"已经到底了"
         }
         .scrollable(ScrollDirection.Vertical)
         .width('100%')
