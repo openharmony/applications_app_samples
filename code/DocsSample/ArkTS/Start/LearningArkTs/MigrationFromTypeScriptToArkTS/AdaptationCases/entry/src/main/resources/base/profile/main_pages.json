@@ -1,8 +1,6 @@
 {
   "src": [
     "pages/Index",
-    "pages/BasicAdaptation",
-    "pages/UsingStateVariablesOutsideOfStructs",
-    "pages/UsingUnionTypesInStructs"
+    "pages/BasicAdaptation"
   ]
 }

@@ -88,35 +88,5 @@ export default function BasicAdaptationTest() {
       console.info('uitest: testBasicAdaptation001 end');
       await driver.pressBack();
     })
-
-    it('testUsingStateVariablesOutsideOfStructs002', 0, async () => {
-      console.info('uitest: testUsingStateVariablesOutsideOfStructs002 begin');
-      const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Struct组件外使用状态变量'));
-      await driver.delayMs(1000);
-      await button1.click();
-      await driver.delayMs(1000);
-
-      const button2 = await driver.findComponent(ON.text('change value'));
-      await driver.delayMs(1000);
-
-      await button2.click();
-      await driver.delayMs(1000);
-
-      console.info('uitest: testUsingStateVariablesOutsideOfStructs002 end');
-      await driver.pressBack();
-    })
-
-    it('testUsingUnionTypesInStructs003', 0, async () => {
-      console.info('uitest: testUsingUnionTypesInStructs003 begin');
-      const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Struct支持联合类型的方案'));
-      await driver.delayMs(1000);
-      await button1.click();
-      await driver.delayMs(2000);
-
-      console.info('uitest: testUsingUnionTypesInStructs003 end');
-      await driver.pressBack();
-    })
   })
 }
