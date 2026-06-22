@@ -227,9 +227,9 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
             LOG("OH_AVPlayer_SetVideoSurface ret:%{public}d", ret);
             // [End OH_AVPlayer_SetVideoSurface]
             // [Start OH_AVPlayer_Prepare]
-            ret = OH_AVPlayer_Prepare(player); // 设置播放源后触发该状态上报
+            ret = OH_AVPlayer_Prepare(player); // 设置播放源后触发该状态上报。
             if (ret != AV_ERR_OK) {
-                // 处理异常
+                // 处理异常。
                 LOG("player  %{public}s", "OH_AVPlayer_Prepare Err");
             }
             // [End OH_AVPlayer_Prepare]
@@ -237,7 +237,7 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
         case AV_PREPARED:
             // [Start OH_AVPlayer_SetAudioEffectMode]
             LOG("AVPlayerState AV_PREPARED");
-            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
+            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式。
             LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
             // [End OH_AVPlayer_SetAudioEffectMode]
             ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
@@ -400,7 +400,7 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     // [End OH_AVPlayer_Create]
     SampleManager::GetInstance()->SetAVPlayer(player);
     // [Start OH_AVPlayer_SetOnInfoCallback]
-    // 设置回调，监听信息
+    // 设置回调，监听信息。
     LOG("call OH_AVPlayer_SetPlayerOnInfoCallback");
     int32_t ret = OH_AVPlayer_SetOnInfoCallback(player, OHAVPlayerOnInfoCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%{public}d", ret);
@@ -419,14 +419,14 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
         // [End OH_AVPlayer_SetURLSource]
     }
     // [Start OH_AVPlayer_SetAudioRendererInfo]
-    // 设置音频流类型
+    // 设置音频流类型。
     LOG("call %{public}s", "OH_AVPlayer_SetAudioRendererInfo");
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     LOG("OH_AVPlayer_SetAudioRendererInfo ret:%{public}d", ret);
     // [End OH_AVPlayer_SetAudioRendererInfo]
     // [Start OH_AVPlayer_SetAudioInterruptMode]
-    // 设置音频流打断模式
+    // 设置音频流打断模式。
     LOG("call OH_AVPlayer_SetAudioInterruptMode");
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
@@ -440,10 +440,10 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
 // [Start OH_AVPlayer_SetPlaybackStrategy]
 void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player)
 {
-    // 设置播放策略
+    // 设置播放策略。
     OH_AVPlaybackStrategy *myStrategy = OH_AVPlaybackStrategy_Create();
     double waterLine = 6.0;
-    OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, waterLine); //直播场景设置智能追帧
+    OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, waterLine); //直播场景设置智能追帧。
     int32_t ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
     LOG("OH_AVPlayer_SetPlaybackStrategy ret:%{public}d", ret);
     OH_AVPlaybackStrategy_Destroy(myStrategy);
