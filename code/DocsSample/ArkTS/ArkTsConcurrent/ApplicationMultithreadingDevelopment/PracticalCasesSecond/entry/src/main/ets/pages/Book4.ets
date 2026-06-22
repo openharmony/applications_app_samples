@@ -36,7 +36,7 @@ struct Index4 {
         .fontWeight(FontWeight.Bold)
         .position({ x: '50%' })
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'pages/GetRecentList' });
+          this.getUIContext().getRouter().back();
         })
     }
     .height('100%')
