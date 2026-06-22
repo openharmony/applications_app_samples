@@ -20,10 +20,12 @@ struct Index {
 
   private subscribe() {
     // The framework is retained for future code integration into the library.
+    this.message = 'userStatus subscribe';
   }
 
   private unsubscribe() {
     // The framework is retained for future code integration into the library.
+    this.message = 'userStatus unsubscribe';
   }
 
   build() {
