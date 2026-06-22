@@ -434,8 +434,8 @@ struct Index {
       let rowBytes: number = this.pixelMap.getBytesNumberPerRow();
       Logger.info('Row bytes: ', rowBytes.toString());
       // 获取当前图像的像素密度。像素密度是指每英寸图片所拥有的像素数量，像素密度越大，图片越精细。
-      let getDensity: number = this.pixelMap.getDensity();
-      Logger.info('Density: ', getDensity.toString());
+      let density: number = this.pixelMap.getDensity();
+      Logger.info('Density: ', density.toString());
       // [End pixelmap_get_pixelmap_info]
 
       // [Start pixelmap_bitmap_operation_all]
