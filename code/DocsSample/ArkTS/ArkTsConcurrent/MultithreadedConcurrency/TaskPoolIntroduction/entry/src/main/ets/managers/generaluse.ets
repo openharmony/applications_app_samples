@@ -44,10 +44,14 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            concurrentFunc();
-            // [StartExclude update_message_on_success]
-            this.message = 'success';
-            // [EndExclude update_message_on_success]
+            concurrentFunc().then(() => {
+              // [StartExclude update_message_on_success]
+              this.message = 'success';
+              // [EndExclude update_message_on_success]
+            }).catch((e: object) => {
+              this.message = 'failed';
+              console.error(`taskpool execute concurrentFunc error is: ${e}`);
+            })
           })
       }
       .width('100%')

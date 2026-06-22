@@ -28,7 +28,7 @@ import { collections } from '@kit.ArkTS';
 //   arr2.push(1);
 //   arr1.push(arr2);
 // } catch (e) {
-//   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+//   console.error(`create collections error: Code: ${e.code}, message: ${e.message}`);
 // }
 // [End counter_example]
 
@@ -52,10 +52,11 @@ struct Index {
             let arr1: collections.Array<number> = new collections.Array<number>();
             let num: number = 1;
             arr1.push(num);
+            this.message = 'success';
           } catch (e) {
-            console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+            this.message = 'failed';
+            console.error(`create collections error: Code: ${e.code}, message: ${e.message}`);
           }
-          this.message = 'success';
         })
     }
     .height('100%')

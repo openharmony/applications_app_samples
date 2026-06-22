@@ -110,10 +110,14 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            testConcurrentFunc();
-            // [StartExclude update_message_on_success]
-            this.message = 'success';
-            // [EndExclude update_message_on_success]
+            testConcurrentFunc().then(() => {
+              // [StartExclude update_message_on_success]
+              this.message = 'success';
+              // [EndExclude update_message_on_success]
+            }).catch((e: object) => {
+              this.message = 'failed';
+              console.error(`testConcurrentFunc catch e: ${e}`);
+            })
           })
       }
       .width('100%')

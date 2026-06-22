@@ -52,13 +52,15 @@ struct ActorModel {
             // 执行生产异步并发任务
             taskpool.execute(produceTask).then((res: Object) => {
               consumer.consume(res);
+              // [StartExclude update_message_on_success]
+              this.message = 'success';
+              // [EndExclude update_message_on_success]
             }).catch((e: Error) => {
               console.error(e.message);
+              this.message = 'failed';
+              console.error('produceTask is failed.');
             })
           }
-          // [StartExclude update_message_on_success]
-          this.message = 'success';
-          // [EndExclude update_message_on_success]
         })
         // [StartExclude set_button_id]
         .id('button')
@@ -73,7 +75,7 @@ struct ActorModel {
           let produceTask: taskpool.Task = new taskpool.Task(produce);
           let consumer: Consumer = new Consumer();
           for (let index: number = 0; index < 10; index++) {
-            // 执行生产异步并发任务
+            // 批量执行生产异步并发任务并收集结果
             let result = await taskpool.execute(produceTask) as number;
             dataArray.push(result);
           }

@@ -79,13 +79,14 @@ struct Index {
         .onClick(() => {
           const task = new taskpool.Task(testFunc);
           taskpool.execute(task).then(() => {
+            // [StartExclude update_message_on_success]
+            this.message = 'success';
+            // [EndExclude update_message_on_success]
             console.info('taskpool: execute task success!');
           }).catch((e:BusinessError) => {
+            this.message = 'failed';
             console.error(`taskpool: execute: Code: ${e.code}, message: ${e.message}`);
           })
-          // [StartExclude update_message_on_success]
-          this.message = 'success';
-          // [EndExclude update_message_on_success]
         })
     }
     .height('100%')

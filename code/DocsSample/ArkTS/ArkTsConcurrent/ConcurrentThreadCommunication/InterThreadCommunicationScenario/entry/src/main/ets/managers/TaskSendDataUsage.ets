@@ -63,6 +63,9 @@ struct Index {
             taskpool.execute(loadPictureTask).then((res: object) => {
               iconItemSourceList = res as IconItemSource[];
               this.message = 'success';
+            }).catch((e: BusinessError) => {
+              this.message = 'failed';
+              console.error(`taskpool: execute: Code: ${e.code}, message: ${e.message}`);
             })
           })
       }
