@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Deep Linking]
+// [Start Deep_Linking]
 import { common } from '@kit.AbilityKit'
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -43,4 +43,4 @@ struct SpecifiedPage {
     .height('100%')
   }
 }
-// [End Deep Linking]
+// [End Deep_Linking]
