@@ -27,9 +27,10 @@ class Model {
 struct EntryComponent {
   build() {
     Column() {
-      // 此处指定的参数都将在初始渲染时覆盖本地定义的默认值，并不是所有的参数都需要从父组件初始化
+      // count、increaseBy使用传入值1、2初始化；title未传入，使用本地默认值new Model('Hello World')初始化
       MyComponent({ count: 1, increaseBy: 2 })
         .width(300)
+      // title、count使用传入值new Model('Hello World 2')、7初始化；increaseBy未传入，使用本地默认值1初始化
       MyComponent({ title: new Model('Hello World 2'), count: 7 })
     }
   }
@@ -73,19 +74,6 @@ export struct StateSceneTypeClass {
   build() {
     NavDestination() {
       MyComponent()
-      // [Start state_scene_type_class_local_init]
-      // title没有外部传入，使用本地的值new Model('Hello World')进行初始化
-      MyComponent({ count: 1, increaseBy: 2 })
-      // increaseBy没有外部传入，使用本地的值1进行初始化
-      MyComponent({ title: new Model('Hello World 2'), count: 7 })
-      // [End state_scene_type_class_local_init]
-
-      // [Start state_scene_type_class_out_value_init]
-      // count和increaseBy均有外部传入，分别使用传入的1和2进行初始化
-      MyComponent({ count: 1, increaseBy: 2 })
-      // title和count均有外部传入，分别使用传入的new Model('Hello World 2')和7进行初始化
-      MyComponent({ title: new Model('Hello World 2'), count: 7 })
-      // [End state_scene_type_class_out_value_init]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.state_scene_type_class'))
