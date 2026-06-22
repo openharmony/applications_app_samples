@@ -147,14 +147,14 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
     // [EndExclude csessionactive_process]
     OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
     // [StartExclude csessionactive_process]
-    // [EndExclude clistencallback_process]
-    OH_AudioCommon_Result result = OH_AudioSessionManager_RegisterStateChangeCallback(audioSessionManager,
-                                                                                      AudioSessionStateChangedCallback);
-    // [StartExclude clistencallback_process]
     if (resultManager == 0) {
         OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                      " OH_AudioManager_GetAudioSessionManager success! ");
     }
+    // [EndExclude clistencallback_process]
+    OH_AudioCommon_Result result = OH_AudioSessionManager_RegisterStateChangeCallback(audioSessionManager,
+                                                                                      AudioSessionStateChangedCallback);
+    // [StartExclude clistencallback_process]
     // [End cget_sessionmanager]
     // [Start cset_audioscene]
     // [Start cenable_muteSuggestion]
