@@ -14,14 +14,14 @@
  */
 
 // 泛型类中的Sendable class，collections.Array，collections.Map，collections.Set的模板类型必须是Sendable类型
-// [Start counter_example]
+// [Start confirming_example]
 // 正例：
 import { collections } from '@kit.ArkTS';
 
-
+// [StartExclude counter_example]
 // 反例：
 // import { collections } from '@kit.ArkTS';
-//
+
 // try {
 //   let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
 //   let arr2: Array<number> = new Array<number>();
@@ -30,7 +30,7 @@ import { collections } from '@kit.ArkTS';
 // } catch (e) {
 //   console.error(`create collections error: Code: ${e.code}, message: ${e.message}`);
 // }
-// [End counter_example]
+// [EndExclude counter_example]
 
 @Entry
 @Component
@@ -63,3 +63,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End confirming_example]
