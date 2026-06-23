@@ -380,6 +380,38 @@ void Player::ReleaseThread()
     }
 }
 
+void Player::ReleaseVideoDecoder()
+{
+    if (videoDecoder_ != nullptr) {
+        if (videoDecContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(videoDecContext_->codecMutex);
+            videoDecContext_->ClearQueue();
+        }
+        videoDecoder_->Release();
+        videoDecoder_.reset();
+    }
+    if (videoDecContext_ != nullptr) {
+        delete videoDecContext_;
+        videoDecContext_ = nullptr;
+    }
+}
+
+void Player::ReleaseAudioDecoder()
+{
+    if (audioDecoder_ != nullptr) {
+        if (audioDecContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(audioDecContext_->codecMutex);
+            audioDecContext_->ClearQueue();
+        }
+        audioDecoder_->Release();
+        audioDecoder_.reset();
+    }
+    if (audioDecContext_ != nullptr) {
+        delete audioDecContext_;
+        audioDecContext_ = nullptr;
+    }
+}
+
 void Player::Release()
 {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -401,30 +433,8 @@ void Player::Release()
         demuxer_->Release();
         demuxer_.reset();
     }
-    if (videoDecoder_ != nullptr) {
-        if (videoDecContext_ != nullptr) {
-            std::unique_lock<std::shared_mutex> codecLock(videoDecContext_->codecMutex);
-            videoDecContext_->ClearQueue();
-        }
-        videoDecoder_->Release();
-        videoDecoder_.reset();
-    }
-    if (videoDecContext_ != nullptr) {
-        delete videoDecContext_;
-        videoDecContext_ = nullptr;
-    }
-    if (audioDecoder_ != nullptr) {
-        if (audioDecContext_ != nullptr) {
-            std::unique_lock<std::shared_mutex> codecLock(audioDecContext_->codecMutex);
-            audioDecContext_->ClearQueue();
-        }
-        audioDecoder_->Release();
-        audioDecoder_.reset();
-    }
-    if (audioDecContext_ != nullptr) {
-        delete audioDecContext_;
-        audioDecContext_ = nullptr;
-    }
+    ReleaseVideoDecoder();
+    ReleaseAudioDecoder();
     outputFile_ = nullptr;
     if (builder_ != nullptr) {
         OH_AudioStreamBuilder_Destroy(builder_);

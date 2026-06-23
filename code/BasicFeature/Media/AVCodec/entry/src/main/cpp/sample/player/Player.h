@@ -65,6 +65,8 @@ private:
     void Release();
     void StartRelease();
     void ReleaseThread();
+    void ReleaseVideoDecoder();
+    void ReleaseAudioDecoder();
     int32_t CreateAudioDecoder();
     int32_t CreateVideoDecoder();
     int64_t GetCurrentTime();

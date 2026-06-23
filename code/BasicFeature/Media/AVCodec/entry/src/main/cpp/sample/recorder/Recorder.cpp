@@ -279,6 +279,42 @@ void Recorder::ReleaseThread()
     }
 }
 
+void Recorder::ReleaseVideoEncoder()
+{
+    if (videoEncoder_ != nullptr) {
+        if (encContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(encContext_->codecMutex);
+            encContext_->ClearQueue();
+        }
+        if (sampleInfo_.window != nullptr) {
+            OH_NativeWindow_DestroyNativeWindow(sampleInfo_.window);
+            sampleInfo_.window = nullptr;
+        }
+        videoEncoder_->Release();
+        videoEncoder_.reset();
+    }
+}
+
+void Recorder::ReleaseAudioEncoder()
+{
+    if (audioEncoder_ != nullptr) {
+        if (audioEncContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(audioEncContext_->codecMutex);
+            audioEncContext_->ClearQueue();
+        }
+        audioEncoder_->Release();
+        audioEncoder_.reset();
+    }
+    if (audioCapturer_ != nullptr) {
+        audioCapturer_->AudioCapturerRelease();
+        audioCapturer_.reset();
+    }
+    if (audioEncContext_ != nullptr) {
+        delete audioEncContext_;
+        audioEncContext_ = nullptr;
+    }
+}
+
 void Recorder::Release()
 {
     AVCODEC_SAMPLE_LOGI("Release: Starting cleanup");
@@ -301,34 +337,8 @@ void Recorder::Release()
         muxer_->Release();
         muxer_.reset();
     }
-    if (videoEncoder_ != nullptr) {
-        if (encContext_ != nullptr) {
-            std::unique_lock<std::shared_mutex> codecLock(encContext_->codecMutex);
-            encContext_->ClearQueue();
-        }
-        if (sampleInfo_.window != nullptr) {
-            OH_NativeWindow_DestroyNativeWindow(sampleInfo_.window);
-            sampleInfo_.window = nullptr;
-        }
-        videoEncoder_->Release();
-        videoEncoder_.reset();
-    }
-    if (audioEncoder_ != nullptr) {
-        if (audioEncContext_ != nullptr) {
-            std::unique_lock<std::shared_mutex> codecLock(audioEncContext_->codecMutex);
-            audioEncContext_->ClearQueue();
-        }
-        audioEncoder_->Release();
-        audioEncoder_.reset();
-    }
-    if (audioCapturer_ != nullptr) {
-        audioCapturer_->AudioCapturerRelease();
-        audioCapturer_.reset();
-    }
-    if (audioEncContext_ != nullptr) {
-        delete audioEncContext_;
-        audioEncContext_ = nullptr;
-    }
+    ReleaseVideoEncoder();
+    ReleaseAudioEncoder();
     if (encContext_ != nullptr) {
         delete encContext_;
         encContext_ = nullptr;

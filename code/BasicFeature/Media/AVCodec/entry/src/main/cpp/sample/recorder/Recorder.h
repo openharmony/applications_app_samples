@@ -53,6 +53,8 @@ private:
     void AudioEncOutputSyncThread();
     void ReleaseThread();
     void Release();
+    void ReleaseVideoEncoder();
+    void ReleaseAudioEncoder();
     void StartRelease();
     int32_t WaitForDone();
 
