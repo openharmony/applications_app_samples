@@ -75,7 +75,7 @@ export struct CustomLazyColumnLayoutSample {
   @State @Watch('onRowGapChange') rowGap: number = 5;
   // [End lazy_custom_layout_dynamic_param]
   private arr: MyDataSource<string> = new MyDataSource<string>();
-  private lazyAlgorithm: LazyColumnLayoutAlgorithm = new LazyColumnLayoutAlgorithm();
+  private lazyAlgorithm: LazyColumnLayoutAlgorithm = new LazyColumnLayoutAlgorithm(this.getUIContext());
 
   // [Start lazy_custom_layout_unit_convert]
   onRowGapChange(): void {
@@ -98,6 +98,7 @@ export struct CustomLazyColumnLayoutSample {
           // [Start lazy_custom_layout_on_visible_indexes_change]
           LazyDynamicLayout(this.lazyAlgorithm) {
             // [StartExclude lazy_custom_layout_on_visible_indexes_change]
+            // [StartExclude lazy_custom_layout_create]
             LazyForEach(this.arr, (item: string) => {
               Text(item)
                 .height(80)
@@ -107,6 +108,7 @@ export struct CustomLazyColumnLayoutSample {
                 .padding(10)
                 .textAlign(TextAlign.Center)
             })
+            // [EndExclude lazy_custom_layout_create]
             // [EndExclude lazy_custom_layout_on_visible_indexes_change]
           }
           .onVisibleIndexesChange((child: number[]) => {

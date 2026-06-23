@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { LayoutConstraint, LazyLayoutHelper, LazyCustomLayoutAlgorithm, ExpandMode, LazyLayoutDirection, ChildrenCountMode} from '@kit.ArkUI'
+import { LayoutConstraint, LazyLayoutHelper, LazyCustomLayoutAlgorithm, ExpandMode, LazyLayoutDirection, ChildrenCountMode, LengthMetrics, LengthUnit, UIContext} from '@kit.ArkUI'
 
 /**
  * ItemPos - 行位置信息
@@ -60,6 +60,13 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   private columnWidth: number = 0;          // 列宽（根据总宽度和列数计算）
   private columns: number = 2;              // 列数（支持动态切换）
   private columnGap: number = 0;            // 列间距
+  private leftPadding: number = 0;          // 左内边距
+  private rightPadding: number = 0;         // 右内边距
+  private topPadding: number = 0;           // 上内边距
+  private bottomPadding: number = 0;        // 下内边距
+
+  // === UI上下文（用于单位转换） ===
+  private uiContext?: UIContext;
 
   // === 状态追踪 ===
   private prevRowGap: number = 0;           // 上一次的行间距（用于检测变化）
@@ -71,6 +78,49 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   // === 锚点信息（列数切换时保持滚动稳定） ===
   private anchorChildIndex: number = -1;              // 锚点元素的索引
   private anchorChildRelativePos: number = 0;        // 锚点距离可视区域边缘的距离
+
+  constructor(uiContext?: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
+  setUIContext(context: UIContext): void {
+    this.uiContext = context;
+  }
+
+  private convertToPx(lengthMetrics: LengthMetrics | undefined, referenceSize?: number): number {
+    if (!lengthMetrics) {
+      return 0;
+    }
+    
+    const value = lengthMetrics.value;
+    const unit = lengthMetrics.unit ?? LengthUnit.VP;
+    
+    switch (unit) {
+      case LengthUnit.PX:
+        return value;
+      case LengthUnit.VP:
+        return this.uiContext ? this.uiContext.vp2px(value) : value;
+      case LengthUnit.PERCENT:
+        return referenceSize ? (value / 100) * referenceSize : 0;
+      case LengthUnit.FP:
+        return this.uiContext ? this.uiContext.fp2px(value) : value;
+      case LengthUnit.LPX:
+        return this.uiContext ? this.uiContext.lpx2px(value) : value;
+      default:
+        return value;
+    }
+  }
+
+  private updatePadding(self: FrameNode, constraint: LayoutConstraint): void {
+    const padding = self.getUserConfigPadding();
+    const containerWidth = constraint.percentReference.width;
+    
+    this.leftPadding = this.convertToPx(padding?.left, containerWidth);
+    this.rightPadding = this.convertToPx(padding?.right, containerWidth);
+    this.topPadding = this.convertToPx(padding?.top, containerWidth);
+    this.bottomPadding = this.convertToPx(padding?.bottom, containerWidth);
+  }
 
   setRowGap(value: number): void {
     if (this.rowGap === value) {
@@ -160,30 +210,35 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
    *
    * 流程：
    * 1. 计算列宽和总行数
-   * 2. 处理空子元素或非Lazy布局
-   * 3. 保存锚点信息（用于列数切换时的滚动稳定）
-   * 4. 列数切换时清空旧数据
-   * 5. 测量可视范围内的元素
-   * 6. 回收不再可见的元素
-   * 7. 调整锚点位置保持滚动稳定
+   * 2. 计算并保存内边距
+   * 3. 处理空子元素或非懒加载布局
+   * 4. 保存锚点信息（用于列数切换时的滚动稳定）
+   * 5. 列数切换时清空旧数据
+   * 6. 测量可视范围内的元素
+   * 7. 回收不再可见的元素
+   * 8. 调整锚点位置保持滚动稳定
    */
   onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelper): void {
     this.childCnt = self.getChildrenCount(ChildrenCountMode.ALL_NOT_EXPAND);
     this.rowCnt = Math.ceil(this.childCnt / this.columns);
     this.selfNode = self;
 
+    this.updatePadding(self, constraint);
+    const verticalPadding = this.topPadding + this.bottomPadding;
+
     // 计算列宽
-    this.columnWidth = (constraint.maxSize.width - (this.columns - 1) * this.columnGap) / this.columns;
+    let contentWidth = constraint.maxSize.width - this.leftPadding - this.rightPadding;
+    this.columnWidth = (contentWidth - (this.columns - 1) * this.columnGap) / this.columns;
 
     if (this.childCnt == 0) {
       this.clearMeasureState();
-      self.setMeasuredSize({ width: constraint.maxSize.width, height: 0 });
+      self.setMeasuredSize({ width: constraint.maxSize.width, height: verticalPadding });
       return;
     }
 
     if (!helper) {
       this.measureAllChildren(self, constraint);
-      self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight });
+      self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight + verticalPadding });
       this.prevRowGap = this.rowGap;
       this.prevColumns = this.columns;
       return;
@@ -207,7 +262,7 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
     // 调整锚点位置保持滚动稳定
     this.adjustAnchorPosition(helper);
 
-    self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight });
+    self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight + verticalPadding });
   }
 
   /**
@@ -275,7 +330,7 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   /**
    * adjustAnchorPosition - 调整锚点位置保持滚动稳定
    *
-   * 作用：测量完成后调整滚动偏移，确保锚点保持在可视区域的相同相对位置
+   * 作用：测量完成后调整滚动偏移，确保锚点保持在相对可视区域的相同位置
    *
    * 原理：
    * - 计算锚点元素在新布局中的位置
@@ -566,8 +621,8 @@ export class LazyGridLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
         const arrayIndex = row - this.itemArrStartIndex;
 
         if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
-          const x = (i - row * this.columns) * (this.columnWidth + this.columnGap);
-          const y = this.itemArr[arrayIndex].start;
+          const x = (i - row * this.columns) * (this.columnWidth + this.columnGap) + this.leftPadding;
+          const y = this.itemArr[arrayIndex].start + this.topPadding;
           child.layout({x: x, y: y});
         }
       }

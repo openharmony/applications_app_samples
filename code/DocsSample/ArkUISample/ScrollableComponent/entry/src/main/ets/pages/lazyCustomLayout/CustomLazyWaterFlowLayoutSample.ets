@@ -73,7 +73,7 @@ export struct CustomLazyWaterFlowLayoutSample {
   @State @Watch('onRowGapChange') rowGap: number = 5;
   @State @Watch('onColumnGapChange') columnGap: number = 5;
   private arr: MyDataSource<string> = new MyDataSource<string>();
-  private lazyAlgorithm: LazyWaterFlowLayoutAlgorithm = new LazyWaterFlowLayoutAlgorithm();
+  private lazyAlgorithm: LazyWaterFlowLayoutAlgorithm = new LazyWaterFlowLayoutAlgorithm(this.getUIContext());
 
   onColumnsChange(): void {
     this.lazyAlgorithm.setColumns(this.columns);
