@@ -310,7 +310,7 @@ async function stop() {
 }
 
 // 销毁实例，释放资源。
-async function release() {
+async function release(context: common.UIAbilityContext) {
   if (audioRenderer !== undefined) {
     // 渲染器状态不是released状态，才能release。
     if (audioRenderer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
@@ -332,8 +332,6 @@ async function release() {
     // 释放资源。
     // [EndExclude render_release]
     audioRenderer.release((err: BusinessError) => {
-      // 关闭沙箱文件。
-      await context.resourceManager.closeRawFd('S16LE_2_48000.pcm');
       if (err) {
         console.error(`Failed to release audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_release]
@@ -350,6 +348,8 @@ async function release() {
         // [EndExclude render_release]
       }
     });
+    // 关闭沙箱文件。
+    await context.resourceManager.closeRawFd('S16LE_2_48000.pcm');
     // [End render_release]
   }
 }
@@ -677,7 +677,8 @@ struct Index {
           .height('5%')
           .margin({ right: 12, bottom: 12 })
           .onClick(async () => {
-            release();
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            release(context);
             this.currentState = '已释放';
           });
 
