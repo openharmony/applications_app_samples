@@ -80,7 +80,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state stopped called.');
           avPlayer.reset(); // 调用reset接口初始化avplayer状态。
           break;
-        case 'released': //播放接口后触发该状态机上报。
+        case 'released': // 播放接口后触发该状态机上报。
           console.info('AVPlayer state released called.');
           break;
         default:
