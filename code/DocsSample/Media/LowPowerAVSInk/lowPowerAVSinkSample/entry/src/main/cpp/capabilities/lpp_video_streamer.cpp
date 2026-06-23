@@ -60,16 +60,22 @@ int32_t LppVideoStreamer::Configure(const SampleInfo &sampleInfo)
 {
     // [Start OH_LowPowerVideoSink_Configure]
     OH_AVFormat *format = OH_AVFormat_Create();
+
+    // [StartExclude OH_LowPowerVideoSink_Configure]
     CHECK_AND_RETURN_RET_LOG(format != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "AVFormat create failed");
     format = sampleInfo.format_video;
+    // [EndExclude OH_LowPowerVideoSink_Configure]
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, sampleInfo.videoWidth);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, sampleInfo.videoHeight);
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, sampleInfo.frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, sampleInfo.pixelFormat);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, sampleInfo.rotation);
+    
+    // [StartExclude OH_LowPowerVideoSink_Configure]
     OH_AVFormat_SetIntValue(format, "lpp", true);
     AVCODEC_SAMPLE_LOGI("%{public}d*%{public}d, %{public}.1ffps, %{public}d,%{public}d", sampleInfo.videoWidth,
         sampleInfo.videoHeight, sampleInfo.frameRate, sampleInfo.pixelFormat, sampleInfo.rotation);
+    // [EndExclude OH_LowPowerVideoSink_Configure]
     int ret = OH_LowPowerVideoSink_Configure(lppVideoStreamer_, format);
     // [End OH_LowPowerVideoSink_Configure]
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Configure failed, ret: %{public}d", ret);

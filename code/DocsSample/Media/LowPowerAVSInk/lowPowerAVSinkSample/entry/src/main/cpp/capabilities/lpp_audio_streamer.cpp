@@ -46,11 +46,15 @@ int32_t LppAudioStreamer::SetCallback(LppUserData *lppUserData)
     lppAudioStreamerCallback_ = OH_LowPowerAudioSinkCallback_Create();
     OH_LowPowerAudioSinkCallback_SetDataNeededListener(lppAudioStreamerCallback_,
         LppCallback::OnDataNeeded, lppUserData);
+    // [StartExclude OH_LowPowerAudioSinkCallback_Create]
     OH_LowPowerAudioSinkCallback_SetErrorListener(lppAudioStreamerCallback_, LppCallback::OnError, lppUserData);
+    // [EndExclude OH_LowPowerAudioSinkCallback_Create]
     OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(lppAudioStreamerCallback_,
         LppCallback::OnPositionUpdated, lppUserData);
+    // [StartExclude OH_LowPowerAudioSinkCallback_Create]
     OH_LowPowerAudioSinkCallback_SetInterruptListener(lppAudioStreamerCallback_,
         LppCallback::OnInterrupted, lppUserData);
+    // [EndExclude OH_LowPowerAudioSinkCallback_Create]
     ret = OH_LowPowerAudioSink_RegisterCallback(lppAudioStreamer_, lppAudioStreamerCallback_);
     // [End OH_LowPowerAudioSinkCallback_Create]
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Set callback failed, ret: %{public}d", ret);

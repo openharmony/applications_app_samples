@@ -27,18 +27,20 @@ int32_t Demuxer::Create(SampleInfo &info)
 {
     // [Start OH_AVDemuxer_CreateWithSource]
     source_ = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);
+    // [StartExclude OH_AVDemuxer_CreateWithSource]
     CHECK_AND_RETURN_RET_LOG(source_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR,
         "Create demuxer source failed, fd: %{public}d, offset: %{public}" PRId64 ", file size: %{public}" PRId64,
         info.inputFd, info.inputFileOffset, info.inputFileSize);
+    // [EndExclude OH_AVDemuxer_CreateWithSource]
     demuxer_ = OH_AVDemuxer_CreateWithSource(source_);
+    // [StartExclude OH_AVDemuxer_CreateWithSource]
     CHECK_AND_RETURN_RET_LOG(demuxer_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Create demuxer failed");
-
     auto sourceFormat = std::shared_ptr<OH_AVFormat>(OH_AVSource_GetSourceFormat(source_), OH_AVFormat_Destroy);
     CHECK_AND_RETURN_RET_LOG(sourceFormat != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Get source format failed");
-
+    // [EndExclude OH_AVDemuxer_CreateWithSource]
     int32_t ret = GetTrackInfo(sourceFormat, info);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Get video track info failed");
     // [End OH_AVDemuxer_CreateWithSource]
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Get video track info failed");
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
