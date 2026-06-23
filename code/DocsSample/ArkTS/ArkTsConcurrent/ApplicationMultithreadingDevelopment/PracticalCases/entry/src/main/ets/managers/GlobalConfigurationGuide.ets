@@ -69,9 +69,9 @@ struct Index {
           })
           .onClick(async () => {
             if (!await config.getIsLogin() && this.input) {
-              this.message = 'login: ' + this.input;
               try {
                 await config.login(this.input);
+                this.message = 'login: ' + this.input;
               } catch (e) {
                 console.error('login failed');
               }
@@ -87,9 +87,9 @@ struct Index {
           })
           .onClick(async () => {
             if (await config.getIsLogin()) {
-              this.message = 'not login';
               try {
                 await config.logout();
+                this.message = 'not login';
               } catch (e) {
                 console.error('logout failed');
               }

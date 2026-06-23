@@ -92,7 +92,7 @@ struct Index {
               console.error('histogramStatistic is failed.');
             });
             
-// [StartExclude process_image_histogram]
+            // [StartExclude process_image_histogram]
             // 销毁Worker线程
             workerInstance.terminate();
 // [EndExclude process_image_histogram]
