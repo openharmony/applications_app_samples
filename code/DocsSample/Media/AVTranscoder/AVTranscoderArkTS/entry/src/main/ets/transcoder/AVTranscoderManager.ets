@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start header_file]
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
 
+// [End header_file]
+// [Start AVTranscoderDemo]
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private context: Context | undefined;
@@ -26,6 +29,8 @@ export class AVTranscoderDemo {
       this.context = context;
     }
   }
+  // [StartExclude AVTranscoderDemo]
+  // [Start create_transcoderconfig]
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
@@ -33,7 +38,9 @@ export class AVTranscoderDemo {
     videoBitrate: 200000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
   };
+  // [End create_transcoderconfig]
 
+  // [Start create_callback]
   // 注册avTranscoder回调函数。
   setAVTranscoderCallback() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -55,6 +62,7 @@ export class AVTranscoderDemo {
       }
     }
   }
+  // [StartExclude create_callback]
 
   // 开始转码对应的流程。
   async startTranscoderingProcess() {
@@ -63,11 +71,14 @@ export class AVTranscoderDemo {
         await this.avTranscoder.release();
         this.avTranscoder = undefined;
       }
+      // [Start create_instance]
       // 1.创建转码实例。
       this.avTranscoder = await media.createAVTranscoder();
+      // [End create_instance]
       this.setAVTranscoderCallback();
       // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
       if (this.context != undefined) {
+        // [Start create_fdsrc]
         try {
           // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
           let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
@@ -75,18 +86,26 @@ export class AVTranscoderDemo {
         } catch (error) {
           console.error('Failed to get the file descriptor, please check the resource and path.');
         }
+        // [End create_fdsrc]
+        // [Start create_fddst]
         let outputFilePath = this.context.filesDir + '/output.mp4';
         let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         this.avTranscoder.fdDst = file.fd;
+        // [End create_fddst]
         this.currentProgress = 0;
       }
+      //[Start doprepare]
       // 3.配置转码参数完成准备工作。
       await this.avTranscoder.prepare(this.avConfig);
+      //[End doprepare]
+      //[Start dostart]
       // 4.开始转码。
       await this.avTranscoder.start();
+      //[End dostart]
     }
   }
 
+  //[Start dopause]
   // 暂停转码对应的流程。
   async pauseTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -95,7 +114,9 @@ export class AVTranscoderDemo {
       }
     }
   }
+  //[End dopause]
 
+  //[Start doresume]
   // 恢复对应的转码流程。
   async resumeTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -104,7 +125,9 @@ export class AVTranscoderDemo {
       }
     }
   }
+  //[End doresume]
 
+  //[Start dorelease]
   // 释放转码流程。
   async releaseTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -124,17 +147,24 @@ export class AVTranscoderDemo {
       }
     }
   }
+  //[End dorelease]
 
+  // [EndExclude create_callback]
   // 获取当前进度
   getCurrentProgress(): number {
     console.info(`getCurrentProgress = ${this.currentProgress}`);
     return this.currentProgress;
   }
+  // [End create_callback]
 
+  // [Start transcoder_process]
   // 一个完整的【开始转码-暂停转码-恢复转码-转码完成】示例。
   async avTranscoderDemo() {
     await this.startTranscoderingProcess(); // 开始转码。
     await this.pauseTranscoderingProcess(); //暂停转码。
     await this.resumeTranscoderingProcess(); // 恢复转码。
   }
+  // [End transcoder_process]
+  // [EndExclude AVTranscoderDemo]
 }
+// [End AVTranscoderDemo]

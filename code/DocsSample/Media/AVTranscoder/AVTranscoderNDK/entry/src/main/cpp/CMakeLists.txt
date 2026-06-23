@@ -12,4 +12,6 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 add_library(entry SHARED napi_init.cpp)
+// [Start link_library]
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libavtranscoder.so)
+// [End link_library]
