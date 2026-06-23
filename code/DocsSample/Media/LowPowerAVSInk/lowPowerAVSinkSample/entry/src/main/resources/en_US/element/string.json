@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "This module template implements List functions."
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AVCodec"
+    },
+    {
+      "name": "reason",
+      "value": "label"
+    },
+    {
+      "name": "playing",
+      "value": "playing"
+    },
+    {
+      "name": "play",
+      "value": "play"
+    },
+    {
+      "name": "alert",
+      "value": "None video selected"
+    },
+    {
+      "name": "alert1",
+      "value": "This device camera does not support this type of video stream, it will switch to the default configuration"
+    },
+    {
+      "name": "record",
+      "value": "record"
+    },
+    {
+      "name": "saveButtonNote",
+      "value": "Allow AVCodecVideo to save captured video to gallery?"
+    },
+    {
+      "name": "saveButtonCancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "saveButtonTitle",
+      "value": "Confirm the video storage location"
+    },
+    {
+      "name": "full_width",
+      "value": "100%"
+    },
+    {
+      "name": "full_height",
+      "value": "100%"
+    }
+  ]
+}
