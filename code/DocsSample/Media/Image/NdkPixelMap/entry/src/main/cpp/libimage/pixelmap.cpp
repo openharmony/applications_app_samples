@@ -61,7 +61,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
     size_t destinationSize = DATA_SIZE;
     errCode = OH_PixelmapNative_ReadPixels(*pixelmap, destination, &destinationSize);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_ReadPixels failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_ReadPixels failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
@@ -73,7 +73,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
     }
     errCode = OH_PixelmapNative_WritePixels(*pixelmap, source, sourceSize);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_WritePixels failed, errCode:%{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_WritePixels failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
@@ -82,7 +82,7 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
     OH_PixelmapImageInfo_Create(&imageInfo);
     errCode = OH_PixelmapNative_GetImageInfo(*pixelmap, imageInfo);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_GetImageInfo failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_GetImageInfo failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
@@ -95,8 +95,8 @@ static Image_ErrorCode CreatePixelMap(OH_PixelmapNative **pixelmap)
     OH_PixelmapImageInfo_GetPixelFormat(imageInfo, &pixelFormat);
     OH_PixelmapImageInfo_GetAlphaType(imageInfo, &alphaType);
     OH_PixelmapImageInfo_Release(imageInfo);
-    OH_LOG_INFO(LOG_APP, "pixelmapTest GetImageInfo success, width:%{public}d, height:%{public}d, rowStride:"
-        "%{public}d, pixelFormat:%{public}d, alphaType:%{public}d.", width, height, rowStride, pixelFormat, alphaType);
+    OH_LOG_INFO(LOG_APP, "Get image info success, width: %{public}d, height: %{public}d, rowStride: %{public}d, "
+        "pixelFormat: %{public}d, alphaType: %{public}d.", width, height, rowStride, pixelFormat, alphaType);
     
     // 使用完毕后释放InitializationOptions实例。
     OH_PixelmapInitializationOptions_Release(createOpts);
@@ -116,35 +116,35 @@ static Image_ErrorCode PixelmapTest()
     // 设置透明比率来让Pixelmap达到对应的透明效果。
     errCode = OH_PixelmapNative_Opacity(pixelmap, OPACITY_VALUE);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
     // 对图片进行缩放。
     errCode = OH_PixelmapNative_Scale(pixelmap, SCALE_X, SCALE_Y);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Scale failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Scale failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
     // 对图片进行位置变换。
     errCode = OH_PixelmapNative_Translate(pixelmap, TRANSLATE_X, TRANSLATE_Y);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Translate failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Translate failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
     // 对图片进行旋转。
     errCode = OH_PixelmapNative_Rotate(pixelmap, ROTATE_ANGLE);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Rotate failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Rotate failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
     // 对图片进行翻转。
     errCode = OH_PixelmapNative_Flip(pixelmap, true, true);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Flip failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Flip failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
@@ -156,7 +156,7 @@ static Image_ErrorCode PixelmapTest()
     region.height = REGION_HEIGHT;
     errCode = OH_PixelmapNative_Crop(pixelmap, &region);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "pixelmapTest OH_PixelmapNative_Crop failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Crop failed, errCode: %{public}d.", errCode);
         return errCode;
     }
 
@@ -186,7 +186,7 @@ static Image_ErrorCode PixelmapConvertAlphaTypeTest()
     OH_PixelmapNative *srcPixelmap = nullptr;
     Image_ErrorCode errCode = OH_PixelmapNative_CreatePixelmap(data, DATA_SIZE, createOpts, &srcPixelmap);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest CreateSrcPixelMap failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "Create srcPixelMap failed, errCode: %{public}d.", errCode);
     }
 
     // 创建预乘格式的位图实例，该dstPixelmap实例将用于保存srcPixelmap转换AlphaType后的数据。
@@ -194,13 +194,13 @@ static Image_ErrorCode PixelmapConvertAlphaTypeTest()
     OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_PREMULTIPLIED);
     errCode = OH_PixelmapNative_CreatePixelmap(data, DATA_SIZE, createOpts, &dstPixelmap);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest CreateDstPixelMap failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "Create dstPixelMap failed, errCode: %{public}d.", errCode);
     }
 
     // 转换AlphaType，srcPixelmap的数据将被转换为预乘格式，并保存到dstPixelmap中。
     errCode = OH_PixelmapNative_ConvertAlphaFormat(srcPixelmap, dstPixelmap, true);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "PixelmapConvertAlphaTypeTest ConvertAlphaFormat failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_ConvertAlphaFormat failed, errCode: %{public}d.", errCode);
     }
 
     // 释放Pixelmap、InitializationOptions实例。
