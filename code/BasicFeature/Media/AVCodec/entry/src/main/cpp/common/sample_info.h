@@ -16,8 +16,10 @@
 #ifndef AVCODEC_SAMPLE_INFO_H
 #define AVCODEC_SAMPLE_INFO_H
 #include <bits/alltypes.h>
+#include <chrono>
 #include <cstdint>
 #include <map>
+#include <memory>
 #include <multimedia/player_framework/native_avcodec_videoencoder.h>
 #include <string>
 #include <condition_variable>
@@ -25,6 +27,7 @@
 #include <fstream>
 #include <native_buffer/native_buffer.h>
 #include <atomic>
+#include <shared_mutex>
 #include "multimedia/player_framework/native_avcodec_base.h"
 #include "multimedia/player_framework/native_avbuffer.h"
 
@@ -96,18 +99,56 @@ struct SampleInfo {
 
 struct CodecBufferInfo {
     uint32_t bufferIndex = 0;
-    uintptr_t *buffer = nullptr;
+    OH_AVBuffer *buffer = nullptr;
     uint8_t *bufferAddr = nullptr;
     OH_AVCodecBufferAttr attr = {0, 0, 0, AVCODEC_BUFFER_FLAGS_NONE};
+    bool isValid = true;
 
     explicit CodecBufferInfo(uint8_t *addr) : bufferAddr(addr){};
     CodecBufferInfo(uint8_t *addr, int32_t bufferSize)
         : bufferAddr(addr), attr({0, bufferSize, 0, AVCODEC_BUFFER_FLAGS_NONE}){};
     CodecBufferInfo(uint32_t argBufferIndex, OH_AVBuffer *argBuffer)
-        : bufferIndex(argBufferIndex), buffer(reinterpret_cast<uintptr_t *>(argBuffer))
+        : bufferIndex(argBufferIndex), buffer(argBuffer)
     {
         OH_AVBuffer_GetBufferAttr(argBuffer, &attr);
     };
+};
+
+class CodecBufferQueue {
+public:
+    void Enqueue(const std::shared_ptr<CodecBufferInfo> bufferInfo)
+    {
+        std::unique_lock<std::mutex> lock(mutex_);
+        bufferQueue_.push(bufferInfo);
+        cond_.notify_all();
+    }
+
+    std::shared_ptr<CodecBufferInfo> Dequeue(int32_t timeoutMs = 1000)
+    {
+        std::unique_lock<std::mutex> lock(mutex_);
+        (void)cond_.wait_for(lock, std::chrono::milliseconds(timeoutMs), [this]() { return !bufferQueue_.empty(); });
+        if (bufferQueue_.empty()) {
+            return nullptr;
+        }
+        std::shared_ptr<CodecBufferInfo> bufferInfo = bufferQueue_.front();
+        bufferQueue_.pop();
+        return bufferInfo;
+    }
+
+    void Flush()
+    {
+        std::unique_lock<std::mutex> lock(mutex_);
+        while (!bufferQueue_.empty()) {
+            std::shared_ptr<CodecBufferInfo> bufferInfo = bufferQueue_.front();
+            bufferInfo->isValid = false;
+            bufferQueue_.pop();
+        }
+    }
+
+private:
+    std::mutex mutex_;
+    std::condition_variable cond_;
+    std::queue<std::shared_ptr<CodecBufferInfo>> bufferQueue_;
 };
 
 enum CodecType {
@@ -134,17 +175,17 @@ public:
     int32_t widthStride = 0;
     int32_t heightStride = 0;
 
+    std::shared_mutex codecMutex;
     uint32_t inputFrameCount = 0;
     mutex inputMutex;
     condition_variable inputCond;
-    queue<CodecBufferInfo> inputBufferInfoQueue;
+    CodecBufferQueue inputBufferQueue;
 
     uint32_t outputFrameCount = 0;
     mutex outputMutex;
-    condition_variable outputCond;
     mutex renderMutex;
     condition_variable renderCond;
-    queue<CodecBufferInfo> outputBufferInfoQueue;
+    CodecBufferQueue outputBufferQueue;
 
     queue<unsigned char> renderQueue;
 
@@ -157,16 +198,8 @@ public:
 
     void ClearQueue()
     {
-        {
-            unique_lock<mutex> lock(inputMutex);
-            auto emptyQueue = queue<CodecBufferInfo>();
-            inputBufferInfoQueue.swap(emptyQueue);
-        }
-        {
-            unique_lock<mutex> lock(outputMutex);
-            auto emptyQueue = queue<CodecBufferInfo>();
-            outputBufferInfoQueue.swap(emptyQueue);
-        }
+        inputBufferQueue.Flush();
+        outputBufferQueue.Flush();
     }
 
     std::vector<char> cache;

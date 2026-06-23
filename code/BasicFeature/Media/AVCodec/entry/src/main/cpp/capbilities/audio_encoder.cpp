@@ -143,7 +143,7 @@ int32_t AudioEncoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
 
-    info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);
+    info.buffer = outputBuf;
     if (info.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
         AVCODEC_SAMPLE_LOGI("Out buffer EOS flag detected");
         return AVCODEC_SAMPLE_ERR_OK;
@@ -163,7 +163,7 @@ int32_t AudioEncoder::Start()
 int32_t AudioEncoder::PushInputData(CodecBufferInfo &info)
 {
     CHECK_AND_RETURN_RET_LOG(encoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Encoder is null");
-    int32_t ret = OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(info.buffer), &info.attr);
+    int32_t ret = OH_AVBuffer_SetBufferAttr(info.buffer, &info.attr);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Set avbuffer attr failed");
     ret = OH_AudioCodec_PushInputBuffer(encoder_, info.bufferIndex);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Push input data failed");
@@ -201,7 +201,7 @@ int32_t AudioEncoder::NotifyEndOfStream()
         return AVCODEC_SAMPLE_ERR_ERROR;
     }
 
-    bufferInfo.buffer = reinterpret_cast<uintptr_t *>(buffer);
+    bufferInfo.buffer = buffer;
     ret = OH_AudioCodec_PushInputBuffer(encoder_, bufferInfo.bufferIndex);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
                              "PushInputBuffer for EOS failed, ret: %{public}d", ret);
