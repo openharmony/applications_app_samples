@@ -160,15 +160,10 @@ static void SerializeAndDeserializeStyledString()
     const char* html = OH_ArkUI_ConvertToHtml(desc);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "styledString", "html: [%{public}s]", html);
     size_t resultSize = dataSize + 2;
-    uint8_t *buf1 = (uint8_t *)malloc(10 * sizeof(uint8_t));
-    if (buf1 == nullptr) {
-        OH_ArkUI_StyledString_Descriptor_Destroy(desc);
-        return;
-    }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "styledString", "resultSize: %{public}zu", resultSize);
     uint8_t *buf2 = (uint8_t *)malloc(resultSize * sizeof(uint8_t));
 
-    // 序列化字节数组
+    // 验证反序列化后的数据
     if (buf2 != nullptr) {
         if (resultSize >= dataSize) {
             for (size_t i = 0; i < dataSize; i++) {
@@ -178,7 +173,6 @@ static void SerializeAndDeserializeStyledString()
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "styledString",
                          "Buf too small: %{public}zu < %{public}zu", resultSize, dataSize);
             free(buf2);
-            free(buf1);
             OH_ArkUI_StyledString_Descriptor_Destroy(desc);
             return;
         }
@@ -188,7 +182,6 @@ static void SerializeAndDeserializeStyledString()
             "Before: %{public}zu, After: %{public}zu, Equal: %{public}d", dataSize, resultSize, equal);
         free(buf2);
     }
-    free(buf1);
 
     // 释放描述符
     OH_ArkUI_StyledString_Descriptor_Destroy(desc);
@@ -205,7 +198,7 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     ArkUI_NodeHandle text = CreateStyledText(nodeApi);
 
     // [Start styledstring_paragraph_style]
-    // 创建字体集合与段落样式
+    // 创建字体集合与段落样式，并设置对齐方式和最大行数
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateFontCollection();
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, OH_Drawing_TextAlign::TEXT_ALIGN_CENTER);
@@ -213,7 +206,7 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     // [End styledstring_paragraph_style]
 
     // [Start styledstring_create]
-    // 创建StyledString并设置文本内容
+    // 创建StyledString对象
     ArkUI_StyledString *styledString = OH_ArkUI_StyledString_Create(typographyStyle, fontCollection);
     // [End styledstring_create]
 

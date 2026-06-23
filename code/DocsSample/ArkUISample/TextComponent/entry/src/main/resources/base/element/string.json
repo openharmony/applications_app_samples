@@ -1033,7 +1033,7 @@
       "value": "将图片和文本附加到同一个MutableStyledString对象上，并实现图文混排。"
     },
     {
-      "name": "TStyledStringGestureStyle_title",
+      "name": "StyledStringGestureStyle_title",
       "value": "设置事件"
     },
     {

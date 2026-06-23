@@ -27,21 +27,9 @@ const BUNDLE = 'Textcomponent_';
 @Entry
 @Component
 struct styled_string_demo {
-  @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
-  @State imagePixelMap3: image.PixelMap | undefined = undefined;
   mutableStr: MutableStyledString = new MutableStyledString('123');
   controller: TextController = new TextController();
-  mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
-    start: 0,
-    length: 15,
-    styledKey: StyledStringKey.DECORATION,
-    styledValue: new DecorationStyle({
-      type: TextDecorationType.Overline,
-      color: Color.Orange,
-      style: TextDecorationStyle.DOUBLE
-    })
-  }]);
 
   async aboutToAppear() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToAppear initial imagePixelMap');
