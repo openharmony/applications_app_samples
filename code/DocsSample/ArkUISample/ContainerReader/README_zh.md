@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了ArkUI中[ContainerReader组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-containerreader.md)的开发示例。通过本示例，开发者可以学习如何使用ContainerReader组件感知容器尺寸和断点信息、如何结合Flex/Row/Column等布局组件实现自适应布局、以及如何基于容器断点实现网格组件列数自适应、自定义组件自适应、左右分栏布局等典型开发场景。该工程中展示的代码详细描述可查链接[ContainerReader](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-containerreader.md)。
+本示例展示了ArkUI中[ContainerReader组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-containerreader.md)的开发示例。通过本示例，开发者可以学习如何使用ContainerReader组件感知容器尺寸和断点信息、如何结合Flex/Row/Column等布局组件实现自适应布局、以及如何基于容器断点实现网格组件列数自适应、自定义组件自适应、左右分栏布局等典型开发场景。该工程中展示的代码详细描述可查链接[ContainerReader](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-container-reader.md)。
 
 
 ## 1. [布局规格示例]
