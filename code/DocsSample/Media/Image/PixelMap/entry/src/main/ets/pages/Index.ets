@@ -530,7 +530,7 @@ struct Index {
       // 读取PositionArea.pixels缓冲区内的图像像素数据，并按照BGRA_8888像素格式将其写入PixelMap的指定区域，该区域由PositionArea.region指定。
       await this.pixelMap.writePixels(area).then(() => {
         this.updateImageInfo();
-        Logger.info('Succeeded to write pixelMap into the specified area.');
+        Logger.info('Succeeded in writing pixelMap into the specified area.');
       }).catch((error: BusinessError) => {
         Logger.error('Failed to write pixelMap into the specified area. The error is: ' + String(error));
       });
