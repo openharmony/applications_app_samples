@@ -69,7 +69,7 @@ const routes: Route[] = [
   },
   {
     name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringGestureStyle`,
-    title: resource.resourceToString($r('app.string.TStyledStringGestureStyle_title')),
+    title: resource.resourceToString($r('app.string.StyledStringGestureStyle_title')),
     description: $r('app.string.StyledStringGestureStyle_description')
   },
   {

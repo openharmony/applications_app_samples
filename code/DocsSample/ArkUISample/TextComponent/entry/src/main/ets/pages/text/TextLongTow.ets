@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Text_Long_Tow]
 import { common } from '@kit.AbilityKit';
 
-// [Start Text_Long_Tow]
 @Entry
 @Component
 struct TextLongTow {

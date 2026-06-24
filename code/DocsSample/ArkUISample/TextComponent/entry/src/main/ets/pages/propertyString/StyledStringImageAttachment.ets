@@ -64,7 +64,7 @@ struct StyledStringImageAttachment {
 
   leadingMarginValue: ParagraphStyle = new ParagraphStyle({ leadingMargin: LengthMetrics.vp(5)});
   // 行高样式对象
-  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
   // Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   // 创建含段落样式的对象paragraphStyledString1

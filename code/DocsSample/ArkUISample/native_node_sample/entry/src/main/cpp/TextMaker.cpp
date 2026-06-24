@@ -529,7 +529,7 @@ void setText1(ArkUI_NodeHandle &text)
             // 文本基线的偏移量属性
             ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
             ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
-            Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
             // 设置字体粗细
             ArkUI_NumberValue fontWeight = {.i32 = ARKUI_FONT_WEIGHT_W500};
             ArkUI_AttributeItem fontWeightItem = {&fontWeight, VALUE_1};
@@ -1536,7 +1536,6 @@ void setText5_1(ArkUI_NodeHandle &text5)
     ArkUI_AttributeItem linearGradientItem = {
         linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
     linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
-    linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
     Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_LINEAR_GRADIENT, &linearGradientItem);
     // [End text_linear_gradient]
 }
@@ -1951,6 +1950,7 @@ void setText18(ArkUI_NodeHandle &text18)
         .object = marqueeOptions
     };
     Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_MARQUEE_OPTIONS, &marqueeOptions_item);
+    OH_ArkUI_TextMarqueeOptions_Dispose(marqueeOptions);
     // [End text_marquee_options]
     ArkUI_NumberValue overflowValue[] = {{.i32 = ARKUI_TEXT_OVERFLOW_MARQUEE}};
     ArkUI_AttributeItem overflowItem = {overflowValue, sizeof(overflowValue) / sizeof(ArkUI_NumberValue)};

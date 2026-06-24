@@ -20,8 +20,8 @@ import { TextMenuController } from '@kit.ArkUI';
 @Component
 struct DisableMenuItem {
   aboutToAppear(): void {
-    // 禁用搜索和翻译
-    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+    // 禁用搜索，翻译和AI帮写
+    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE, TextMenuItemId.AI_WRITER])
   }
 
   aboutToDisappear(): void {
@@ -41,7 +41,7 @@ struct DisableMenuItem {
           .caretStyle({ width: '4vp' })
           .editMenuOptions({
             onCreateMenu: (menuItems: Array<TextMenuItem>) => {
-              // menuItems不包含搜索和翻译
+              // menuItems不包含搜索、翻译和AI帮写
               return menuItems;
             },
             onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {

@@ -301,7 +301,6 @@ struct CustomTextStyle {
               // [Start custom_the_text_by_text_case]
               Text('This is the text content with textCase set to Normal.')
                 .textCase(TextCase.Normal)
-                .padding(10)
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)

@@ -139,7 +139,7 @@ export default function IndexTest1() {
       await driver.swipe(100, 1100, 100, 100);
       await driver.delayMs(1000);
 
-      let str = await getResourceString($r('app.string.TStyledStringGestureStyle_title'));
+      let str = await getResourceString($r('app.string.StyledStringGestureStyle_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
