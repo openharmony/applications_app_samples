@@ -25,8 +25,6 @@ struct Index {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
         this.textComponent($r('app.string.index_title'));
         this.buttonComponent($r('app.string.basic_adaptation_scenario'), 'pages/BasicAdaptation');
-        this.buttonComponent($r('app.string.using_state_outside_struct'), 'pages/UsingStateVariablesOutsideOfStructs');
-        this.buttonComponent($r('app.string.union_types_in_struct'), 'pages/UsingUnionTypesInStructs');
       }
       .width('100%')
       .padding(20)
