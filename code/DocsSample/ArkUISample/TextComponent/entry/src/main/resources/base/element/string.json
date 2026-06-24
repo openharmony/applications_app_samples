@@ -1855,6 +1855,22 @@
     {
       "name": "READ_PASTEBOARD_Permission_Reason",
       "value": "用于读取剪贴板中的信息以提供便捷服务"
+    },
+    {
+      "name": "How_To_Set_Custom_Selection_Menu",
+      "value": "selection如何触发弹出自定义菜单"
+    },
+    {
+      "name": "How_To_Set_Custom_Selection_Menu_Description",
+      "value": "该示例展示使用了selection接口同时如何设置自定义菜单，可以在菜单onDisappear回调中重置选区，以及如何设置自定义菜单字体大小。"
+    },
+    {
+      "name": "Set_Custom_Selection_Menu_Example_String",
+      "value": "TextTextTextText"
+    },
+    {
+      "name": "Menu_Item_String",
+      "value": "Item Content"
     }
   ]
 }
