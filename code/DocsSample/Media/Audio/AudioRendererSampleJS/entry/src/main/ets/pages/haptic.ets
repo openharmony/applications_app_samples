@@ -33,8 +33,8 @@ let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 async function registSource(){
   // [EndExclude get_haptic]
   // 方法1：使用registerSource接口注册资源。
-  let audioUri = 'data/audioTest.wav'; // 此处仅作示例，实际使用时需要将文件替换为应用目标音频资源的Uri。
-  let hapticUri = 'data/hapticTest.json'; // 此处仅作示例，实际使用时需要将文件替换为应用目标振动资源的Uri。
+  let audioUri = 'data/audioTest.wav'; // 此处仅作示例，实际使用时需要将文件替换为应用目标音频资源的URI。
+  let hapticUri = 'data/hapticTest.json'; // 此处仅作示例，实际使用时需要将文件替换为应用目标振动资源的URI。
   let idForUri = 0;
 
   audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
@@ -58,15 +58,15 @@ async function registSource(){
 
 async function registWithFD(context: common.UIAbilityContext) {
   // [EndExclude get_haptic]
-  // 方法2:使用registerSourceFromFd接口注册资源。
-  // 此处仅作示例,实际使用时需要将文件替换为应用rawfile目录下的对应文件。
+  // 方法2：使用registerSourceFromFd接口注册资源。
+  // 此处仅作示例，实际使用时需要将文件替换为应用rawfile目录下的对应文件。
   let audioFile = context.resourceManager.getRawFdSync('audioTest.ogg');
   let audioFd: audioHaptic.AudioHapticFileDescriptor = {
     fd: audioFile.fd,
     offset: audioFile.offset,
     length: audioFile.length,
   };
-  // 此处仅作示例,实际使用时需要将文件替换为应用rawfile目录下的对应文件。
+  // 此处仅作示例，实际使用时需要将文件替换为应用rawfile目录下的对应文件。
   let hapticFile = context.resourceManager.getRawFdSync('hapticTest.json');
   let hapticFd: audioHaptic.AudioHapticFileDescriptor = {
     fd: hapticFile.fd,
