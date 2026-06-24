@@ -52,3 +52,5 @@ struct Star {
   }
 }
 // [End ArkUI_Star_binding2]
+
+export default Index;
