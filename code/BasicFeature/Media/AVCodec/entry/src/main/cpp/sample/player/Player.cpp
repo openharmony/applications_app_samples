@@ -380,6 +380,38 @@ void Player::ReleaseThread()
     }
 }
 
+void Player::ReleaseVideoDecoder()
+{
+    if (videoDecoder_ != nullptr) {
+        if (videoDecContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(videoDecContext_->codecMutex);
+            videoDecContext_->ClearQueue();
+        }
+        videoDecoder_->Release();
+        videoDecoder_.reset();
+    }
+    if (videoDecContext_ != nullptr) {
+        delete videoDecContext_;
+        videoDecContext_ = nullptr;
+    }
+}
+
+void Player::ReleaseAudioDecoder()
+{
+    if (audioDecoder_ != nullptr) {
+        if (audioDecContext_ != nullptr) {
+            std::unique_lock<std::shared_mutex> codecLock(audioDecContext_->codecMutex);
+            audioDecContext_->ClearQueue();
+        }
+        audioDecoder_->Release();
+        audioDecoder_.reset();
+    }
+    if (audioDecContext_ != nullptr) {
+        delete audioDecContext_;
+        audioDecContext_ = nullptr;
+    }
+}
+
 void Player::Release()
 {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -401,22 +433,8 @@ void Player::Release()
         demuxer_->Release();
         demuxer_.reset();
     }
-    if (videoDecoder_ != nullptr) {
-        videoDecoder_->Release();
-        videoDecoder_.reset();
-    }
-    if (videoDecContext_ != nullptr) {
-        delete videoDecContext_;
-        videoDecContext_ = nullptr;
-    }
-    if (audioDecoder_ != nullptr) {
-        audioDecoder_->Release();
-        audioDecoder_.reset();
-    }
-    if (audioDecContext_ != nullptr) {
-        delete audioDecContext_;
-        audioDecContext_ = nullptr;
-    }
+    ReleaseVideoDecoder();
+    ReleaseAudioDecoder();
     outputFile_ = nullptr;
     if (builder_ != nullptr) {
         OH_AudioStreamBuilder_Destroy(builder_);
@@ -455,7 +473,7 @@ void Player::DumpOutput(CodecBufferInfo &bufferInfo)
         }
     }
 
-    uint8_t *bufferAddr = OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+    uint8_t *bufferAddr = OH_AVBuffer_GetAddr(bufferInfo.buffer);
     CHECK_AND_RETURN_LOG(bufferAddr != nullptr, "Buffer is nullptr");
     switch (info.pixelFormat) {
         case AV_PIXEL_FORMAT_YUVI420:
@@ -564,7 +582,7 @@ void Player::VideoDecInputSyncThread()
             int32_t ret = demuxer_->Seek(0);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
             ret = demuxer_->ReadSample(demuxer_->
-                    GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
+                    GetVideoTrackId(), bufferInfo.buffer, bufferInfo.attr);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
         }
 
@@ -579,33 +597,29 @@ void Player::VideoDecInputAsyncThread()
 {
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        std::unique_lock<std::mutex> lock(videoDecContext_->inputMutex);
-        bool condRet = videoDecContext_->inputCond.wait_for(
-            lock, 5s, [this]() { return !isStarted_ || !videoDecContext_->inputBufferInfoQueue.empty(); });
+        std::shared_ptr<CodecBufferInfo> bufferInfo = videoDecContext_->inputBufferQueue.Dequeue();
+        std::shared_lock<std::shared_mutex> codecLock(videoDecContext_->codecMutex);
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
-        CHECK_AND_CONTINUE_LOG(!videoDecContext_->inputBufferInfoQueue.empty(),
-                               "Buffer queue is empty, continue, cond ret: %{public}d", condRet);
+        CHECK_AND_CONTINUE_LOG(bufferInfo != nullptr && bufferInfo->isValid,
+                               "Buffer queue is empty or invalid, continue");
 
-        CodecBufferInfo bufferInfo = videoDecContext_->inputBufferInfoQueue.front();
-        videoDecContext_->inputBufferInfoQueue.pop();
         videoDecContext_->inputFrameCount++;
-        lock.unlock();
 
-        demuxer_->ReadSample(demuxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                             bufferInfo.attr);
+        demuxer_->ReadSample(demuxer_->GetVideoTrackId(), bufferInfo->buffer,
+                             bufferInfo->attr);
         
-        if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) && isLoop_) {
+        if ((bufferInfo->attr.flags & AVCODEC_BUFFER_FLAGS_EOS) && isLoop_) {
             int32_t ret = demuxer_->Seek(0);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
             ret = demuxer_->ReadSample(demuxer_->
-                GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
+                GetVideoTrackId(), bufferInfo->buffer, bufferInfo->attr);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
         }
 
-        int32_t ret = videoDecoder_->PushInputBuffer(bufferInfo);
+        int32_t ret = videoDecoder_->PushInputBuffer(*bufferInfo);
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Push data failed, thread out");
 
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        CHECK_AND_BREAK_LOG(!(bufferInfo->attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
     }
 }
 
@@ -786,25 +800,21 @@ void Player::VideoDecOutputAsyncThread()
     while (true) {
         thread_local auto lastPushTime = std::chrono::system_clock::now();
         CHECK_AND_BREAK_LOG(isStarted_, "VD Decoder output thread out");
-        std::unique_lock<std::mutex> lock(videoDecContext_->outputMutex);
-        bool condRet = videoDecContext_->outputCond.wait_for(
-            lock, 5s, [this]() { return !isStarted_ || !videoDecContext_->outputBufferInfoQueue.empty(); });
+        std::shared_ptr<CodecBufferInfo> bufferInfo = videoDecContext_->outputBufferQueue.Dequeue();
+        std::shared_lock<std::shared_mutex> codecLock(videoDecContext_->codecMutex);
         CHECK_AND_BREAK_LOG(isStarted_, "VD Decoder output thread out");
-        CHECK_AND_CONTINUE_LOG(!videoDecContext_->outputBufferInfoQueue.empty(),
-            "Buffer queue is empty, continue, cond ret: %{public}d", condRet);
-        CodecBufferInfo bufferInfo = videoDecContext_->outputBufferInfoQueue.front();
-        videoDecContext_->outputBufferInfoQueue.pop();
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        CHECK_AND_CONTINUE_LOG(bufferInfo != nullptr && bufferInfo->isValid,
+            "Buffer queue is empty or invalid, continue");
+        CHECK_AND_BREAK_LOG(!(bufferInfo->attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
         videoDecContext_->outputFrameCount++;
         AVCODEC_SAMPLE_LOGW("Out buffer count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
-                           videoDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags,
-                           bufferInfo.attr.pts);
-        lock.unlock();
+                           videoDecContext_->outputFrameCount, bufferInfo->attr.size, bufferInfo->attr.flags,
+                           bufferInfo->attr.pts);
         bool success = false;
         if (!audioDecContext_) {
-            success = ProcessVideoWithoutAudio(bufferInfo, lastPushTime);
+            success = ProcessVideoWithoutAudio(*bufferInfo, lastPushTime);
         } else {
-            success = ProcessVideoWithAudio(bufferInfo, lastPushTime,
+            success = ProcessVideoWithAudio(*bufferInfo, lastPushTime,
                 perSinkTimeThreshold);
         }
         if (!success) {
@@ -825,25 +835,21 @@ void Player::AudioDecInputThread()
     isAudioDone = false;
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        std::unique_lock<std::mutex> lock(audioDecContext_->inputMutex);
-        bool condRet = audioDecContext_->inputCond.wait_for(
-            lock, 5s, [this]() { return !isStarted_ || !audioDecContext_->inputBufferInfoQueue.empty(); });
+        std::shared_ptr<CodecBufferInfo> bufferInfo = audioDecContext_->inputBufferQueue.Dequeue();
+        std::shared_lock<std::shared_mutex> codecLock(audioDecContext_->codecMutex);
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
-        CHECK_AND_CONTINUE_LOG(!audioDecContext_->inputBufferInfoQueue.empty(),
-                               "Buffer queue is empty, continue, cond ret: %{public}d", condRet);
+        CHECK_AND_CONTINUE_LOG(bufferInfo != nullptr && bufferInfo->isValid,
+                               "Buffer queue is empty or invalid, continue");
 
-        CodecBufferInfo bufferInfo = audioDecContext_->inputBufferInfoQueue.front();
-        audioDecContext_->inputBufferInfoQueue.pop();
         audioDecContext_->inputFrameCount++;
-        lock.unlock();
 
-        demuxer_->ReadSample(demuxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                             bufferInfo.attr);
+        demuxer_->ReadSample(demuxer_->GetAudioTrackId(), bufferInfo->buffer,
+                             bufferInfo->attr);
 
-        int32_t ret = audioDecoder_->PushInputBuffer(bufferInfo);
+        int32_t ret = audioDecoder_->PushInputBuffer(*bufferInfo);
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Push data failed, thread out");
 
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        CHECK_AND_BREAK_LOG(!(bufferInfo->attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
     }
     isAudioDone = true;
 }
@@ -857,7 +863,7 @@ void Player::AudioDecInputSyncThread()
         CodecBufferInfo bufferInfo(nullptr);
         auto buffer = audioDecoder_->GetInputBuffer(bufferInfo, TIMEOUT_US);
         CHECK_AND_CONTINUE_LOG(buffer != nullptr, "Get input buffer timeout, retry");
-        bufferInfo.buffer = reinterpret_cast<uintptr_t *>(buffer);
+        bufferInfo.buffer = buffer;
         AVCODEC_SAMPLE_LOGW("bufferInfo.attr.size:%{public}d", bufferInfo.attr.size);
         audioDecContext_->inputFrameCount++;
         lock.unlock();
@@ -867,7 +873,7 @@ void Player::AudioDecInputSyncThread()
             int32_t ret = demuxer_->Seek(0);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
             ret = demuxer_->ReadSample(demuxer_->
-                    GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
+                    GetAudioTrackId(), bufferInfo.buffer, bufferInfo.attr);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
         }
 
@@ -908,37 +914,34 @@ void Player::AudioDecOutputThread()
     isAudioDone = false;
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder output thread out");
-        std::unique_lock<std::mutex> lock(audioDecContext_->outputMutex);
-        bool condRet = audioDecContext_->outputCond.wait_for(
-            lock, 5s, [this]() { return !isStarted_ || !audioDecContext_->outputBufferInfoQueue.empty(); });
+        std::shared_ptr<CodecBufferInfo> bufferInfo = audioDecContext_->outputBufferQueue.Dequeue();
+        std::shared_lock<std::shared_mutex> codecLock(audioDecContext_->codecMutex);
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder output thread out");
-        CHECK_AND_CONTINUE_LOG(!audioDecContext_->outputBufferInfoQueue.empty(),
-            "Buffer queue is empty, continue, cond ret: %{public}d", condRet);
-
-        CodecBufferInfo bufferInfo = audioDecContext_->outputBufferInfoQueue.front();
-        audioDecContext_->outputBufferInfoQueue.pop();
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        CHECK_AND_CONTINUE_LOG(bufferInfo != nullptr && bufferInfo->isValid,
+            "Buffer queue is empty or invalid, continue");
+        CHECK_AND_BREAK_LOG(!(bufferInfo->attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
         
         audioDecContext_->outputFrameCount++;
         AVCODEC_SAMPLE_LOGW("Out buffer count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
-                           audioDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags,
-                           bufferInfo.attr.pts);
+                           audioDecContext_->outputFrameCount, bufferInfo->attr.size, bufferInfo->attr.flags,
+                           bufferInfo->attr.pts);
         
-        uint8_t *source = OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
-        // 将解码后的PCM数据放入队列中
-        for (int i = 0; i < bufferInfo.attr.size; i++) {
-            audioDecContext_->renderQueue.push(*(source + i));
+        uint8_t *source = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+        {
+            std::unique_lock<std::mutex> lock(audioDecContext_->outputMutex);
+            for (int i = 0; i < bufferInfo->attr.size; i++) {
+                audioDecContext_->renderQueue.push(*(source + i));
+            }
         }
     
 #ifdef DEBUG_DECODE
     if (audioOutputFile_.is_open()) {
         audioOutputFile_.write(
-            (const char *)OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer)),
-            bufferInfo.attr.size);
+            (const char *)OH_AVBuffer_GetAddr(bufferInfo->buffer),
+            bufferInfo->attr.size);
     }
 #endif
-        lock.unlock();
-        if (!ProcessAudioOutput(bufferInfo)) {
+        if (!ProcessAudioOutput(*bufferInfo)) {
             break;
         }
     }
@@ -979,7 +982,7 @@ void Player::AudioDecOutputSyncThread()
             AVCODEC_SAMPLE_LOGE("bufferInfo.buffer == nullptr, skip");
             continue;
         }
-        uint8_t *source = OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+        uint8_t *source = OH_AVBuffer_GetAddr(bufferInfo.buffer);
         if (source == nullptr) {
             AVCODEC_SAMPLE_LOGE("source == nullptr, skip");
             continue;

@@ -152,7 +152,7 @@ int32_t AudioDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         AVCODEC_SAMPLE_LOGE("get output buffer attr failed, ret: %{public}d", ret);
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
-    info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);
+    info.buffer = outputBuf;
     if (info.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
         OH_AudioCodec_FreeOutputBuffer(decoder_, info.bufferIndex);
         AVCODEC_SAMPLE_LOGI("Out buffer end");
@@ -174,7 +174,7 @@ int32_t AudioDecoder::Start()
 int32_t AudioDecoder::PushInputBuffer(CodecBufferInfo &info)
 {
     CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Decoder is null");
-    int32_t ret = OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(info.buffer), &info.attr);
+    int32_t ret = OH_AVBuffer_SetBufferAttr(info.buffer, &info.attr);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Set avbuffer attr failed");
     ret = OH_AudioCodec_PushInputBuffer(decoder_, info.bufferIndex);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Push input data failed");

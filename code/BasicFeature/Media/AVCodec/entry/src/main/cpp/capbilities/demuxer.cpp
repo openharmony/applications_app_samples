@@ -15,6 +15,7 @@
 
 #include "demuxer.h"
 #include <cstdint>
+#include <cstring>
 
 #undef LOG_TAG
 #define LOG_TAG "Demuxer"
@@ -103,14 +104,19 @@ void Demuxer::ProcessVideoTrack(std::shared_ptr<OH_AVFormat> trackFormat, int32_
 {
     OH_AVDemuxer_SelectTrackByID(demuxer_, index);
     
+    char *videoCodecMime;
+    OH_AVFormat_GetStringValue(trackFormat.get(), OH_MD_KEY_CODEC_MIME, const_cast<char const **>(&videoCodecMime));
+    if (videoCodecMime == nullptr || strncmp(videoCodecMime, "video/", strlen("video/")) != 0) {
+        AVCODEC_SAMPLE_LOGW("Not a video track, mime: %{public}s", videoCodecMime);
+        return;
+    }
+    
     OH_AVFormat_GetIntValue(trackFormat.get(), OH_MD_KEY_WIDTH, &info.videoWidth);
     OH_AVFormat_GetIntValue(trackFormat.get(), OH_MD_KEY_HEIGHT, &info.videoHeight);
     OH_AVFormat_GetDoubleValue(trackFormat.get(), OH_MD_KEY_FRAME_RATE, &info.frameRate);
     OH_AVFormat_GetLongValue(trackFormat.get(), OH_MD_KEY_BITRATE, &info.bitrate);
     OH_AVFormat_GetIntValue(trackFormat.get(), OH_MD_KEY_ROTATION, &info.rotation);
     
-    char *videoCodecMime;
-    OH_AVFormat_GetStringValue(trackFormat.get(), OH_MD_KEY_CODEC_MIME, const_cast<char const **>(&videoCodecMime));
     info.videoCodecMime = videoCodecMime;
     OH_AVFormat_GetIntValue(trackFormat.get(), OH_MD_KEY_PROFILE, &info.hevcProfile);
     videoTrackId_ = index;

@@ -210,7 +210,7 @@ bool VideoDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
             CHECK_AND_RETURN_RET_LOG(buffer != nullptr, false, "Output buffer is null.");
             OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info.attr);
             CHECK_AND_RETURN_RET_LOG(getBufferRet == AV_ERR_OK, false, "Get buffer attr error.");
-            info.buffer = reinterpret_cast<uintptr_t *>(buffer);
+            info.buffer = buffer;
             return true;
         /**
             if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {

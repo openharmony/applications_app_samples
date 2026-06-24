@@ -100,7 +100,19 @@ void SampleCallback::OnCodecError(OH_AVCodec *codec, int32_t errorCode, void *us
 
 void SampleCallback::OnCodecFormatChange(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 {
+    (void)codec;
     AVCODEC_SAMPLE_LOGI("On codec format change");
+    if (userData == nullptr || format == nullptr) {
+        return;
+    }
+    CodecUserData *codecUserData = static_cast<CodecUserData *>(userData);
+    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &codecUserData->width);
+    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &codecUserData->height);
+    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &codecUserData->widthStride);
+    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &codecUserData->heightStride);
+    AVCODEC_SAMPLE_LOGI("Format changed: %{public}d*%{public}d, stride: %{public}d*%{public}d",
+                        codecUserData->width, codecUserData->height,
+                        codecUserData->widthStride, codecUserData->heightStride);
 }
 
 void SampleCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -110,7 +122,6 @@ void SampleCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVB
     }
     (void)codec;
     CodecUserData *codecUserData = static_cast<CodecUserData *>(userData);
-    std::unique_lock<std::mutex> lock(codecUserData->inputMutex);
     if (codecUserData->isEncFirstFrame) {
         OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &codecUserData->width);
@@ -120,8 +131,7 @@ void SampleCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVB
         OH_AVFormat_Destroy(format);
         codecUserData->isEncFirstFrame = false;
     }
-    codecUserData->inputBufferInfoQueue.emplace(index, buffer);
-    codecUserData->inputCond.notify_all();
+    codecUserData->inputBufferQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
 }
 
 void SampleCallback::OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -131,7 +141,6 @@ void SampleCallback::OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVB
     }
     (void)codec;
     CodecUserData *codecUserData = static_cast<CodecUserData *>(userData);
-    std::unique_lock<std::mutex> lock(codecUserData->outputMutex);
     if (codecUserData->isDecFirstFrame) {
         OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &codecUserData->width);
@@ -141,6 +150,5 @@ void SampleCallback::OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVB
         OH_AVFormat_Destroy(format);
         codecUserData->isDecFirstFrame = false;
     }
-    codecUserData->outputBufferInfoQueue.emplace(index, buffer);
-    codecUserData->outputCond.notify_all();
+    codecUserData->outputBufferQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
 }
