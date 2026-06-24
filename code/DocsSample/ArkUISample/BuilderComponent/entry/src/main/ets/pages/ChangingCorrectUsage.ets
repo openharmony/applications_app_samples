@@ -34,13 +34,15 @@ interface TempMod2 {
 // 使用MutableBinding在@Builder装饰的函数内部修改参数值
 @Builder
 function overBuilderMod2(param: MutableBinding<TempMod2>) {
-  Column() {
+  Column({ space: 5 }) {
     Button(`Mod--overBuilder === ${param.value.paramA}`)
       .onClick(() => {
+        // 修改对象参数的属性值
         param.value.paramA = 'Yes';
       })
     Button(`change`)
       .onClick(() => {
+        // 整体替换对象参数
         param.value = { paramA: 'trialOne' };
       })
   }
@@ -77,6 +79,7 @@ struct ParentMod2 {
       this.extendBlank();
       Button('click me')
         .onClick(() => {
+          // 点击按钮修改状态变量的属性
           this.objectOne.paramA = 'ArkUI';
         })
       this.extendBlank();
@@ -89,6 +92,7 @@ struct ParentMod2 {
         )
       );
     }
+    .width('100%')
   }
 }
 // [End changing_input_parameters_builder_correct_usage]

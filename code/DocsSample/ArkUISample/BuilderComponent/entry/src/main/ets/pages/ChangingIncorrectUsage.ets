@@ -68,6 +68,7 @@ struct ParentMod1 {
       this.extendBlank();
       Button('click me')
         .onClick(() => {
+          // 点击按钮修改状态变量，观察UI刷新
           this.label = 'ArkUI';
         })
       this.extendBlank();
