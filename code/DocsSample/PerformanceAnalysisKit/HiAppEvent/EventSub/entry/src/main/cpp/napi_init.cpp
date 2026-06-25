@@ -1089,9 +1089,6 @@ static napi_value Leak(napi_env env, napi_callback_info info)
 }
 // [End AppKillEvent_NativeLeak]
 // [Start EventSub_Init_All]
-// [Start AppEvent_C++_Init]
-
-// [StartExclude AppEvent_C++_Init]
 // [Start Hicollie_Set_Timer]
 // 定义回调函数
 void CallBack(void*)
@@ -1260,7 +1257,6 @@ static napi_value RegisterAppHicollieWatcherT(napi_env env, napi_callback_info i
     return {};
 }
 // [End App_Hicollie_Trigger]
-// [EndExclude AppEvent_C++_Init]
 
 // [Start Pss_Leak]
 // 读 /proc/self/smaps_rollup 中的 PSS 字段，统计当前进程的 PSS (单位 KB)
@@ -1393,6 +1389,7 @@ static napi_value LeakMB(napi_env env, napi_callback_info info)
 // [Start Sys_Crash_Event_C++_Init]
 // [Start Sys_Native_Nullptr_Event_C++_Init]
 // [Start Pss_Leak_Init]
+// [Start AppEvent_C++_Init]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
