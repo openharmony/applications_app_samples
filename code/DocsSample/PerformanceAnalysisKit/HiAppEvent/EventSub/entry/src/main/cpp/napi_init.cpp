@@ -1218,7 +1218,7 @@ static void AppHicollieOnTake(const char *const *events, uint32_t eventLen)
                 auto memory =  writer.write(eventInfo["memory"]);
                 auto externalLog = writer.write(eventInfo["external_log"]);
                 auto logOverLimit = eventInfo["log_over_limit"].asBool();
-                auto externalCallbackLog = params["external_callback_log"].asString();
+                auto externalCallbackLog = eventInfo["external_callback_log"].asString();
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
