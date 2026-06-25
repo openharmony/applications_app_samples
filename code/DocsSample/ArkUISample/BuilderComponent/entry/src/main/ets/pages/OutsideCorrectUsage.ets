@@ -63,6 +63,7 @@ struct BackGround2 {
       })
     }
     .margin(10)
+    .width('100%')
   }
 }
 // [End calling_builder_outside_correct_usage]
