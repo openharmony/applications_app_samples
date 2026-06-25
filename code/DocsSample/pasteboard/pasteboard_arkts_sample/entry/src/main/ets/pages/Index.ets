@@ -121,7 +121,7 @@ struct Index {
           // [EndExclude pasteboard_permission]
           .onClick(async () => {
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-            if (! (await isNeedGetPermissionFromUser())) {
+            if (!(await isNeedGetPermissionFromUser())) {
               hilog.info(0xFF00, '[Sample_pasteboard]', 'No need to bring up the permission pop-up window');
               return;
             }
