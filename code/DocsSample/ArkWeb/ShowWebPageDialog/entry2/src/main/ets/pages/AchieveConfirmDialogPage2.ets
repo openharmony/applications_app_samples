@@ -24,7 +24,7 @@ struct DialogConfirmDialog {
   @State result: JsResult | null = null;
   webviewController: webview.WebviewController = new webview.WebviewController();
   isChecked = false;
-  dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
+  dialogControllerConfirmDialog: CustomDialogController = new CustomDialogController({
     builder: ConfirmDialog({
       title: this.title,
       content: this.message,
@@ -53,7 +53,7 @@ struct DialogConfirmDialog {
     }),
     onWillDismiss: () => {
       this.result?.handleCancel();
-      this.dialogControllerCheckBox.close();
+      this.dialogControllerConfirmDialog.close();
     },
     autoCancel: true
   })
@@ -71,7 +71,7 @@ struct DialogConfirmDialog {
               this.title = 'Confirm';
               this.message = event.message;
               this.result = event.result;
-              this.dialogControllerCheckBox.open();
+              this.dialogControllerConfirmDialog.open();
             }
           }
           return true;
