@@ -22,7 +22,8 @@ constexpr double LIP_SYNC_BALANCE_VALUE = 2;                       // the balanc
 constexpr int32_t MAX_BUFFER_SIZE = 2*1024*1024;
 constexpr int32_t WAIT_OUT_TIME = 50000;                              // 等待时间MS
 constexpr int32_t VIDEO_FRAME_COUNT = 1;                            //视频聚包帧数
-constexpr int32_t AUDIO_FRAME_COUNT = 10;                            //视频聚包帧数
+constexpr int32_t AUDIO_FRAME_COUNT = 10;
+constexpr int32_t SEEK_MODE_THREE = 3;                        
 } // namespace
 
 Player::~Player()
@@ -32,7 +33,7 @@ Player::~Player()
 
 bool Player::Intercept()
 {
-    if(demuxer_ == nullptr || lppVideoStreamer_ == nullptr || lppAudioStreamer_ == nullptr){
+    if (demuxer_ == nullptr || lppVideoStreamer_ == nullptr || lppAudioStreamer_ == nullptr) {
         return true;
     }
     return false;
@@ -41,19 +42,19 @@ bool Player::Intercept()
 int32_t Player::CreateLppAudioStreamer()
 {
     AVCODEC_SAMPLE_LOGW("CreateLppAudioStreamer IN");
-    if(lppAudioStreamer_ == nullptr){
+    if (lppAudioStreamer_ == nullptr) {
         AVCODEC_SAMPLE_LOGE("lppAudioStreamer_ is Release, should init");
         return -1;
     }
     auto ret = lppAudioStreamer_->Create(sampleInfo_.audioCodecMime);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR, "CreateLppAudioStreamer failed.");
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "CreateLppAudioStreamer failed.");
     lppContext_ = new LppUserData;
     lppContext_->audioCallback = sampleInfo_.audioCallback;
     lppContext_->audioCallbackData = sampleInfo_.audioCallbackData;
     ret = lppAudioStreamer_->SetCallback(lppContext_);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR, "SetCallback failed.");
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "SetCallback failed.");
     ret = lppAudioStreamer_->SetParameter(sampleInfo_);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR, "SetParameter failed.");
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "SetParameter failed.");
      AVCODEC_SAMPLE_LOGW("CreateLppAudioStreamer OUT");
     return AVCODEC_SAMPLE_ERR_OK;
 }
@@ -61,7 +62,7 @@ int32_t Player::CreateLppAudioStreamer()
 int32_t Player::CreateLppVideoStreamer()
 {
     AVCODEC_SAMPLE_LOGI("CreateLppVideoStreamer IN");
-    if(lppVideoStreamer_ == nullptr){
+    if (lppVideoStreamer_ == nullptr) {
         AVCODEC_SAMPLE_LOGE("lppVideoStreamer_ is Release, should init");
         return -1;
     }
@@ -70,7 +71,8 @@ int32_t Player::CreateLppVideoStreamer()
 //     video/avc
     lppVideoStreamer_->Create(sampleInfo_.videoCodecMime.c_str());
     lppVideoContext_ = new LppUserData;
-    lppVideoContext_->num = 100012;
+    int v_num = 100012;
+    lppVideoContext_->num = v_num;
     lppVideoStreamer_->SetCallback(lppVideoContext_);
     OH_AVFormat *format = OH_AVFormat_Create();
     lppVideoStreamer_->Configure(sampleInfo_);
@@ -101,20 +103,22 @@ int32_t Player::Init(SampleInfo &sampleInfo)
 int32_t Player::Prepare()
 {
     AVCODEC_SAMPLE_LOGW("Prepare IN");
-    if(!sampleInfo_.isInit){
+    if (!sampleInfo_.isInit) {
         return 0;
     }
     std::unique_lock<std::mutex> lock(mutex_);
-    if (demuxer_ == nullptr){
+    if (demuxer_ == nullptr) {
         demuxer_ = std::make_unique<Demuxer>();
     }
     int32_t ret = demuxer_->Create(sampleInfo_);
 
     ret = CreateLppAudioStreamer();
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR, "CreateLppAudioStreamer failed.");
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR,
+        "CreateLppAudioStreamer failed.");
     
     ret = CreateLppVideoStreamer();
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR, "CreateLppVideoStreamer failed.");
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK , AVCODEC_SAMPLE_ERR_ERROR,
+        "CreateLppVideoStreamer failed.");
 
     lppVideoStreamer_->SetSyncAudioStreamer(lppAudioStreamer_->lppAudioStreamer_);
     lppVideoStreamer_->Prepare();
@@ -122,13 +126,13 @@ int32_t Player::Prepare()
 
     isReleased_ = false;
     isStarted_ = true;
-    if(lppVideoContext_){
-        if (lppVideoDataNeededThread_ == nullptr){
+    if (lppVideoContext_) {
+        if (lppVideoDataNeededThread_ == nullptr) {
             lppVideoDataNeededThread_ = std::make_unique<std::thread>(&Player::LppVideoDataNeededThread, this);
         }
     }
-    if(lppContext_){
-        if (LppDataNeededThread_ == nullptr){
+    if (lppContext_) {
+        if (LppDataNeededThread_ == nullptr) {
             LppDataNeededThread_ = std::make_unique<std::thread>(&Player::LppDataNeededThread1, this);
         }
     }
@@ -146,7 +150,8 @@ int32_t Player::StartDecoder()
 
 int32_t Player::RenderFirstFrame()
 {
-    CHECK_AND_RETURN_RET_LOG(lppVideoContext_ != nullptr && lppVideoStreamer_ != nullptr , AVCODEC_SAMPLE_ERR_ERROR, "lppVideoStreamer_ nullptr.");
+    CHECK_AND_RETURN_RET_LOG(lppVideoContext_ != nullptr && lppVideoStreamer_ != nullptr,
+        AVCODEC_SAMPLE_ERR_ERROR, "lppVideoStreamer_ nullptr.");
     return lppVideoStreamer_->RenderFirstFrame();
 }
 
@@ -154,7 +159,8 @@ int32_t Player::StartRender()
 {
     isStarted_ = true;
     state_ = PLAYING;
-    CHECK_AND_RETURN_RET_LOG(lppVideoContext_ != nullptr && lppVideoStreamer_ != nullptr , AVCODEC_SAMPLE_ERR_ERROR, "lppVideoStreamer_ nullptr.");
+    CHECK_AND_RETURN_RET_LOG(lppVideoContext_ != nullptr && lppVideoStreamer_ != nullptr,
+        AVCODEC_SAMPLE_ERR_ERROR, "lppVideoStreamer_ nullptr.");
     return lppVideoStreamer_->StartRender();
 }
 
@@ -162,7 +168,8 @@ int32_t Player::StartAudio()
 {
     isStarted_ = true;
     state_ = PLAYING;
-    CHECK_AND_RETURN_RET_LOG(lppContext_ != nullptr && lppAudioStreamer_ != nullptr , AVCODEC_SAMPLE_ERR_ERROR, "lppAudioStreamer_ nullptr.");
+    CHECK_AND_RETURN_RET_LOG(lppContext_ != nullptr && lppAudioStreamer_ != nullptr,
+        AVCODEC_SAMPLE_ERR_ERROR, "lppAudioStreamer_ nullptr.");
     return lppAudioStreamer_->Start();
 }
 
@@ -300,19 +307,20 @@ int32_t Player::Seek(int64_t seekTime, int32_t mode, bool acc)
     auto start = std::chrono::high_resolution_clock::now();
     CHECK_AND_RETURN_RET_LOG(!Intercept(), AVCODEC_SAMPLE_ERR_ERROR, "Intercept nullptr.");
     lppContext_->position = -1;
-    if(sampleInfo_.duration<seekTime*1000){
-        AVCODEC_SAMPLE_LOGI("Seek over duration %{public}ld",sampleInfo_.duration);
+    int unit_n = 1000;
+    if(sampleInfo_.duration < seekTime*unit_n){
+        AVCODEC_SAMPLE_LOGI("Seek over duration %{public}ld", sampleInfo_.duration);
         return 0;
     }
-    if(mode == 3){
-        SeekInner(seekTime, 3);
+    if (mode == SEEK_MODE_THREE) {
+        SeekInner(seekTime, SEEK_MODE_THREE);
         return 0;
     }
     Pause();
     OH_AVSeekMode enumNum = static_cast<OH_AVSeekMode>(mode);
     AVCODEC_SAMPLE_LOGI("OH_AVSeekMode  %{public}d", mode);
     int32_t aa = demuxer_->Seek(seekTime, enumNum);
-    if (aa != 0){
+    if (aa != 0) {
         AVCODEC_SAMPLE_LOGD("Seek failed.");
         demuxer_->Seek(seekTime, SEEK_MODE_CLOSEST_SYNC);
     }
@@ -321,7 +329,7 @@ int32_t Player::Seek(int64_t seekTime, int32_t mode, bool acc)
         std::unique_lock<std::mutex> eosFlagMutexLock(lppContext_->eosFlagMutex);
         lppContext_->eosFlag_ = false;
         lppContext_->returnFrame = false;
-        AVCODEC_SAMPLE_LOGI("AUDIO eosFlag_ %{public}d",lppContext_->eosFlag_);
+        AVCODEC_SAMPLE_LOGI("AUDIO eosFlag_ %{public}d", lppContext_->eosFlag_);
         lppContext_->eosCond_.notify_all();
         eosFlagMutexLock.unlock();
     }
@@ -329,7 +337,7 @@ int32_t Player::Seek(int64_t seekTime, int32_t mode, bool acc)
         std::unique_lock<std::mutex> eosFlagMutexLock(lppVideoContext_->eosFlagMutex);
         lppVideoContext_->eosFlag_ = false;
         lppVideoContext_->returnFrame = false;
-        AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d",lppContext_->eosFlag_);
+        AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d", lppContext_->eosFlag_);
         lppVideoContext_->eosCond_.notify_all();
         eosFlagMutexLock.unlock();
     }
@@ -345,37 +353,35 @@ int32_t Player::Seek(int64_t seekTime, int32_t mode, bool acc)
 
 int64_t Player::ReadToAudioTargetPts(int64_t targetPts)
 {
-    
-    OH_AVBuffer * avbuffer = OH_AVBuffer_Create(MAX_BUFFER_SIZE);
-    CodecBufferInfo bufferInfo(11, avbuffer);
-    while (true)
-        {
-            demuxer_->ReadSample(demuxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                bufferInfo.attr);
-            if(targetPts<=bufferInfo.attr.pts)
-            {
-                break;
-            }
-            if(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS){
-                 break;
-            }
+    OH_AVBuffer* avbuffer = OH_AVBuffer_Create(MAX_BUFFER_SIZE);
+    int32_t BUFFER_ELEVEN_B = 11;
+    CodecBufferInfo bufferInfo(BUFFER_ELEVEN_B, avbuffer);
+    while (true) {
+        demuxer_->ReadSample(demuxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
+            bufferInfo.attr);
+        if (targetPts<=bufferInfo.attr.pts) {
+            break;
         }
-    AVCODEC_SAMPLE_LOGI("ReadToAudioTargetPts Last pts is %{public}ld",bufferInfo.attr.pts);
+        if (bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
+            break;
+        }
+    }
+    AVCODEC_SAMPLE_LOGI("ReadToAudioTargetPts Last pts is %{public}ld", bufferInfo.attr.pts);
     return bufferInfo.attr.pts;
 }
 
 void Player::SeekInner(int64_t seekTime, int32_t mode)
 {
     AVCODEC_SAMPLE_LOGI("============== Seek ACC IN ===============");
-    int64_t targetPts = seekTime*1000;
-    AVCODEC_SAMPLE_LOGI("SetTargetStartFrame %{public}ld",targetPts);
+    int64_t targetPts = seekTime * 1000;
+    AVCODEC_SAMPLE_LOGI("SetTargetStartFrame %{public}ld", targetPts);
     //暂停
     Pause();
     {
         std::unique_lock<std::mutex> eosFlagMutexLock(lppContext_->eosFlagMutex);
         lppContext_->eosFlag_ = false;
         lppContext_->returnFrame = false;
-        AVCODEC_SAMPLE_LOGI("AUDIO eosFlag_ %{public}d",lppContext_->eosFlag_);
+        AVCODEC_SAMPLE_LOGI("AUDIO eosFlag_ %{public}d", lppContext_->eosFlag_);
         lppContext_->eosCond_.notify_all();
         eosFlagMutexLock.unlock();
     }
@@ -383,7 +389,7 @@ void Player::SeekInner(int64_t seekTime, int32_t mode)
         std::unique_lock<std::mutex> eosFlagMutexLock(lppVideoContext_->eosFlagMutex);
         lppVideoContext_->eosFlag_ = false;
         lppVideoContext_->returnFrame = false;
-        AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d",lppContext_->eosFlag_);
+        AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d", lppContext_->eosFlag_);
         lppVideoContext_->eosCond_.notify_all();
         eosFlagMutexLock.unlock();
     }
@@ -399,10 +405,10 @@ void Player::SeekInner(int64_t seekTime, int32_t mode)
     }
     //等待返回
     std::unique_lock<std::mutex> lock(lppVideoContext_->seekMutex_);
-//     lppVideoContext_->seekCond_.wait_for(lock, 10000s, [this]() { return lppVideoContext_->seekReturn_; });
-    usleep(50*1000);
+    int sleep_num = 50 * 1000;
+    usleep(sleep_num);
     lppVideoContext_->seekReturn_ = false;
-    lock.unlock(); 
+    lock.unlock();
     //返回成功，启动音频
     if (lppAudioStreamer_ != nullptr) {
         lppAudioStreamer_->Start();
@@ -423,24 +429,25 @@ void Player::StartRelease()
 
 int64_t Player::GetDurationTime()
 {
-    AVCODEC_SAMPLE_LOGD("GetDurationTime %{public}ld",sampleInfo_.duration);
+    AVCODEC_SAMPLE_LOGD("GetDurationTime %{public}ld", sampleInfo_.duration);
     return sampleInfo_.duration;
 }
 
 int64_t Player::GetProgressTime()
 {
     std::unique_lock<std::mutex> seekLock(SeekMutex);
-    if(lppContext_ == nullptr || lppContext_->position == -1){
+    if (lppContext_ == nullptr || lppContext_->position == -1) {
         return 0;
     }
-    AVCODEC_SAMPLE_LOGD("GetProgressTime position %{public}ld",lppContext_->position);
-    int64_t tmp = sampleInfo_.duration/1000000 < (lppContext_->position / 1000) ? sampleInfo_.duration : ( (lppContext_->position /1000) * 1000000);
-   return tmp;
+    AVCODEC_SAMPLE_LOGD("GetProgressTime position %{public}ld", lppContext_->position);
+    int64_t tmp = sampleInfo_.duration/1000000 < (lppContext_->position / 1000) ?
+      sampleInfo_.duration : ((lppContext_->position /1000) * 1000000);
+    return tmp;
 }
 
 void Player::ReleaseThread()
 {
-    if(lppContext_){
+    if (lppContext_) {
         std::unique_lock<std::mutex> eosFlagMutexLock(lppContext_->eosFlagMutex);
         lppContext_->eosFlag_ = false;
         lppContext_->eosCond_.notify_all();
@@ -501,7 +508,7 @@ void Player::Release()
     }
     doneCond_.notify_all();
     // 触发回调
-    if(sampleInfo_.playDoneCallback != nullptr){
+    if (sampleInfo_.playDoneCallback != nullptr) {
         sampleInfo_.playDoneCallback(sampleInfo_.playDoneCallbackData);
     }
     AVCODEC_SAMPLE_LOGI("Succeed");
@@ -530,28 +537,28 @@ void Player::LppDataNeededThread1()
         lppContext_->count = 1;
         // 聚包数量
         int count  = AUDIO_FRAME_COUNT;
-        while (count>0)
-            {
-                CHECK_AND_BREAK_LOG(!lppContext_->eosFlag_, "AUDIO is EOS");
-                count--;
-                CodecBufferInfo bufferInfo(11, avbuffer);
-                demuxer_->ReadSample(demuxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                    bufferInfo.attr);
-                this->progress = bufferInfo.attr.pts;
-                int32_t remain = OH_AVSamplesBuffer_GetRemainedCapacity(lppContext_->framePacket_);
-                AVCODEC_SAMPLE_LOGD("AUDIO  pts %{public}ld",bufferInfo.attr.pts);
-                // EOS帧置位
-                if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS)){
-                    AVCODEC_SAMPLE_LOGI("Catch EOS, audio thread out");
-                    OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), &bufferInfo.attr);
-                     std::unique_lock<std::mutex> eosFlagMutexLock(lppContext_->eosFlagMutex);
-                    lppContext_->eosFlag_ = true;
-                    eosFlagMutexLock.unlock();
-                }
-                OH_AVSamplesBuffer_AppendOneBuffer(lppContext_->framePacket_, reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+        while (count > 0) {
+            CHECK_AND_BREAK_LOG(!lppContext_->eosFlag_, "AUDIO is EOS");
+            count--;
+            int32_t BUFFER_ELEVEN_C = 11;
+            CodecBufferInfo bufferInfo(BUFFER_ELEVEN_C, avbuffer);
+            demuxer_->ReadSample(demuxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
+                bufferInfo.attr);
+            this->progress = bufferInfo.attr.pts;
+            int32_t remain = OH_AVSamplesBuffer_GetRemainedCapacity(lppContext_->framePacket_);
+            AVCODEC_SAMPLE_LOGD("AUDIO  pts %{public}ld", bufferInfo.attr.pts);
+            // EOS帧置位
+            if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS)) {
+                AVCODEC_SAMPLE_LOGI("Catch EOS, audio thread out");
+                OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), &bufferInfo.attr);
+                std::unique_lock<std::mutex> eosFlagMutexLock(lppContext_->eosFlagMutex);
+                lppContext_->eosFlag_ = true;
+                eosFlagMutexLock.unlock();
             }
+            OH_AVSamplesBuffer_AppendOneBuffer(lppContext_->framePacket_, reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+        }
 
-        if(state_ == PLAYING){
+        if (state_ == PLAYING) {
             lppAudioStreamer_->returnFrames(lppContext_);
         }
         // 一次回调处理完再下一次
@@ -565,63 +572,52 @@ void Player::LppVideoDataNeededThread()
 {
     bool eosFlag = 0;
     int32_t total_size = 4467270;
-    AVCODEC_SAMPLE_LOGI("====== AVBUFFER1234 CREATE1 ======");
-    OH_AVBuffer * avbuffer = OH_AVBuffer_Create(total_size);
+    OH_AVBuffer* avbuffer = OH_AVBuffer_Create(total_size);
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        
         std::unique_lock<std::mutex> eosLock(lppVideoContext_->eosMutex);
         lppVideoContext_->eosCond_.wait_for(
             eosLock, 150000s, [this]() { return !lppVideoContext_->eosFlag_; });
-        
         std::unique_lock<std::mutex> lock(lppVideoContext_->inputMutex);
         lppVideoContext_->inputCond.wait_for(
             lock, 150000s, [this]() { return lppVideoContext_->returnFrame; });
         CHECK_AND_BREAK_LOG(isStarted_, "VD Decoder output thread out");
         lppVideoContext_->returnFrame = false;
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
-        
-        
         lppVideoContext_->count = VIDEO_FRAME_COUNT;
         AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
-        while (lppVideoContext_->count>0)
-            {
-                CHECK_AND_BREAK_LOG(!lppVideoContext_->eosFlag_, "VIDEO is EOS");
-                CodecBufferInfo bufferInfo(11, avbuffer);
-                if(seekFlag_){
-                    seekFlag_ = false;
-                    bufferInfo = videoBufferInfo_.front();
-                    videoBufferInfo_.pop();
-                }
-                else{
-                    demuxer_->ReadSample(demuxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                        bufferInfo.attr);
-                }
-                AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread size %{public}d",bufferInfo.attr.size);
-                AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread ptsacc %{public}ld",bufferInfo.attr.pts);
-                AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread isIFrame %u",bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME);
-                int32_t remain = OH_AVSamplesBuffer_GetRemainedCapacity(lppVideoContext_->framePacket_);
-                if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS)){
-                    AVCODEC_SAMPLE_LOGI("Catch EOS, video thread out");
-                    OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), &bufferInfo.attr);
-                    std::unique_lock<std::mutex> eosFlagMutexLock(lppVideoContext_->eosFlagMutex);
-                    lppVideoContext_->eosFlag_ = true;
-                    AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d",lppContext_->eosFlag_);
-                    eosFlagMutexLock.unlock();
-                }
-                OH_AVSamplesBuffer_AppendOneBuffer(lppVideoContext_->framePacket_, reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
-                lppVideoContext_->count--;
-                AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
+        while (lppVideoContext_->count > 0) {
+            CHECK_AND_BREAK_LOG(!lppVideoContext_->eosFlag_, "VIDEO is EOS");
+            int BUFFER_ELEVEN = 11;
+            CodecBufferInfo bufferInfo(BUFFER_ELEVEN, avbuffer);
+            if (seekFlag_) {
+                seekFlag_ = false;
+                bufferInfo = videoBufferInfo_.front();
+                videoBufferInfo_.pop();
+            } else {
+                demuxer_->ReadSample(demuxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
+                    bufferInfo.attr);
             }
+            int32_t remain = OH_AVSamplesBuffer_GetRemainedCapacity(lppVideoContext_->framePacket_);
+            if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS)) {
+                AVCODEC_SAMPLE_LOGI("Catch EOS, video thread out");
+                OH_AVBuffer_SetBufferAttr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), &bufferInfo.attr);
+                std::unique_lock<std::mutex> eosFlagMutexLock(lppVideoContext_->eosFlagMutex);
+                lppVideoContext_->eosFlag_ = true;
+                AVCODEC_SAMPLE_LOGI("VIDEO eosFlag_ %{public}d", lppContext_->eosFlag_);
+                eosFlagMutexLock.unlock();
+            }
+            OH_AVSamplesBuffer_AppendOneBuffer(lppVideoContext_->framePacket_,
+                reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+            lppVideoContext_->count--;
+            AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
+        }
         AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
-        
-        if(state_ == PLAYING){
+        if (state_ == PLAYING) {
             lppVideoStreamer_->returnFrames(lppVideoContext_);
         }
-        AVCODEC_SAMPLE_LOGD("LppVideoDataNeededThread returnFrames end");
         lock.unlock();
     }
-    AVCODEC_SAMPLE_LOGI("====== AVBUFFER1234 DESTROY1 ======");
     OH_AVBuffer_Destroy(avbuffer);
 }
 

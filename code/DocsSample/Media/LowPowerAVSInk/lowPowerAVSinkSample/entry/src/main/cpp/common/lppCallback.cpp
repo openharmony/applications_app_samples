@@ -29,17 +29,15 @@ constexpr int LIMIT_LOGD_FREQUENCY = 50;
 
 void LppCallback::OnDataNeeded(OH_LowPowerAudioSink *decoder, OH_AVSamplesBuffer *framePacket, void *userData)
 {
-//     AVCODEC_SAMPLE_LOGI("OnDataNeeded");
+    AVCODEC_SAMPLE_LOGI("OnDataNeeded");
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
     std::unique_lock<std::mutex> lock(lppUserData->inputMutex);
-    if(lppUserData->framePacket_==nullptr)
-        {
-//             AVCODEC_SAMPLE_LOGI("ggggfd");
-        }
+    if (lppUserData->framePacket_ == nullptr) {
+        AVCODEC_SAMPLE_LOGI("ggggfd");
+    }
     lppUserData->framePacket_ = framePacket;
-    if(lppUserData->framePacket_==nullptr)
-    {
-//         AVCODEC_SAMPLE_LOGI("ggdfsd");
+    if (lppUserData->framePacket_ == nullptr) {
+        AVCODEC_SAMPLE_LOGI("ggdfsd");
     }
     lppUserData->count++;
     lppUserData->returnFrame = true;
@@ -49,7 +47,7 @@ void LppCallback::OnDataNeeded(OH_LowPowerAudioSink *decoder, OH_AVSamplesBuffer
 
 void LppCallback::OnPositionUpdated(OH_LowPowerAudioSink *decoder, long currentPosition, void *userData)
 {
-    AVCODEC_SAMPLE_LOGI("currentPosition %{public}ld",currentPosition);
+    AVCODEC_SAMPLE_LOGI("currentPosition %{public}ld", currentPosition);
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
     std::unique_lock<std::mutex> lock(lppUserData->inputMutex);
     lppUserData->position = currentPosition;
@@ -61,7 +59,8 @@ void LppCallback::OnError(OH_LowPowerAudioSink *decoder, OH_AVErrCode errCode, c
     AVCODEC_SAMPLE_LOGI("errCode %{public}d",errCode);
 }
 
-void LppCallback::OnInterrupted(OH_LowPowerAudioSink *decoder, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint, void *userData)
+void LppCallback::OnInterrupted(OH_LowPowerAudioSink *decoder, OH_AudioInterrupt_ForceType type,
+    OH_AudioInterrupt_Hint hint, void *userData)
 {
     AVCODEC_SAMPLE_LOGI("callback OnInterrupted %{public}d", type);
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
@@ -71,14 +70,15 @@ void LppCallback::OnInterrupted(OH_LowPowerAudioSink *decoder, OH_AudioInterrupt
     
 }
     
-void LppCallback::OnDeviceChanged(OH_LowPowerAudioSink *decoder, OH_AudioStream_DeviceChangeReason reason, void *userData)
+void LppCallback::OnDeviceChanged(OH_LowPowerAudioSink *decoder, OH_AudioStream_DeviceChangeReason reason,
+    void *userData)
 {
-    AVCODEC_SAMPLE_LOGI("reason %{public}d",reason);
+    AVCODEC_SAMPLE_LOGI("reason %{public}d", reason);
 }
     
 void LppCallback::OnEos(OH_LowPowerAudioSink *decoder, void * userData)
 {
-//     AVCODEC_SAMPLE_LOGI("reason %{public}d",reason);
+    AVCODEC_SAMPLE_LOGI("OnEos");
 }
 
 void LppCallback::OnDataNeededVideo(OH_LowPowerVideoSink *streamer, OH_AVSamplesBuffer *framePacket, void *userData)
@@ -86,21 +86,17 @@ void LppCallback::OnDataNeededVideo(OH_LowPowerVideoSink *streamer, OH_AVSamples
     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded");
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
     std::unique_lock<std::mutex> lock(lppUserData->inputMutex);
-    if(lppUserData->framePacket_==nullptr)
-        {
-//             AVCODEC_SAMPLE_LOGI("ggggfd");
-        }
-    lppUserData->framePacket_ = framePacket;
-    if(lppUserData->framePacket_==nullptr)
-    {
-//         AVCODEC_SAMPLE_LOGI("ggdfsd");
+    if(lppUserData->framePacket_ == nullptr) {
+            AVCODEC_SAMPLE_LOGI("ggggfd");
     }
-//     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded");
+    lppUserData->framePacket_ = framePacket;
+    if(lppUserData->framePacket_ == nullptr) {
+        AVCODEC_SAMPLE_LOGI("ggdfsd");
+    }
+    AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded");
     lppUserData->count++;
     lppUserData->returnFrame = true;
     lppUserData->inputCond.notify_all();
-//     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded notify");
-//     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink num %{public}d",lppUserData->num);
 }
     
 void LppCallback::OnAnchorUpdated(OH_LowPowerVideoSink *streamer, long *anchorPts, long *anchorClock, void *userData)
@@ -113,18 +109,20 @@ void LppCallback::OnError(OH_LowPowerVideoSink *streamer, OH_AVErrCode errCode, 
     AVCODEC_SAMPLE_LOGI("errCode %{public}d",errCode);
 }
     
-void LppCallback::OnTargetArrived(OH_LowPowerVideoSink *streamer, const long targetPts, const bool isTimeout, void *userData)
+void LppCallback::OnTargetArrived(OH_LowPowerVideoSink *streamer, const long targetPts, const bool isTimeout,
+    void *userData)
 {
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
     std::unique_lock<std::mutex> lock(lppUserData->seekMutex_);
     AVCODEC_SAMPLE_LOGI("OnTargetArrived accSeek");
-    if(isTimeout){
+    if (isTimeout) {
         AVCODEC_SAMPLE_LOGI("OnTargetArrived timeout");
     }
     lppUserData->inputCond.notify_all();
 }
 
-void LppCallback::OH_LowPowerVideoSink_OnStreamChanged(OH_LowPowerVideoSink *streamer, OH_AVFormat *format, void *userData)
+void LppCallback::OH_LowPowerVideoSink_OnStreamChanged(OH_LowPowerVideoSink *streamer, OH_AVFormat *format,
+    void *userData)
 {
     if(format == nullptr){
         AVCODEC_SAMPLE_LOGI("OnOutputFormatChanged format nullptr");
@@ -134,17 +132,15 @@ void LppCallback::OH_LowPowerVideoSink_OnStreamChanged(OH_LowPowerVideoSink *str
     OH_AVFormat_GetIntValue(format, "video_picture_width", &width);
     int32_t height = 0;
     OH_AVFormat_GetIntValue(format, "video_picture_height", &height);
-    AVCODEC_SAMPLE_LOGI("OnOutputFormatChanged width= %{public}d height= %{public}d",width, height);
+    AVCODEC_SAMPLE_LOGI("OnOutputFormatChanged width= %{public}d height= %{public}d", width, height);
 }
     
 void LppCallback::OnRenderStarted(OH_LowPowerVideoSink *streamer, void *userData)
 {
-    
+    AVCODEC_SAMPLE_LOGI("OnRenderStarted");
 }
     
 void LppCallback::OnEos(OH_LowPowerVideoSink *streamer, void *userData)
 {
-    
+    AVCODEC_SAMPLE_LOGI("OnEos");
 }
-
-

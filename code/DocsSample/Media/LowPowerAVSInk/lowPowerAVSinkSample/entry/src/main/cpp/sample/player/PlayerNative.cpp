@@ -29,8 +29,7 @@ struct CallbackContext {
     napi_ref callbackRef = nullptr;
 };
 
-void Callback(void *asyncContext)
-{
+void Callback(void *asyncContext) {
     uv_loop_s *loop = nullptr;
     CallbackContext *context = (CallbackContext *)asyncContext;
     napi_get_uv_event_loop(context->env, &loop);
@@ -52,8 +51,7 @@ void Callback(void *asyncContext)
     });
 }
 
-napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Play(napi_env env, napi_callback_info info) {
     SampleInfo sampleInfo;
     size_t argc = 5;                    // 参数个数，这里ArkTS往native测传递了两个参数，故此处赋值为4
     napi_value args[5] = {nullptr};     // napi_value类型数组，用于存储接收的ArkTS侧参数
@@ -65,8 +63,8 @@ napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
     napi_get_value_int64(env, args[1], &sampleInfo.inputFileOffset);
     napi_get_value_int64(env, args[two], &sampleInfo.inputFileSize);
     
-    AVCODEC_SAMPLE_LOGI("inputFilePath %{public}s",sampleInfo.inputFilePath.c_str());
-    AVCODEC_SAMPLE_LOGI("inputFilePath %{public}ld",sampleInfo.inputFileSize);
+    AVCODEC_SAMPLE_LOGI("inputFilePath %{public}s", sampleInfo.inputFilePath.c_str());
+    AVCODEC_SAMPLE_LOGI("inputFilePath %{public}ld", sampleInfo.inputFileSize);
     
     auto asyncContext = new CallbackContext();
     asyncContext->env = env;
@@ -76,56 +74,52 @@ napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
     sampleInfo.playDoneCallbackData = asyncContext;
     auto asyncContextB = new CallbackContext();
     asyncContextB->env = env;
-    napi_create_reference(env, args[4], 1, &asyncContextB->callbackRef);
+    int args_i = 4;
+    int cr_num = 1;
+    napi_create_reference(env, args[args_i], cr_num, &asyncContextB->callbackRef);
     sampleInfo.audioCallback = &Callback;
     sampleInfo.audioCallbackData = asyncContextB;
     int32_t ret = Player::GetInstance().Init(sampleInfo);
     return nullptr;
 }
 
-napi_value PlayerNative::Stop(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Stop(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGD("NativeStop");
     Player::GetInstance().Stop();
     AVCODEC_SAMPLE_LOGD("NativeStop1");
     return nullptr;
 }
 
-napi_value PlayerNative::Release(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Release(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGD("NativeRelease in");
     Player::GetInstance().StartRelease();
     AVCODEC_SAMPLE_LOGD("NativeRelease out");
     return nullptr;
 }
 
-napi_value PlayerNative::Reset(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Reset(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGD("resetNative in");
     Player::GetInstance().Reset();
     AVCODEC_SAMPLE_LOGD("resetNative out");
     return nullptr;
 }
 
-napi_value PlayerNative::Pause(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Pause(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGD("PauseNative in");
     Player::GetInstance().Pause();
     AVCODEC_SAMPLE_LOGD("PauseNative out");
     return nullptr;
 }
 
-napi_value PlayerNative::Resume(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Resume(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGD("ResumeNative in");
     Player::GetInstance().Resume();
     AVCODEC_SAMPLE_LOGD("ResumeNative out");
     return nullptr;
 }
 
-napi_value PlayerNative::Speed(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;                    
+napi_value PlayerNative::Speed(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
     napi_value args[1] = {nullptr};
     double speed = 1.0;
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -136,13 +130,13 @@ napi_value PlayerNative::Speed(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-napi_value PlayerNative::SetSurface(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;                    
+napi_value PlayerNative::SetSurface(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    int surfaceIdNum = 30;
     napi_value args[1] = {nullptr};
     char surfaceId[30] = "";
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    napi_get_value_string_utf8(env, args[0], surfaceId, 30, 0);
+    napi_get_value_string_utf8(env, args[0], surfaceId, surfaceIdNum, 0);
     char* endptr;
     int64_t value = std::strtoll(surfaceId, &endptr, 10);
     AVCODEC_SAMPLE_LOGD("SetSurface In %{public}ld %{public}s", value, surfaceId);
@@ -151,8 +145,7 @@ napi_value PlayerNative::SetSurface(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-napi_value PlayerNative::Seek(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Seek(napi_env env, napi_callback_info info) {
     int32_t seekTime = 0;
     int32_t mode = 0;
     bool acc = false;
@@ -168,8 +161,7 @@ napi_value PlayerNative::Seek(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-napi_value PlayerNative::Prepare(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::Prepare(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGI("Prepare in");
     napi_value result;
     int32_t ret = Player::GetInstance().Prepare();
@@ -178,29 +170,25 @@ napi_value PlayerNative::Prepare(napi_env env, napi_callback_info info)
     return result;
 }
 
-napi_value PlayerNative::StartDecoder(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::StartDecoder(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGI("StartDecoder in");
     Player::GetInstance().StartDecoder();
     AVCODEC_SAMPLE_LOGI("StartDecoder out");
     return nullptr;
 }
-napi_value PlayerNative::RenderFirstFrame(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::RenderFirstFrame(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGI("RenderFirstFrame in");
     Player::GetInstance().RenderFirstFrame();
     AVCODEC_SAMPLE_LOGI("RenderFirstFrame out");
     return nullptr;
 }
-napi_value PlayerNative::StartRender(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::StartRender(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGI("StartRender in");
     Player::GetInstance().StartRender();
     AVCODEC_SAMPLE_LOGI("StartRender out");
     return nullptr;
 }
-napi_value PlayerNative::StartAudio(napi_env env, napi_callback_info info)
-{
+napi_value PlayerNative::StartAudio(napi_env env, napi_callback_info info) {
     AVCODEC_SAMPLE_LOGI("StartAudio in");
     Player::GetInstance().StartAudio();
     AVCODEC_SAMPLE_LOGI("StartAudio out");
@@ -271,7 +259,6 @@ static napi_module PlayerModule = {
     .reserved = { 0 },
 };
 
-extern "C" __attribute__((constructor)) void RegisterPlayerModule(void)
-{
+extern "C" __attribute__((constructor)) void RegisterPlayerModule(void) {
     napi_module_register(&PlayerModule);
 }
