@@ -64,7 +64,7 @@ struct CustomGestures {
                  */
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })
-              .tag('longpress')
+              .tag('longPress')
           ))
           //  [End set_gestures]
 

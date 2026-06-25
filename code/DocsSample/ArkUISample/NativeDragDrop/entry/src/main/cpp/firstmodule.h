@@ -109,7 +109,7 @@ void GetDragData(ArkUI_DragEvent* dragEvent)
             returnStatus = OH_UdmfRecord_GetFileUri(records[i], imageValue);
             const char *fileUri = OH_UdsFileUri_GetFileUri(imageValue);
             OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
-                "dragTest OH_UdmfRecord_GetPlainText "
+                "dragTest OH_UdsFileUri_GetFileUri "
                 "returnStatus= %{public}d "
                 "fileUri= %{public}s",
                 returnStatus, fileUri);
