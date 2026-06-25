@@ -25,7 +25,7 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
 // [End PssLeakEvent_Header]
-// [start ArkWeb_Fling_Jank_Header]
+// [Start ArkWeb_Fling_Jank_Header]
 import { ArkWebPage } from './ArkWebPage';
 // [End ArkWeb_Fling_Jank_Header]
 @Entry
@@ -36,7 +36,7 @@ struct Index {
   @State message: string = 'Start To Leak';
   // [End AppKillEvent_Button]
 
-  // [start ArkWeb_Fling_Jank_Nav]
+  // [Start ArkWeb_Fling_Jank_Nav]
   @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @Builder
   PageMap(name: string) {
