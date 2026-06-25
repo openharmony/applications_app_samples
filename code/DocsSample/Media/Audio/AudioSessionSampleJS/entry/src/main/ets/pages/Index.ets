@@ -716,18 +716,14 @@ async function setDefaultOutputDeviceToDefault(){
   // [End set_default_output_device]
 }
 
-async function printAudioSessionInfo(){
+async function printAudioSessionInfo(context: common.UIAbilityContext){
   // [EndExclude print_session_info]
   // 设置音频并发模式。
   let strategy: audio.AudioSessionStrategy = {
     concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
   };
   // 激活音频会话。
-  audioSessionManager.activateAudioSession(strategy).then(() => {
-    console.info('Succeeded in activating audio session.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`);
-  });
+  await audioSessionManager.activateAudioSession(strategy);
 
   // 创建音频调试管理器。
   let audioDebuggingManager: audio.AudioDebuggingManager = audioManager.getDebuggingManager();
@@ -736,7 +732,7 @@ async function printAudioSessionInfo(){
   audioDebuggingManager.printSessionInfo(audioSessionManager, -1);
 
   // fd 文件描述符，实际使用时请根据具体情况获取
-  let filePath = getContext().filesDir + '/audio_session_info.txt';
+  let filePath = context.filesDir + '/audio_session_info.txt';
   let fd = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.WRITE_ONLY | fs.OpenMode.TRUNC).fd;
   // 输出到文件。
   audioDebuggingManager.printSessionInfo(audioSessionManager, fd);
@@ -1076,7 +1072,8 @@ struct Index {
           .width('80%')
           .height(40)
           .onClick(async (): Promise<void> => {
-            await printAudioSessionInfo();
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            await printAudioSessionInfo(context);
             this.runningResult = 'Print audioSession info success.';
           })
         }
