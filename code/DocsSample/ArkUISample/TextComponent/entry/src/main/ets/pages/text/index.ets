@@ -42,6 +42,7 @@ import { DisplayedTogether } from './DisplayedTogether';
 import { TextLong } from './TextLong';
 import { TextLongTow } from './TextLongTow';
 import { CustomAndBlockMenus } from './CustomAndBlockMenus';
+import { TextMenuShowSubWindow } from './TextMenuShowSubWindow';
 
 export const TEXT_ROUTE_PREFIX: string = 'text';
 
@@ -175,6 +176,11 @@ const routes: Route[] = [
     name: `${TEXT_ROUTE_PREFIX}/CustomAndBlockMenus`,
     title: resource.resourceToString($r('app.string.CustomAndBlockMenus')),
     description: $r('app.string.CustomAndBlockMenus')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/TextMenuShowSubWindow`,
+    title: resource.resourceToString($r('app.string.TextMenuShow_title')),
+    description: $r('app.string.TextMenuShow_description')
   }
 ];
 
@@ -234,6 +240,8 @@ export function TextDestination(name: string) {
     TextLongTow();
   } else if (name === routes[25].name) {
     CustomAndBlockMenus();
+  } else if (name === routes[26].name) {
+    TextMenuShowSubWindow();
   }
 }
 

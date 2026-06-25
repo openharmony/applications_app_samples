@@ -30,6 +30,7 @@ import { ProhibitSelectionMenu } from './disablemenu';
 import { SetTextMargin } from './SetTextMargin';
 import { SetInputMultiTypeStyle } from './SetInputMultiTypeStyle';
 import { NormalQuestion } from './NormalQuestion';
+import { TextMenuShowSubWindow } from './TextMenuShowSubWindow';
 
 export const INPUT_ROUTE_PREFIX: string = 'TextInput';
 
@@ -98,6 +99,11 @@ const routes: Route[] = [
     name: `${INPUT_ROUTE_PREFIX}/NormalQuestion`,
     title: resource.resourceToString($r('app.string.NormalQuestion_title')),
     description: $r('app.string.NormalQuestion_description')
+  },
+  {
+    name: `${INPUT_ROUTE_PREFIX}/TextMenuShowSubWindow`,
+    title: resource.resourceToString($r('app.string.TextMenuShow_title')),
+    description: $r('app.string.TextMenuShow_description')
   }
 ];
 
@@ -131,6 +137,8 @@ export function TextInputDestination(name: string) {
     SetInputMultiTypeStyle();
   } else if (name === routes[12].name) {
     NormalQuestion();
+  } else if (name === routes[13].name) {
+    TextMenuShowSubWindow();
   }
 }
 

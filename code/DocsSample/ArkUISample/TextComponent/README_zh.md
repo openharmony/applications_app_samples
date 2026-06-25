@@ -103,6 +103,7 @@ entry/src/main/ets/
 |   |       |---TextHotSearch.ets
 |   |       |---TextLayout.ets
 |   |       |---TextSpan.ets
+|   |       |---TextMenuShowSubWindow.ets
 |   |---textImageMixedLayout                       // 图文混排
 |   |       |---index.ets
 |   |       |---TextImageAttribute.ets
@@ -125,6 +126,7 @@ entry/src/main/ets/
 |   |       |---SetTextInputType.ets
 |   |       |---SetTextMargin.ets
 |   |       |---TextInputAddEvent.ets
+|   |       |---TextMenuShowSubWindow.ets
 |---pages
 |   |---Index.ets                                    // 应用主页面
 entry/src/ohosTest/
