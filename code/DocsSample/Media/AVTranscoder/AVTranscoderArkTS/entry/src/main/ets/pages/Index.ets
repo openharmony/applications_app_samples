@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start transcoder_ui]
+// [Start transcoderUi]
 import {AVTranscoderDemo} from '../transcoder/AVTranscoderManager'
 
 @Entry
@@ -43,4 +43,4 @@ struct Index {
     .width('100%')
   }
 }
-// [End transcoder_ui]
+// [End transcoderUi]
