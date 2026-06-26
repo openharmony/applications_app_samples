@@ -159,7 +159,7 @@ struct Index {
 
     abilityConnectionManager.on('receiveData',this.sessionId,(callbackInfo) => {
       let decoder = util.TextDecoder.create('utf-8');
-      let str = decoder.decodeWithStream(new Uint8Array(callbackInfo.data));
+      let str = decoder.decodeToString(new Uint8Array(callbackInfo.data));
       this.receiveMessage = str;
     })
   }
