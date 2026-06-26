@@ -23,10 +23,15 @@ import { ContactSource } from '../model/DataSource'
 
 const TAG: string = '[Index]'
 
-@Extend(Text) function fancyText(width: string, textAlign: number) {
+@Extend(Text)
+function fancyText(width: string, textAlign: number) {
   .width(width)
   .fontSize(20)
   .textAlign(textAlign)
+}
+
+export interface RouterParams {
+  contact: Contact;
 }
 
 @Entry
@@ -43,9 +48,10 @@ struct Index {
 
   judgeRepeat(contact: Contact) {
     Logger.info(`${TAG}, judgeRepeat start`)
-    for (let i = 0; i < this.contacts['contactData'].length; i++) {
-      if (this.contacts['contactData'][i].name === contact.name && this.contacts['contactData'][i].destinationHost === contact.destinationHost) {
-        Logger.info(`${TAG}, judgeRepeat ${this.contacts['contactData'][i]}`)
+    for (let i = 0; i < this.contacts.contactData.length; i++) {
+      if (this.contacts.contactData[i].name === contact.name &&
+        this.contacts.contactData[i].destinationHost === contact.destinationHost) {
+        Logger.info(`${TAG}, judgeRepeat ${this.contacts.contactData[i]}`)
         Logger.info(`${TAG}, judgeRepeat return true`)
         return true
       }
@@ -60,9 +66,9 @@ struct Index {
     Logger.info(`${TAG}, onAccept result = ${JSON.stringify(result)}`)
     if (result === false) {
       let newContact = new Contact(contact.name, contact.destinationHost)
-      this.contacts['contactData'].unshift(newContact)
+      this.contacts.contactData.unshift(newContact)
       this.contacts.notifyDataAdd(0)
-      Logger.info(`${TAG}, onAccept-save contacts = ${JSON.stringify(this.contacts['contactData'])}`)
+      Logger.info(`${TAG}, onAccept-save contacts = ${JSON.stringify(this.contacts.contactData)}`)
     } else {
       Logger.info(`${TAG}, onAccept AlertDialog`)
       AlertDialog.show(
@@ -82,7 +88,7 @@ struct Index {
   }
 
   aboutToAppear() {
-    grantPermission()
+    grantPermission(this.getUIContext())
   }
 
   build() {
@@ -172,19 +178,25 @@ struct Index {
                     .fontWeight(FontWeight.Bold)
                     .visibility(this.editable ? Visibility.Visible : Visibility.None)
                     .onClick(() => {
-                      this.contacts['contactData'] = this.contacts['contactData'].filter(obj => obj.name !== item.name || obj.destinationHost !== item.destinationHost);
+                      this.contacts.contactData = this.contacts.contactData.filter(obj => obj.name !== item.name ||
+                        obj.destinationHost !== item.destinationHost);
                       this.contacts.notifyDataReload()
-                      Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts['contactData'][index])}`)
+                      Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts.contactData[index])}`)
                     })
                 }
                 .width('100%')
               }
-            }, item => item.name)
+            }, (item: Contact) => item.name)
           }
           .listDirection(Axis.Vertical)
           .chainAnimation(false) // 联动特效关闭
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
-          .divider({ strokeWidth: 2, color: $r('app.color.start_window_background'), startMargin: 20, endMargin: 20 })
+          .divider({
+            strokeWidth: 2,
+            color: $r('app.color.start_window_background'),
+            startMargin: 20,
+            endMargin: 20
+          })
           .width('90%')
           .height('100%')
         }

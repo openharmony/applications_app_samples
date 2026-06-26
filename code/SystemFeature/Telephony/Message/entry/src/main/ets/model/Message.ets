@@ -17,9 +17,9 @@ export default class Message {
   content: string
   sendResult: string
 
-  constructor(content, sendResult) {
-    this.content = content,
-    this.sendResult = sendResult
+  constructor(content:string, sendResult:string) {
+    this.content = content;
+    this.sendResult = sendResult;
   }
 }
 

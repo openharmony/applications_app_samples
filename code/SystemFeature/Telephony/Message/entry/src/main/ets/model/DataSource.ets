@@ -23,7 +23,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
+  public getData(index: number): object | undefined {
     return undefined
   }
 
@@ -85,16 +85,16 @@ export class ContactSource extends BasicDataSource {
     return this.contactData.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Contact {
     return this.contactData[index]
   }
 
-  public addData(index: number, data: any): void {
+  public addData(index: number, data: Contact): void {
     this.contactData.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  public pushData(data: any): void {
+  public pushData(data: Contact): void {
     this.contactData.push(data)
     this.notifyDataAdd(this.contactData.length - 1)
   }
@@ -112,16 +112,16 @@ export class MessageSource extends BasicDataSource {
     return this.MessageData.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Message {
     return this.MessageData[index]
   }
 
-  public addData(index: number, data: any): void {
+  public addData(index: number, data: Message): void {
     this.MessageData.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  public pushData(data: any): void {
+  public pushData(data: Message): void {
     this.MessageData.push(data)
     this.notifyDataAdd(this.MessageData.length - 1)
   }

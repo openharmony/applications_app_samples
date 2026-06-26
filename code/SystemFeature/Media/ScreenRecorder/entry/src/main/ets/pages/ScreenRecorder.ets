@@ -191,7 +191,9 @@ struct ScreenRecorder {
         width: Number(dftDisplay.width) * DEVICE_RATE,
         height: Number(dftDisplay.height) * DEVICE_RATE,
         density: Number(dftDisplay.densityDPI) * DEVICE_RATE,
-        surfaceId,
+        surfaceId: surfaceId,
+        supportsFocus: true,
+        userId: 0
       })
     } catch (err) {
       Logger.error(TAG, 'Create the virtual screen failed' + JSON.stringify(err))

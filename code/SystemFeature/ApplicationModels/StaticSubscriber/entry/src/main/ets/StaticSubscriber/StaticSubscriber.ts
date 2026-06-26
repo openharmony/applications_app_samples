@@ -21,7 +21,7 @@ const BUNDLE_NAME: string = 'com.samples.staticsubscriber'
 
 export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event) {
-    Logger.info('onReceiveEvent hasCalled, event is: ${event.event}');
+    Logger.info(`onReceiveEvent hasCalled, event is: ${event.event}`);
     let bundle = {
       bundle: BUNDLE_NAME,
     }
@@ -43,7 +43,7 @@ export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
     let notificationRequest: Notification.NotificationRequest = {
       id: 1, // 通知ID
       content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
           title: event.data,
           text: 'content',

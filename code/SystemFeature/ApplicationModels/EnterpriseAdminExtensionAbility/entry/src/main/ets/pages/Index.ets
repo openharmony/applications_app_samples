@@ -15,6 +15,7 @@
 
 import adminManager from '@ohos.enterprise.adminManager'
 import Want from '@ohos.app.ability.Want'
+import { BusinessError } from '@ohos.base'
 
 const admin: Want = {
   bundleName: 'ohos.samples.enterprise_admin_ext_ability',
@@ -146,8 +147,8 @@ struct Index {
   async enableAdmin() {
     await adminManager.enableAdmin(admin, enterpriseInfo, activeAdminType).then(() => {
       this.enableAdminMsg = 'enableAdmin success'
-    }).catch((error) => {
-      this.enableAdminMsg = 'enableAdmin fail'
+    }).catch((error: BusinessError) => {
+      this.enableAdminMsg = 'enableAdmin fail: ' + JSON.stringify(error);
     })
   }
 
@@ -164,7 +165,7 @@ struct Index {
   async subscribeManagedEventCallback() {
     await adminManager.subscribeManagedEvent(admin,
       [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
+        adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
         if (error) {
           this.subscribeManagedEventMsg = 'subscribeManagedEvent fail'
         } else {
@@ -176,10 +177,10 @@ struct Index {
   async unsubscribeManagedEventPromise() {
     await adminManager.unsubscribeManagedEvent(admin,
       [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
+        adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
       this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent success'
-    }).catch((error) => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent fail'
+    }).catch((error: BusinessError) => {
+      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent fail: ' + JSON.stringify(error);
     })
   }
 }

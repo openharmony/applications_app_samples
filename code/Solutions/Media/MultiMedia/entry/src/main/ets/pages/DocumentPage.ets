@@ -28,12 +28,15 @@ struct DocumentPage {
 
   async saveFile() {
     Logger.info(this.tag, 'saveFile')
-    let context = getContext(this) as common.UIAbilityContext
-    let fd: number = await this.mediaUtils.createFile(4, context)
-    Logger.info(this.tag, `fd = ${fd}`)
-    await fileIo.write(fd, this.fileContent)
-    await fileIo.close(fd)
-    router.back()
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    let file: fileIo.File|null = await this.mediaUtils.createFile(4, context)
+    if(file){
+      Logger.info(this.tag, `fd = ${file.fd}`)
+      let writeResult=fileIo.writeSync(file.fd, this.fileContent)
+      Logger.info(this.tag, `writeResult = ${writeResult}`)
+      fileIo.closeSync(file.fd)
+      this.getUIContext().getRouter().back()
+    }
   }
 
   build() {

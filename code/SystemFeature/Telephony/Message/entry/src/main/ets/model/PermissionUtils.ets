@@ -18,13 +18,13 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 const TAG: string = '[Permission]'
 
-export async function grantPermission() {
+export async function grantPermission(context:UIContext) {
   Logger.info(`${TAG}, grantPermission`)
   let atManager = abilityAccessCtrl.createAtManager()
   try {
-    atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.SEND_MESSAGES']).then((data) => {
+    atManager.requestPermissionsFromUser(context.getHostContext() as Context, ['ohos.permission.SEND_MESSAGES']).then((data) => {
       Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-    }).catch((err) => {
+    }).catch((err:BusinessError) => {
       Logger.info(TAG, `err: ${JSON.stringify(err)}`)
     })
   } catch (err) {

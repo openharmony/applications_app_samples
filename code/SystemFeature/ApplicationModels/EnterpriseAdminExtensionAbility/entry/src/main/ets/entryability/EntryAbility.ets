@@ -13,23 +13,32 @@
  * limitations under the License.
  */
 
-import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility'
-import Logger from '../common/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onAdminEnabled() {
-    Logger.info("onAdminEnabled")
+export default class EntryAbility extends UIAbility {
+  onCreate(want:Want, launchParam: AbilityConstant.LaunchParam) {
   }
 
-  onAdminDisabled() {
-    Logger.info("onAdminDisabled")
+  onDestroy() {
   }
 
-  onBundleAdded(bundleName: string) {
-    Logger.info("EnterpriseAdminAbility", "onBundleAdded bundleName:" + bundleName)
+  onWindowStageCreate(windowStage: Window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return
+      }
+    })
   }
 
-  onBundleRemoved(bundleName: string) {
-    Logger.info("EnterpriseAdminAbility", "onBundleRemoved bundleName" + bundleName)
+  onWindowStageDestroy() {
+  }
+
+  onForeground() {
+  }
+
+  onBackground() {
   }
 }

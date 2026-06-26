@@ -41,8 +41,9 @@ export struct CustomDatePicker {
   private total: number = 0;
   private selectedTime: Date = new Date();
   private controller: CustomDialogController;
-  private countChange: (result: number) => void = () => {};
-  private calendar : calendarManager.Calendar | undefined = undefined;
+  private countChange: (result: number) => void = () => {
+  };
+  private calendar: calendarManager.Calendar | undefined = undefined;
   @Link isDefault: boolean;
 
   aboutToAppear() {
@@ -60,12 +61,12 @@ export struct CustomDatePicker {
     }
   }
 
-  setCalendarReminder(){
+  setCalendarReminder() {
     let config: calendarManager.CalendarConfig = {
       enableReminder: true,
       color: '#aabbcc',
     };
-    calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
+    calendarMgr?.getCalendar(async (err: BusinessError, data: calendarManager.Calendar) => {
       if (err) {
         Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.message}`);
       } else {
@@ -129,7 +130,11 @@ export struct CustomDatePicker {
                 },
                 ringDuration: 5
               }
-              this.reminderId = await reminderAgentManager.publishReminder(reminderRequest);
+              await reminderAgentManager.publishReminder(reminderRequest).then((reminderId: number) => {
+                this.reminderId = reminderId;
+              }).catch((err: BusinessError) => {
+                Logger.error(`Failed to publish reminder, error: ${JSON.stringify(err)}`)
+              });
             } else {
               let date = this.year + '-' + this.month + '-' + this.day;
               let time = this.hourTest + ':' + this.minuteTest + ':' + this.secondTest;

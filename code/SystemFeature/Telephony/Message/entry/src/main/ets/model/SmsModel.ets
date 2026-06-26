@@ -15,6 +15,7 @@
 
 import sms from '@ohos.telephony.sms'
 import Logger from '../model/Logger'
+import { AsyncCallback } from '@kit.BasicServicesKit'
 
 const TAG: string = `[SmsModel]`
 
@@ -27,9 +28,11 @@ export default class SmsModel {
     return shortMessage
   }
 
-  sendMessage(slotId, content, destinationHost, serviceCenter, destinationPort, handleSend, handleDelivery) {
+  sendMessage(slotId: number, content: string, destinationHost: string, serviceCenter: string, destinationPort: number,
+    handleSend: AsyncCallback<sms.ISendShortMessageCallback>,
+    handleDelivery: AsyncCallback<sms.IDeliveryShortMessageCallback>) {
     Logger.info(`${TAG}, sendMessage start ${slotId} ${content} ${destinationHost} ${serviceCenter} ${destinationPort}`)
-    const options =
+    const options: sms.SendMessageOptions =
       {
         slotId: slotId,
         content: content,
@@ -46,7 +49,7 @@ export default class SmsModel {
         }
       }
 
-    sms.sendMessage(options)
+    sms.sendShortMessage(options)
     Logger.info(`${TAG}, sendMessage end`)
   }
 
@@ -56,13 +59,13 @@ export default class SmsModel {
     return defaultSmsSlotId
   }
 
-  async setSmscAddr(slotId, smscAddr) {
+  async setSmscAddr(slotId: number, smscAddr: string) {
     const serviceCenter = await sms.setSmscAddr(slotId, smscAddr)
     Logger.info(`${TAG}, setSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
     return serviceCenter
   }
 
-  async getSmscAddr(slotId) {
+  async getSmscAddr(slotId: number) {
     const serviceCenter = await sms.getSmscAddr(slotId)
     Logger.info(`${TAG}, getSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
     return serviceCenter

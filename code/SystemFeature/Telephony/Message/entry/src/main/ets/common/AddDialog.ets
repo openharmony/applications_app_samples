@@ -20,9 +20,9 @@ const TAG: string = '[AddDialog]'
 
 @CustomDialog
 export struct AddDialog {
-  private editContact: Contact = null
+  private editContact: Contact = new Contact('','');
   private controller: CustomDialogController
-  private action: (contact: Contact) => void
+  private action: (contact: Contact) => void=(contact: Contact)=>{};
 
   build() {
     Column() {
