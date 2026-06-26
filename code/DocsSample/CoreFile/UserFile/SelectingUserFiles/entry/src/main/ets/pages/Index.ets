@@ -190,7 +190,7 @@ struct Index {
       let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       const audioViewPicker = new picker.AudioViewPicker(context);
       audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
-        //文件选择成功后，返回被选中音频的URI结果集。
+        // 文件选择成功后，返回被选中音频的URI结果集。
         uris = audioSelectResult;
         console.info('audioViewPicker.select to file succeed and uri is:' + uris);
         // [StartExclude audio_select_picker]
