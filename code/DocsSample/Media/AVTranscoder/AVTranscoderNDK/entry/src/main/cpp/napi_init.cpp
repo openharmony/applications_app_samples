@@ -213,9 +213,9 @@ static void AvTranscoderStateChangeFuncs(NdkAVTransCoderUser *transcoderUser)
     transcoderUser->stateChangeFuncs_ = {
         {TRANSCODER_PREPARED, [transcoderUser]() {
             // 状态为AVTRANSCODER_PREPARED时开始转码
-            // [Start dostart]
+            // [Start doStart]
             OH_AVErrCode errCode = OH_AVTranscoder_Start(transcoderUser->transcoder);
-            // [End dostart]
+            // [End doStart]
             transcoderUser->errorCode = errCode;
             LOG("OH_AVTranscoder_Start errCode:%{public}d", errCode);
         }},
@@ -230,27 +230,27 @@ static void AvTranscoderStateChangeFuncs(NdkAVTransCoderUser *transcoderUser)
 
 static OH_AVTranscoder_Config *createDefaultTransCoderConfig(int32_t dstFd)
 {
-    // [Start createTranscoderconfig]
+    // [Start createTranscoderConfig]
     OH_AVTranscoder_Config *config = OH_AVTranscoderConfig_Create();
-    // [End createTranscoderconfig]
+    // [End createTranscoderConfig]
     // [Start setFddst]
     OH_AVTranscoderConfig_SetDstFD(config, dstFd);                                  // 设置转码的目标文件属dstFd。
     // [End setFddst]
-    // [Start setFiletype]
+    // [Start setFileType]
     OH_AVTranscoderConfig_SetDstFileType(config, AV_OUTPUT_FORMAT_MPEG_4);          // 封装格式。
-    // [End setFiletype]
-    // [Start setVideotype]
+    // [End setFileType]
+    // [Start setVideoType]
     OH_AVTranscoderConfig_SetDstVideoType(config, "video/avc");                     // 视频编码格式，可选。
-    // [End setVideotype]
-    // [Start setAudiotype]
+    // [End setVideoType]
+    // [Start setAudioType]
     OH_AVTranscoderConfig_SetDstAudioType(config, "audio/mp4a-latm");               // 音频编码格式，可选。
-    // [End setAudiotype]
-    // [Start setAudiobitrate]
+    // [End setAudioType]
+    // [Start setAudioBitrate]
     OH_AVTranscoderConfig_SetDstAudioBitrate(config, AUDIO_BITRATE);                // 音频比特率，可选。
-    // [End setAudiobitrate]
-    // [Start setVideobitrate]
+    // [End setAudioBitrate]
+    // [Start setVideoBitrate]
     OH_AVTranscoderConfig_SetDstVideoBitrate(config, VIDEO_BITRATE);                // 视频比特率，可选。
-    // [End setVideobitrate]
+    // [End setVideoBitrate]
     return config;
 }
 // [EndExclude setTranscoderCallback]
@@ -291,9 +291,9 @@ static napi_value OHAvTranscoderNdkPlay(napi_env env, napi_callback_info info)
         backParam = errCode;
         LOG("Transcoder setSrcFD failed, ret %{public}d", backParam);
     }
-    // [Start doprepare]
+    // [Start doPrepare]
     errCode = OH_AVTranscoder_Prepare(transcoder, g_ctx.config);
-    // [End doprepare]
+    // [End doPrepare]
     if (errCode != AV_ERR_OK) {
         backParam = errCode;
         LOG("Transcoder prepare failed, ret %{public}d", backParam);
@@ -306,9 +306,9 @@ static napi_value OHAvTranscoderNdkPlay(napi_env env, napi_callback_info info)
 static napi_value OHAvTranscoderNdkPause(napi_env env, napi_callback_info info)
 {
     int ret = 100;
-    // [Start dopause]
+    // [Start doPause]
     ret = OH_AVTranscoder_Pause(g_ctx.transcoder); // 暂停转码
-    // [End dopause]
+    // [End doPause]
     LOG("OH_AVTranscoder_Pause ret:%{public}d", ret);
     napi_value value;
     napi_create_int32(env, ret, &value);
@@ -318,9 +318,9 @@ static napi_value OHAvTranscoderNdkPause(napi_env env, napi_callback_info info)
 static napi_value OHAvTranscoderNdkResume(napi_env env, napi_callback_info info)
 {
     int ret = 100;
-    // [Start doresume]
+    // [Start doResume]
     ret = OH_AVTranscoder_Resume(g_ctx.transcoder); // 恢复转码
-    // [End doresume]
+    // [End doResume]
     LOG("OH_AVTranscoder_Resume ret:%{public}d", ret);
     napi_value value;
     napi_create_int32(env, ret, &value);
@@ -330,9 +330,9 @@ static napi_value OHAvTranscoderNdkResume(napi_env env, napi_callback_info info)
 static napi_value OHAvTranscoderNdkCancel(napi_env env, napi_callback_info info)
 {
     int ret = 100;
-    // [Start docancel]
+    // [Start doCancel]
     ret = OH_AVTranscoder_Cancel(g_ctx.transcoder); // 取消转码
-    // [End docancel]
+    // [End doCancel]
     LOG("OH_AVTranscoder_Cancel ret:%{public}d", ret);
     napi_value value;
     napi_create_int32(env, ret, &value);
@@ -344,16 +344,16 @@ static napi_value OHAvTranscoderNdkRelease(napi_env env, napi_callback_info info
     int ret = 100;
     LOG("OH_AVTranscoder_Release ret:%{public}d", ret);
     if (g_ctx.transcoder != nullptr) {
-        // [Start doreleaseTranscoder]
+        // [Start doReleaseTranscoder]
         ret = OH_AVTranscoder_Release(g_ctx.transcoder); // 释放转码实例
-        // [End doreleaseTranscoder]
+        // [End doReleaseTranscoder]
         LOG("OH_AVTranscoder_Release ret:%{public}d", ret);
         g_ctx.transcoder = nullptr;
     }
     if (g_ctx.config != nullptr) {
-        // [Start doreleaseConfig]
+        // [Start doReleaseConfig]
         ret = OH_AVTranscoderConfig_Release(g_ctx.config); // 释放转码配置实例
-        // [End doreleaseConfig]
+        // [End doReleaseConfig]
         LOG("OH_AVTranscoderConfig_Release ret:%{public}d", ret);
         g_ctx.config = nullptr;
     }
