@@ -105,10 +105,9 @@ struct Index {
     // 定义peer信息
     const peerInfo: abilityConnectionManager.PeerInfo = {
       deviceId: getRemoteDeviceId()!,
-      bundleName: 'com.example.myapplication', // 定义为被测应用包名，请开发者替换为实际包名
+      bundleName: 'com.example.myapplication',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
-      serviceName: 'test',
     };
     const myRecord: Record<string, string> = {
       'newKey1': 'value1',
@@ -179,9 +178,7 @@ struct Index {
       this.receiveMessage = 'connect success';
       this.isConnected = true;
     }).catch((error: BusinessError) => {
-      // 处理异常情况
       hilog.error(0x0000, 'testTag', `sendMsg failed with ${error}`);
-      console.log(`error: ${error}`);
     });
   }
 
@@ -189,12 +186,11 @@ struct Index {
     if (!this.isConnected) {
       hilog.error(0x0000, 'testTag', 'session disconnect');
     }
-    console.log(TAG + `sendMessage, sessionId is ` + this.sessionId );
+    hilog.info(0x0000, 'testTag', `sendMessage, sessionId is ` + this.sessionId );
     this.receiveMessage = 'send message';
     // [Start sendmessage]
     abilityConnectionManager.sendMessage(this.sessionId, 'message send success').then(() => {
       hilog.info(0x0000, 'testTag', 'sendMessage success');
-      console.log(TAG + `sendMessage success, sessionId is ` + this.sessionId );
     }).catch((error: BusinessError) => {
       hilog.error(0x0000, 'testTag', 'sendMessage failed');
     });
@@ -208,25 +204,21 @@ struct Index {
     this.receiveMessage = 'send data';
     let textEncoder = util.TextEncoder.create('utf-8');
     const arrayBuffer  = textEncoder.encodeInto('data send success');
-    console.log(TAG + `sendData, sessionId is ` + this.sessionId );
+    hilog.info(0x0000, 'testTag', 'sendMessage success');
     // [Start senddata]
     abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
-      console.log(`sendData success, sessionId is ` + this.sessionId );
-    }).catch((error: BusinessError) => {
-      hilog.error(0x0000, 'testTag', 'send data failed');
+      hilog.info(0x0000, 'testTag', 'sendMessage success');
+    }).catch(() => {
+      hilog.error(0x0000, 'testTag', 'sendMessage failed');
     });
     // [End senddata]
   }
 // [Start disconnect]
   disconnectRemoteAbility(): void {
-    if (this.sessionId == -1) {
-      hilog.info(0x0000, 'testTag', 'Invalid session ID.');
-      return;
-    }
-    abilityConnectionManager.disconnect(this.sessionId);
-    this.receiveMessage = 'disConnect';
+    hilog.info(0x0000, 'testTag', 'destroyAbilityConnectionSession called');
   }
 
+// [End disconnect]
   destroySession(): void {
     try {
       abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
@@ -235,7 +227,6 @@ struct Index {
       console.log(TAG, 'createDeviceManager err: ' + JSON.stringify(err));
       hilog.error(0x0000, 'testTag', 'connect failed');
     }
-// [End disconnect]
   }
 
   build() {
