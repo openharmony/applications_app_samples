@@ -170,7 +170,7 @@ void SetConfig02(OH_AVScreenCaptureConfig &config)
         .audioSource = OH_ALL_PLAYBACK
     };
     // 录屏音频输出规格配置。audioBitrate保证输出文件的比特率为设置的预期比特率，和audioSampleRate无强关联。
-    // 此处音频比特率取值为高质量录屏的取值。如果录屏内容以语音为主，不包含音乐、游戏音效等，可以降低为96000或48000。
+    // 为保证音频质量，此处音频比特率取值128000。如果录屏内容以语音为主，不包含音乐、游戏音效等，可以降低为96000或48000。
     OH_AudioEncInfo audioEncInfo = {
         .audioBitrate = 48000,
         .audioCodecformat = OH_AAC_LC
@@ -271,7 +271,7 @@ void SetSpecifiedWindowScreenConfigBuffer(OH_AVScreenCaptureConfig &config)
     if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
         return;
     }
-    // 根据PC/2in1设备分辨率在config中配置录屏的宽度、高度。
+    // 根据设备分辨率在config中配置录屏的宽度、高度。
     config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
     config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
 
@@ -299,7 +299,7 @@ void SetSpecifiedWindowScreenConfigBuffer2(OH_AVScreenCaptureConfig &config)
     if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
         return;
     }
-    // 根据PC/2in1设备分辨率在config中配置录屏的宽度、高度。
+    // 根据设备分辨率在config中配置录屏的宽度、高度。
     config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
     config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
 

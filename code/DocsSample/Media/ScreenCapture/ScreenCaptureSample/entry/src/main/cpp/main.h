@@ -87,8 +87,6 @@ std::atomic<bool> g_isStarted{false};
 
 constexpr uint32_t DEFAULT_WIDTH = 4096;
 constexpr uint32_t DEFAULT_HEIGHT = 4096;
-constexpr uint32_t PC_VIDEO_WIDTH = 2880;
-constexpr uint32_t PC_VIDEO_HEIGHT = 1920;
 constexpr uint32_t CANVAS_RESIZE_WIDTH = 768;
 constexpr uint32_t CANVAS_RESIZE_HEIGHT = 1280;
 // 配置视频颜色格式（必须）
