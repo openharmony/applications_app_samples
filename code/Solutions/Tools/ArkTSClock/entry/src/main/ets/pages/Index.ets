@@ -60,9 +60,11 @@ struct Clock {
 
   onPageShow() {
     Logger.info(TAG, `onPageShow`);
+    Logger.info(TAG, `onPageShow intervalId = ${this.intervalId}`);
     if (this.canvasReady) {
       this.updateTime();
       this.intervalId = setInterval(this.updateTime, UPDATE_DELAY);
+      Logger.info(TAG, `onPageShow canvasReady intervalId = ${this.intervalId}`);
       this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
     }
   }
@@ -73,7 +75,7 @@ struct Clock {
     Logger.info(TAG, `getDefaultDisplay mDisplay = ${JSON.stringify(mDisplay)}`)
     this.canvasWidth = px2vp(mDisplay.width > mDisplay.height ? mDisplay.height * 0.6 : mDisplay.width * 0.6)
     this.radius = this.canvasWidth / 2
-	Logger.info(TAG, `get size end`)
+    Logger.info(TAG, `get size end`)
   }
 
   drawBackGround() {
@@ -131,7 +133,7 @@ struct Clock {
       }
       this.context.stroke()
     }
-	Logger.info(TAG, `draw background end`)
+    Logger.info(TAG, `draw background end`)
   }
 
   // 绘制时针
@@ -217,9 +219,11 @@ struct Clock {
         .onReady(() => {
           Logger.info(TAG, `onReady`)
           clearInterval(this.intervalId)
+          Logger.info(TAG, `onReady clear intervalId=${this.intervalId}`);
           clearInterval(this.intervalIdGC)
           this.updateTime()
           this.intervalId = setInterval(this.updateTime, 1000)
+          Logger.info(TAG, `onReady set intervalId=${this.intervalId}`);
           this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
         })
     }
@@ -230,12 +234,14 @@ struct Clock {
   onPageHide() {
     Logger.info(TAG, `onPageHide`)
     this.canvasReady = true
+    Logger.info(TAG, `onPageHide intervalId=${this.intervalId}`);
     clearInterval(this.intervalId)
     clearInterval(this.intervalIdGC);
   }
 
   aboutToDisappear() {
     Logger.info(TAG, `aboutToDisappear`)
+    Logger.info(TAG, `aboutToDisappear intervalId=${this.intervalId}`);
     clearInterval(this.intervalId)
     clearInterval(this.intervalIdGC);
   }
