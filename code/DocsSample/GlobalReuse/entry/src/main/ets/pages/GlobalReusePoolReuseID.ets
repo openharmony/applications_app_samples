@@ -83,7 +83,7 @@ struct PoolOwner {
         })
         .width(150)
       Button('仅清除B')
-      // 清除reuseId为B的复用池大小
+        // 清除reuseId为B的复用池大小
         .onClick(() => this.purgeReuseId('B'))
         .width(150)
       Button('打印复用池信息')

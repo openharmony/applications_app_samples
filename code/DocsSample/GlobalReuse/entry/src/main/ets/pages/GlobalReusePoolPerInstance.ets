@@ -44,7 +44,7 @@ struct ReusableChild {
 }
 
 @Entry
-  // 声明全局复用池，接纳ReusableChild复用组件。
+// 声明全局复用池，接纳ReusableChild复用组件。
 @ComponentV2({ reusePool: 'perInstance', poolAccepts: [ReusableChild], freezeWhenInactive: false })
 struct Parent {
   @Provider() provide: number = 100;
