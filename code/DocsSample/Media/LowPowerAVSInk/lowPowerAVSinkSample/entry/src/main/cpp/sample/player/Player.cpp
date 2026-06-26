@@ -521,20 +521,19 @@ void Player::LppDataNeededThread1()
     OH_AVBuffer* avbuffer = OH_AVBuffer_Create(totalSize);
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        if (!isStarted_) break;
-        // 到达EOS帧后不再送数据，直到Seek
+        if (!isStarted_) {
+            break;
+        }
         std::unique_lock<std::mutex> eosLock(lppContext_->eosMutex);
         lppContext_->eosCond.wait_for(
             eosLock, 150000s, [this]() { return !lppContext_->eosFlag; });
         eosLock.unlock();
-        // 等待数据回调到达
         std::unique_lock<std::mutex> lock(lppContext_->inputMutex);
         lppContext_->inputCond.wait_for(
             lock, 150000s, [this]() { return lppContext_->returnFrame; });
         lppContext_->returnFrame = false;
         CHECK_AND_BREAK_LOG(isStarted_, "VD Decoder output thread out");
         lppContext_->count = 1;
-        // 聚包数量
         int count  = AUDIO_FRAME_COUNT;
         while (count > 0) {
             CHECK_AND_BREAK_LOG(!lppContext_->eosFlag, "AUDIO is EOS");
@@ -574,7 +573,9 @@ void Player::LppVideoDataNeededThread()
     OH_AVBuffer* avbuffer = OH_AVBuffer_Create(totalSize);
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        if (!isStarted_) break;
+        if (!isStarted_) {
+            break;
+        }
         std::unique_lock<std::mutex> eosLock(lppVideoContext_->eosMutex);
         lppVideoContext_->eosCond.wait_for(
             eosLock, 150000s, [this]() { return !lppVideoContext_->eosFlag; });
@@ -585,7 +586,6 @@ void Player::LppVideoDataNeededThread()
         lppVideoContext_->returnFrame = false;
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
         lppVideoContext_->count = VIDEO_FRAME_COUNT;
-        AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
         while (lppVideoContext_->count > 0) {
             CHECK_AND_BREAK_LOG(!lppVideoContext_->eosFlag, "VIDEO is EOS");
             int bufferEleven = 11;
@@ -609,7 +609,6 @@ void Player::LppVideoDataNeededThread()
             OH_AVSamplesBuffer_AppendOneBuffer(lppVideoContext_->framePacket_,
                 reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
             lppVideoContext_->count--;
-            AVCODEC_SAMPLE_LOGI("LppVideoDataNeededThread count %{public}d", lppVideoContext_->count);
         }
         if (state_ == PLAYING) {
             lppVideoStreamer_->returnFrames(lppVideoContext_);

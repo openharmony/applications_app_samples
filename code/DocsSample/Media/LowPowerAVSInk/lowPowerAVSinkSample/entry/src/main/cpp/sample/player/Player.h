@@ -119,7 +119,7 @@ private:
     bool seekFlag_ = false;
     AVSinkState state_ = IDLE;
     static constexpr int64_t microsecondToS = 1000000;
-    static constexpr int64_t NANO_TO_S = 1000000000;
+    static constexpr int64_t nanoToS = 1000000000;
 };
 
 #endif // VIDEO_CODEC_PLAYER_H
