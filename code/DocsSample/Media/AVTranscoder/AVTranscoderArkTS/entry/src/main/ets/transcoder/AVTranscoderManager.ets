@@ -38,7 +38,7 @@ export class AVTranscoderDemo {
     videoBitrate: 200000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
   };
-  // [End createTranscoderconfig]
+  // [End createTranscoderConfig]
 
   // [Start createCallback]
   // 注册avTranscoder回调函数。
