@@ -45,7 +45,7 @@ void OpenFile(std::string fileName)
 
 void OpenFile02()
 {
-    // 获取沙箱路径
+    // 获取沙箱路径。
     char *fileDirPath;
     int32_t bufferSize = 1000;
     int32_t writeLength = 0;
@@ -172,7 +172,7 @@ void SetConfig02(OH_AVScreenCaptureConfig &config)
     // 录屏音频输出规格配置。audioBitrate保证输出文件的比特率为设置的预期比特率，和audioSampleRate无强关联。
     // 为保证音频质量，此处音频比特率取值128000。如果录屏内容以语音为主，不包含音乐、游戏音效等，可以降低为96000或48000。
     OH_AudioEncInfo audioEncInfo = {
-        .audioBitrate = 48000,
+        .audioBitrate = 128000,
         .audioCodecformat = OH_AAC_LC
     };
 
@@ -361,7 +361,7 @@ void SetStrategyForPickerPopUpFalse(OH_AVScreenCapture *capture)
     OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 
     // 设置是否弹出屏幕捕获Picker。
-    // 设置为true，代表录屏启动后统一弹出Picker。
+    // 设置为false，代表录屏启动后统一不弹出Picker。
     OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
 
     // 设置CaptureStrategy到AVScreenCapture实例。
