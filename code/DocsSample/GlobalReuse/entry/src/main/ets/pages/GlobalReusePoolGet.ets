@@ -111,7 +111,7 @@ struct SubChild {
 }
 
 @Entry
-  // 配置全局复用池，使用perInstance所有权模式，全局复用池接纳4个复用组件
+// 配置全局复用池，使用perInstance所有权模式，全局复用池接纳4个复用组件
 @ComponentV2({ reusePool: 'perInstance', poolAccepts: [LegacyComp, GlobalChild, ReusableChild, SubChild], freezeWhenInactive: false })
 struct Index {
   @Provider() provide: number = 100;
