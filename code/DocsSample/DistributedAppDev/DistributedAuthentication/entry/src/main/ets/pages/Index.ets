@@ -17,20 +17,14 @@ import deviceInfo from '@ohos.deviceInfo';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
-import { FilterOption } from '../pages/FilterOption';
 import { ListDeviceView } from '../pages/ListDeviceView';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-class optionsType {
-  url: string = 'pages/FilterOption'
-}
 
 @Entry
 @Component
 struct Index {
   @State isShowLoading: boolean = false;
-  @State indexWidth: string = '100%';
   @StorageLink('localDevice') localDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
   @StorageLink('trustedDeviceList') trustedDeviceList: Array<distributedDeviceManager.DeviceBasicInfo> =
     new Array<distributedDeviceManager.DeviceBasicInfo>();
@@ -42,15 +36,6 @@ struct Index {
   @State filterOption: string = '';
   @State isDiscovering: boolean = false;
   scroller: Scroller = new Scroller();
-
-  async routeFilterOptionPage() {
-    let options = new optionsType();
-    try {
-      await this.getUIContext().getRouter().pushUrl(options);
-    } catch (err) {
-      logger.info(`fail callback, code: ${err.code}, msg: ${err.msg}`);
-    }
-  }
 
   getDeviceTypeIcon(deviceType: number): Resource {
     logger.info(`getDeviceTypeIcon deviceType: ${deviceType}`)
@@ -225,46 +210,6 @@ struct Index {
           }.width('100%')
 
           Column() {
-            Column() {
-              Row() {
-                Text($r('app.string.filter_options'))
-                  .fontSize(16)
-                  .fontColor('#182431')
-                  .fontFamily('HarmonyHeiTi-Medium')
-                  .fontWeight(500)
-                Blank()
-                Row() {
-                  Text(this.filterOption)
-                    .fontSize(14)
-                    .fontColor('#182431')
-                    .fontFamily('HarmonyHeiTi')
-                    .opacity(0.6)
-                    .margin({ left: 12 })
-                    .textOverflow({ overflow: TextOverflow.Ellipsis })
-                    .maxLines(1)
-                    .fontWeight(400)
-                  Image($r('app.media.ic_arrow'))
-                    .width(12)
-                    .height(24)
-                    .margin({ left: 8 })
-                }
-              }.onClick(() => {
-                if (deviceInfo.deviceType == 'tablet') {
-                  this.indexWidth = '50%';
-                } else {
-                  this.routeFilterOptionPage();
-                }
-              })
-              .width('100%')
-              .margin({ top: 12, bottom: 12 })
-
-              Divider()
-                .color('#182431')
-                .opacity(0.05)
-                .visibility(this.discoverDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
-            }.height(48)
-            .alignItems(HorizontalAlign.Center)
-
             List() {
               ForEach(this.discoverDeviceList, (item: distributedDeviceManager.DeviceBasicInfo, index: number) => {
                 ListItem() {
@@ -287,21 +232,16 @@ struct Index {
           .borderRadius(24)
           .padding({ left: 12, right: 12, bottom: 4, top: 4 })
           .backgroundColor('#FFFFFF')
+          .visibility(this.discoverDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
         }
         .padding(12)
-        .width(this.indexWidth)
+        .width('100%')
       }
       .scrollBar(BarState.Off)
       .scrollable(ScrollDirection.Vertical)
       .height('100%')
       .backgroundColor('#F1F3F5')
       .align(Alignment.Top)
-
-      Column() {
-        FilterOption()
-      }.visibility(this.indexWidth == '50%' ? Visibility.Visible : Visibility.None)
-      .width('50%')
-      .height('100%')
     }
   }
 }

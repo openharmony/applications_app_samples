@@ -3,19 +3,13 @@
 ### 介绍
 
 本示例主要展示了设备管理相关的功能，使用[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
-等接口，实现了包括获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅等功能。
+等接口，实现了包括获取本机设备信息，获取授信设备列表，设备认证，设备状态订阅等功能。
 
-### 效果预览
+### 使用说明
 
-|主页| 选择过滤条件                                                | 发现与可信设备列表                                     |取消认证|
-|--------------------------------|-------------------------------------------------------|-----------------------------------------------|--------------------------------|
-![main](screenshots/device/main.jpeg)| ![filteroption](screenshots/device/filteroption.jpeg) | ![discover](screenshots/device/discover.jpeg) |![delete](screenshots/device/delete.jpeg)
-
-使用说明
 1. 进入应用会自动获取本机设备信息，并且注册设备状态监听，在有设备上下线的时候，刷新可信设备列表；
 2. 在主界面，可以点击刷新，刷新可信设备列表，点击已认证，解除认证关系（只能解除本应用组网设备）；
-3. 在主界面，可以点击过滤条件，选择对应的过滤条件，在发现设备时进行过滤；
-4. 在主界面，可以点击发现，发现周边的设备，并点击发现的设备，进行PIN码认证。
+3. 在主界面，可以点击发现，发现周边的设备，并点击发现的设备，进行PIN码认证。
 
 ### 工程目录
 
@@ -29,13 +23,12 @@ entry/src/main/ets/
 |   |---RemoteDeviceModel.ets              // 主要封装了DeviceManager库相关的接口，实现相关的功能
 |---pages
 |   |---index.ets                          // 首页
-|   |---FilterOption.ets                   // 过滤条件页面
 |   |---ListDeviceView.ets                 // 列表设备组件
 ```
 
 ### 具体实现
 
-获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](entry/src/main/ets/model/RemoteDeviceModel.ets)
+获取本机设备信息，获取授信设备列表，设备认证，设备状态订阅，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](entry/src/main/ets/model/RemoteDeviceModel.ets)
 
     * 使用RemoteDeviceModel.createDeviceManager()来获取DeviceManager对象；
     * 获取本机设备信息：调用RemoteDeviceModel.getLocalDeviceInfo()来获取本机设备信息；
