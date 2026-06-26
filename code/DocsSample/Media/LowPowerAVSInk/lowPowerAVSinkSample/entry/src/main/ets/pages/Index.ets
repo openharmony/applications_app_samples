@@ -21,8 +21,8 @@ struct Player {
   @State duration:string = '--:--:--'
   @State progress:string = '--:--:--'
   @State progressBarNumber:number = 0;
-  @State surfaceWidth:string = "100%"
-  @State surfaceHeight:string = "400"
+  @State surfaceWidth:string = '100%'
+  @State surfaceHeight:string = '400'
   @State speedMode:number = 1.0;
   @State playStatus:string = 'initial';
   @State isPausing:boolean = false;
@@ -152,7 +152,7 @@ struct Player {
     try {
       let filesDir = this.context.resourceDir;
       Logger.info(TAG, 'documentViewPicker.select to file succeed and URI is2:' + filesDir);
-      let inputFile = fileIo.openSync(filesDir + "/fuzztest.mp4", fileIo.OpenMode.READ_ONLY);
+      let inputFile = fileIo.openSync(filesDir + '/fuzztest.mp4', fileIo.OpenMode.READ_ONLY);
       Logger.info(TAG, 'documentViewPicker.select to file succeed and URI is2:' + inputFile);
       if (!inputFile) {
         return;

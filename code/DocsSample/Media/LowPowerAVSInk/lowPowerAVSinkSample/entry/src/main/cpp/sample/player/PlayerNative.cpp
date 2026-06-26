@@ -278,6 +278,7 @@ static napi_module PlayerModule = {
     .reserved = { 0 },
 };
 
-extern "C" __attribute__((constructor)) void RegisterPlayerModule(void) {
+extern "C" __attribute__((constructor)) void RegisterPlayerModule(void)
+{
     napi_module_register(&PlayerModule);
 }

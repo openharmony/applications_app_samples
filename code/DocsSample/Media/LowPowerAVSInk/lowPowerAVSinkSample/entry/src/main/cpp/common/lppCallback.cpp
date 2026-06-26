@@ -56,7 +56,7 @@ void LppCallback::OnPositionUpdated(OH_LowPowerAudioSink *decoder, long currentP
 
 void LppCallback::OnError(OH_LowPowerAudioSink *decoder, OH_AVErrCode errCode, const char *errorMsg, void *userData)
 {
-    AVCODEC_SAMPLE_LOGI("errCode %{public}d",errCode);
+    AVCODEC_SAMPLE_LOGI("errCode %{public}d", errCode);
 }
 
 void LppCallback::OnInterrupted(OH_LowPowerAudioSink *decoder, OH_AudioInterrupt_ForceType type,
@@ -85,7 +85,7 @@ void LppCallback::OnDataNeededVideo(OH_LowPowerVideoSink *streamer, OH_AVSamples
     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded");
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
     std::unique_lock<std::mutex> lock(lppUserData->inputMutex);
-    if(lppUserData->framePacket_ == nullptr) {
+    if (lppUserData->framePacket_ == nullptr) {
             AVCODEC_SAMPLE_LOGI("ggggfd");
     }
     lppUserData->framePacket_ = framePacket;

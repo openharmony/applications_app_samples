@@ -118,7 +118,7 @@ private:
     std::queue<CodecBufferInfo> videoBufferInfo_;
     bool seekFlag_ = false;
     AVSinkState state_ = IDLE;
-    static constexpr int64_t MICROSECOND_TO_S = 1000000;
+    static constexpr int64_t microsecondToS = 1000000;
     static constexpr int64_t NANO_TO_S = 1000000000;
 };
 

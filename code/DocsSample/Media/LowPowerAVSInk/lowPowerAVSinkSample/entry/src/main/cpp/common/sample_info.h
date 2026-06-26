@@ -70,7 +70,6 @@ struct SampleInfo {
     size_t audioCodecSize = 0;
     bool isInit = false;
 
-    
     int32_t isHDRVivid = 0;
     int32_t hevcProfile = HEVC_PROFILE_MAIN;
     OH_ColorPrimary primary = COLOR_PRIMARY_BT2020;
@@ -106,7 +105,7 @@ struct LppUserData {
 public:
     std::mutex inputMutex;
     std::condition_variable inputCond;
-    std::condition_variable eosCond_;
+    std::condition_variable eosCond;
     std::mutex eosMutex;
     std::mutex eosFlagMutex;
     bool eosFlag {false};
@@ -116,7 +115,7 @@ public:
     int32_t num = 0;
     int32_t count = 0;
     std::mutex seekMutexI;
-    std::condition_variable seekCond_;
+    std::condition_variable seekCond;
     bool seekReturn = false;
     int64_t position = 0;
     void (*audioCallback)(void *context) = nullptr;

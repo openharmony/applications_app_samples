@@ -60,7 +60,8 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
             context->pluginWindow_ = (OHNativeWindow *)window;
             OH_NativeWindow_NativeWindowSetScalingModeV2(context->pluginWindow_, OH_SCALING_MODE_SCALE_FIT_V2);
             uint8_t metadataType = OH_VIDEO_HDR_HLG;
-            (void)OH_NativeWindow_SetMetadataValue(context->pluginWindow_, OH_HDR_METADATA_TYPE, sizeof(uint8_t), &metadataType);
+            (void)OH_NativeWindow_SetMetadataValue(context->pluginWindow_, OH_HDR_METADATA_TYPE, sizeof(uint8_t),
+              &metadataType);
             OH_NativeBuffer_ColorSpace colorSpace = OH_COLORSPACE_BT2020_HLG_LIMIT;
             (void)OH_NativeWindow_SetColorSpace(context->pluginWindow_, colorSpace);
         }
