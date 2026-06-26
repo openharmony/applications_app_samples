@@ -17,8 +17,8 @@ import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-
 // [End headerFile]
+
 // [Start AVTranscoderDemo]
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
@@ -30,7 +30,7 @@ export class AVTranscoderDemo {
     }
   }
   // [StartExclude AVTranscoderDemo]
-  // [Start createTranscoderconfig]
+  // [Start createTranscoderConfig]
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
@@ -94,18 +94,18 @@ export class AVTranscoderDemo {
         // [End createFddst]
         this.currentProgress = 0;
       }
-      //[Start doprepare]
+      //[Start doPrepare]
       // 3.配置转码参数完成准备工作。
       await this.avTranscoder.prepare(this.avConfig);
-      //[End doprepare]
-      //[Start dostart]
+      //[End doPrepare]
+      //[Start doStart]
       // 4.开始转码。
       await this.avTranscoder.start();
-      //[End dostart]
+      //[End doStart]
     }
   }
 
-  //[Start dopause]
+  //[Start doPause]
   // 暂停转码对应的流程。
   async pauseTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -114,9 +114,9 @@ export class AVTranscoderDemo {
       }
     }
   }
-  //[End dopause]
+  //[End doPause]
 
-  //[Start doresume]
+  //[Start doResume]
   // 恢复对应的转码流程。
   async resumeTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -125,9 +125,9 @@ export class AVTranscoderDemo {
       }
     }
   }
-  //[End doresume]
+  //[End doResume]
 
-  //[Start dorelease]
+  //[Start doRelease]
   // 释放转码流程。
   async releaseTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
@@ -147,7 +147,7 @@ export class AVTranscoderDemo {
       }
     }
   }
-  //[End dorelease]
+  //[End doRelease]
 
   // [EndExclude createCallback]
   // 获取当前进度
