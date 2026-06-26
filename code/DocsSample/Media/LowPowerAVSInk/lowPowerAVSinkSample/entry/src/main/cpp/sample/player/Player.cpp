@@ -521,9 +521,6 @@ void Player::LppDataNeededThread1()
     OH_AVBuffer* avbuffer = OH_AVBuffer_Create(totalSize);
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        if (!isStarted_) {
-            break;
-        }
         std::unique_lock<std::mutex> eosLock(lppContext_->eosMutex);
         lppContext_->eosCond.wait_for(
             eosLock, 150000s, [this]() { return !lppContext_->eosFlag; });
@@ -573,9 +570,6 @@ void Player::LppVideoDataNeededThread()
     OH_AVBuffer* avbuffer = OH_AVBuffer_Create(totalSize);
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
-        if (!isStarted_) {
-            break;
-        }
         std::unique_lock<std::mutex> eosLock(lppVideoContext_->eosMutex);
         lppVideoContext_->eosCond.wait_for(
             eosLock, 150000s, [this]() { return !lppVideoContext_->eosFlag; });
