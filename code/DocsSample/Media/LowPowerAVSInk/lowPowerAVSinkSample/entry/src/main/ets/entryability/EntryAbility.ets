@@ -29,12 +29,12 @@ function requestPre() {
     atManager.requestPermissionsFromUser(GlobalThis.getInstance().getContext(),
       ['ohos.permission.CAMERA',])
       .then((data) => {
-        Logger.info("requestPre() data: " + JSON.stringify(data))
+        Logger.info('requestPre() data: ' + JSON.stringify(data))
       }).catch((err:BusinessError) => {
-      Logger.info("requestPre() data: " + JSON.stringify(err))
+      Logger.info('requestPre() data: ' + JSON.stringify(err))
     })
   } catch (err) {
-    Logger.error("requestPre() data: " + JSON.stringify(err))
+    Logger.error('requestPre() data: ' + JSON.stringify(err))
   }
 }
 
@@ -83,11 +83,11 @@ export default class EntryAbility extends UIAbility {
       return
     }
     // Set the font color of the status bar.
-    let SystemBarProperties: window.SystemBarProperties = {
+    let systemBarProperties: window.SystemBarProperties = {
       statusBarContentColor: '#FFFFFF'
     }
     try {
-      windowStage.getMainWindowSync().setWindowSystemBarProperties(SystemBarProperties)
+      windowStage.getMainWindowSync().setWindowSystemBarProperties(systemBarProperties)
     } catch (err) {
       Logger.error('Failed to set window system bar properties. Error: ' + JSON.stringify(err))
     }

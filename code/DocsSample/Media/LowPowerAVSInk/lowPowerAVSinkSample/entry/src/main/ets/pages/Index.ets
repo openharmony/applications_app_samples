@@ -28,7 +28,7 @@ struct Player {
   @State isPausing:boolean = false;
   @State xComponentStatus:Visibility = Visibility.Visible;
   @State controlStatus:Visibility = Visibility.Hidden;
-  @State surfaceId:string = "1";
+  @State surfaceId:string = '1';
   private intervalId:number = -1;
   private showIntervalId:number = -1;
   private selectFilePath: string | null = null;
@@ -177,7 +177,7 @@ struct Player {
         player.renderFirstFrameNative();
         player.startRenderNative();
         player.startAudioNative();
-        this.playStatus = "playing"
+        this.playStatus = 'playing'
       }, 300);
     } catch (err) {
       Logger.error(TAG, 'Failed to playTest file. Error: ' + JSON.stringify(err));
@@ -201,15 +201,15 @@ struct Player {
   }
   setOrientation(flag: boolean) {
     try {
-      if (this.surfaceHeight == "400") {
+      if (this.surfaceHeight == '400') {
         window.getLastWindow(this.getUIContext().getHostContext()).then((win) => {
           win.setPreferredOrientation(window.Orientation.LANDSCAPE);
-          this.surfaceHeight = "100%";
+          this.surfaceHeight = '100%';
         })
       } else {
         window.getLastWindow(this.getUIContext().getHostContext()).then((win) => {
           win.setPreferredOrientation(window.Orientation.PORTRAIT);
-          this.surfaceHeight = "400";
+          this.surfaceHeight = '400';
         })
       }
     } catch (err) {

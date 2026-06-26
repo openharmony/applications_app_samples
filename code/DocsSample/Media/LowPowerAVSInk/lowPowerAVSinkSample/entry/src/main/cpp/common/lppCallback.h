@@ -41,7 +41,6 @@ public:
     
     static void OH_LowPowerVideoSink_OnStreamChanged(OH_LowPowerVideoSink *streamer, OH_AVFormat *format,
         void *userData);
-    
 };
 
 #endif //AVCODECSAMPLE_MASTER_LPPCALLBACK_H

@@ -40,7 +40,7 @@ enum AVSinkState {
     PREPARED,
     PLAYING,
     PAUSE,
-    STOP, 
+    STOP,
 };
 class Player {
 public:
@@ -112,7 +112,7 @@ private:
     int64_t audioTimeStamp = 0;
     int64_t writtenSampleCnt = 0;
     int64_t audioBufferPts = 0;
-    std::mutex SeekMutex;
+    std::mutex seekMutex;
     OH_AVBuffer *audioBuffer_ = nullptr;
     OH_AVBuffer *videoBuffer_ = nullptr;
     std::queue<CodecBufferInfo> videoBufferInfo_;

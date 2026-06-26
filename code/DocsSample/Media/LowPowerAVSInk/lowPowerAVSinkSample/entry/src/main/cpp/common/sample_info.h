@@ -109,18 +109,17 @@ public:
     std::condition_variable eosCond_;
     std::mutex eosMutex;
     std::mutex eosFlagMutex;
-    bool eosFlag_ {false};
+    bool eosFlag {false};
     OH_AVSamplesBuffer *framePacket_ = nullptr;
     std::queue<CodecBufferInfo> cacheQueue;
     bool returnFrame = false;
     int32_t num = 0;
     int32_t count = 0;
-    std::mutex seekMutex_;
+    std::mutex seekMutexI;
     std::condition_variable seekCond_;
-    bool seekReturn_ = false;
+    bool seekReturn = false;
     int64_t position = 0;
     void (*audioCallback)(void *context) = nullptr;
     void *audioCallbackData = nullptr;
-
 };
 #endif // AVCODEC_SAMPLE_INFO_H

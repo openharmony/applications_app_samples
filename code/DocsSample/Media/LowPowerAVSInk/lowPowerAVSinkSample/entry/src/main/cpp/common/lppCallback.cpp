@@ -67,7 +67,6 @@ void LppCallback::OnInterrupted(OH_LowPowerAudioSink *decoder, OH_AudioInterrupt
     std::unique_lock<std::mutex> lock(lppUserData->inputMutex);
     lppUserData->audioCallback(lppUserData->audioCallbackData);
     lock.unlock();
-    
 }
     
 void LppCallback::OnDeviceChanged(OH_LowPowerAudioSink *decoder, OH_AudioStream_DeviceChangeReason reason,
@@ -90,7 +89,7 @@ void LppCallback::OnDataNeededVideo(OH_LowPowerVideoSink *streamer, OH_AVSamples
             AVCODEC_SAMPLE_LOGI("ggggfd");
     }
     lppUserData->framePacket_ = framePacket;
-    if(lppUserData->framePacket_ == nullptr) {
+    if (lppUserData->framePacket_ == nullptr) {
         AVCODEC_SAMPLE_LOGI("ggdfsd");
     }
     AVCODEC_SAMPLE_LOGI("OH_LowPowerVideoSink OnDataNeeded");
@@ -101,19 +100,19 @@ void LppCallback::OnDataNeededVideo(OH_LowPowerVideoSink *streamer, OH_AVSamples
     
 void LppCallback::OnAnchorUpdated(OH_LowPowerVideoSink *streamer, long *anchorPts, long *anchorClock, void *userData)
 {
-    
+    AVCODEC_SAMPLE_LOGI("OnAnchorUpdated");
 }
     
 void LppCallback::OnError(OH_LowPowerVideoSink *streamer, OH_AVErrCode errCode, const char *errMsg, void *userData)
 {
-    AVCODEC_SAMPLE_LOGI("errCode %{public}d",errCode);
+    AVCODEC_SAMPLE_LOGI("errCode %{public}d", errCode);
 }
     
 void LppCallback::OnTargetArrived(OH_LowPowerVideoSink *streamer, const long targetPts, const bool isTimeout,
     void *userData)
 {
     LppUserData *lppUserData = static_cast<LppUserData *>(userData);
-    std::unique_lock<std::mutex> lock(lppUserData->seekMutex_);
+    std::unique_lock<std::mutex> lock(lppUserData->seekMutexI);
     AVCODEC_SAMPLE_LOGI("OnTargetArrived accSeek");
     if (isTimeout) {
         AVCODEC_SAMPLE_LOGI("OnTargetArrived timeout");
@@ -124,7 +123,7 @@ void LppCallback::OnTargetArrived(OH_LowPowerVideoSink *streamer, const long tar
 void LppCallback::OH_LowPowerVideoSink_OnStreamChanged(OH_LowPowerVideoSink *streamer, OH_AVFormat *format,
     void *userData)
 {
-    if(format == nullptr){
+    if (format == nullptr) {
         AVCODEC_SAMPLE_LOGI("OnOutputFormatChanged format nullptr");
         return;
     }
