@@ -41,6 +41,9 @@ export struct Embedded {
               // 失败或异常触发onError回调，文本框显示如下报错内容
               this.message = `Error: code = ${error.code}`;
             })
+            .onDrawReady(() => {
+              // 从API版本26.0.0开始，新增支持被拉起的EmbeddedUIExtensionAbility绘制第一帧时触发onDrawReady回调
+            })
         }
         .width('100%')
       }

@@ -168,11 +168,6 @@ bool EGLRender::SetUpEGLContext(void *window)
                      "eglCreateWindowSurface: unable to create surface");
         return false;
     }
-    if (eglSurface_ == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender",
-                     "eglCreateWindowSurface: unable to create surface");
-        return false;
-    }
     // 创建上下文。
     eglContext_ = eglCreateContext(eglDisplay_, eglConfig_, EGL_NO_CONTEXT, CONTEXT_ATTRIBS);
     if (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_)) {
@@ -293,7 +288,7 @@ void EGLRender::Clear()
 
 bool EGLRender::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[])
 {
-    if ((position > 0) || (color == nullptr)) {
+    if ((position < 0) || (color == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "ExecuteDraw: param error");
         return false;
     }
@@ -322,11 +317,11 @@ void EGLRender::DestroySurface()
     }
 
     if ((eglDisplay_ == nullptr) || (eglContext_ == nullptr) || (!eglDestroyContext(eglDisplay_, eglContext_))) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xff00, "EGLRender", "Release eglDestroySurface failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xff00, "EGLRender", "Release eglDestroyContext failed");
     }
 
     if ((eglDisplay_ == nullptr) || (!eglTerminate(eglDisplay_))) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xff00, "EGLRender", "Release eglDestroySurface failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xff00, "EGLRender", "Release eglTerminate failed");
     }
     eglDisplay_ = EGL_NO_DISPLAY;
     eglSurface_ = EGL_NO_SURFACE;
