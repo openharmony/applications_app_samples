@@ -14,19 +14,12 @@
  */
 
 // [Start link_usage_two]
-class LinkInfo2 {
-  public info: string = 'Hello';
-}
-
 @Component
 struct LinkChild2 {
-  @Link msg: string;
-  @Link info: LinkInfo2;
+  @Link message: string;
 
   build() {
-    Text(this.msg + this.info.info)
-      .fontSize(20)
-      .margin(10)
+    Text(`${this.message}`).margin('20%')
   }
 }
 
@@ -34,14 +27,12 @@ struct LinkChild2 {
 @Component
 struct LinkExample2 {
   @State message: string = 'Hello';
-  @State info: LinkInfo2 = new LinkInfo2();
 
   build() {
     Column() {
       // 正确写法
-      LinkChild2({msg: this.message, info: this.info})
+      LinkChild2({ message: this.message })
     }
-    .width('100%')
   }
 }
 // [End link_usage_two]
