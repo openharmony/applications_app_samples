@@ -22,12 +22,6 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('loadData')
-        .onClick(() => {
-          if (this.webviewController.accessBackward()) {
-            this.webviewController.backward();
-          }
-        })
       Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onAppear(() => {
           // 指定第二个参数为true，代表要进行预连接，如果为false该接口只会对网址进行dns预解析

@@ -36,7 +36,7 @@ export const precompile = async (controller: WebviewController, configs: Array<C
     try {
       controller.precompileJavaScript(config.url, content, config.options)
         .then(errCode => {
-          console.error('precompile successfully! ' + errCode);
+          console.info('precompile successfully! ' + errCode);
         }).catch((errCode: number) => {
           console.error('precompile failed. ' + errCode);
       });
