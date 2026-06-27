@@ -28,7 +28,7 @@ struct GridEts {
   unifiedData: UnifiedData | undefined = undefined;
   timeout: number = 1;
   finished: boolean = false;
-  dragEvent: DragEvent | undefined;
+  dragEvent: DragEvent | undefined = undefined;
 
   @Styles
   normalStyles(): void{

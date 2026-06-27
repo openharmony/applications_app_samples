@@ -180,7 +180,7 @@ export struct DefaultDrag {
                 .height(this.imageHeight)
                 .draggable(true)
                 .margin({ left: 15 })
-                .border({ color: Color.Black, width: 1 })// 控制角标显示类型为MOVE，即不显示角标
+                .border({ color: Color.Black, width: 1 })// 控制角标显示类型为COPY，即显示加号角标
                 // [Start set_drag_behavior_move]
                 .onDragMove((event) => {
                   event.setResult(DragResult.DROP_ENABLED);

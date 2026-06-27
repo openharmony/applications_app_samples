@@ -30,8 +30,8 @@ export struct ScopeFocusExample {
     NavDestination() {
       Column() {
         Column({ space: 5 }) {
-          // 请将$r('app.string.Container_Focusing')替换为实际资源文件，在本示例中该资源文件的value值为"容器获焦"
-          Text($r('app.string.Container_Focusing')).textAlign(TextAlign.Center)
+          // 请将$r('app.string.Container_Coking')替换为实际资源文件，在本示例中该资源文件的value值为"容器获焦"
+          Text($r('app.string.Container_Coking')).textAlign(TextAlign.Center)
         }
         .justifyContent(FlexAlign.Center)
         .width('80%')

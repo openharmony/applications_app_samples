@@ -40,7 +40,7 @@ export struct FocusAndBlurExample {
               })
           }
           .onFocus(() => {
-            hilog.info(DOMAIN, TAG, BUNDLE + 'Row1 onFocus');
+            hilog.info(DOMAIN, TAG, `${BUNDLE} Row1 onFocus`);
           })
           .onBlur(() => {
             hilog.info(DOMAIN, TAG, `${BUNDLE} Row1 onBlur`);
@@ -59,7 +59,7 @@ export struct FocusAndBlurExample {
               })
           }
           .onFocus(() => {
-            hilog.info(DOMAIN, TAG, BUNDLE + 'Row2 onFocus');
+            hilog.info(DOMAIN, TAG, `${BUNDLE} Row2 onFocus`);
           })
           .onBlur(() => {
             hilog.info(DOMAIN, TAG, `${BUNDLE} Row2 onBlur`);
