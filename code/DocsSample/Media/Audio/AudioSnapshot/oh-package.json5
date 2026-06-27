@@ -1,5 +1,5 @@
 {
-  "modelVersion": "6.0.0",
+  "modelVersion": "26.0.0",
   "description": "AudioSnapshot sample demonstrating audio capture, playback, and snapshot with OHAudio C API and AudioKit TS API.",
   "dependencies": {},
   "devDependencies": {
