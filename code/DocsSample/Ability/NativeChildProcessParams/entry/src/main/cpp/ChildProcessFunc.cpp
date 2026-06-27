@@ -25,7 +25,7 @@ extern "C" {
  */
 void Main(NativeChildProcess_Args args)
 {
-    // 获取传入的entryPrams
+    // 获取传入的entryParams
     char *entryParams = args.entryParams;
     // 获取传入的fd列表
     NativeChildProcess_Fd *current = args.fdList.head;
