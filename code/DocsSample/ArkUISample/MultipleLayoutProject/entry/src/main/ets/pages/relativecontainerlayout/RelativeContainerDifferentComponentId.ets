@@ -16,8 +16,6 @@
 @Entry
 @Component
 struct RelativeContainerExample {
-  @State value: number = 0
-
   build() {
     Row() {
 
@@ -59,7 +57,11 @@ struct RelativeContainerExample {
         .id('row3')
 
         Stack({ alignContent: Alignment.Bottom }) {
-          Text('First child, show in bottom').width('90%').height('100%').backgroundColor('#a3cf62').align(Alignment.Top)
+          Text('First child, show in bottom')
+            .width('90%')
+            .height('100%')
+            .backgroundColor('#a3cf62')
+            .align(Alignment.Top)
           Text('Second child, show in top').width('70%').height('60%').backgroundColor('#00ae9d').align(Alignment.Top)
         }
         .margin({ top: 5 })

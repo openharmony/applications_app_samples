@@ -16,20 +16,37 @@
 @Entry
 @Component
 struct SpanColumnOptionExample {
+  @State currentBp: string = 'unknown'
   @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
 
   build() {
-    GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (color: ResourceColor, index?: number | undefined) => {
-        GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
-          Row() {
-            Text(`${index}`)
-          }.width('100%').height('50vp')
-        }
-        .backgroundColor(color)
+    Column({ space: 6 }) {
+      GridRow({ columns: 8 }) {
+        ForEach(this.bgColors, (color: ResourceColor, index?: number | undefined) => {
+          GridCol({
+            span: {
+              xs: 1,
+              sm: 2,
+              md: 3,
+              lg: 4
+            }
+          }) {
+            Row() {
+              Text(`${index}`)
+            }.width('100%').height('50vp')
+          }
+          .backgroundColor(color)
+        })
+      }
+      .border({ color: 'rgb(39,135,217)', width: 2 })
+      .height('150vp')
+      .onBreakpointChange((breakPoint) => {
+        this.currentBp = breakPoint
       })
+
+      Text(this.currentBp)
     }
   }
 }

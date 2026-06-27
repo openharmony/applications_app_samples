@@ -20,23 +20,27 @@ struct FixedFourColumnGrid {
   @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
-  @State currentBp: string = 'unknown';
+
   build() {
-    Row() {
-      GridRow({ columns: 4 }) {
-        ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
-          GridCol({ span: 1 }) {
-            Row() {
-              Text(`${index}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
-        })
+    Column({ space: 6 }) {
+      Text('columns：4').alignSelf(ItemAlign.Start)
+
+      Row() {
+        GridRow({ columns: 4 }) {
+          ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
+            GridCol({ span: 1 }) {
+              Row() {
+                Text(`${index}`)
+              }.width('100%').height('50')
+            }.backgroundColor(item)
+          })
+        }
+        .width('100%').height('100%')
       }
-      .width('100%').height('100%')
+      .height(160)
+      .border({ color: 'rgb(39,135,217)', width: 2 })
+      .width('90%')
     }
-    .height(160)
-    .border({ color: 'rgb(39,135,217)', width: 2 })
-    .width('90%')
   }
 }
 // [End GridLayoutColumnsToFour_start]
