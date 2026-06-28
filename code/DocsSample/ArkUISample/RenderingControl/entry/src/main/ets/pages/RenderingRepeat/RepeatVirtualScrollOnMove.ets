@@ -39,7 +39,7 @@ struct RepeatVirtualScrollOnMove {
               Text(obj.item)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .size({height: 100, width: '100%'})
+                .size({ height: 100, width: '100%' })
             }.margin(10)
             .borderRadius(10)
             .backgroundColor('#FFFFFFFF')
