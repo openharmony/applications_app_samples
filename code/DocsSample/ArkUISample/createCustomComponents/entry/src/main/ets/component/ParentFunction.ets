@@ -42,7 +42,6 @@ struct Son {
       Button('add')
         .width(300)
         .margin(10)
-        .width(80)
         .onClick(() => {
           if (this.submitArrow) {
             this.submitArrow()
@@ -52,7 +51,6 @@ struct Son {
     .height('100%')
   }
 }
-
 // [End Function_passing]
 const parentFunction = Parent;
 export default parentFunction;

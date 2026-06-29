@@ -36,9 +36,9 @@ class V2Data {
 
 @ObservedV2
 export class Sample {
+  @Trace public num: number = 1;
   // 对于复杂对象需要@Type修饰，确保序列化成功
   @Type(V2Data)
-  @Trace public num: number = 1;
   @Trace public V2: V2Data = new V2Data();
 }
 

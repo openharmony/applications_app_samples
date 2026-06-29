@@ -54,7 +54,7 @@ struct ThingComponent1 {
   @Prop isFinished: boolean;
 
   build() {
-      // 待办事项2
+    // 待办事项1
     Row({ space: 15 }) {
       if (this.isFinished) {
         // 请将$r('app.media.finished')替换为实际资源文件
@@ -87,7 +87,7 @@ struct ThingComponent2 {
   @Prop isFinished: boolean;
 
   build() {
-    // 待办事项1
+      // 待办事项2
     Row({ space: 15 }) {
       if (this.isFinished) {
         // 请将$r('app.media.finished')替换为实际资源文件
@@ -140,5 +140,4 @@ struct PropLinkIndex {
     .backgroundColor('#90f1f3f5')
   }
 }
-
 // [End prop_link_update_refresh]
