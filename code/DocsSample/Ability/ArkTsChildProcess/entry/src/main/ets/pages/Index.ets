@@ -25,7 +25,8 @@ import DemoProcessNoArg from '../process/DemoProcessNoArg';
 import DemoProcessArg from  '../process/DemoProcessArg';
 import { fileIo } from '@kit.CoreFileKit';
 import { common, ChildProcessArgs, ChildProcessOptions } from '@kit.AbilityKit';
-// [StartExclude arkts_child_process_arg]
+// [EndExclude arkts_child_process_noarg_one]
+// [EndExclude arkts_child_process_noarg_two]
 @Entry
 @Component
 struct Index {
@@ -33,6 +34,8 @@ struct Index {
   build() {
     Scroll() {
       Column() {
+// [StartExclude arkts_child_process_noarg_two]
+// [StartExclude arkts_child_process_arg]
         Text("StartArkChildProcessNoArg_Promise")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -41,7 +44,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude arkts_child_process_noarg_one]
             try {
               DemoProcessNoArg.toString(); // 引用子进程类，防止被构建工具优化掉
               childProcessManager.startChildProcess("./ets/process/DemoProcessNoArg.ets", childProcessManager.StartMode.SELF_FORK)
@@ -54,9 +56,9 @@ struct Index {
             } catch (err) {
               console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
             }
-            // [End arkts_child_process_noarg_one]
           })
-
+// [EndExclude arkts_child_process_noarg_two]
+// [StartExclude arkts_child_process_noarg_one]
         Text("StartArkChildProcessNoArg_Callback")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -65,7 +67,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude arkts_child_process_noarg_two]
             try {
               DemoProcessNoArg.toString(); // 引用子进程类，防止被构建工具优化掉
               childProcessManager.startChildProcess("./ets/process/DemoProcessNoArg.ets", childProcessManager.StartMode.SELF_FORK, (err, data) => {
@@ -78,9 +79,9 @@ struct Index {
             } catch (err) {
               console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
             }
-            // [End arkts_child_process_noarg_two]
           })
-
+// [StartExclude arkts_child_process_noarg_two]
+// [EndExclude arkts_child_process_arg]
         Text("StartArkChildProcessWithArg")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -89,7 +90,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude arkts_child_process_arg]
             try {
               DemoProcessArg.toString(); // 引用子进程类，防止被构建工具优化掉
               let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -114,11 +114,15 @@ struct Index {
             } catch (err) {
               console.error(`startArkChildProcess error, errorCode: ${(err as BusinessError).code}`);
             }
-            // [End arkts_child_process_arg]
           })
+// [EndExclude arkts_child_process_noarg_one]
+// [EndExclude arkts_child_process_noarg_two]
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+// [End arkts_child_process_noarg_one]
+// [End arkts_child_process_noarg_two]
+// [End arkts_child_process_arg]
