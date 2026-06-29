@@ -20,7 +20,7 @@ import { BusinessError, zlib } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  @State dataSize: number = 0;  //用于保存原始数据的大小
+  @State dataSize: number = 0;  // 用于保存原始数据的大小
 
   build() {
     Row() {
