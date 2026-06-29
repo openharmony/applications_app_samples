@@ -37,7 +37,7 @@ struct Index {
               console.error(`promise error, code: ${error.code}, message: ${error.message})`);
             });
           } catch (error) {
-            console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+            console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
           }
         })
       Button('reloadAllForms')
@@ -50,7 +50,7 @@ struct Index {
               console.error(`promise error, code: ${error.code}, message: ${error.message})`);
             });
           } catch (error) {
-            console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+            console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
           }
         })
     }

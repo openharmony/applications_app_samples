@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start FormEditDemo_EntryFormAbility]
-// entry/src/main/ets/entryformability/WidgetCard.ets
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { PreferencesUtil } from '../common/PreferencesUtil';

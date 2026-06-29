@@ -18,7 +18,7 @@ import { FormEditExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
 
-const TAG = 'FormEditExtensionAbility';
+const TAG: string = 'FormEditExtensionAbility';
 
 export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   public storage: LocalStorage = new LocalStorage();
