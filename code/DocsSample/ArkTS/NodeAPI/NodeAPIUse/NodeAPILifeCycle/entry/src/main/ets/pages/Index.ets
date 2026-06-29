@@ -26,7 +26,8 @@ struct Index {
     '2.napiOpenEscapableHandleScope',
     '3.napiAddFinalizer',
     '4.napiCreateWeakReference',
-    '5.napiCreateStrongReference'
+    '5.napiCreateStrongReference',
+    '6.napiGetGlobalHandleCount'
   ]
 
   build() {
@@ -142,6 +143,23 @@ struct Index {
                     // [EndExclude napi_create_weak_reference]
                   }
                   // [End napi_create_weak_reference]
+                } else if (item === '6.napiGetGlobalHandleCount') {
+                  // [Start napi_get_global_handle_count]
+                  try {
+                    hilog.info(0x0000, 'testTag', 'Test Node-API getGlobalHandleCount: %{public}s',
+                      testNapi.getGlobalHandleCount().toString());
+                    // [StartExclude napi_get_global_handle_count]
+                    this.result = 'napiGetGlobalHandleCountSuccess';
+                    // [EndExclude napi_get_global_handle_count]
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag',
+                      'Test Node-API getGlobalHandleCount errorCode: %{public}s, errorMessage: %{public}s',
+                      error.code, error.message);
+                    // [StartExclude napi_get_global_handle_count]
+                    this.result = 'napiGetGlobalHandleCountFail';
+                    // [EndExclude napi_get_global_handle_count]
+                  }
+                  // [End napi_get_global_handle_count]
                 }
               })
           }
