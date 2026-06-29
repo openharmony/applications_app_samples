@@ -83,3 +83,15 @@ lpp_demo-sample/entry/src/main/
 2.本示例仅支持 API20 及以上版本SDK, SDK版本号(API Version 20 Release)；
 
 3.本示例需要使用DevEco Studio 5.0 才可编译运行。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+
+```
+git init
+git config core.sparsecheckout true
+echo code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
+git pull origin master
+```

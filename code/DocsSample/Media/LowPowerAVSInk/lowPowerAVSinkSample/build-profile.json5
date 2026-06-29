@@ -8,14 +8,13 @@
         //指定HarmonyOS应用/服务兼容的最低版本。注意使用英文.和()
         "targetSdkVersion": "6.0.0(20)",
         //指定HarmonyOS应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
-        "runtimeOS": "HarmonyOS",
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true
           }
         }
-        //指定为HarmonyOS
       }
     ],
     "buildModeSet": [
