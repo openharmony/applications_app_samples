@@ -23,13 +23,17 @@ struct RepeatLazyLoadingSync {
       List({ space: 5 }) {
         Repeat(this.arr)
           .virtualScroll({
-            onTotalCount: () => { return 100; },
+            onTotalCount: () => {
+              return 100;
+            },
             // 实现数据懒加载。
             onLazyLoading: (index: number) => {
               // 创建占位符。
               this.arr[index] = '';
               // 模拟高耗时加载过程，通过异步任务加载数据。
-              setTimeout(() => { this.arr[index] = index.toString(); }, 1000);
+              setTimeout(() => {
+                this.arr[index] = index.toString();
+              }, 1000);
             }
           })
           .each((obj: RepeatItem<string>) => {
@@ -42,7 +46,7 @@ struct RepeatLazyLoadingSync {
           })
       }
       .height('100%')
-      .border({ width: 1})
+      .border({ width: 1 })
     }
   }
 }

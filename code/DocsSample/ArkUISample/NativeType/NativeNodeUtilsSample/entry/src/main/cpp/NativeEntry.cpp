@@ -669,7 +669,7 @@ napi_value CreateNativeMessageRoot(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 避免重复创建导致的重复挂载。
+    // 避免重复创建导致的重复挂载
     NativeEntry::GetInstance()->DisposeRootNode();
 
     // 获取NodeContent
