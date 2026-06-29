@@ -438,7 +438,7 @@ async function viewAudioCapturerState(updateCallback?: (msg: string, isError: bo
   if (audioCapturer !== undefined) {
     // [Start view_AudioCapturerState]
     let audioCapturerState: audio.AudioState = audioCapturer.state;
-    console.info(`Current state is: ${audioCapturerState}`)
+    console.info(`Current state is: ${audioCapturerState }`)
     // [End view_AudioCapturerState]
     const stateMsg = `Current state is: ${audioCapturerState}`;
     if (updateCallback) {
