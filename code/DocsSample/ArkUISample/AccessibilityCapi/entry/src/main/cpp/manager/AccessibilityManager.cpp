@@ -39,9 +39,11 @@ void FillEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_AccessibilityEleme
                ArkUI_AccessibilityEventType eventType, std::string announcedText)
 {
     if (eventInfo == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "FillEvent eventInfo is nullptr");
         return;
     }
     if (elementInfo == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "FillEvent elementInfo is nullptr");
         return;
     }
     // 设置事件类型
@@ -50,7 +52,8 @@ void FillEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_AccessibilityEleme
     OH_ArkUI_AccessibilityEventSetElementInfo(eventInfo, elementInfo);
     
     if (eventType == ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY && announcedText.size() > 0) {
-        // 给无障碍节点设置优先播报的无障碍文本
+        // 给无障碍节点设置优先播报的无障碍文本。
+        // 该 Set 接口为同步调用且会拷贝文本，announcedText 为按值传入的局部对象，其生命周期覆盖本次调用，故直接传 data() 安全。
         OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility(eventInfo, announcedText.data());
     }
 }
