@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "该模板实现了列表页的功能"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AVCodec"
+    },
+    {
+      "name": "reason",
+      "value": "label"
+    },
+    {
+      "name": "playing",
+      "value": "重新选择资源(Release后"
+    },
+    {
+      "name": "play",
+      "value": "初始化资源"
+    },
+    {
+      "name": "alert",
+      "value": "未选择视频！"
+    },
+    {
+      "name": "alert1",
+      "value": "本设备相机不支持此类型录像流，将切换至默认配置"
+    },
+    {
+      "name": "record",
+      "value": "录制"
+    },
+    {
+      "name": "saveButtonNote",
+      "value": "是否允许AVCodecVideo保存拍摄的视频到图库？"
+    },
+    {
+      "name": "saveButtonCancel",
+      "value": "取消"
+    },
+    {
+      "name": "saveButtonTitle",
+      "value": "视频保存位置确认"
+    },
+    {
+      "name": "full_width",
+      "value": "100%"
+    },
+    {
+      "name": "full_height",
+      "value": "100%"
+    }
+  ]
+}
