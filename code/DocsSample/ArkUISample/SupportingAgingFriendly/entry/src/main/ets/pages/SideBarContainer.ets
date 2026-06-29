@@ -26,12 +26,10 @@ const NUMBER3 = 3;
 @Entry
 @Component
 struct SideBarContainerExample {
-  @State currentFontSizeScale: number = NUMBER1;
   normalIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
   selectedIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
   @State arr: number[] = [NUMBER1, NUMBER2, NUMBER3];
   @State current: number = NUMBER1;
-  @State title: string = 'Index01';
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -46,7 +44,6 @@ struct SideBarContainerExample {
           }
           .onClick(() => {
             this.current = item;
-            this.title = 'Index0' + item;
           })
         }, (item: number) => item.toString())
       }.width('100%')
