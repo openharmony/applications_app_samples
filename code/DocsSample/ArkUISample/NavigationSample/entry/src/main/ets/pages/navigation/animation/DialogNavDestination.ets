@@ -22,7 +22,7 @@ export function DialogNavDestinationBuilder() {
 @Component
 export struct DialogNavDestination {
   stack: NavPathStack = AppStorage.get<NavPathStack>('basicNavigationStack')!;
-  @State backColor: ResourceColor = '#0000000';
+  @State backColor: ResourceColor = '#00000000';
 
   build() {
     NavDestination() {
@@ -38,13 +38,13 @@ export struct DialogNavDestination {
     .backgroundColor(this.backColor)
     .mode(NavDestinationMode.DIALOG)
     .onWillAppear(() => {
-      //启动时候蒙层渐现
+      // 启动时蒙层渐现
       this.getUIContext().animateTo({ duration:450 }, () => {
         this.backColor = '#66000000';
       });
     })
     .onWillDisappear(() => {
-      // 消失时候蒙层渐隐
+      // 消失时蒙层渐隐
       this.getUIContext().animateTo({ duration: 450 }, () => {
         this.backColor = '#00000000';
       });

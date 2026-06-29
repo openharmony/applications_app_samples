@@ -78,7 +78,7 @@ void NativeEntry::UpdateSwiperAttribute(ArkUI_NodeHandle swiper, ArkUI_NativeNod
 void NativeEntry::UpdateIndicatorAttribute(ArkUI_NodeHandle swiper, ArkUI_NativeNodeAPI_1 *nodeApi)
 {
     // [Start indicator_attribute]
-    // 设置导航导航指示器属性
+    // 设置导航指示器属性
     ArkUI_SwiperIndicator *swiperIndicatorStyle = OH_ArkUI_SwiperIndicator_Create(ARKUI_SWIPER_INDICATOR_TYPE_DOT);
     OH_ArkUI_SwiperIndicator_SetEndPosition(swiperIndicatorStyle, 0);
     OH_ArkUI_SwiperIndicator_SetSelectedColor(swiperIndicatorStyle, INDICATOR_COLOR_SELECTED);

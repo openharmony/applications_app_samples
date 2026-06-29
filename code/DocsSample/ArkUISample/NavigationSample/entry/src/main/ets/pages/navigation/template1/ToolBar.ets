@@ -19,7 +19,7 @@ let toolTmp: ToolbarItem = {
   'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',
   'action': () => {}
 };
-let tooBar: ToolbarItem[] = [toolTmp,toolTmp,toolTmp];
+let toolBar: ToolbarItem[] = [toolTmp,toolTmp,toolTmp];
 // [StartExclude ToolBar]
 @Entry
 @Component
@@ -74,7 +74,7 @@ struct ToolBar {
         .margin({ top: 12 })
         // [EndExclude ToolBar]
       }
-      .toolbarConfiguration(tooBar)
+      .toolbarConfiguration(toolBar)
       // [End ToolBar]
       // 请将$r('app.string.mainTitle')替换为实际资源文件，在本示例中该资源文件的value值为"主标题"
       .title($r('app.string.mainTitle'))
