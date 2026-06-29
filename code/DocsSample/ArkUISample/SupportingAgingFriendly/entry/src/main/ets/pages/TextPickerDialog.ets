@@ -58,7 +58,7 @@ struct TextPickerExample {
   linesNum(max: number): void {
     let items: string[] = this.triggered.split('\n').filter(item => item != '');
     if (items.length > max) {
-      this.showTriggered = items.slice(-this.maxLines).join('\n');
+      this.showTriggered = items.slice(-max).join('\n');
     } else {
       this.showTriggered = this.triggered;
     }
