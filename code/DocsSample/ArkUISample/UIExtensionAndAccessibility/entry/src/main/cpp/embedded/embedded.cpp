@@ -27,9 +27,9 @@
 void onError(int32_t code, const char *name, const char *message) {}
 void onTerminated(int32_t code, AbilityBase_Want *want) {}
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
-#define SIZE_300 300
-#define SIZE_401 401
-#define SIZE_480 480
+#define SIZE_300 300 // 节点的宽/高数值，单位 vp（用于设置 NODE_WIDTH/NODE_HEIGHT）
+#define SIZE_401 401 // OH_ArkUI_NodeContent_AddNode 的返回结果码（非尺寸值，表示节点添加异常）
+#define SIZE_480 480 // 节点宽/高的初始数值，单位 vp（作为 ArkUI_NumberValue 的初始值）
 //[StartExclude embeddedComponentCTest_start]
 
 napi_value embeddedNode(napi_env env, napi_callback_info info)
@@ -52,7 +52,8 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
                                    .moduleName = "entry"};       // 由元能力提供接口
     AbilityBase_Want *want = OH_AbilityBase_CreateWant(Element); // 由元能力提供接口
     if (want == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "AbilityBase_Want", "~PluginManager");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "AbilityBase_Want", "CreateWant failed");
+        return;
     }
     ArkUI_AttributeItem itemobjwant = {.object = want};
     nodeAPI->setAttribute(embeddedNode, NODE_EMBEDDED_COMPONENT_WANT, &itemobjwant);
@@ -65,6 +66,8 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
 
     ArkUI_AttributeItem itemobjembeddedNode = {.object = embeddedNode_option};
     nodeAPI->setAttribute(embeddedNode, NODE_EMBEDDED_COMPONENT_OPTION, &itemobjembeddedNode);
+    // 属性设置完成后释放 embeddedNode_option 资源，避免内存泄漏
+    OH_ArkUI_EmbeddedComponentOption_Dispose(embeddedNode_option);
 
     // 设置基本属性，如宽高
     ArkUI_NumberValue value[] = {SIZE_480};
@@ -76,7 +79,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     // 创建Column
     ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     nodeAPI->setAttribute(column, NODE_WIDTH, &item);
-    ArkUI_NumberValue column_bc[] = {{.u32 = 0xFFF00BB}};
+    ArkUI_NumberValue column_bc[] = {{.u32 = 0xFFFF00BB}};
     ArkUI_AttributeItem column_item = {column_bc, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &column_item);
     ArkUI_AttributeItem column_id = {.string = "Column_CAPI"};

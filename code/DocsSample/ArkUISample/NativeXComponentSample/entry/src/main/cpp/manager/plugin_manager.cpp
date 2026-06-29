@@ -593,7 +593,7 @@ napi_value PluginManager::UnbindNode(napi_env env, napi_callback_info info)
     std::string nodeId = value2String(env, args[0]);
     ArkUI_NodeHandle node;
     if (nodeHandleMap_.find(nodeId) == nodeHandleMap_.end()) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "SetNeedSoftKeyboard", "nodeId not exit error");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "UnbindNode", "nodeId not exit error");
         return nullptr;
     }
     node = nodeHandleMap_[nodeId];
