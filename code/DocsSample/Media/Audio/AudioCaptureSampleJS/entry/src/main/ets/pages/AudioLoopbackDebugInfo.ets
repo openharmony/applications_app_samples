@@ -119,7 +119,7 @@ async function enable(updateCallback?: (msg: string, isError: boolean) => void):
 function printAppInfo(updateCallback?: (msg: string, isError: boolean) => void): void {
 // [EndExclude print_AppInfo]
   // [StartExclude print_AppInfo]
-  let debugManager = audio.getAudioManager().getDebugManager();
+  let debugManager = audio.getAudioManager().getDebuggingManager();
   // [EndExclude print_AppInfo]
   // 输出到hilog日志。
   debugManager.printAppInfo(-1);
@@ -152,7 +152,7 @@ function printLoopbackInfo(updateCallback?: (msg: string, isError: boolean) => v
     return;
   }
   // [StartExclude print_LoopbackInfo]
-  let debugManager = audio.getAudioManager().getDebugManager();
+  let debugManager = audio.getAudioManager().getDebuggingManager();
   // [EndExclude print_LoopbackInfo]
   // 输出到hilog日志。
   debugManager.printLoopbackInfo(audioLoopback, -1);
