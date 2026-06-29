@@ -46,6 +46,7 @@ export namespace WorkSchedulerSystem {
 
   export async function stopWork(key1: string, module: string): Promise<void> {
     // [Start stopWork]
+    // 创建workInfo
     let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
