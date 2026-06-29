@@ -43,10 +43,8 @@ export default class PersistentDataFormAbility extends FormExtensionAbility {
       }
     ];
 
-    let formBinding = {
-      data: JSON.stringify(formData),
-      proxies: proxies
-    };
+    let formBinding = formBindingData.createFormBindingData(formData);
+ 	  formBinding.proxies = proxies;
     return formBinding;
   }
 

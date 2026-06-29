@@ -17,7 +17,7 @@
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = 'PreferencesUtil';
+const TAG: string = 'PreferencesUtil -->';
 const MY_STORE: string = 'myStore';
 const key: string = 'formID';
 

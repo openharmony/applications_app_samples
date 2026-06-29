@@ -18,7 +18,7 @@ import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { FormData } from './CommonData';
 
-const TAG: string = 'PreferencesUtil';
+const TAG: string = 'PreferencesUtil -->';
 const MY_STORE: string = 'myStore';
 
 export class PreferencesUtil {

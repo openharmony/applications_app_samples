@@ -58,7 +58,7 @@
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        "exported": true,
+        "exported": true
       }
     ],
     // [End FormEditUIAbility_modulejson5]
