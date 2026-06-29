@@ -304,7 +304,7 @@ export class LazyColumnLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   /**
    * adjustAnchorPosition - 调整锚点位置保持滚动稳定
    *
-   * 作用：测量完成后调整滚动偏移，确保锚点保持在相对可视区域的相同位置
+   * 作用：测量完成后调整滚动偏移量，确保锚点保持在相对可视区域的相同位置
    */
   private adjustAnchorPosition(helper: LazyLayoutHelper): void {
     if (this.anchorChildIndex >= 0) {
@@ -522,7 +522,9 @@ export class LazyColumnLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
 
     for (; currIndex >= 0; currIndex--) {
       let itemHeight = 0;
+      // [Start lazy_custom_layout_get_child_not_expand]
       let child = self.getChild(currIndex, ExpandMode.LAZY_NOT_EXPAND);
+      // [End lazy_custom_layout_get_child_not_expand]
       if (child) {
         child.measure(childConstraint);
         itemHeight = child.getMeasuredSize().height;
