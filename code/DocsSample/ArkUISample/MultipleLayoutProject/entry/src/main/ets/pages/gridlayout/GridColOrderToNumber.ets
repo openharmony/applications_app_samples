@@ -42,7 +42,7 @@ struct GridColOrderToNumber {
           Text('4')
         }.width('100%').height('50vp')
       }.backgroundColor('rgb(39,135,217)')
-    }
+    }.border({ width: 1, color: 'rgb(39,135,217)' }).height('200vp')
     // [End GridColOrderToNumber_start]
   }
 }

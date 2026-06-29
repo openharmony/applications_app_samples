@@ -103,6 +103,12 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_MARGIN_PERCENT, &item);
     }
+    void SetPercentMargin(float top, float right, float bottom, float left)
+    {
+        ArkUI_NumberValue value[] = {{.f32 = top}, {.f32 = right}, {.f32 = bottom}, {.f32 = left}};
+        ArkUI_AttributeItem item = {value, 4};
+        nativeModule_->setAttribute(handle_, NODE_MARGIN_PERCENT, &item);
+    }
     // [End layout_spacing_node]
     // [Start layout_border_node]
     void SetBorderWidth(float width)

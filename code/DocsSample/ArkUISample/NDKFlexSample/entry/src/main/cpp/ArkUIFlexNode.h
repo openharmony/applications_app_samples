@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start flex_flex_node]
 #ifndef NDKFLEXSAMPLE_ARKUIFLEXNODE_H
 #define NDKFLEXSAMPLE_ARKUIFLEXNODE_H
 
 #include "ArkUINode.h"
 
 namespace NativeModule {
+// [Start flex_flex_node]
 class ArkUIFlexNode : public ArkUINode {
 public:
     ArkUIFlexNode()
@@ -40,7 +40,7 @@ public:
         nativeModule_->setAttribute(handle_, NODE_FLEX_OPTION, &item);
     }
 };
+// [End flex_flex_node]
 } // namespace NativeModule
 
 #endif // NDKFLEXSAMPLE_ARKUIFLEXNODE_H
-// [End flex_flex_node]

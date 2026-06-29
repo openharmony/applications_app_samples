@@ -32,6 +32,8 @@ struct SpanNumberExample {
         .backgroundColor(color)
       })
     }
+    .border({ color: 'rgb(39,135,217)', width: 2 })
+    .height('150vp')
   }
 }
 // [End GridColSpanToNumber_start]

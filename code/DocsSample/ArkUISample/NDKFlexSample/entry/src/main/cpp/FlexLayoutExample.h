@@ -275,7 +275,7 @@ inline std::shared_ptr<ArkUIFlexNode> CreateFlexWrapExample()
 {
     auto flex = CreateFlexContainer();
     const auto flexColors = CreateFlexColorSet();
-    for (int32_t index = 0; index < static_cast<int32_t>(flexColors.size()); ++index) {
+    for (int32_t index = 0; index < static_cast<int32_t>(flexColors.size()); ++index) { // 循环遍历数组，添加一组子节点
         flex->AddChild(CreateFlexExampleItem(index, flexColors[index]));
     }
     return flex;
