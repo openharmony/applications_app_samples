@@ -21,9 +21,9 @@
         "name": "default",
         "signingConfig": "default",
         //Specify the version of OpenHarmony application/service to be used during compilation.
-        "compileSdkVersion": 11,
+        "compileSdkVersion": "26.0.0",
         //Specify the minimum version of OpenHarmony that the application/service is compatible with.
-        "compatibleSdkVersion": 11,
+        "compatibleSdkVersion": "26.0.0",
         //Specify the target version of OpenHarmony for the application/service. If not set, it defaults to compatibleSdkVersion.
         "targetSdkVersion": 11,
         //Specify OpenHarmony as the target platform.
