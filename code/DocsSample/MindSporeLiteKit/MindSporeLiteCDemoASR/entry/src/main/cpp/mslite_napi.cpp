@@ -52,7 +52,7 @@ const int WHISPER_EOT = 50257;
 const int WHISPER_BLANK = 220;
 const int WHISPER_NO_SPEECH = 50362;
 const int WHISPER_N_TEXT_CTX = 448;
-const int WHISPER_N_TEXT_STATE = 384; // for tiny
+const int WHISPER_N_TEXT_STATE = 384;
 constexpr int WHISPER_SAMPLE_RATE = 16000;
 // [End napi_asr_constants]
 
@@ -145,7 +145,7 @@ void DestroyModelBuffer(void **buffer)
 
 OH_AI_ModelHandle CreateMSLiteModel(BinBuffer &bin)
 {
-    // Set executing context for model.
+    // 创建并配置上下文
     auto context = OH_AI_ContextCreate();
     if (context == nullptr) {
         DestroyModelBuffer(&bin.first);
@@ -156,7 +156,7 @@ OH_AI_ModelHandle CreateMSLiteModel(BinBuffer &bin)
     OH_AI_DeviceInfoSetEnableFP16(cpu_device_info, false);
     OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
 
-    // Create model
+    // 创建模型
     auto model = OH_AI_ModelCreate();
     if (model == nullptr) {
         DestroyModelBuffer(&bin.first);
@@ -164,7 +164,7 @@ OH_AI_ModelHandle CreateMSLiteModel(BinBuffer &bin)
         return nullptr;
     }
 
-    // Build model object
+    // 加载与编译模型，模型的类型为OH_AI_MODELTYPE_MINDIR
     auto build_ret = OH_AI_ModelBuild(model, bin.first, bin.second, OH_AI_MODELTYPE_MINDIR, context);
     DestroyModelBuffer(&bin.first);
     if (build_ret != OH_AI_STATUS_SUCCESS) {
@@ -205,9 +205,10 @@ void SaveToBinaryFile(const std::vector<float>& data, const std::string& filenam
 }
 
 // [Start napi_asr_RunMSLiteModel]
+// 执行模型推理
 int RunMSLiteModel(OH_AI_ModelHandle model, std::vector<BinBuffer> inputBins)
 {
-    // Set input data for model.
+    // 设置模型的输入数据
     auto inputs = OH_AI_ModelGetInputs(model);
     for(int i = 0; i < inputBins.size(); i++)
     {
@@ -218,10 +219,10 @@ int RunMSLiteModel(OH_AI_ModelHandle model, std::vector<BinBuffer> inputBins)
         }
     }
 
-    // Get model output.
+    // 获取模型的输出张量
     auto outputs = OH_AI_ModelGetOutputs(model);
 
-    // Predict model.
+    // 模型推理
     auto predict_ret = OH_AI_ModelPredict(model, inputs, &outputs, nullptr, nullptr);
     if (predict_ret != OH_AI_STATUS_SUCCESS) {
         OH_AI_ModelDestroy(&model);
@@ -230,7 +231,7 @@ int RunMSLiteModel(OH_AI_ModelHandle model, std::vector<BinBuffer> inputBins)
     }
     LOGD("MS_LITE_LOG: Run MSLite model Predict success.\n");
 
-    // Print output tensor data.
+    // 打印输出数据
     LOGD("MS_LITE_LOG: Get model outputs:\n");
     for (size_t i = 0; i < outputs.handle_num; i++) {
         auto tensor = outputs.handle_list[i];
@@ -473,7 +474,7 @@ std::vector<std::string> ProcessDataLines(const BinBuffer token_txt)
 
 static napi_value RunDemo(napi_env env, napi_callback_info info)
 {
-    // run demo
+    // 执行样例推理
     napi_value error_ret;
     napi_create_int32(env, -1, &error_ret);
     size_t argc = 1;
@@ -481,7 +482,7 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     auto resourcesManager = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
 
-    // preprocess
+    // 数据预处理
     AudioFile<float> audioFile;
     std::string filePath = "zh.wav";
     auto audioBin = ReadBinFile(resourcesManager, filePath);
@@ -505,10 +506,10 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     int n_fft = 480;
     int n_hop = 160;
     int n_mel = 80;
-    int fmin = 0; // Minimum frequency, default value is 0.0 Hz
+    int fmin = 0; // 最小频率，默认值为0.0 Hz
     int fmax =
         sr /
-        2.0; // Maximum frequency, default value is half of the sampling rate (sr / 2.0), i.e., the Nyquist frequency.
+        2.0; // 最大频率，默认值为采样率（sr/2.0）的一半
     audio.insert(audio.end(), padding, 0.0f);
     std::vector<std::vector<float>> mels_T =
         librosa::Feature::melspectrogram(audio, sr, n_fft, n_hop, "hann", true, "reflect", 2.f, n_mel, fmin, fmax);
@@ -524,7 +525,7 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
 
     BinBuffer inputMelsBin(inputMels.data(), inputMels.size() * sizeof(float));
 
-    // tiny-encoder.ms predict
+    // tiny-encoder.ms模型推理
     auto encoderBin = ReadBinFile(resourcesManager, "tiny-encoder.ms");
     if (encoderBin.first == nullptr) {
         free(dataBuffer);
@@ -545,9 +546,9 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     auto n_layer_cross_k = GetMSOutput(outputs.handle_list[0]);
     auto n_layer_cross_v = GetMSOutput(outputs.handle_list[1]);
 
-    // tiny-decoder-main.ms predict
+    // tiny-decoder-main.ms模型推理
     std::vector<int> SOT_SEQUENCE = {WHISPER_SOT,
-                                     WHISPER_SOT + 1 + 1, // wait to modify
+                                     WHISPER_SOT + 1 + 1,
                                      WHISPER_TRANSCRIBE, WHISPER_NO_TIMESTAMPS};
     BinBuffer sotSequence(SOT_SEQUENCE.data(), SOT_SEQUENCE.size() * sizeof(int));
 
@@ -571,13 +572,13 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     auto out_n_layer_self_k_cache_Bin = GetMSOutput(decoderMainOut.handle_list[1]);
     auto out_n_layer_self_v_cache_Bin = GetMSOutput(decoderMainOut.handle_list[2]);
 
-    // tiny-decoder-loop.ms predict
+    // tiny-decoder-loop.ms模型推理
     const std::string modelName3 = "tiny-decoder-loop.ms";
     auto modelBuffer3 = ReadBinFile(resourcesManager, modelName3);
     auto decoder_loop = CreateMSLiteModel(modelBuffer3);
 
-    const std::string dataName_embedding = "tiny-positional_embedding.bin"; // read input data
-    auto data_embedding = ReadBinFile(resourcesManager, dataName_embedding);
+    const std::string dataNameEmbedding = "tiny-positional_embedding.bin"; // 获取输入数据
+    auto data_embedding = ReadBinFile(resourcesManager, dataNameEmbedding);
     if (data_embedding.first == nullptr) {
         OH_AI_ModelDestroy(&encoder);
         OH_AI_ModelDestroy(&decoder_main);
