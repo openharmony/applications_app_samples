@@ -103,7 +103,7 @@ export async function activatePermissionExample() {
           console.error('error uri : ' + JSON.stringify(err.data[i].uri));
           console.error('error reason : ' + JSON.stringify(err.data[i].message));
           if (err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED) {
-            //可以选择进行持久化后再激活。
+            // 可以选择进行持久化后再激活。
           }
         }
       }
