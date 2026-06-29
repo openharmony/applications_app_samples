@@ -14,6 +14,7 @@
  */
 
 import { BackupExtensionAbility } from '@kit.CoreFileKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryBackupAbility extends BackupExtensionAbility {
   onBackup(): void {
@@ -24,5 +25,3 @@ export default class EntryBackupAbility extends BackupExtensionAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'onRestore');
   }
 }
-
-import { hilog } from '@kit.PerformanceAnalysisKit';

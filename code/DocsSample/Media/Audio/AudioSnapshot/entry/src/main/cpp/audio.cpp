@@ -16,6 +16,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -464,10 +465,7 @@ OH_AudioData_Callback_Result PcmPlayerOnWriteDataCallback(
         return AUDIO_DATA_CALLBACK_RESULT_VALID;
     }
 
-    errno_t memsetRet = memset_s(buffer, static_cast<size_t>(bufferLen), 0, static_cast<size_t>(bufferLen));
-    if (memsetRet != 0) {
-        OH_LOG_WARN(LOG_APP, "memset_s failed, ret=%{public}d", memsetRet);
-    }
+    std::fill_n(static_cast<unsigned char *>(buffer), static_cast<size_t>(bufferLen), 0);
     std::lock_guard<std::mutex> lock(context->mutex);
     if (context->file == nullptr || context->isCompleted) {
         context->isCompleted = true;

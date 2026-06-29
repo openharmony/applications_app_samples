@@ -64,6 +64,7 @@ class JsStreamState {
   playbackState: number = 0;
   playedBytes: number = 0;
   playTotalBytes: number = 0;
+  lastRecordUiRefreshAt: number = 0;
 
   constructor(id: number, name: string, source: number, sampleRate: number) {
     this.id = id;
@@ -167,10 +168,9 @@ interface PageItem {
 }
 
 const PAGE_OPTIONS: PageItem[] = [
-  { label: '概览', value: 0 },
-  { label: 'TS流', value: 1 },
-  { label: 'C流', value: 2 },
-  { label: '快照中心', value: 3 },
+  { label: 'TS流', value: 0 },
+  { label: 'C流', value: 1 },
+  { label: '快照中心', value: 2 },
 ];
 
 @Entry
@@ -211,10 +211,11 @@ struct Index {
   @State private tsAppSnapshotPath: string = '';
   @State private tsAppSnapshotText: string = '';
   @State private showTsAppSnapshotText: boolean = false;
-  @State private cAppSnapshotStatus: string = 'C app snapshot not generated';
+  @State private cAppSnapshotStatus: string = 'C app snapshot not generated (aggregated diagnostic)';
   @State private cAppSnapshotPath: string = '';
   @State private cAppSnapshotText: string = '';
   @State private showCAppSnapshotText: boolean = false;
+  @State private recentSnapshotFiles: string[] = ['No snapshot files generated yet'];
   @State private logs: string[] = [];
   @State private status: string = 'Ready';
   @State private refreshVersion: number = 0;
@@ -255,9 +256,11 @@ struct Index {
     // [Start print_app_snapshot_ts]
     // 打印应用快照到文件
     const path = this.context.filesDir + '/audio_snapshot.txt';
-    const file = fileio.openSync(path, 0o102 | 0o200, 0o644); // O_WRONLY | O_CREAT
-    debugManager.printAppInfo(file.fd);
-    fileio.closeSync(file);
+    let fd: number = this.openSnapshotFile(path);
+    if (fd >= 0) {
+      debugManager.printAppInfo(fd);
+      this.safeCloseFd(fd);
+    }
 
     // 也可将快照信息输出到hilog日志（fd < 0时输出到hilog）
     debugManager.printAppInfo(-1);
@@ -269,9 +272,11 @@ struct Index {
     // [Start print_capturer_snapshot_ts]
     // 打印指定录音实例的快照
     const path = this.context.filesDir + '/capturer_snapshot.txt';
-    const file = fileio.openSync(path, 0o102 | 0o200, 0o644);
-    debugManager.printCapturerInfo(capturer, file.fd);
-    fileio.closeSync(file);
+    let fd: number = this.openSnapshotFile(path);
+    if (fd >= 0) {
+      debugManager.printCapturerInfo(capturer, fd);
+      this.safeCloseFd(fd);
+    }
     // [End print_capturer_snapshot_ts]
   }
 
@@ -280,33 +285,44 @@ struct Index {
     // [Start print_renderer_snapshot_ts]
     // 打印指定播放实例的快照
     const path = this.context.filesDir + '/renderer_snapshot.txt';
-    const file = fileio.openSync(path, 0o102 | 0o200, 0o644);
-    debugManager.printRendererInfo(renderer, file.fd);
-    fileio.closeSync(file);
+    let fd: number = this.openSnapshotFile(path);
+    if (fd >= 0) {
+      debugManager.printRendererInfo(renderer, fd);
+      this.safeCloseFd(fd);
+    }
     // [End print_renderer_snapshot_ts]
   }
 
   private async exampleConcurrentSnapshot(): Promise<void> {
     // [Start concurrent_snapshot_ts]
     // 1. 创建并启动多个录音流
+    const debugManager: audio.AudioDebuggingManager = this.audioManager.getDebuggingManager();
+    const capturerOptions1: audio.AudioCapturerOptions = this.getJsCapturerOptions(this.jsStreams[0]);
+    const capturerOptions2: audio.AudioCapturerOptions = this.getJsCapturerOptions(this.jsStreams[1]);
     const capturer1: audio.AudioCapturer = await audio.createAudioCapturer(capturerOptions1);
     const capturer2: audio.AudioCapturer = await audio.createAudioCapturer(capturerOptions2);
     await capturer1.start();
     await capturer2.start();
 
     // 2. 分别获取各录音流的快照
-    const file1 = fileio.openSync(this.context.filesDir + '/capturer1_snapshot.txt', 0o102 | 0o200, 0o644);
-    debugManager.printCapturerInfo(capturer1, file1.fd);
-    fileio.closeSync(file1);
+    const file1Fd: number = this.openSnapshotFile(this.context.filesDir + '/capturer1_snapshot.txt');
+    if (file1Fd >= 0) {
+      debugManager.printCapturerInfo(capturer1, file1Fd);
+      this.safeCloseFd(file1Fd);
+    }
 
-    const file2 = fileio.openSync(this.context.filesDir + '/capturer2_snapshot.txt', 0o102 | 0o200, 0o644);
-    debugManager.printCapturerInfo(capturer2, file2.fd);
-    fileio.closeSync(file2);
+    const file2Fd: number = this.openSnapshotFile(this.context.filesDir + '/capturer2_snapshot.txt');
+    if (file2Fd >= 0) {
+      debugManager.printCapturerInfo(capturer2, file2Fd);
+      this.safeCloseFd(file2Fd);
+    }
 
     // 3. 也可以一次性获取应用级别的整体快照（包含所有活跃流信息）
-    const appFile = fileio.openSync(this.context.filesDir + '/app_snapshot.txt', 0o102 | 0o200, 0o644);
-    debugManager.printAppInfo(appFile.fd);
-    fileio.closeSync(appFile);
+    const appFileFd: number = this.openSnapshotFile(this.context.filesDir + '/app_snapshot.txt');
+    if (appFileFd >= 0) {
+      debugManager.printAppInfo(appFileFd);
+      this.safeCloseFd(appFileFd);
+    }
     // [End concurrent_snapshot_ts]
   }
 
@@ -460,6 +476,15 @@ struct Index {
       return `${text.slice(0, 1200)}\n......(truncated, see file for full content)`;
     } catch (error) {
       return `Failed to read snapshot: ${this.toErrorCode(error)}`;
+    }
+  }
+
+  private printSnapshotToHilog(action: () => void, tag: string): void {
+    try {
+      action();
+      this.appendLog(`${tag} mirrored to hilog`);
+    } catch (error) {
+      this.appendLog(`${tag} hilog mirror failed: ${this.toErrorCode(error)}`);
     }
   }
 
@@ -693,12 +718,45 @@ struct Index {
     }
   }
 
+  private getJsCapturerStateValue(stream: JsStreamState): number {
+    if (stream.capturer === null) {
+      return -1;
+    }
+    try {
+      return Number(stream.capturer.state);
+    } catch (error) {
+      return -1;
+    }
+  }
+
+  private clearJsReadDataBinding(stream: JsStreamState, scene: string): void {
+    if (stream.capturer !== null && stream.readCallback !== null) {
+      try {
+        stream.capturer.off('readData', stream.readCallback);
+      } catch (error) {
+        this.appendLog(`${stream.name} off readData failed during ${scene}: ${this.toErrorCode(error)}`);
+      }
+    }
+    stream.readCallback = null;
+    stream.lastRecordUiRefreshAt = 0;
+    this.finishJsRecordFile(stream);
+  }
+
+  private refreshJsRecordingProgress(stream: JsStreamState): void {
+    const now: number = Date.now();
+    if (now - stream.lastRecordUiRefreshAt < 200) {
+      return;
+    }
+    stream.lastRecordUiRefreshAt = now;
+    this.forceRefresh();
+  }
+
   private async createJsCapturer(stream: JsStreamState): Promise<void> {
     if (!(await this.requestMicrophonePermission())) {
       return;
     }
     if (stream.capturer !== null) {
-      this.status = `${stream.name} already created`;
+      this.status = `${stream.name} already created (${this.describeCapturerState(this.getJsCapturerStateValue(stream))})`;
       this.forceRefresh();
       return;
     }
@@ -725,11 +783,19 @@ struct Index {
     if (stream.capturer === null) {
       return;
     }
+    const stateValue: number = this.getJsCapturerStateValue(stream);
+    if (stateValue === audio.AudioState.STATE_RUNNING) {
+      this.status = `${stream.name} already running`;
+      this.appendLog(`${stream.name} start skipped, already running`);
+      this.forceRefresh();
+      return;
+    }
     try {
       stream.savePath = this.buildPcmPath('js_record', stream.id);
       stream.savedBytes = 0;
       stream.saveRet = 0;
-      this.finishJsRecordFile(stream);
+      stream.lastRecordUiRefreshAt = 0;
+      this.clearJsReadDataBinding(stream, 'start');
       stream.recordFd = fileio.openSync(
         stream.savePath,
         fileio.OpenMode.WRITE_ONLY | fileio.OpenMode.CREATE | fileio.OpenMode.TRUNC
@@ -741,7 +807,7 @@ struct Index {
         try {
           const written: number = Number(fileio.writeSync(stream.recordFd, buffer));
           stream.savedBytes += written;
-          this.forceRefresh();
+          this.refreshJsRecordingProgress(stream);
         } catch (error) {
           stream.saveRet = this.toErrorCode(error);
           this.forceRefresh();
@@ -755,28 +821,37 @@ struct Index {
       this.forceRefresh();
     } catch (error) {
       this.status = `${stream.name} start failed: ${this.toErrorCode(error)}`;
-      this.finishJsRecordFile(stream);
+      this.clearJsReadDataBinding(stream, 'start failure');
       this.forceRefresh();
     }
   }
 
   private async stopJsCapturer(stream: JsStreamState): Promise<void> {
     if (stream.capturer === null) {
+      this.status = `${stream.name} not created`;
+      this.forceRefresh();
       return;
     }
+    const stateValue: number = this.getJsCapturerStateValue(stream);
     try {
-      await stream.capturer.stop();
-      if (stream.readCallback !== null) {
-        stream.capturer.off('readData', stream.readCallback);
+      if (stateValue === audio.AudioState.STATE_RUNNING) {
+        await stream.capturer.stop();
+        this.clearJsReadDataBinding(stream, 'stop');
+        this.status = `${stream.name} recording stopped`;
+        this.appendLog(`${stream.name} stopped, saved ${stream.savedBytes} bytes`);
+      } else if (stateValue === audio.AudioState.STATE_STOPPED) {
+        this.clearJsReadDataBinding(stream, 'stop when stopped');
+        this.status = `${stream.name} already stopped`;
+        this.appendLog(`${stream.name} stop skipped, already stopped`);
+      } else {
+        this.status = `${stream.name} stop skipped, current state: ${this.describeCapturerState(stateValue)}`;
+        this.appendLog(`${stream.name} stop skipped in state ${this.describeCapturerState(stateValue)}`);
       }
-      stream.readCallback = null;
-      this.finishJsRecordFile(stream);
-      this.status = `${stream.name} recording stopped`;
-      this.appendLog(`${stream.name} stopped, saved ${stream.savedBytes} bytes`);
       this.refreshJsRuntime(stream);
       this.forceRefresh();
     } catch (error) {
       this.status = `${stream.name} stop failed: ${this.toErrorCode(error)}`;
+      this.appendLog(`${stream.name} stop failed: ${this.toErrorCode(error)}`);
       this.forceRefresh();
     }
   }
@@ -785,15 +860,15 @@ struct Index {
     if (stream.capturer === null) {
       return;
     }
-    try {
-      if (stream.readCallback !== null) {
-        stream.capturer.off('readData', stream.readCallback);
+    const stateValue: number = this.getJsCapturerStateValue(stream);
+    if (stateValue === audio.AudioState.STATE_RUNNING) {
+      try {
+        await stream.capturer.stop();
+      } catch (error) {
+        this.appendLog(`${stream.name} stop before release failed: ${this.toErrorCode(error)}`);
       }
-    } catch (error) {
-      this.appendLog(`${stream.name} off readData failed: ${this.toErrorCode(error)}`);
     }
-    stream.readCallback = null;
-    this.finishJsRecordFile(stream);
+    this.clearJsReadDataBinding(stream, 'release');
     try {
       await stream.capturer.release();
     } catch (error) {
@@ -908,7 +983,7 @@ struct Index {
       return;
     }
     const path: string = this.buildSnapshotPath('js_capturer', stream.id);
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.captureSnapshotStatus = `Failed to open capture snapshot file: ${path}`;
       this.status = stream.captureSnapshotStatus;
@@ -917,6 +992,11 @@ struct Index {
     }
     try {
       manager.printCapturerInfo(stream.capturer, fd);
+      this.printSnapshotToHilog(() => {
+        manager.printCapturerInfo(stream.capturer, -1);
+      }, `${stream.name} JS capture snapshot`);
+      this.safeCloseFd(fd);
+      fd = -1;
       stream.captureSnapshotPath = path;
       stream.captureSnapshotStatus = `Capture snapshot saved: ${path}`;
       stream.captureSnapshotText = this.readSnapshotText(path);
@@ -950,7 +1030,7 @@ struct Index {
       return;
     }
     const path: string = this.buildSnapshotPath('js_renderer', stream.id);
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.playbackSnapshotStatus = `Failed to open playback snapshot file: ${path}`;
       this.status = stream.playbackSnapshotStatus;
@@ -959,6 +1039,11 @@ struct Index {
     }
     try {
       manager.printRendererInfo(stream.playbackRenderer, fd);
+      this.printSnapshotToHilog(() => {
+        manager.printRendererInfo(stream.playbackRenderer, -1);
+      }, `${stream.name} JS playback snapshot`);
+      this.safeCloseFd(fd);
+      fd = -1;
       stream.playbackSnapshotPath = path;
       stream.playbackSnapshotStatus = `Playback snapshot saved: ${path}`;
       stream.playbackSnapshotText = this.readSnapshotText(path);
@@ -1081,7 +1166,7 @@ struct Index {
 
   private printNativeCaptureSnapshot(stream: NativeStreamState): void {
     const path: string = this.buildSnapshotPath('c_capturer', stream.id);
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.captureSnapshotStatus = `Failed to open capture snapshot file: ${path}`;
       this.status = stream.captureSnapshotStatus;
@@ -1096,6 +1181,10 @@ struct Index {
         stream.captureSnapshotText = '';
         stream.showCaptureSnapshotText = false;
       } else {
+        const hilogRet: number = audioNapi.lowLatencyCapturerPrintSnapshot(stream.id, -1);
+        this.appendLog(`${stream.name} C capture snapshot mirrored to hilog ret=${hilogRet}`);
+        this.safeCloseFd(fd);
+        fd = -1;
         stream.captureSnapshotPath = path;
         stream.captureSnapshotStatus = `Capture snapshot saved: ${path}`;
         stream.captureSnapshotText = this.readSnapshotText(path);
@@ -1115,7 +1204,7 @@ struct Index {
 
   private printNativePlaybackSnapshot(stream: NativeStreamState): void {
     const path: string = this.buildSnapshotPath('c_renderer', stream.id);
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.playbackSnapshotStatus = `Failed to open playback snapshot file: ${path}`;
       this.status = stream.playbackSnapshotStatus;
@@ -1130,6 +1219,10 @@ struct Index {
         stream.playbackSnapshotText = '';
         stream.showPlaybackSnapshotText = false;
       } else {
+        const hilogRet: number = audioNapi.pcmPlayerPrintSnapshot(stream.id, -1);
+        this.appendLog(`${stream.name} C playback snapshot mirrored to hilog ret=${hilogRet}`);
+        this.safeCloseFd(fd);
+        fd = -1;
         stream.playbackSnapshotPath = path;
         stream.playbackSnapshotStatus = `Playback snapshot saved: ${path}`;
         stream.playbackSnapshotText = this.readSnapshotText(path);
@@ -1158,7 +1251,7 @@ struct Index {
       return;
     }
     const path: string = this.buildTsAppSnapshotPath();
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       this.tsAppSnapshotStatus = `Failed to open TS app snapshot file: ${path}`;
       this.status = this.tsAppSnapshotStatus;
@@ -1167,16 +1260,25 @@ struct Index {
     }
     try {
       manager.printAppInfo(fd);
+      this.printSnapshotToHilog(() => {
+        manager.printAppInfo(-1);
+      }, 'TS app snapshot');
+      this.safeCloseFd(fd);
+      fd = -1;
       this.tsAppSnapshotPath = path;
-      this.tsAppSnapshotStatus = `TS app snapshot saved: ${path}`;
       this.tsAppSnapshotText = this.readSnapshotText(path);
+      this.tsAppSnapshotStatus = this.tsAppSnapshotText.length > 0 ?
+        `TS app snapshot saved: ${path}` :
+        `TS app snapshot saved but file is empty: ${path}`;
       this.showTsAppSnapshotText = true;
       this.status = this.tsAppSnapshotStatus;
+      this.appendLog(this.tsAppSnapshotStatus);
     } catch (error) {
       this.tsAppSnapshotStatus = `TS app snapshot failed: ${this.toErrorCode(error)}`;
       this.tsAppSnapshotText = '';
       this.showTsAppSnapshotText = false;
       this.status = this.tsAppSnapshotStatus;
+      this.appendLog(this.tsAppSnapshotStatus);
     } finally {
       this.safeCloseFd(fd);
       this.forceRefresh();
@@ -1185,7 +1287,7 @@ struct Index {
 
   private printCAppSnapshot(): void {
     const path: string = this.buildCAppSnapshotPath();
-    const fd: number = this.openSnapshotFile(path);
+    let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       this.cAppSnapshotStatus = `Failed to open C app snapshot file: ${path}`;
       this.status = this.cAppSnapshotStatus;
@@ -1195,15 +1297,23 @@ struct Index {
     try {
       const ret: number = audioNapi.audioDebuggingManagerPrintAppInfo(fd);
       if (ret !== 0) {
-        this.cAppSnapshotStatus = `C app snapshot failed: ${ret}`;
-        this.appendLog(`C app snapshot failed ret=${ret}`);
+        this.cAppSnapshotPath = '';
+        this.cAppSnapshotStatus = `C app snapshot failed: ${ret} (aggregated diagnostic; stream snapshots may still succeed)`;
+        this.appendLog(`C app snapshot failed ret=${ret}; this path aggregates app/session state and may fail independently of stream snapshots`);
         this.cAppSnapshotText = '';
         this.showCAppSnapshotText = false;
       } else {
+        const hilogRet: number = audioNapi.audioDebuggingManagerPrintAppInfo(-1);
+        this.appendLog(`C app snapshot mirrored to hilog ret=${hilogRet}`);
+        this.safeCloseFd(fd);
+        fd = -1;
         this.cAppSnapshotPath = path;
-        this.cAppSnapshotStatus = `C app snapshot saved: ${path}`;
         this.cAppSnapshotText = this.readSnapshotText(path);
+        this.cAppSnapshotStatus = this.cAppSnapshotText.length > 0 ?
+          `C app snapshot saved: ${path}` :
+          `C app snapshot saved but file is empty: ${path}`;
         this.showCAppSnapshotText = true;
+        this.appendLog(this.cAppSnapshotStatus);
       }
       this.status = this.cAppSnapshotStatus;
     } catch (error) {
@@ -1211,6 +1321,7 @@ struct Index {
       this.cAppSnapshotText = '';
       this.showCAppSnapshotText = false;
       this.status = this.cAppSnapshotStatus;
+      this.appendLog(this.cAppSnapshotStatus);
     } finally {
       this.safeCloseFd(fd);
       this.forceRefresh();
@@ -1218,28 +1329,48 @@ struct Index {
   }
 
   private printAllAvailableSnapshots(): void {
-    this.printTsAppSnapshot();
-    this.printCAppSnapshot();
+    const generatedFiles: string[] = [];
+    this.currentPage = 3;
+    this.recentSnapshotFiles = ['Capturing snapshot files...'];
+    this.forceRefresh();
+    this.refreshAll();
     for (let index: number = 0; index < this.jsStreams.length; index++) {
       const jsStream: JsStreamState = this.jsStreams[index];
       if (jsStream.capturer !== null) {
         this.printJsCaptureSnapshot(jsStream);
+        if (jsStream.captureSnapshotPath.length > 0) {
+          generatedFiles.push(`${jsStream.name} capture: ${jsStream.captureSnapshotPath}`);
+        }
       }
       if (jsStream.playbackRenderer !== null) {
         this.printJsPlaybackSnapshot(jsStream);
+        if (jsStream.playbackSnapshotPath.length > 0) {
+          generatedFiles.push(`${jsStream.name} playback: ${jsStream.playbackSnapshotPath}`);
+        }
       }
     }
     for (let index: number = 0; index < this.nativeStreams.length; index++) {
       const nativeStream: NativeStreamState = this.nativeStreams[index];
       if (nativeStream.streamRuntimeId >= 0 || nativeStream.stateText !== 'Released') {
         this.printNativeCaptureSnapshot(nativeStream);
+        if (nativeStream.captureSnapshotPath.length > 0) {
+          generatedFiles.push(`${nativeStream.name} capture: ${nativeStream.captureSnapshotPath}`);
+        }
       }
       if (nativeStream.playbackState !== this.nativePlayerIdle) {
         this.printNativePlaybackSnapshot(nativeStream);
+        if (nativeStream.playbackSnapshotPath.length > 0) {
+          generatedFiles.push(`${nativeStream.name} playback: ${nativeStream.playbackSnapshotPath}`);
+        }
       }
     }
-    this.appendLog('Triggered full snapshot capture for all active objects');
-    this.currentPage = 3;
+    this.refreshFrameworkSnapshot();
+    this.recentSnapshotFiles = generatedFiles.length > 0 ? generatedFiles : ['No snapshot files generated in this run'];
+    this.status = 'Full snapshot capture finished';
+    this.appendLog(`Full snapshot capture finished; files=${this.recentSnapshotFiles.length}`);
+    for (let index: number = 0; index < this.recentSnapshotFiles.length; index++) {
+      this.appendLog(`Snapshot file: ${this.recentSnapshotFiles[index]}`);
+    }
     this.forceRefresh();
   }
 
@@ -1374,6 +1505,70 @@ struct Index {
   }
 
   @Builder
+  private buildJsSnapshotCenterSection() {
+    Column({ space: 8 }) {
+      this.buildSectionTitle('TS 流快照', '这里展示每个 TS 流最近一次采集/播放快照结果。')
+      ForEach(this.jsStreams, (stream: JsStreamState) => {
+        Column({ space: 6 }) {
+          Text(stream.name)
+            .fontSize(12)
+            .fontWeight(FontWeight.Medium)
+            .width('100%');
+          this.buildSnapshotTextPanel(`${stream.name} 采集快照`, stream.captureSnapshotStatus,
+            stream.captureSnapshotPath, stream.captureSnapshotText, stream.showCaptureSnapshotText, () => {
+              stream.showCaptureSnapshotText = !stream.showCaptureSnapshotText;
+              this.forceRefresh();
+            })
+          this.buildSnapshotTextPanel(`${stream.name} 播放快照`, stream.playbackSnapshotStatus,
+            stream.playbackSnapshotPath, stream.playbackSnapshotText, stream.showPlaybackSnapshotText, () => {
+              stream.showPlaybackSnapshotText = !stream.showPlaybackSnapshotText;
+              this.forceRefresh();
+            })
+        }
+        .padding(10)
+        .backgroundColor('#F8FAFC')
+        .borderRadius(8);
+      }, (stream: JsStreamState) => `${stream.id}-${this.refreshVersion}`);
+    }
+    .padding(12)
+    .backgroundColor('#FFFFFF')
+    .borderRadius(10)
+    .border({ width: 1, color: '#E2E8F0' });
+  }
+
+  @Builder
+  private buildNativeSnapshotCenterSection() {
+    Column({ space: 8 }) {
+      this.buildSectionTitle('C 流快照', '这里展示每个 C 流最近一次采集/播放快照结果。')
+      ForEach(this.nativeStreams, (stream: NativeStreamState) => {
+        Column({ space: 6 }) {
+          Text(stream.name)
+            .fontSize(12)
+            .fontWeight(FontWeight.Medium)
+            .width('100%');
+          this.buildSnapshotTextPanel(`${stream.name} 采集快照`, stream.captureSnapshotStatus,
+            stream.captureSnapshotPath, stream.captureSnapshotText, stream.showCaptureSnapshotText, () => {
+              stream.showCaptureSnapshotText = !stream.showCaptureSnapshotText;
+              this.forceRefresh();
+            })
+          this.buildSnapshotTextPanel(`${stream.name} 播放快照`, stream.playbackSnapshotStatus,
+            stream.playbackSnapshotPath, stream.playbackSnapshotText, stream.showPlaybackSnapshotText, () => {
+              stream.showPlaybackSnapshotText = !stream.showPlaybackSnapshotText;
+              this.forceRefresh();
+            })
+        }
+        .padding(10)
+        .backgroundColor('#F8FAFC')
+        .borderRadius(8);
+      }, (stream: NativeStreamState) => `${stream.id}-${this.refreshVersion}`);
+    }
+    .padding(12)
+    .backgroundColor('#FFFFFF')
+    .borderRadius(10)
+    .border({ width: 1, color: '#E2E8F0' });
+  }
+
+  @Builder
   private buildJsStreamCard(stream: JsStreamState) {
     Column({ space: 6 }) {
       Text(stream.name)
@@ -1437,35 +1632,39 @@ struct Index {
             void this.releaseJsCapturer(stream);
           });
       }
-      Row({ space: 6 }) {
-        Button('采集快照')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.printJsCaptureSnapshot(stream);
-          });
-        Button('播放')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            void this.playJsRecording(stream);
-          });
-        Button('停止播放')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            void this.stopJsPlayback(stream);
-          });
-        Button('播放快照')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.printJsPlaybackSnapshot(stream);
-          });
+      Column({ space: 6 }) {
+        Row({ space: 6 }) {
+          Button('采集快照')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.printJsCaptureSnapshot(stream);
+            });
+          Button('播放快照')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.printJsPlaybackSnapshot(stream);
+            });
+        }
+        Row({ space: 6 }) {
+          Button('播放')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              void this.playJsRecording(stream);
+            });
+          Button('停止播放')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              void this.stopJsPlayback(stream);
+            });
+        }
       }
       Text(`State: ${stream.stateText} | streamId=${stream.streamId} | buffer=${stream.bufferSize}`)
         .fontSize(10)
@@ -1597,35 +1796,39 @@ struct Index {
             this.releaseNativeCapturer(stream);
           });
       }
-      Row({ space: 6 }) {
-        Button('采集快照')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.printNativeCaptureSnapshot(stream);
-          });
-        Button('播放')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.playNativeRecording(stream);
-          });
-        Button('停止播放')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.stopNativePlayback(stream);
-          });
-        Button('播放快照')
-          .height(32)
-          .fontSize(11)
-          .layoutWeight(1)
-          .onClick(() => {
-            this.printNativePlaybackSnapshot(stream);
-          });
+      Column({ space: 6 }) {
+        Row({ space: 6 }) {
+          Button('采集快照')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.printNativeCaptureSnapshot(stream);
+            });
+          Button('播放快照')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.printNativePlaybackSnapshot(stream);
+            });
+        }
+        Row({ space: 6 }) {
+          Button('播放')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.playNativeRecording(stream);
+            });
+          Button('停止播放')
+            .height(32)
+            .fontSize(11)
+            .layoutWeight(1)
+            .onClick(() => {
+              this.stopNativePlayback(stream);
+            });
+        }
       }
       Text(`State: ${stream.stateText} | streamId=${stream.streamRuntimeId} | buffer=${stream.bufferSize}`)
         .fontSize(10)
@@ -1704,7 +1907,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
         .fontColor('#0F172A')
         .width('100%');
-      Text('Concurrent snapshot verification: TS streams, C streams, app-level & stream-level snapshots')
+      Text('Concurrent snapshot verification: TS streams, C streams, stream-level snapshots, and aggregated app diagnostics')
         .fontSize(11)
         .fontColor('#475569')
         .width('100%');
@@ -1724,99 +1927,12 @@ struct Index {
   }
 
   @Builder
-  private buildOverviewPage() {
-    Column({ space: 10 }) {
-      Column({ space: 6 }) {
-        this.buildSectionTitle('全局播放配置', '所有 TS/C 流共享的播放参数。')
-        Row({ space: 6 }) {
-          this.buildSelectField('Usage', PLAYBACK_USAGE_OPTIONS, this.playbackUsage, (nextValue: number) => {
-            this.playbackUsage = nextValue;
-            this.forceRefresh();
-          })
-          this.buildSelectField('Sample Rate', SAMPLE_RATE_OPTIONS, this.playbackSampleRate, (nextValue: number) => {
-            this.playbackSampleRate = nextValue;
-            this.forceRefresh();
-          })
-        }
-        Row({ space: 6 }) {
-          this.buildSelectField('Channels', CHANNEL_OPTIONS, this.playbackChannelCount, (nextValue: number) => {
-            this.playbackChannelCount = nextValue;
-            this.forceRefresh();
-          })
-          this.buildSelectField('Format', SAMPLE_FORMAT_OPTIONS, this.playbackSampleFormat, (nextValue: number) => {
-            this.playbackSampleFormat = nextValue;
-            this.forceRefresh();
-          })
-        }
-      }
-      .padding(12)
-      .backgroundColor('#FFFFFF')
-      .borderRadius(10)
-      .border({ width: 1, color: '#E2E8F0' });
-
-      Column({ space: 8 }) {
-        this.buildSectionTitle('应用级快照', '通过 TS 和 C API 打印应用级快照，验证并发流信息。')
-        Row({ space: 6 }) {
-          Button('TS应用快照')
-            .height(32)
-            .fontSize(11)
-            .layoutWeight(1)
-            .onClick(() => {
-              this.printTsAppSnapshot();
-            });
-          Button('C应用快照')
-            .height(32)
-            .fontSize(11)
-            .layoutWeight(1)
-            .onClick(() => {
-              this.printCAppSnapshot();
-            });
-        }
-        this.buildSnapshotTextPanel('TS应用快照', this.tsAppSnapshotStatus,
-          this.tsAppSnapshotPath, this.tsAppSnapshotText, this.showTsAppSnapshotText, () => {
-            this.showTsAppSnapshotText = !this.showTsAppSnapshotText;
-            this.forceRefresh();
-          })
-        this.buildSnapshotTextPanel('C应用快照', this.cAppSnapshotStatus,
-          this.cAppSnapshotPath, this.cAppSnapshotText, this.showCAppSnapshotText, () => {
-            this.showCAppSnapshotText = !this.showCAppSnapshotText;
-            this.forceRefresh();
-          })
-      }
-      .padding(12)
-      .backgroundColor('#FFFFFF')
-      .borderRadius(10)
-      .border({ width: 1, color: '#E2E8F0' });
-
-      Column({ space: 6 }) {
-        this.buildSectionTitle('如何验证并发', '关注多流并发快照的正确性。')
-        Text('TS并发：同时创建 TS Stream 1 和 TS Stream 2，启动后打印采集快照和TS应用快照。')
-          .fontSize(9)
-          .width('100%');
-        Text('C并发：同时创建 C Stream 1 和 C Stream 2，启动后打印采集快照和C应用快照。')
-          .fontSize(9)
-          .width('100%');
-        Text('混合：同时启动1个 TS + 1个 C 流，打印所有应用快照和Framework快照。')
-          .fontSize(9)
-          .width('100%');
-        Text('播放：先录音，然后播放；播放过程中打印播放快照，验证并发快照正确性。')
-          .fontSize(9)
-          .width('100%');
-      }
-      .padding(12)
-      .backgroundColor('#FFFFFF')
-      .borderRadius(10)
-      .border({ width: 1, color: '#E2E8F0' });
-    }
-  }
-
-  @Builder
   private buildJsPage() {
     Column({ space: 8 }) {
       this.buildSectionTitle('TS 并发流', '同时创建两个 JS 采集流，打印采集/播放快照。')
       ForEach(this.jsStreams, (stream: JsStreamState) => {
         this.buildJsStreamCard(stream);
-      }, (stream: JsStreamState) => `${stream.id}`);
+      }, (stream: JsStreamState) => `${stream.id}-${this.refreshVersion}`);
     }
     .padding(12)
     .backgroundColor('#FFFFFF')
@@ -1830,7 +1946,7 @@ struct Index {
       this.buildSectionTitle('C 并发流', '同时创建两个 C 采集流，打印采集/播放快照。')
       ForEach(this.nativeStreams, (stream: NativeStreamState) => {
         this.buildNativeStreamCard(stream);
-      }, (stream: NativeStreamState) => `${stream.id}`);
+      }, (stream: NativeStreamState) => `${stream.id}-${this.refreshVersion}`);
     }
     .padding(12)
     .backgroundColor('#FFFFFF')
@@ -1842,7 +1958,7 @@ struct Index {
   private buildSnapshotCenterPage() {
     Column({ space: 10 }) {
       Column({ space: 8 }) {
-        this.buildSectionTitle('快照中心', '一次性捕获所有可用的应用级、采集级和播放级快照。')
+        this.buildSectionTitle('快照中心', '一次性捕获所有可用的采集级和播放级快照，并展示本次生成的 txt 文件路径。')
         Row({ space: 6 }) {
           Button('捕获所有快照')
             .height(32)
@@ -1852,21 +1968,33 @@ struct Index {
               this.printAllAvailableSnapshots();
             });
         }
-        this.buildSnapshotTextPanel('TS应用快照', this.tsAppSnapshotStatus,
-          this.tsAppSnapshotPath, this.tsAppSnapshotText, this.showTsAppSnapshotText, () => {
-            this.showTsAppSnapshotText = !this.showTsAppSnapshotText;
-            this.forceRefresh();
-          })
-        this.buildSnapshotTextPanel('C应用快照', this.cAppSnapshotStatus,
-          this.cAppSnapshotPath, this.cAppSnapshotText, this.showCAppSnapshotText, () => {
-            this.showCAppSnapshotText = !this.showCAppSnapshotText;
-            this.forceRefresh();
-          })
+        Text('这里仅展示本次批量捕获实际生成的 txt 文件路径，不再展示 TS/C 应用级快照卡片。')
+          .fontSize(9)
+          .width('100%');
+        Column({ space: 2 }) {
+          Text('本次捕获所有快照生成的文件列表')
+            .fontSize(10)
+            .fontWeight(FontWeight.Medium)
+            .width('100%');
+          ForEach(this.recentSnapshotFiles, (line: string) => {
+            Text(line)
+              .fontSize(9)
+              .fontColor('#475569')
+              .width('100%');
+          }, (line: string) => line);
+        }
+        .padding(8)
+        .backgroundColor('#F8FAFC')
+        .borderRadius(8);
       }
       .padding(12)
       .backgroundColor('#FFFFFF')
       .borderRadius(10)
       .border({ width: 1, color: '#E2E8F0' });
+
+      this.buildJsSnapshotCenterSection()
+
+      this.buildNativeSnapshotCenterSection()
 
       Column({ space: 6 }) {
         this.buildSectionTitle('Framework 快照', '系统观察到的活跃采集流。在并发场景下最有用。')
@@ -1904,10 +2032,8 @@ struct Index {
   @Builder
   private buildCurrentPage() {
     if (this.currentPage === 0) {
-      this.buildOverviewPage()
-    } else if (this.currentPage === 1) {
       this.buildJsPage()
-    } else if (this.currentPage === 2) {
+    } else if (this.currentPage === 1) {
       this.buildNativePage()
     } else {
       this.buildSnapshotCenterPage()
@@ -1917,6 +2043,11 @@ struct Index {
   build() {
     Scroll() {
       Column({ space: 10 }) {
+        Text(`${this.refreshVersion}`)
+          .fontSize(1)
+          .fontColor('#00000000')
+          .width(1)
+          .height(1);
         this.buildHeaderPanel()
         this.buildCurrentPage()
       }
