@@ -618,7 +618,7 @@ struct Index {
           .margin({ right: 12, bottom: 12 })
           .onClick(async () => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-            initArguments(context);
+            await initArguments(context);
             init();
             this.currentState = '已初始化';
           });
