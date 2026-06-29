@@ -2642,6 +2642,29 @@ void setCustomSpanText(ArkUI_NodeHandle &textContainer)
     }
 }
 
+void setTextTailIndents(ArkUI_NodeHandle &textContainer)
+{
+    auto text1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    const char *textContent1 =
+        "设置tailIndents单值\n设置tailIndents单值\n设置tailIndents单值\n设置tailIndents单值\n设置tailIndents单值";
+    ArkUI_AttributeItem textItem1 = { .string = textContent1 };
+    Manager::nodeAPI_->setAttribute(text1, NODE_TEXT_CONTENT, &textItem1);
+    ArkUI_NumberValue singleValue[] = { { .f32 = 50.0f } };
+    ArkUI_AttributeItem tailIndentItem1 = { .value = singleValue, .size = 1 };
+    Manager::nodeAPI_->setAttribute(text1, NODE_TEXT_TAIL_INDENTS, &tailIndentItem1);
+    Manager::nodeAPI_->addChild(textContainer, text1);
+    
+    auto text2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    const char *textContent2 =
+        "设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组";
+    ArkUI_AttributeItem textItem2 = { .string = textContent2 };
+    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_CONTENT, &textItem2);
+    ArkUI_NumberValue multiValues[] = { { .f32 = 0.0f }, { .f32 = 50.0f }, { .f32 = 100.0f } };
+    ArkUI_AttributeItem tailIndentItem2 = { .value = multiValues, .size = 3 };
+    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_TAIL_INDENTS, &tailIndentItem2);
+    Manager::nodeAPI_->addChild(textContainer, text2);
+}
+
 void setTextArea3(ArkUI_NodeHandle &textArea3)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -3281,6 +3304,7 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
+    setTextTailIndents(textContainer);
 }
 
 /**
