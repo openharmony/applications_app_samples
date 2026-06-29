@@ -32,19 +32,19 @@ struct TextMenuShowSubWindow {
 
   build() {
     NavDestination() {
-      ComponentCard({ description: $r('app.string.TextMenuShow_description') }) {
-        Column({ space: 5 }) {
+      Column({ space: 5 }) {
+        ComponentCard({ description: $r('app.string.TextMenuShow_description') }) {
           // [Start textmenushowmode_create_textinput]
           // 请将$r('app.string.Service_MenuItems_Text')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，长按弹出文本选择菜单"
           TextInput({ text: $r('app.string.Service_MenuItems_Text') })
-            .fontSize(20)
+            .fontSize(15)
+            .margin({ top: 100 })
             .copyOption(CopyOptions.InApp)
-            .textAlign(TextAlign.Center)
           // [End textmenushowmode_create_textinput]
         }
-        .height('100%')
-        .width('100%')   
       }
+      .height('100%')
+      .width('100%')
     }
     // 请将$r('app.string.TextMenuShow_title')替换为实际资源文件，在本示例中该资源文件的value值为"子窗口显示文本"
     .title($r('app.string.TextMenuShow_title'))
