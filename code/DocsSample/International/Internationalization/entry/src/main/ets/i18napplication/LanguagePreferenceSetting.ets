@@ -70,7 +70,6 @@ let appPreferredLanguage = i18n.System.getAppPreferredLanguage(); // 获取应�
 // [End get_preferred_language]
 
 // [Start clear_preferred_language]
-// 清除应用的偏好语言
 try {
   i18n.System.setAppPreferredLanguage('default'); // 清除应用偏好语言
 } catch (error) {
