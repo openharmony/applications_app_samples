@@ -15,18 +15,15 @@
 // [Start all_audioLoopbackDebugInfo]
 // [Start get_DebugManager]
 import { audio } from '@kit.AudioKit'; // 导入audio模块。
-// [Start print_AppInfo]
 // [Start print_LoopbackInfo]
 import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError。
 // [StartExclude get_DebugManager]
-// [StartExclude print_AppInfo]
 // [StartExclude print_LoopbackInfo]
 import { common, abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit'; // 导入UIAbilityContext。
 import { fileIo as fs } from '@kit.CoreFileKit'; // 导入文件管理模块。
 
 const TAG = 'AudioLoopbackDebugInfoDemo';
 // [EndExclude print_LoopbackInfo]
-// [EndExclude print_AppInfo]
 let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 // [StartExclude get_DebugManager]
@@ -114,29 +111,6 @@ async function enable(updateCallback?: (msg: string, isError: boolean) => void):
   }
 }
 // [EndExclude all_audioLoopbackDebugInfo]
-
-// 查询应用音频调试信息。
-function printAppInfo(updateCallback?: (msg: string, isError: boolean) => void): void {
-// [EndExclude print_AppInfo]
-  // [StartExclude print_AppInfo]
-  let debugManager = audio.getAudioManager().getDebuggingManager();
-  // [EndExclude print_AppInfo]
-  // 输出到hilog日志。
-  debugManager.printAppInfo(-1);
-
-  // 输出到文件。
-  let filePath = getContext().filesDir + '/audio_app_debug.txt';
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  debugManager.printAppInfo(file.fd);
-  fs.closeSync(file);
-  // [StartExclude print_AppInfo]
-  const successMsg = `App debug info written to: ${filePath}`;
-  if (updateCallback) {
-    updateCallback(successMsg, false);
-  }
-  // [EndExclude print_AppInfo]
-}
-// [End print_AppInfo]
 
 // 查询返听器调试信息。
 function printLoopbackInfo(updateCallback?: (msg: string, isError: boolean) => void): void {
@@ -279,22 +253,6 @@ struct Index {
         }
 
         Row() {
-          Column() {
-            Text('查询应用音频调试信息')
-              .fontColor(Color.Black)
-              .fontSize(14)
-          }
-          .backgroundColor(Color.White)
-          .borderRadius(20)
-          .width('45%')
-          .height(60)
-          .margin({ right: 12, bottom: 12 })
-          .justifyContent(FlexAlign.Center)
-          .alignItems(HorizontalAlign.Center)
-          .onClick((): void => {
-            printAppInfo((msg, isError) => this.updateLogInfo(msg, isError));
-          });
-
           Column() {
             Text('查询返听器调试信息')
               .fontColor(Color.Black)
