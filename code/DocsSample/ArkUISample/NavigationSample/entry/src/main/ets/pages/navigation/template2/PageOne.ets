@@ -205,9 +205,9 @@ export struct PageOne {
                 this.pageStack.getAllPathName();
                 // 获取索引为1的页面参数
                 this.pageStack.getParamByIndex(1);
-                // 获取PageOne页面的参数
-                this.pageStack.getParamByName('PageOne');
-                // 获取PageOne页面的索引集合
+                // 获取pageOne页面的参数
+                this.pageStack.getParamByName('pageOne');
+                // 获取pageOne页面的索引集合
                 this.pageStack.getIndexByName('pageOne');
                 // [End GetParam]
                 hilog.info(DOMAIN, 'testTag', 'Get the names of all NavDestination pages in the stack.',

@@ -85,14 +85,14 @@ export struct SwiperIgnoreComponentSize {
               ) {
                 // [StartExclude dot_indicator_space]
                 // [StartExclude dot_indicator_bottom]
-                LazyForEach(this.data1, (item: string) => {
+                LazyForEach(this.data1, (item: number) => {
                   Text(item.toString())
                     .width('90%')
                     .height(120)
                     .backgroundColor(0xAFEEEE)
                     .textAlign(TextAlign.Center)
                     .fontSize(30)
-                }, (item: string) => item)
+                }, (item: number) => item.toString())
                 // [EndExclude dot_indicator_bottom]
                 // [EndExclude dot_indicator_space]
               }

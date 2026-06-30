@@ -21,7 +21,7 @@ const TAG = '[Sample_ArkTSRouter]';
 
 @Entry
 @Component
-struct Login {
+struct Setting {
   // 在Setting页面中
   onJumpClick(): void {
     this.getUIContext().getRouter().pushUrl({

@@ -33,7 +33,7 @@ struct Index {
           hilog.info(DOMAIN, 'testTag', 'target page is navigation home');
           return;
         }
-        // 将跳转到PageTwo的路由重定向到PageOne
+        // 将跳转到PageTwo的路由重定向到pageOne
         let target: NavDestinationContext = to as NavDestinationContext;
         if (target.pathInfo.name === 'pageTwo') {
           target.pathStack.pop();

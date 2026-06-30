@@ -49,7 +49,7 @@ export struct NumberOfCachesTabBar {
           .width(360)
           .height(296)
           .backgroundColor('#F1F3F5')
-          .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+          .cachedMaxCount(2, TabsCacheMode.CACHE_BOTH_SIDE)
           // [StartExclude number_of_caches_tabBar]
         }
       }

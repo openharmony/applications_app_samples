@@ -99,7 +99,7 @@ export struct SwiperAndTabsLinkage {
             .width('100%')
 
             Swiper(this.swiperController) {
-              LazyForEach(this.swiperData, (item: string) => {
+              LazyForEach(this.swiperData, (item: number) => {
                 Text(item.toString())
                   .onAppear(()=>{
                     console.info('onAppear ' + item.toString());
@@ -112,7 +112,7 @@ export struct SwiperAndTabsLinkage {
                   .backgroundColor(0xAFEEEE)
                   .textAlign(TextAlign.Center)
                   .fontSize(30)
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
             .loop(false)
             .onSelected((index: number) => {

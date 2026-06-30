@@ -21,7 +21,7 @@ struct SystemRoutingTable {
   build() {
     Navigation(this.pageStack){
     }.onAppear(() => {
-      this.pageStack.pushPathByName('PageOne', null, false);
+      this.pageStack.pushPathByName('PageOne', undefined, false);
     })
     .hideNavBar(true)
   }
