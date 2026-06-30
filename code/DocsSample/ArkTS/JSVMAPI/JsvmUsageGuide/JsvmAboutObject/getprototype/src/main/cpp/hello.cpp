@@ -90,7 +90,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* SRC_CALL_NATIVE = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
-    console.log(proto === Object.prototype);)JS";
+    console.info(proto === Object.prototype);)JS";
 // [End oh_jsvm_get_prototype]
 
 static int32_t TestJSVM()

@@ -97,12 +97,12 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
     size_t returnLength;
     JSVM_Value returnArrayBuffer = nullptr;
     size_t returnOffset;
-    enum InfoType { BYTE_LENGTHE, ARRAY_BUFFERE, BYTE_OFFSET };
+    enum InfoType { BYTE_LENGTH, ARRAY_BUFFER, BYTE_OFFSET };
     // 获取dataview信息
     OH_JSVM_GetDataviewInfo(env, result, &returnLength, (void **)&data, &returnArrayBuffer, &returnOffset);
     JSVM_Value returnResult = nullptr;
     switch (infoType) {
-        case BYTE_LENGTHE:
+        case BYTE_LENGTH:
             JSVM_Value len;
             OH_JSVM_CreateInt32(env, returnLength, &len);
             returnResult = len;
@@ -112,7 +112,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
                 OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnLength: %{public}d", returnLength);
             }
             break;
-        case ARRAY_BUFFERE:
+        case ARRAY_BUFFER:
             bool isArraybuffer;
             OH_JSVM_IsArraybuffer(env, returnArrayBuffer, &isArraybuffer);
             JSVM_Value isArray;
