@@ -51,7 +51,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground(): void {
-    AppStorage.SetOrCreate('context', this.context);
+    AppStorage.setOrCreate('context', this.context);
   }
 
   onBackground(): void {

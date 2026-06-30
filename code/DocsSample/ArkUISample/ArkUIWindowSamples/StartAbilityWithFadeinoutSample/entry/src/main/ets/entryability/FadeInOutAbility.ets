@@ -51,7 +51,7 @@ export default class FadeInOutAbility extends UIAbility {
   }
 
   onForeground() {
-    AppStorage.SetOrCreate('context', this.context);
+    AppStorage.setOrCreate('context', this.context);
   }
 
   onBackground(): void {
