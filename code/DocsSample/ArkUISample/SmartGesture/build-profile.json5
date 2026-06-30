@@ -21,7 +21,7 @@
         "signingConfig": "default",
         "targetSdkVersion": "7.0.0(26)",
         "arkTSVersion": "1.1",
-        "compatibleSdkVersion": "7.0.0(26)",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {

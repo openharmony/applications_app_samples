@@ -21,22 +21,22 @@
       {
         "name": "default",
         "signingConfig": "release",
-        "compileSdkVersion": 18,
-        "compatibleSdkVersion": 18,
+        "compileSdkVersion": "26.0.0",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony",
       },
       {
         "name": "rk3568",
         "signingConfig": "release",
-        "compileSdkVersion": 18,
-        "compatibleSdkVersion": 18,
+        "compileSdkVersion": "26.0.0",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony",
       },
       {
         "name": "TV",
         "signingConfig": "release",
-        "compileSdkVersion": 18,
-        "compatibleSdkVersion": 18,
+        "compileSdkVersion": "26.0.0",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony",
       }
     ],

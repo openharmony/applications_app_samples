@@ -17,8 +17,8 @@
   "app": {
     "products": [
       {
-        "compileSdkVersion": 14,
-        "compatibleSdkVersion": 14,
+        "compileSdkVersion": "26.0.0",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony",
         "name": "default",
         "signingConfig": "default",
