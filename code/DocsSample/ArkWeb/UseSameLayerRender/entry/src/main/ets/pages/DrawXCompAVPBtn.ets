@@ -67,7 +67,7 @@ class MyNodeController extends NodeController {
         this.rootNode.build(
           wrapBuilder(videoBuilder), {textOne: 'myButton', width : this.width_, height : this.height_});
       } else {
-        // other
+        return null;
       }
     }
     // 返回FrameNode节点。
@@ -179,12 +179,12 @@ struct WebIndex {
                   width : this.uiContext.px2vp(embed.info?.width), height : this.uiContext.px2vp(embed.info?.height)});
                 this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                 nodeController.setDestroy(false);
-                // 根据web传入的embed的id属性作为key，将nodeController存入map。
+                // 根据Web传入的embed的id属性作为key，将nodeController存入map。
                 this.nodeControllerMap.set(componentId, nodeController);
                 this.widthMap.set(componentId,  this.uiContext.px2vp(embed.info?.width));
                 this.heightMap.set(componentId,  this.uiContext.px2vp(embed.info?.height));
                 this.positionMap.set(componentId, this.edges);
-                // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器，需要将push动作放在set之后。
+                // 将Web传入的embed的id属性存入@State状态数组变量中，用于动态创建NodeContainer节点容器，需要将push动作放在set之后。
                 this.componentIdArr.push(componentId);
               } else if (embed.status === NativeEmbedStatus.UPDATE) {
                 let nodeController = this.nodeControllerMap.get(componentId);
