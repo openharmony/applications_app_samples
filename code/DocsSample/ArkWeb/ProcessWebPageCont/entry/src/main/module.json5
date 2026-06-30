@@ -69,7 +69,7 @@
       {
         "name" : "ohos.permission.PRINT"
       },
-      // EndExclude web_module_preview_pdf]
+      // [EndExclude web_module_preview_pdf]
       // [StartExclude web_module_print_html]
       {
         "name" : "ohos.permission.INTERNET"
