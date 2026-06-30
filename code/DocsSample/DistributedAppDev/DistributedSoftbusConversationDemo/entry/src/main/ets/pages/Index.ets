@@ -1,15 +1,18 @@
 import { BusinessError } from '@kit.BasicServicesKit'
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit'
+// [Start import_conversation]
 import { conversation } from '@kit.DistributedServiceKit'
+// [End import_conversation]
 import { hilog } from '@kit.PerformanceAnalysisKit'
 
 const TAG = '[ConversationTestPage]';
 const DOMAIN = 0x0000;
 const messageToSend = 'Hello from ConversationTest!';
 const bundleName = 'com.example.demo';
-const abilityName = "EntryAbility";
+const abilityName = 'EntryAbility';
 const deviceId = 'networkId_or_Udid'
 
+// [Start data_callback]
 // 定义消息回调
 let messageCallback: conversation.DataCallback = (networkId: string, msg: ArrayBuffer): void => {
   hilog.info(DOMAIN, TAG, 'Received message from: %{public}s', networkId);
@@ -21,20 +24,21 @@ let messageCallback: conversation.DataCallback = (networkId: string, msg: ArrayB
     }
   hilog.info(DOMAIN, TAG, 'Message content: %{public}s', messageStr);
 }
+// [End data_callback]
 
 @Entry
 @Component
 struct Index {
   // 权限申请
   requesPermission(): void {
-      let permissions: Array<Permissions> = [
+      let permissions: Permissions[] = [
           'ohos.permission.DISTRIBUTED_DATASYNC',
           'ohos.permission.sec.ACCESS_UDID'
           ];
       let context: Context = getContext(this);
       let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-        let grantStatus: Array<number> = data.authResults;
+        let grantStatus: number[] = data.authResults;
         let length: number = grantStatus.length;
         for (let i = 0; i < length; i++) {
           if (grantStatus[i] === 0) {
@@ -49,11 +53,12 @@ struct Index {
   }
 
   aboutToAppear(): void {
-    hilog.info(DOMAIN, TAG, "aboutToAppear");
+    hilog.info(DOMAIN, TAG, 'aboutToAppear');
     this.requesPermission();
   }
 
-  // 定义消息回调
+  // [Start get_trusted_devices]
+  // 获取受信任设备
   getTrustedDevices(): void {
     hilog.info(DOMAIN, TAG, 'getTrustedDevices called');
     try {
@@ -72,7 +77,9 @@ struct Index {
       hilog.error(DOMAIN, TAG, 'getTrustedDevices error: %{public}s - %{public}s', error.code, error.message);
     }
   }
+  // [End get_trusted_devices]
 
+  // [Start register_listener]
   // 注册监听器
   registerListener(): void {
     hilog.info(DOMAIN, TAG, 'registerListener called');
@@ -84,7 +91,9 @@ struct Index {
       hilog.error(DOMAIN, TAG, 'registerDataListener error: %{public}s - %{public}s', error.code, error.message);
     }
   }
+  // [End register_listener]
 
+  // [Start unregister_listener]
   // 注销监听器
   unregisterListener(): void {
     hilog.info(DOMAIN, TAG, 'unregisterListener called');
@@ -96,7 +105,9 @@ struct Index {
       hilog.error(DOMAIN, TAG, 'unregisterDataListener error: %{public}s - %{public}s', error.code, error.message);
     }
   }
+  // [End unregister_listener]
 
+  // [Start send_message]
   // 发送消息
   sendMessage(): void {
     hilog.info(DOMAIN, TAG, 'sendMessage called');
@@ -119,7 +130,7 @@ struct Index {
       hilog.error(DOMAIN, TAG, 'sendMessage error: %{public}s - %{public}s', error.code, error.message);
     }
   }
-
+  // [End send_message]
 
 
   build() {
