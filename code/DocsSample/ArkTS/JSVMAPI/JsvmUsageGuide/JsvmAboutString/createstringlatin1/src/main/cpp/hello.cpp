@@ -70,7 +70,7 @@ static const int MAX_BUFFER_SIZE = 128;
 // OH_JSVM_CreateStringLatin1的样例方法
 static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    const char *str = "Hello, World! éçñ, successes to create Latin1 string!";
+    const char *str = "Hello, World! éçñ, succeed in creating Latin1 string!";
     size_t length = JSVM_AUTO_LENGTH;
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_CreateStringLatin1(env, str, length, &result);

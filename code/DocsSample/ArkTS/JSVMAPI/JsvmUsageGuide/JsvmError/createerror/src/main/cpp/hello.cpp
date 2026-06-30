@@ -75,11 +75,11 @@ static void GetLastErrorAndClean(JSVM_Env env)
     OH_JSVM_GetNamedProperty((env), result, "code", &errorCode);
     const int maxMessageLength = 256;
     const int maxCodeLength = 256;
-    char messagestr[maxMessageLength];
+    char messageStr[maxMessageLength];
     char codeStr[maxCodeLength];
-    OH_JSVM_GetValueStringUtf8(env, message, messagestr, maxMessageLength, nullptr);
+    OH_JSVM_GetValueStringUtf8(env, message, messageStr, maxMessageLength, nullptr);
     OH_JSVM_GetValueStringUtf8(env, errorCode, codeStr, maxCodeLength, nullptr);
-    OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s, error code: %{public}s", messagestr, codeStr);
+    OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s, error code: %{public}s", messageStr, codeStr);
 }
 
 // OH_JSVM_CreateError的样例方法

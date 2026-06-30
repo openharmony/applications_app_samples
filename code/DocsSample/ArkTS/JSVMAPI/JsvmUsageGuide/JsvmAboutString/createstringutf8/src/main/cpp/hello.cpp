@@ -67,7 +67,7 @@ static int g_aa = 0;
 // OH_JSVM_CreateStringUtf8的样例方法
 static JSVM_Value CreateStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    const char *str = u8"你好, World!, successes to create UTF-8 string!";
+    const char *str = u8"你好, World!, succeed in creating UTF-8 string!";
     size_t length = strlen(str);
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_CreateStringUtf8(env, str, length, &result);

@@ -92,7 +92,7 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
         size_t length = 0;
-        // 通过入参获取到javaScript侧传入的字符串长度
+        // 通过入参获取到JavaScript侧传入的字符串长度
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
         // 获取入参的字符串内容

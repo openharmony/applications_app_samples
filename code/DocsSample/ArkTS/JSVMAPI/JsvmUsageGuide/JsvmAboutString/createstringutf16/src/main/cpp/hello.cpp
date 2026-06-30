@@ -69,7 +69,7 @@ static int g_aa = 0;
 // OH_JSVM_CreateStringUtf16的样例方法
 static JSVM_Value CreateStringUtf16(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    const char16_t *str = u"你好, World!, successes to create UTF-16 string!";
+    const char16_t *str = u"你好, World!, succeed in creating UTF-16 string!";
     std::u16string ustr(str);
     size_t length = ustr.length();
     JSVM_Value result = nullptr;
