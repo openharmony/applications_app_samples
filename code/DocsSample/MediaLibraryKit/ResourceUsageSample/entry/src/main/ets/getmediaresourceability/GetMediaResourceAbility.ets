@@ -34,12 +34,11 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     fetchColumns: [],
     predicates: predicates
   };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
     // [StartExclude get_media_resource]
     return true;
     // [EndExclude get_media_resource]
@@ -48,6 +47,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     // [StartExclude get_media_resource]
     return false;
     // [EndExclude get_media_resource]
+  } finally {
+    if (fetchResult != null) {
+      fetchResult.close();
+    }
   }
 }
 // [End get_media_resource]

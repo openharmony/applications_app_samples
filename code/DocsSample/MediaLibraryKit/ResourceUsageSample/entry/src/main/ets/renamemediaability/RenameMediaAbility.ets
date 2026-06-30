@@ -35,15 +35,14 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   };
   let newTitle: string = 'newTestPhoto';
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
       new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     assetChangeRequest.setTitle(newTitle);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    fetchResult.close();
     // [StartExclude rename_media]
     return true;
     // [EndExclude rename_media]
@@ -52,6 +51,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     // [StartExclude rename_media]
     return false;
     // [EndExclude rename_media]
+  } finally {
+    if (fetchResult != null) {
+      fetchResult.close();
+    }
   }
 }
 // [End rename_media]

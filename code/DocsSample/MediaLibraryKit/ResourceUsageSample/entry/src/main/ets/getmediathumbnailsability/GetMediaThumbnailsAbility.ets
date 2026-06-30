@@ -34,16 +34,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     let size: image.Size = { width: 720, height: 720 };
     let pixelMap: image.PixelMap =  await photoAsset.getThumbnail(size);
     let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
     console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
-    fetchResult.close();
     // [StartExclude get_media_thumbnails]
     return true;
     // [EndExclude get_media_thumbnails]
@@ -52,6 +51,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     // [StartExclude get_media_thumbnails]
     return false;
     // [EndExclude get_media_thumbnails]
+  } finally {
+    if (fetchResult != null) {
+      fetchResult.close();
+    }
   }
 }
 // [End get_media_thumbnails]
