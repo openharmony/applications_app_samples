@@ -47,7 +47,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     return false;
     // [EndExclude move_media_to_recycle_bin]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

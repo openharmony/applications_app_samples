@@ -52,7 +52,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     return false;
     // [EndExclude rename_media]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

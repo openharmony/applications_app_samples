@@ -51,7 +51,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     return false;
     // [EndExclude register_for_monitoring_all_assets]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

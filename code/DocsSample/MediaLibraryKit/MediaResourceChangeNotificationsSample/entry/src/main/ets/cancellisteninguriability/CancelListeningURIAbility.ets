@@ -57,7 +57,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     return false;
     // [EndExclude cancel_listening_uri]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

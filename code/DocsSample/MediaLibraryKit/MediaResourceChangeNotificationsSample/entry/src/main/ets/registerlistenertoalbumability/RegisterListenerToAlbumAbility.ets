@@ -63,7 +63,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     return false;
     // [EndExclude register_listener_to_album]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

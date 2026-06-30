@@ -52,7 +52,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     return false;
     // [EndExclude register_listener_to_photo_asset]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }

@@ -52,7 +52,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     return false;
     // [EndExclude get_media_thumbnails]
   } finally {
-    if (fetchResult != null) {
+    if (fetchResult !== null) {
       fetchResult.close();
     }
   }
