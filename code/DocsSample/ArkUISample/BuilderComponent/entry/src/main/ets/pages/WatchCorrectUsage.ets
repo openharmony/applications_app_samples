@@ -16,6 +16,7 @@
 @Entry
 @Component
 struct Child2 {
+  // 使用@Provide和@Watch装饰器，当content变化时触发provideWatch回调
   @Provide @Watch('provideWatch') content: string = 'Index: hello world';
 
   @Builder
@@ -25,19 +26,22 @@ struct Child2 {
     }
   }
 
+  // @Watch回调函数
   provideWatch() {
     // 正确写法，不在@Watch函数中使用@Builder函数
     console.info(`content value has changed.`);
   }
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button(`content value: ${this.content}`)
         .onClick(() => {
+          // 点击按钮修改content，触发@Watch回调
           this.content += '_world';
         })
       this.watchBuilder(this.content);
     }
+    .width('100%')
   }
 }
 // [End executing_builder_function_watch_correct_usage]
