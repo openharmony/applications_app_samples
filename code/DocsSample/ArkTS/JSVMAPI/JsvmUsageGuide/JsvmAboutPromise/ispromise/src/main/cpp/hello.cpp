@@ -17,7 +17,7 @@
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include "hilog/log.h"
-// [EndExclude oh_jsvm_ispromise]
+// [StartExclude oh_jsvm_ispromise]
 #define LOG_DOMAIN 0x3200
 #define LOG_TAG "APP"
 

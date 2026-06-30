@@ -88,7 +88,7 @@ static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
         return nullptr;
     }
 
-    //  减少传入引用的引用计数并返回生成的引用计数
+    // 减少传入引用的引用计数并返回生成的引用计数
     uint32_t num;
     OH_JSVM_ReferenceUnref(env, g_ref, &num);
     OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceUnref, count = %{public}d.", num);
