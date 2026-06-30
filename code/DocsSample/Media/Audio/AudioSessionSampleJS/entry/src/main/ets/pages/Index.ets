@@ -898,8 +898,12 @@ struct Index {
           .width('80%')
           .height(40)
           .onClick(async (): Promise<void> => {
-            await useAudioSessionV2();
-            this.runningResult = 'Activate audioSession V2 success.';
+            try {
+              await useAudioSessionV2();
+              this.runningResult = 'Activate audioSession V2 success.';
+            } catch (err) {
+              this.runningResult = 'Activate audioSession V2 fail.';
+            }
           })
         }
         .width('80%')
@@ -1081,7 +1085,6 @@ struct Index {
         .height(50)
         .justifyContent(FlexAlign.Center)
       }
-      .height('100%')
       .width('100%')
       .backgroundColor('#F1F3F5');
     }
