@@ -149,7 +149,7 @@ struct Page{
                   height : this.uiContext.px2vp(embed.info?.height)})
                 this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                 nodeController.setDestroy(false);
-                //根据Web传入的embed的id属性作为key，将nodeController存入Map。
+                // 根据Web传入的embed的id属性作为key，将nodeController存入Map。
                 this.nodeControllerMap.set(componentId, nodeController);
                 this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                 this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
