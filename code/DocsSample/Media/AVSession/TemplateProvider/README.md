@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音频模板（模板提供方）的相关功能，使用[AVMusicTemplate](hhttps://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplate.md)等接口实现音频模板提供方与音频模板控制方自定义信息的交互功能。
+本示例主要展示了音频模板（模板提供方）的相关功能，使用[AVMusicTemplate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplate.md)等接口实现音频模板提供方与音频模板控制方自定义信息的交互功能。
 
 > 注意：
 > 此示例仅展示音频模板提供方的相关功能。
