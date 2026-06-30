@@ -49,7 +49,7 @@ struct Index {
       Column() {
         Text(`info: ${this.info.name}-${this.info.age}`) // Text1
           .margin(10)
-        Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) //Text2
+        Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) // Text2
           .margin(10)
         Button('change info&localInfo')
           .onClick(() => {
