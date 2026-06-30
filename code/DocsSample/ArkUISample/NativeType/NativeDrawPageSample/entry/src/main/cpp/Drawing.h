@@ -82,7 +82,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             // [Start drawCanvas_Start]
             // 获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
-            // 获取canvas指针。
+            // 获取Canvas指针。
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);
             // 转换为OH_Drawing_Canvas指针进行绘制。
             OH_Drawing_Canvas *canvas = reinterpret_cast<OH_Drawing_Canvas *>(canvas1);
