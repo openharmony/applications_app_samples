@@ -14,7 +14,7 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -26,24 +26,42 @@ const BUNDLE = 'DistributedSoftbusConversation_';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
-    beforeAll(async () => {
+    /**
+     * 拉起应用，处理权限弹窗，验证主界面加载成功
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       };
+      const driver = Driver.create();
       await delegator.startAbility(want);
-      await Driver.create().delayMs(2000);
-    });
+      await driver.delayMs(2000);
 
-    beforeEach(() => {});
-    afterEach(() => {});
-    afterAll(() => {});
+      // 处理权限弹窗，应用申请了DISTRIBUTED_DATASYNC和ACCESS_UDID两个权限
+      try {
+        let btnAllow = await driver.findComponent(ON.text('允许'));
+        if (btnAllow !== null) {
+          await btnAllow.click();
+          hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, clicked allow 1');
+          await driver.delayMs(2000);
+        }
+      } catch (e) {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, no permission dialog 1');
+      }
+      try {
+        let btnAllow = await driver.findComponent(ON.text('允许'));
+        if (btnAllow !== null) {
+          await btnAllow.click();
+          hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, clicked allow 2');
+          await driver.delayMs(2000);
+        }
+      } catch (e) {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, no permission dialog 2');
+      }
+      await driver.delayMs(1000);
 
-    /**
-     * 拉起应用，验证主界面加载成功
-     */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, begin');
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, abilityName: ' + ability.context.abilityInfo.name);
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
@@ -57,6 +75,7 @@ export default function abilityTest() {
     it(BUNDLE + 'PageTitle_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'PageTitle_001, begin');
       const driver = Driver.create();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Distributed SoftBus Conversation Test'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'PageTitle_001, end');
       done();
@@ -68,6 +87,7 @@ export default function abilityTest() {
     it(BUNDLE + 'GetTrustedDevices_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDevices_001, begin');
       const driver = Driver.create();
+      await driver.delayMs(1000);
       const btn = await driver.findComponent(ON.text('Get Trusted Devices'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDevices_001, btn found: ' + (btn !== null));
       if (btn !== null) {
@@ -85,6 +105,7 @@ export default function abilityTest() {
     it(BUNDLE + 'RegisterListener_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RegisterListener_001, begin');
       const driver = Driver.create();
+      await driver.delayMs(1000);
       const btn = await driver.findComponent(ON.text('Register Listener'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'RegisterListener_001, btn found: ' + (btn !== null));
       if (btn !== null) {
@@ -102,6 +123,7 @@ export default function abilityTest() {
     it(BUNDLE + 'UnregisterListener_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'UnregisterListener_001, begin');
       const driver = Driver.create();
+      await driver.delayMs(1000);
       const btn = await driver.findComponent(ON.text('Unregister Listener'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'UnregisterListener_001, btn found: ' + (btn !== null));
       if (btn !== null) {
@@ -119,6 +141,7 @@ export default function abilityTest() {
     it(BUNDLE + 'SendMessage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessage_001, begin');
       const driver = Driver.create();
+      await driver.delayMs(1000);
       const btn = await driver.findComponent(ON.text('Send Message'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessage_001, btn found: ' + (btn !== null));
       if (btn !== null) {
