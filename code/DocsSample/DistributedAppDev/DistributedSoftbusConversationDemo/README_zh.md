@@ -3,7 +3,9 @@
 ### 介绍
 
 本示例主要展示了分布式软总线会话相关的功能，使用[@ohos.distributedServiceKit](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-conversation-sys.md)
-中 conversation 接口，实现了包括获取可信设备列表、注册/注销会话消息监听、跨设备发送消息等功能。
+中 conversation 接口，实现了包括获取可信设备列表、注册/注销会话消息监听、跨设备发送消息等功能。效果图如下：
+![device](./screenshots/device/index.png)
+
 
 ### 使用说明
 
