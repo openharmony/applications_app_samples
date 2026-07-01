@@ -52,7 +52,7 @@ E:\lihongyi\docs\zh-cn\application-dev\
 
 3. 本示例仅支持 Stage 模型，依赖 API 26.1.0 及以上版本 SDK。
 
-4. 本示例需要使用 DevEco Studio 版本号(5.0 Release)及以上版本才可编译运行。
+4. 本示例需要使用 DevEco Studio 版本号(6.1.1 Release)及以上版本才可编译运行。
 
 5. 本示例中发送消息功能需要将 Index.ets 中的 deviceId 替换为目标设备的 networkId 或 UDID（可通过 getTrustedDevices 获取），bundleName 和 abilityName 需与接收端应用保持一致。
 
