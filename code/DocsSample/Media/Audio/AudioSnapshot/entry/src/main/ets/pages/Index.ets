@@ -17,11 +17,11 @@ import { window } from '@kit.ArkUI';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start import_module]
 import { audio } from '@kit.AudioKit';
 import { fileIo as fileio } from '@kit.CoreFileKit';
 // [End import_module]
-import audioNapi from 'libentry.so';
 
 class OptionItem {
   label: string;
@@ -65,6 +65,7 @@ class JsStreamState {
   playedBytes: number = 0;
   playTotalBytes: number = 0;
   lastRecordUiRefreshAt: number = 0;
+  playbackAutoStopTimerId: number = -1;
 
   constructor(id: number, name: string, source: number, sampleRate: number) {
     this.id = id;
@@ -102,6 +103,7 @@ class NativeStreamState {
   playedBytes: number = 0;
   playTotalBytes: number = 0;
   playbackError: number = 0;
+  useJsFallback: boolean = false;
 
   constructor(id: number, name: string, source: number, sampleRate: number) {
     this.id = id;
@@ -130,6 +132,34 @@ interface NativePlayerStats {
   playedBytes: number;
   totalBytes: number;
   lastError: number;
+}
+
+interface NativeAudioNapi {
+  lowLatencyCapturerInit: (
+    streamId: number,
+    sourceType: number,
+    sampleRate: number,
+    channelCount: number,
+    sampleFormat: number
+  ) => number;
+  lowLatencyCapturerStart: (streamId: number) => number;
+  lowLatencyCapturerStop: (streamId: number) => number;
+  lowLatencyCapturerRelease: (streamId: number) => number;
+  lowLatencyCapturerSetSaveFile: (streamId: number, path: string) => number;
+  lowLatencyCapturerGetStats: (streamId: number) => NativeCapturerStats;
+  lowLatencyCapturerResetStats: (streamId: number) => number;
+  lowLatencyCapturerPrintSnapshot: (streamId: number, fd: number) => number;
+  pcmPlayerStart: (
+    streamId: number,
+    path: string,
+    sampleRate: number,
+    channelCount: number,
+    sampleFormat: number
+  ) => number;
+  pcmPlayerStop: (streamId: number) => number;
+  pcmPlayerGetStats: (streamId: number) => NativePlayerStats;
+  pcmPlayerPrintSnapshot: (streamId: number, fd: number) => number;
+  audioDebuggingManagerPrintAppInfo: (fd: number) => number;
 }
 
 const SOURCE_OPTIONS: OptionItem[] = [
@@ -180,10 +210,13 @@ struct Index {
   private audioManager: audio.AudioManager = audio.getAudioManager();
   private streamManager: audio.AudioStreamManager = this.audioManager.getStreamManager();
   private debugManager: audio.AudioDebuggingManager | null = null;
+  private nativeAudioNapi: NativeAudioNapi | null = null;
+  private nativeAudioNapiLoadError: string = '';
   private refreshTimerId: number = -1;
   private readonly jsPlayerIdle: number = 0;
   private readonly jsPlayerPlaying: number = 1;
   private readonly jsPlayerCompleted: number = 2;
+  private readonly jsPlaybackSnapshotGraceMs: number = 8000;
   private readonly nativePlayerIdle: number = 0;
   private readonly nativePlayerPlaying: number = 1;
   private readonly nativePlayerCompleted: number = 2;
@@ -193,6 +226,11 @@ struct Index {
   private readonly jsStreams: JsStreamState[] = [
     new JsStreamState(1, 'TS Stream 1', audio.SourceType.SOURCE_TYPE_MIC, audio.AudioSamplingRate.SAMPLE_RATE_16000),
     new JsStreamState(2, 'TS Stream 2', audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, audio.AudioSamplingRate.SAMPLE_RATE_16000)
+  ];
+
+  private readonly fallbackJsStreams: JsStreamState[] = [
+    new JsStreamState(1001, 'C Stream 1', audio.SourceType.SOURCE_TYPE_MIC, audio.AudioSamplingRate.SAMPLE_RATE_16000),
+    new JsStreamState(1002, 'C Stream 2', audio.SourceType.SOURCE_TYPE_LIVE, audio.AudioSamplingRate.SAMPLE_RATE_16000)
   ];
 
   private readonly nativeStreams: NativeStreamState[] = [
@@ -236,6 +274,10 @@ struct Index {
     for (let i: number = 0; i < this.jsStreams.length; i++) {
       void this.releaseJsCapturer(this.jsStreams[i]);
       void this.stopJsPlayback(this.jsStreams[i]);
+    }
+    for (let i: number = 0; i < this.fallbackJsStreams.length; i++) {
+      void this.releaseJsCapturer(this.fallbackJsStreams[i]);
+      void this.stopJsPlayback(this.fallbackJsStreams[i]);
     }
     for (let i: number = 0; i < this.nativeStreams.length; i++) {
       this.releaseNativeCapturer(this.nativeStreams[i]);
@@ -335,7 +377,41 @@ struct Index {
     const time: string = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
     const next: string[] = [`[${time}] ${message}`, ...this.logs];
     this.logs = next.slice(0, this.maxLogCount);
+    try {
+      hilog.info(0x0000, 'AudioSnapshot', '%{public}s', message);
+    } catch (_) {
+    }
     this.forceRefresh();
+  }
+
+  private loadNativeAudioNapi(): void {
+    if (this.nativeAudioNapi !== null) {
+      return;
+    }
+    try {
+      const moduleObject = loadNativeModule('libentry.so');
+      this.nativeAudioNapi = moduleObject as NativeAudioNapi;
+      this.nativeAudioNapiLoadError = '';
+    } catch (error) {
+      this.nativeAudioNapi = null;
+      this.nativeAudioNapiLoadError = this.describeError(error);
+    }
+  }
+
+  private getNativeAudioNapi(): NativeAudioNapi | null {
+    return this.nativeAudioNapi;
+  }
+
+  private ensureNativeAudioAvailable(scene: string): NativeAudioNapi | null {
+    this.loadNativeAudioNapi();
+    const napi: NativeAudioNapi | null = this.getNativeAudioNapi();
+    if (napi !== null) {
+      return napi;
+    }
+    const reason: string = this.nativeAudioNapiLoadError.length > 0 ? this.nativeAudioNapiLoadError : 'libentry.so not loaded';
+    this.status = `${scene} unavailable: ${reason}`;
+    this.forceRefresh();
+    return null;
   }
 
   private toErrorCode(error: BusinessError | Object | undefined | null): number {
@@ -444,6 +520,17 @@ struct Index {
     return `${this.context.filesDir}/c_app_snapshot_${Date.now()}.txt`;
   }
 
+  private async withJsStreamAlias<T>(jsStream: JsStreamState, alias: string,
+    action: () => Promise<T> | T): Promise<T> {
+    const originalName: string = jsStream.name;
+    jsStream.name = alias;
+    try {
+      return await action();
+    } finally {
+      jsStream.name = originalName;
+    }
+  }
+
   private openSnapshotFile(path: string): number {
     try {
       return fileio.openSync(path, fileio.OpenMode.READ_WRITE | fileio.OpenMode.CREATE | fileio.OpenMode.TRUNC).fd;
@@ -544,15 +631,6 @@ struct Index {
     }
   }
 
-  private probeNativeDebuggingManager(): number {
-    try {
-      return Number(audioNapi.audioDebuggingManagerProbe());
-    } catch (error) {
-      this.appendLog(`Probe C debugging manager failed: ${this.describeError(error)}`);
-      return -1;
-    }
-  }
-
   private async requestMicrophonePermission(): Promise<boolean> {
     if (this.hasMicrophonePermission) {
       return true;
@@ -596,7 +674,7 @@ struct Index {
       const lines: string[] = [];
       for (let index: number = 0; index < infos.length; index++) {
         const info: audio.AudioCapturerChangeInfo = infos[index];
-        lines.push(`streamId=${info.streamId} source=${info.capturerInfo.source} state=${info.capturerState}`);
+        lines.push(`streamId=${info.streamId} source=${info.capturerInfo.source}`);
       }
       this.frameworkSnapshot = lines.length > 0 ? lines : ['No active capture streams'];
     } catch (error) {
@@ -604,9 +682,114 @@ struct Index {
     }
   }
 
+  private getFallbackJsStream(stream: NativeStreamState): JsStreamState | null {
+    const index: number = this.nativeStreams.findIndex((item: NativeStreamState) => item.id === stream.id);
+    if (index < 0 || index >= this.fallbackJsStreams.length) {
+      return null;
+    }
+    return this.fallbackJsStreams[index];
+  }
+
+  private applyNativeConfigToFallbackJs(nativeStream: NativeStreamState, jsStream: JsStreamState): void {
+    jsStream.source = nativeStream.source;
+    jsStream.sampleRate = nativeStream.sampleRate;
+    jsStream.channelCount = nativeStream.channelCount;
+    jsStream.sampleFormat = nativeStream.sampleFormat;
+  }
+
+  private syncNativeStreamFromJsFallback(nativeStream: NativeStreamState): void {
+    const jsStream: JsStreamState | null = this.getFallbackJsStream(nativeStream);
+    if (jsStream === null) {
+      nativeStream.stateText = 'Unavailable';
+      nativeStream.streamRuntimeId = -1;
+      nativeStream.bufferSize = 0;
+      nativeStream.savedBytes = 0;
+      nativeStream.savePath = '';
+      nativeStream.saveRet = -1;
+      nativeStream.callbackCount = 0;
+      nativeStream.lastReadSize = 0;
+      nativeStream.lastError = 0;
+      nativeStream.playbackState = this.nativePlayerIdle;
+      nativeStream.playedBytes = 0;
+      nativeStream.playTotalBytes = 0;
+      nativeStream.playbackError = 0;
+      return;
+    }
+    nativeStream.stateText = jsStream.stateText;
+    nativeStream.streamRuntimeId = jsStream.streamId;
+    nativeStream.bufferSize = jsStream.bufferSize;
+    nativeStream.savedBytes = jsStream.savedBytes;
+    nativeStream.savePath = jsStream.savePath;
+    nativeStream.saveRet = jsStream.saveRet;
+    nativeStream.callbackCount = 0;
+    nativeStream.lastReadSize = 0;
+    nativeStream.lastError = 0;
+    nativeStream.captureSnapshotStatus = jsStream.captureSnapshotStatus;
+    nativeStream.captureSnapshotPath = jsStream.captureSnapshotPath;
+    nativeStream.captureSnapshotText = jsStream.captureSnapshotText;
+    nativeStream.showCaptureSnapshotText = jsStream.showCaptureSnapshotText;
+    nativeStream.playbackSnapshotStatus = jsStream.playbackSnapshotStatus;
+    nativeStream.playbackSnapshotPath = jsStream.playbackSnapshotPath;
+    nativeStream.playbackSnapshotText = jsStream.playbackSnapshotText;
+    nativeStream.showPlaybackSnapshotText = jsStream.showPlaybackSnapshotText;
+    if (jsStream.playbackState === this.jsPlayerPlaying) {
+      nativeStream.playbackState = this.nativePlayerPlaying;
+    } else if (jsStream.playbackState === this.jsPlayerCompleted) {
+      nativeStream.playbackState = this.nativePlayerCompleted;
+    } else {
+      nativeStream.playbackState = this.nativePlayerIdle;
+    }
+    nativeStream.playedBytes = jsStream.playedBytes;
+    nativeStream.playTotalBytes = jsStream.playTotalBytes;
+    nativeStream.playbackError = 0;
+  }
+
+  private async runNativeActionWithJsFallback(stream: NativeStreamState, scene: string,
+    jsAction: (jsStream: JsStreamState) => Promise<void> | void, forceFallback: boolean = false): Promise<boolean> {
+    const jsStream: JsStreamState | null = this.getFallbackJsStream(stream);
+    if (jsStream === null) {
+      return false;
+    }
+    if (!forceFallback) {
+      const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} ${scene}`);
+      if (napi !== null) {
+        stream.useJsFallback = false;
+        return false;
+      }
+    }
+    stream.useJsFallback = true;
+    this.applyNativeConfigToFallbackJs(stream, jsStream);
+    await this.withJsStreamAlias(jsStream, stream.name, async (): Promise<void> => {
+      await jsAction(jsStream);
+    });
+    this.syncNativeStreamFromJsFallback(stream);
+    this.status = `${stream.name} ${scene} compatibility mode`;
+    this.forceRefresh();
+    return true;
+  }
+
   private refreshNativeStats(stream: NativeStreamState): void {
+    if (stream.useJsFallback) {
+      this.syncNativeStreamFromJsFallback(stream);
+      return;
+    }
+    const napi: NativeAudioNapi | null = this.getNativeAudioNapi();
+    if (napi === null) {
+      stream.stateText = 'Unavailable';
+      stream.streamRuntimeId = -1;
+      stream.bufferSize = 0;
+      stream.savedBytes = 0;
+      stream.callbackCount = 0;
+      stream.lastReadSize = 0;
+      stream.lastError = 0;
+      stream.playbackState = this.nativePlayerIdle;
+      stream.playedBytes = 0;
+      stream.playTotalBytes = 0;
+      stream.playbackError = 0;
+      return;
+    }
     try {
-      const stats: NativeCapturerStats = audioNapi.lowLatencyCapturerGetStats(stream.id) as NativeCapturerStats;
+      const stats: NativeCapturerStats = napi.lowLatencyCapturerGetStats(stream.id) as NativeCapturerStats;
       if (stats.state === 0) {
         stream.stateText = 'Released';
       } else if (stats.state === 1) {
@@ -633,7 +816,7 @@ struct Index {
     }
 
     try {
-      const playerStats: NativePlayerStats = audioNapi.pcmPlayerGetStats(stream.id) as NativePlayerStats;
+      const playerStats: NativePlayerStats = napi.pcmPlayerGetStats(stream.id) as NativePlayerStats;
       stream.playbackState = playerStats.state;
       stream.playedBytes = playerStats.playedBytes;
       stream.playTotalBytes = playerStats.totalBytes;
@@ -791,7 +974,9 @@ struct Index {
       return;
     }
     try {
-      stream.savePath = this.buildPcmPath('js_record', stream.id);
+      if (stream.savePath.length === 0) {
+        stream.savePath = this.buildPcmPath('js_record', stream.id);
+      }
       stream.savedBytes = 0;
       stream.saveRet = 0;
       stream.lastRecordUiRefreshAt = 0;
@@ -882,6 +1067,10 @@ struct Index {
 
   private async stopJsPlayback(stream: JsStreamState): Promise<number> {
     let ret: number = 0;
+    if (stream.playbackAutoStopTimerId >= 0) {
+      clearTimeout(stream.playbackAutoStopTimerId);
+      stream.playbackAutoStopTimerId = -1;
+    }
     if (stream.playbackRenderer !== null) {
       try {
         await stream.playbackRenderer.stop();
@@ -930,10 +1119,25 @@ struct Index {
     } catch (error) {
       this.appendLog(`${stream.name} JS playback loop failed: ${this.toErrorCode(error)}`);
     } finally {
-      stream.playbackState = completed ? this.jsPlayerCompleted : this.jsPlayerIdle;
-      await this.stopJsPlayback(stream);
+      this.appendLog(`${stream.name} JS playback loop exit: completed=${completed} played=${stream.playedBytes}/${stream.playTotalBytes}`);
       if (completed) {
+        try {
+          await renderer.stop();
+        } catch (error) {
+          this.appendLog(`${stream.name} playback stop after completion failed: ${this.toErrorCode(error)}`);
+        }
         stream.playbackState = this.jsPlayerCompleted;
+        this.appendLog(`${stream.name} playback completed`);
+        if (stream.playbackRenderer === renderer) {
+          stream.playbackAutoStopTimerId = setTimeout(() => {
+            stream.playbackAutoStopTimerId = -1;
+            void this.stopJsPlayback(stream);
+          }, this.jsPlaybackSnapshotGraceMs);
+          this.appendLog(`${stream.name} playback snapshot grace period: ${this.jsPlaybackSnapshotGraceMs}ms`);
+        }
+      } else {
+        stream.playbackState = this.jsPlayerIdle;
+        await this.stopJsPlayback(stream);
       }
       this.forceRefresh();
     }
@@ -942,11 +1146,13 @@ struct Index {
   private async playJsRecording(stream: JsStreamState): Promise<void> {
     if (stream.savePath.length === 0 || stream.savedBytes <= 0) {
       this.status = `${stream.name} no PCM file to play`;
+      this.appendLog(`${stream.name} playback skipped: no PCM file, savedBytes=${stream.savedBytes}, path=${stream.savePath}`);
       this.forceRefresh();
       return;
     }
     try {
       await this.stopJsPlayback(stream);
+      this.appendLog(`${stream.name} playback preparing: bytes=${stream.savedBytes}, state=${this.describeJsPlaybackState(stream.playbackState)}, path=${stream.savePath}`);
       const file = fileio.openSync(stream.savePath, fileio.OpenMode.READ_ONLY);
       const renderer: audio.AudioRenderer = await audio.createAudioRenderer(this.getJsRendererOptions());
       await renderer.start();
@@ -961,6 +1167,7 @@ struct Index {
       void this.jsPlaybackLoop(stream, file.fd, renderer);
     } catch (error) {
       this.status = `${stream.name} playback failed: ${this.toErrorCode(error)}`;
+      this.appendLog(`${stream.name} playback failed: ${this.toErrorCode(error)}`);
       void this.stopJsPlayback(stream);
       this.forceRefresh();
     }
@@ -975,14 +1182,13 @@ struct Index {
     }
     const manager: audio.AudioDebuggingManager | null = this.getDebuggingManagerInstanceCompat();
     if (manager === null) {
-      const nativeProbeRet: number = this.probeNativeDebuggingManager();
-      stream.captureSnapshotStatus = `JS debugging manager unavailable, C probe=${nativeProbeRet}`;
-      this.appendLog(`${stream.name} capture snapshot check failed: JS manager null, C probe=${nativeProbeRet}`);
+      stream.captureSnapshotStatus = 'JS debugging manager unavailable';
       this.status = stream.captureSnapshotStatus;
       this.forceRefresh();
       return;
     }
-    const path: string = this.buildSnapshotPath('js_capturer', stream.id);
+    const path: string = stream.captureSnapshotPath.length > 0 ?
+      stream.captureSnapshotPath : this.buildSnapshotPath('js_capturer', stream.id);
     let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.captureSnapshotStatus = `Failed to open capture snapshot file: ${path}`;
@@ -1016,20 +1222,20 @@ struct Index {
   private printJsPlaybackSnapshot(stream: JsStreamState): void {
     if (stream.playbackRenderer === null) {
       stream.playbackSnapshotStatus = 'Playback snapshot unavailable';
+      this.appendLog(`${stream.name} playback snapshot unavailable: renderer=null state=${this.describeJsPlaybackState(stream.playbackState)} played=${stream.playedBytes}/${stream.playTotalBytes}`);
       this.status = `${stream.name} playback snapshot unavailable`;
       this.forceRefresh();
       return;
     }
     const manager: audio.AudioDebuggingManager | null = this.getDebuggingManagerInstanceCompat();
     if (manager === null) {
-      const nativeProbeRet: number = this.probeNativeDebuggingManager();
-      stream.playbackSnapshotStatus = `JS debugging manager unavailable, C probe=${nativeProbeRet}`;
-      this.appendLog(`${stream.name} playback snapshot check failed: JS manager null, C probe=${nativeProbeRet}`);
+      stream.playbackSnapshotStatus = 'JS debugging manager unavailable';
       this.status = stream.playbackSnapshotStatus;
       this.forceRefresh();
       return;
     }
-    const path: string = this.buildSnapshotPath('js_renderer', stream.id);
+    const path: string = stream.playbackSnapshotPath.length > 0 ?
+      stream.playbackSnapshotPath : this.buildSnapshotPath('js_renderer', stream.id);
     let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
       stream.playbackSnapshotStatus = `Failed to open playback snapshot file: ${path}`;
@@ -1061,9 +1267,14 @@ struct Index {
   }
 
   private createNativeCapturer(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} create`);
+    if (napi === null) {
+      stream.saveRet = -1;
+      return;
+    }
     stream.savePath = this.buildPcmPath('c_record', stream.id);
     try {
-      const ret: number = audioNapi.lowLatencyCapturerInit(
+      const ret: number = napi.lowLatencyCapturerInit(
         stream.id,
         stream.source,
         stream.sampleRate,
@@ -1080,14 +1291,32 @@ struct Index {
     }
   }
 
+  private async handleNativeCreate(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'create',
+      async (jsStream: JsStreamState): Promise<void> => {
+        if (jsStream.capturer !== null) {
+          await this.releaseJsCapturer(jsStream);
+        }
+        jsStream.savePath = this.buildPcmPath('c_record', stream.id);
+        await this.createJsCapturer(jsStream);
+      })) {
+      return;
+    }
+    this.createNativeCapturer(stream);
+  }
+
   private startNativeCapturer(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} start`);
+    if (napi === null) {
+      return;
+    }
     if (stream.savePath.length === 0) {
       stream.savePath = this.buildPcmPath('c_record', stream.id);
     }
     try {
-      const saveRet: number = audioNapi.lowLatencyCapturerSetSaveFile(stream.id, stream.savePath);
+      const saveRet: number = napi.lowLatencyCapturerSetSaveFile(stream.id, stream.savePath);
       stream.saveRet = saveRet;
-      const ret: number = audioNapi.lowLatencyCapturerStart(stream.id);
+      const ret: number = napi.lowLatencyCapturerStart(stream.id);
       this.status = `${stream.name} start ret=${ret}`;
       this.appendLog(`${stream.name} recording: ${stream.savePath}`);
       this.refreshNativeStats(stream);
@@ -1098,10 +1327,25 @@ struct Index {
     }
   }
 
+  private async handleNativeStart(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'start',
+      async (jsStream: JsStreamState): Promise<void> => {
+        jsStream.savePath = this.buildPcmPath('c_record', stream.id);
+        await this.startJsCapturer(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.startNativeCapturer(stream);
+  }
+
   private stopNativeCapturer(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} stop`);
+    if (napi === null) {
+      return;
+    }
     try {
-      const ret: number = audioNapi.lowLatencyCapturerStop(stream.id);
-      audioNapi.lowLatencyCapturerSetSaveFile(stream.id, '');
+      const ret: number = napi.lowLatencyCapturerStop(stream.id);
+      napi.lowLatencyCapturerSetSaveFile(stream.id, '');
       this.status = `${stream.name} stop ret=${ret}`;
       this.refreshNativeStats(stream);
       this.forceRefresh();
@@ -1111,14 +1355,29 @@ struct Index {
     }
   }
 
+  private async handleNativeStop(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'stop',
+      async (jsStream: JsStreamState): Promise<void> => {
+        await this.stopJsCapturer(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.stopNativeCapturer(stream);
+  }
+
   private releaseNativeCapturer(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.getNativeAudioNapi();
+    if (napi === null) {
+      stream.stateText = 'Unavailable';
+      return;
+    }
     try {
-      audioNapi.lowLatencyCapturerSetSaveFile(stream.id, '');
+      napi.lowLatencyCapturerSetSaveFile(stream.id, '');
     } catch (error) {
       this.appendLog(`${stream.name} clear save file failed: ${this.toErrorCode(error)}`);
     }
     try {
-      const ret: number = audioNapi.lowLatencyCapturerRelease(stream.id);
+      const ret: number = napi.lowLatencyCapturerRelease(stream.id);
       this.status = `${stream.name} release ret=${ret}`;
       this.refreshNativeStats(stream);
       this.forceRefresh();
@@ -1128,14 +1387,32 @@ struct Index {
     }
   }
 
+  private async handleNativeRelease(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'release',
+      async (jsStream: JsStreamState): Promise<void> => {
+        await this.releaseJsCapturer(jsStream);
+      }, stream.useJsFallback)) {
+      stream.useJsFallback = false;
+      stream.stateText = 'Released';
+      this.forceRefresh();
+      return;
+    }
+    stream.useJsFallback = false;
+    this.releaseNativeCapturer(stream);
+  }
+
   private playNativeRecording(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} playback`);
+    if (napi === null) {
+      return;
+    }
     if (stream.savePath.length === 0 || stream.savedBytes <= 0) {
       this.status = `${stream.name} no PCM file to play`;
       this.forceRefresh();
       return;
     }
     try {
-      const ret: number = audioNapi.pcmPlayerStart(
+      const ret: number = napi.pcmPlayerStart(
         stream.id,
         stream.savePath,
         this.playbackSampleRate,
@@ -1152,9 +1429,24 @@ struct Index {
     }
   }
 
+  private async handleNativePlayback(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'playback',
+      async (jsStream: JsStreamState): Promise<void> => {
+        await this.playJsRecording(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.playNativeRecording(stream);
+  }
+
   private stopNativePlayback(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.getNativeAudioNapi();
+    if (napi === null) {
+      stream.playbackState = this.nativePlayerIdle;
+      return;
+    }
     try {
-      const ret: number = audioNapi.pcmPlayerStop(stream.id);
+      const ret: number = napi.pcmPlayerStop(stream.id);
       this.status = `${stream.name} stop playback ret=${ret}`;
       this.refreshNativeStats(stream);
       this.forceRefresh();
@@ -1164,7 +1456,24 @@ struct Index {
     }
   }
 
+  private async handleNativeStopPlayback(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'stop playback',
+      async (jsStream: JsStreamState): Promise<void> => {
+        await this.stopJsPlayback(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.stopNativePlayback(stream);
+  }
+
   private printNativeCaptureSnapshot(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} capture snapshot`);
+    if (napi === null) {
+      stream.captureSnapshotStatus = 'Capture snapshot unavailable: native module not loaded';
+      this.status = stream.captureSnapshotStatus;
+      this.forceRefresh();
+      return;
+    }
     const path: string = this.buildSnapshotPath('c_capturer', stream.id);
     let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
@@ -1174,14 +1483,14 @@ struct Index {
       return;
     }
     try {
-      const ret: number = audioNapi.lowLatencyCapturerPrintSnapshot(stream.id, fd);
+      const ret: number = napi.lowLatencyCapturerPrintSnapshot(stream.id, fd);
       if (ret !== 0) {
         stream.captureSnapshotStatus = `Capture snapshot failed: ${ret}`;
         this.appendLog(`${stream.name} C capture snapshot failed ret=${ret}`);
         stream.captureSnapshotText = '';
         stream.showCaptureSnapshotText = false;
       } else {
-        const hilogRet: number = audioNapi.lowLatencyCapturerPrintSnapshot(stream.id, -1);
+        const hilogRet: number = napi.lowLatencyCapturerPrintSnapshot(stream.id, -1);
         this.appendLog(`${stream.name} C capture snapshot mirrored to hilog ret=${hilogRet}`);
         this.safeCloseFd(fd);
         fd = -1;
@@ -1203,6 +1512,13 @@ struct Index {
   }
 
   private printNativePlaybackSnapshot(stream: NativeStreamState): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable(`${stream.name} playback snapshot`);
+    if (napi === null) {
+      stream.playbackSnapshotStatus = 'Playback snapshot unavailable: native module not loaded';
+      this.status = stream.playbackSnapshotStatus;
+      this.forceRefresh();
+      return;
+    }
     const path: string = this.buildSnapshotPath('c_renderer', stream.id);
     let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
@@ -1212,14 +1528,14 @@ struct Index {
       return;
     }
     try {
-      const ret: number = audioNapi.pcmPlayerPrintSnapshot(stream.id, fd);
+      const ret: number = napi.pcmPlayerPrintSnapshot(stream.id, fd);
       if (ret !== 0) {
         stream.playbackSnapshotStatus = `Playback snapshot failed: ${ret}`;
         this.appendLog(`${stream.name} C playback snapshot failed ret=${ret}`);
         stream.playbackSnapshotText = '';
         stream.showPlaybackSnapshotText = false;
       } else {
-        const hilogRet: number = audioNapi.pcmPlayerPrintSnapshot(stream.id, -1);
+        const hilogRet: number = napi.pcmPlayerPrintSnapshot(stream.id, -1);
         this.appendLog(`${stream.name} C playback snapshot mirrored to hilog ret=${hilogRet}`);
         this.safeCloseFd(fd);
         fd = -1;
@@ -1240,12 +1556,32 @@ struct Index {
     }
   }
 
+  private async handleNativeCaptureSnapshot(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'capture snapshot',
+      (jsStream: JsStreamState): void => {
+        jsStream.captureSnapshotPath = this.buildSnapshotPath('c_capturer', stream.id);
+        this.printJsCaptureSnapshot(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.printNativeCaptureSnapshot(stream);
+  }
+
+  private async handleNativePlaybackSnapshot(stream: NativeStreamState): Promise<void> {
+    if (await this.runNativeActionWithJsFallback(stream, 'playback snapshot',
+      (jsStream: JsStreamState): void => {
+        jsStream.playbackSnapshotPath = this.buildSnapshotPath('c_renderer', stream.id);
+        this.printJsPlaybackSnapshot(jsStream);
+      }, stream.useJsFallback)) {
+      return;
+    }
+    this.printNativePlaybackSnapshot(stream);
+  }
+
   private printTsAppSnapshot(): void {
     const manager: audio.AudioDebuggingManager | null = this.getDebuggingManagerInstanceCompat();
     if (manager === null) {
-      const nativeProbeRet: number = this.probeNativeDebuggingManager();
-      this.tsAppSnapshotStatus = `TS app debugging manager unavailable, C probe=${nativeProbeRet}`;
-      this.appendLog(`TS app snapshot check failed: JS manager null, C probe=${nativeProbeRet}`);
+      this.tsAppSnapshotStatus = 'TS app debugging manager unavailable';
       this.status = this.tsAppSnapshotStatus;
       this.forceRefresh();
       return;
@@ -1286,6 +1622,15 @@ struct Index {
   }
 
   private printCAppSnapshot(): void {
+    const napi: NativeAudioNapi | null = this.ensureNativeAudioAvailable('C app snapshot');
+    if (napi === null) {
+      this.cAppSnapshotStatus = 'C app snapshot unavailable: native module not loaded';
+      this.cAppSnapshotText = '';
+      this.showCAppSnapshotText = false;
+      this.status = this.cAppSnapshotStatus;
+      this.forceRefresh();
+      return;
+    }
     const path: string = this.buildCAppSnapshotPath();
     let fd: number = this.openSnapshotFile(path);
     if (fd < 0) {
@@ -1295,7 +1640,7 @@ struct Index {
       return;
     }
     try {
-      const ret: number = audioNapi.audioDebuggingManagerPrintAppInfo(fd);
+      const ret: number = napi.audioDebuggingManagerPrintAppInfo(fd);
       if (ret !== 0) {
         this.cAppSnapshotPath = '';
         this.cAppSnapshotStatus = `C app snapshot failed: ${ret} (aggregated diagnostic; stream snapshots may still succeed)`;
@@ -1303,7 +1648,7 @@ struct Index {
         this.cAppSnapshotText = '';
         this.showCAppSnapshotText = false;
       } else {
-        const hilogRet: number = audioNapi.audioDebuggingManagerPrintAppInfo(-1);
+        const hilogRet: number = napi.audioDebuggingManagerPrintAppInfo(-1);
         this.appendLog(`C app snapshot mirrored to hilog ret=${hilogRet}`);
         this.safeCloseFd(fd);
         fd = -1;
@@ -1772,28 +2117,29 @@ struct Index {
           .fontSize(11)
           .layoutWeight(1)
           .onClick(() => {
-            this.createNativeCapturer(stream);
+            this.appendLog(`${stream.name} create clicked`);
+            void this.handleNativeCreate(stream);
           });
         Button('启动')
           .height(32)
           .fontSize(11)
           .layoutWeight(1)
           .onClick(() => {
-            this.startNativeCapturer(stream);
+            void this.handleNativeStart(stream);
           });
         Button('停止')
           .height(32)
           .fontSize(11)
           .layoutWeight(1)
           .onClick(() => {
-            this.stopNativeCapturer(stream);
+            void this.handleNativeStop(stream);
           });
         Button('释放')
           .height(32)
           .fontSize(11)
           .layoutWeight(1)
           .onClick(() => {
-            this.releaseNativeCapturer(stream);
+            void this.handleNativeRelease(stream);
           });
       }
       Column({ space: 6 }) {
@@ -1803,14 +2149,14 @@ struct Index {
             .fontSize(11)
             .layoutWeight(1)
             .onClick(() => {
-              this.printNativeCaptureSnapshot(stream);
+              void this.handleNativeCaptureSnapshot(stream);
             });
           Button('播放快照')
             .height(32)
             .fontSize(11)
             .layoutWeight(1)
             .onClick(() => {
-              this.printNativePlaybackSnapshot(stream);
+              void this.handleNativePlaybackSnapshot(stream);
             });
         }
         Row({ space: 6 }) {
@@ -1819,14 +2165,14 @@ struct Index {
             .fontSize(11)
             .layoutWeight(1)
             .onClick(() => {
-              this.playNativeRecording(stream);
+              void this.handleNativePlayback(stream);
             });
           Button('停止播放')
             .height(32)
             .fontSize(11)
             .layoutWeight(1)
             .onClick(() => {
-              this.stopNativePlayback(stream);
+              void this.handleNativeStopPlayback(stream);
             });
         }
       }
