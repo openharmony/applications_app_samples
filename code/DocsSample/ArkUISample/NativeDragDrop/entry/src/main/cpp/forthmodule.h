@@ -38,6 +38,13 @@ void DragStatusListener(ArkUI_DragAndDropInfo *info, void *userData)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "DragStatusListener called");
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "dragStatus = %{public}d, &dragEvent = %{public}p",
                  dragStatus, dragEvent);
+    if (dragStatus == ARKUI_DRAG_STATUS_ENDED && action) {
+        OH_ArkUI_DragAction_UnregisterStatusListener(action);
+        OH_ArkUI_DragAction_Dispose(action);
+        ReleaseDragUdmfData();
+        ReleaseDragPixelMaps();
+        action = nullptr;
+    }
 }
 
 void RegisterNodeEventForthReceiver1()
@@ -78,7 +85,13 @@ void RegisterNodeEventForthReceiver1()
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                     "OH_ArkUI_StartDrag returnValue = %{public}d",
                     returnValue);
-                OH_ArkUI_DragAction_Dispose(action);
+                if (returnValue != ARKUI_ERROR_CODE_NO_ERROR && action) {
+                    OH_ArkUI_DragAction_UnregisterStatusListener(action);
+                    OH_ArkUI_DragAction_Dispose(action);
+                    ReleaseDragUdmfData();
+                    ReleaseDragPixelMaps();
+                    action = nullptr;
+                }
                 // [EndExclude on_touchIntercept]
                 break;
             }
@@ -111,7 +124,6 @@ void RegisterNodeEventForthReceiver2()
             case NODE_ON_DROP: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DROP EventReceiver");
                 GetUdmfDataText(dragEvent);
-                OH_ArkUI_DragAction_UnregisterStatusListener(action);
                 break;
             }
             // [StartExclude get_dragAction]
@@ -182,7 +194,9 @@ void SetDragActionData()
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "dragTest OH_UdmfRecord_AddPlainText returnStatus = %{public}d", returnStatus);
     // 创建OH_UdmfData对象
+    ReleaseDragUdmfData();
     OH_UdmfData *data = OH_UdmfData_Create();
+    dragUdmfData = data;
     // 向OH_UdmfData中添加OH_UdmfRecord
     returnStatus = OH_UdmfData_AddRecord(data, record);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",

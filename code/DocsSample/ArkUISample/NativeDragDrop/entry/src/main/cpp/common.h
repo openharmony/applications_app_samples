@@ -23,6 +23,7 @@
 #include <database/udmf/udmf.h>
 #include <hilog/log.h>
 #include <sstream>
+#include <vector>
 
 #define BORDER_WIDTH_1 1.0
 #define DEFAULT_RADIUS 10.0
@@ -63,10 +64,30 @@ enum ArkUIModifierKeyName {
 char key[UDMF_KEY_BUFFER_LEN];
 int32_t g_requestIdentify = 0;
 ArkUI_DragAction *action;
+OH_UdmfData *dragUdmfData = nullptr;
+std::vector<OH_PixelmapNative *> dragPixelMaps;
 std::stringstream g_ss;
 
 void GetDragResult(ArkUI_DragEvent* dragEvent);
 void GetDragMoveInfos(ArkUI_DragEvent* dragEvent);
+
+void ReleaseDragUdmfData()
+{
+    if (dragUdmfData) {
+        OH_UdmfData_Destroy(dragUdmfData);
+        dragUdmfData = nullptr;
+    }
+}
+
+void ReleaseDragPixelMaps()
+{
+    for (auto *pixelmap : dragPixelMaps) {
+        if (pixelmap) {
+            OH_PixelmapNative_Release(pixelmap);
+        }
+    }
+    dragPixelMaps.clear();
+}
 
 void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
 {
@@ -297,8 +318,11 @@ void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
         data[i] = i + 1;
     }
     // 创建参数结构体实例，并设置参数
-    OH_Pixelmap_InitializationOptions *createOpts;
+    OH_Pixelmap_InitializationOptions *createOpts = nullptr;
     OH_PixelmapInitializationOptions_Create(&createOpts);
+    if (!createOpts) {
+        return;
+    }
     OH_PixelmapInitializationOptions_SetWidth(createOpts, 200U);
     OH_PixelmapInitializationOptions_SetHeight(createOpts, 300U);
     OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
@@ -306,9 +330,18 @@ void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
     // 创建Pixelmap实例
     OH_PixelmapNative *pixelmap = nullptr;
     OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
+    OH_PixelmapInitializationOptions_Release(createOpts);
+    if (!pixelmap) {
+        return;
+    }
     OH_PixelmapNative_Flip(pixelmap, true, true);
     pixelVector.push_back(pixelmap);
     int returnValue = OH_ArkUI_DragAction_SetPixelMaps(action, pixelVector.data(), pixelVector.size());
+    if (returnValue == ARKUI_ERROR_CODE_NO_ERROR) {
+        dragPixelMaps.push_back(pixelmap);
+    } else {
+        OH_PixelmapNative_Release(pixelmap);
+    }
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetPixelMaps returnValue = %{public}d", returnValue);
 }

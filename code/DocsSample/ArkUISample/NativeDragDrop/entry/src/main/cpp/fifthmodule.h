@@ -135,7 +135,11 @@ void RegisterNodeEventFifthReceiver1()
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                     "OH_ArkUI_StartDrag returnValue = %{public}d",
                     returnValue);
-                OH_ArkUI_DragAction_Dispose(action);
+                if (action) {
+                    OH_ArkUI_DragAction_Dispose(action);
+                    ReleaseDragPixelMaps();
+                    action = nullptr;
+                }
                 break;
             }
             default: {
