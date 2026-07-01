@@ -213,6 +213,7 @@ export struct DialogController {
           })
         Button('PresentCustomDialog+CustomBuilder')
           .onClick(async () => {
+            // [Start dialog_controller_component]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
             try {
               await this.getUIContext().getPromptAction().presentCustomDialog(() => {
@@ -221,9 +222,11 @@ export struct DialogController {
             } catch(err) {
               hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             }
+            // [End dialog_controller_component]
           })
         Button('PresentCustomDialog+CustomBuilderWithId')
           .onClick(async () => {
+            // [Start dialog_controller_id]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
             try {
               await this.getUIContext().getPromptAction().presentCustomDialog((dialogId: number) => {
@@ -232,6 +235,7 @@ export struct DialogController {
             } catch(err) {
               hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             }
+            // [End dialog_controller_id]
           })
         Button('PresentCustomDialog+CustomBuilderGetState')
           .onClick(async () => {
