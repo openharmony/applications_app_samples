@@ -29,8 +29,8 @@ const deviceId = 'networkId_or_Udid'
 
 // [Start data_callback]
 // 定义消息回调
-let messageCallback: conversation.DataCallback = (networkId: string, msg: ArrayBuffer): void => {
-  hilog.info(DOMAIN, TAG, 'Received message from: %{public}s', networkId);
+let messageCallback: conversation.DataCallback = (deviceId: string, msg: ArrayBuffer): void => {
+  hilog.info(DOMAIN, TAG, 'Received message from: %{public}s', deviceId);
   hilog.info(DOMAIN, TAG, 'Message length: %{public}d', msg.byteLength);
   let bufferView = new Uint8Array(msg);
   let messageStr = '';
