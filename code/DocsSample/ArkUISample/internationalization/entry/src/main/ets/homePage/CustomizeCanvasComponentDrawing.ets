@@ -45,13 +45,13 @@ struct CustomizeCanvasComponentDrawing {
             this.drawText();
           })
         } else {
-          console.error(`MayTest Need create subscriber`);
+          console.error(`Need create subscriber`);
         }
       })
   }
 
   drawText(): void {
-    console.error('MayTest drawText')
+    console.error('drawText')
     this.context.reset()
     this.context.direction = 'inherit'
     this.context.font = '30px sans-serif'
