@@ -22,7 +22,7 @@ let relConB: Record<string, Record<string, string | VerticalAlign | HorizontalAl
   'left': { 'anchor': 'row1', 'align': HorizontalAlign.Start }
 }
 let marginLeft001: Record<string, number> = { 'left': 20 }
-let bwc001: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
+let borderWidth001: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
 
 @Entry
 @Component
@@ -50,7 +50,7 @@ struct SiblingRefRelativeContainer {
       .id('row2')
     }.width(300).height(300)
     .margin(marginLeft001)
-    .border(bwc001)
+    .border(borderWidth001)
   }
 }
 // [End RelativeContainerSiblingComponentId_start]
