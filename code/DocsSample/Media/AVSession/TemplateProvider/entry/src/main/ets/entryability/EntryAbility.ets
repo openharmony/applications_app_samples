@@ -47,7 +47,7 @@ export default class EntryAbility extends UIAbility {
     this.context.startAbility(want).then(() => {
       console.info('startTemplateControllerAbility: startAbility success');
     }).catch((e: BusinessError) => {
-      console.error(`startTemplateControllerAbility: startAbility: errCode: ${e?.code}}`);
+      console.error(`startTemplateControllerAbility: startAbility: errCode: ${e?.code}`);
     });
   }
 }
