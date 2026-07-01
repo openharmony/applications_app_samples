@@ -30,23 +30,25 @@ struct WantAbilityPage1 {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        // 通过startAbility接口显式启动其他UIAbility，推荐使用openLink接口。
-        // let want: Want = {
-        //   bundleName: "com.test.example",
-        //   moduleName: "entry",
-        //   abilityName: "EntryAbility"
-        // };
-        // try {
-        //   context.startAbility(want)
-        //     .then(() => {
-        //       hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
-        //     }).catch((err: BusinessError) => {
-        //       hilog.error(DOMAIN_NUMBER, TAG, `startAbility failed. Code is ${err.code}, message is ${err.message}`);
-        //     })
-        // } catch (paramError) {
-        //   hilog.error(DOMAIN_NUMBER, TAG, `Failed to startAbility. Code is ${paramError.code},\
-        //   message is ${paramError.message}`);
-        // }
+        /*
+         * 通过startAbility接口显式启动其他UIAbility，推荐使用openLink接口。
+         * let want: Want = {
+         *   bundleName: "com.test.example",
+         *   moduleName: "entry",
+         *   abilityName: "EntryAbility"
+         * };
+         * try {
+         *   context.startAbility(want)
+         *     .then(() => {
+         *       hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
+         *     }).catch((err: BusinessError) => {
+         *       hilog.error(DOMAIN_NUMBER, TAG, `startAbility failed. Code is ${err.code}, message is ${err.message}`);
+         *     })
+         * } catch (paramError) {
+         *   hilog.error(DOMAIN_NUMBER, TAG, `Failed to startAbility. Code is ${paramError.code},\
+         *   message is ${paramError.message}`);
+         * }
+         */
         let link: string = 'https://www.example.com'; // 此处为实际应用链接
         let openLinkOptions: OpenLinkOptions = {
           // 匹配的abilities选项是否需要通过App Linking域名校验，匹配到唯一配置过的应用ability
