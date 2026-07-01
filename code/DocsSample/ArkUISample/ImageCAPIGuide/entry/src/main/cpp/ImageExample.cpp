@@ -38,21 +38,30 @@
 #define LOG_DOMAIN 0x3200
 #define LOG_TAG "ImageExample"
 
+// 全局变量，用于跟踪创建的节点
+static ArkUI_NodeHandle g_rootNode = nullptr;
+static ArkUI_NodeHandle g_image1 = nullptr;
+
+// NODE_IMAGE_ON_COMPLETE 事件数据索引
+static constexpr int32_t IMAGE_WIDTH_INDEX = 1;
+static constexpr int32_t IMAGE_HEIGHT_INDEX = 2;
+static constexpr int32_t ERROR_CODE_INDEX = 0;
+
 // 全局事件接收器
 // [start image_receiver]
-void GlobalEventReceiver(ArkUI_NodeEvent *event)
+void GlobalEventReceiver(ArkUI_NodeEvent* event)
 {
     auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     if (eventType == NODE_IMAGE_ON_COMPLETE) {
-        ArkUI_NodeComponentEvent *componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        ArkUI_NodeComponentEvent* componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
         if (componentEvent != nullptr) {
             OH_LOG_INFO(LOG_APP, "Image loaded: %.0fx%.0f",
-                        componentEvent->data[0].f32, componentEvent->data[1].f32);
+                        componentEvent->data[IMAGE_WIDTH_INDEX].f32, componentEvent->data[IMAGE_HEIGHT_INDEX].f32);
         }
     } else if (eventType == NODE_IMAGE_ON_ERROR) {
-        ArkUI_NodeComponentEvent *componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        ArkUI_NodeComponentEvent* componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
         if (componentEvent != nullptr) {
-            OH_LOG_ERROR(LOG_APP, "Image load failed, error: %d", componentEvent->data[0].i32);
+            OH_LOG_ERROR(LOG_APP, "Image load failed, error: %d", componentEvent->data[ERROR_CODE_INDEX].i32);
         }
     } else if (eventType == NODE_IMAGE_ON_SVG_PLAY_FINISH) {
         OH_LOG_INFO(LOG_APP, "SVG animation play finished");
@@ -81,6 +90,7 @@ ArkUI_NodeHandle CreateImageColumnAndFirstImage()
         OH_LOG_ERROR(LOG_APP, "Create Column failed");
         return nullptr;
     }
+    g_rootNode = column;
 
     // 设置Column padding属性
     ArkUI_NumberValue paddingValue[] = {{.f32 = 20.0f}};
@@ -90,9 +100,10 @@ ArkUI_NodeHandle CreateImageColumnAndFirstImage()
     // 创建Image组件1 - 基础图片
     ArkUI_NodeHandle image1 = nativeNodeApi->createNode(ARKUI_NODE_IMAGE);
     if (image1 != nullptr) {
+        g_image1 = image1;
         // 设置图片源（使用rawfile资源）
         // [start image_source]
-        ArkUI_AttributeItem srcItem = {nullptr, 0, "entry/resources/rawfile/pic0.png"};
+        ArkUI_AttributeItem srcItem = {nullptr, 0, "resources/rawfile/sky.png"};
         nativeNodeApi->setAttribute(image1, NODE_IMAGE_SRC, &srcItem);
         // [end image_source]
 
@@ -111,7 +122,7 @@ ArkUI_NodeHandle CreateImageColumnAndFirstImage()
 
         // 设置缩放类型
         // [start image_zoom]
-        ArkUI_NumberValue fitValue[] = {{.i32 = ARKUI_OBJECT_FIT_CONTAIN}};
+        ArkUI_NumberValue fitValue[] = {{.i32 = ARKUI_OBJECT_FIT_COVER}};
         ArkUI_AttributeItem fitItem = {fitValue, 1};
         nativeNodeApi->setAttribute(image1, NODE_IMAGE_OBJECT_FIT, &fitItem);
         // [end image_zoom]
@@ -146,7 +157,7 @@ void AddSecondImage(ArkUI_NodeHandle column)
     if (image2 != nullptr) {
         // 设置图片源（可以是SVG）
         // [start image_source]
-        ArkUI_AttributeItem srcItem2 = {nullptr, 0, "entry/resources/rawfile/pic1.svg"};
+        ArkUI_AttributeItem srcItem2 = {nullptr, 0, "resources/rawfile/cloud.svg"};
         nativeNodeApi->setAttribute(image2, NODE_IMAGE_SRC, &srcItem2);
         // [end image_source]
 
@@ -170,6 +181,11 @@ void AddSecondImage(ArkUI_NodeHandle column)
         nativeNodeApi->setAttribute(image2, NODE_IMAGE_FILL_COLOR, &fillColorItem);
         // [end image_fillcolor]
 
+        // 设置边框宽度
+        ArkUI_NumberValue borderWidthValue2[] = {{.f32 = 2.0f}};
+        ArkUI_AttributeItem borderWidthItem2 = {borderWidthValue2, 1};
+        nativeNodeApi->setAttribute(image2, NODE_BORDER_WIDTH, &borderWidthItem2);
+
         // 添加到Column
         nativeNodeApi->addChild(column, image2);
     }
@@ -188,7 +204,7 @@ void AddThirdImage(ArkUI_NodeHandle column)
     if (image3 != nullptr) {
         // 设置网络图片源
         // [start image_source]
-        ArkUI_AttributeItem srcItem3 = {nullptr, 0, "entry/resources/rawfile/pic2.png"};
+        ArkUI_AttributeItem srcItem3 = {nullptr, 0, "resources/rawfile/clouds.jpg"};
         nativeNodeApi->setAttribute(image3, NODE_IMAGE_SRC, &srcItem3);
         // [end image_source]
 
@@ -207,7 +223,7 @@ void AddThirdImage(ArkUI_NodeHandle column)
 
         // 设置占位图
         // [start image_source]
-        ArkUI_AttributeItem altItem = {nullptr, 0, "entry/resources/rawfile/pic3.png"};
+        ArkUI_AttributeItem altItem = {nullptr, 0, "resources/rawfile/imageCapiExample.png"};
         nativeNodeApi->setAttribute(image3, NODE_IMAGE_ALT, &altItem);
         // [end image_source]
 
@@ -217,6 +233,11 @@ void AddThirdImage(ArkUI_NodeHandle column)
         ArkUI_AttributeItem sourceSizeItem = {sourceSizeValue, 2};
         nativeNodeApi->setAttribute(image3, NODE_IMAGE_SOURCE_SIZE, &sourceSizeItem);
         // [end image_decode_size]
+
+        // 设置边框宽度
+        ArkUI_NumberValue borderWidthValue3[] = {{.f32 = 2.0f}};
+        ArkUI_AttributeItem borderWidthItem3 = {borderWidthValue3, 1};
+        nativeNodeApi->setAttribute(image3, NODE_BORDER_WIDTH, &borderWidthItem3);
 
         // 添加到Column
         nativeNodeApi->addChild(column, image3);
@@ -231,4 +252,25 @@ ArkUI_NodeHandle CreateImageExample()
     AddSecondImage(column);
     AddThirdImage(column);
     return column;
+}
+
+// 清理图片示例资源
+void CleanupImageExample()
+{
+    auto nativeNodeApi = NativeModule::GetNativeNodeAPI();
+    if (nativeNodeApi == nullptr) {
+        return;
+    }
+
+    // 注销image1的事件监听
+    if (g_image1 != nullptr) {
+        nativeNodeApi->unregisterNodeEvent(g_image1, NODE_IMAGE_ON_COMPLETE);
+        nativeNodeApi->unregisterNodeEvent(g_image1, NODE_IMAGE_ON_ERROR);
+        g_image1 = nullptr;
+    }
+
+    // 注销全局事件接收器
+    nativeNodeApi->unregisterNodeEventReceiver();
+
+    g_rootNode = nullptr;
 }

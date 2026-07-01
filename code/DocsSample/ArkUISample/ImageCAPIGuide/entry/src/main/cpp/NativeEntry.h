@@ -35,58 +35,58 @@
 
 namespace NativeModule {
 
-    // 获取ArkUI Native Node API
-    inline ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI()
+// 获取ArkUI nativeNodeApi
+inline ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI()
+{
+    static ArkUI_NativeNodeAPI_1 *api = nullptr;
+    if (api == nullptr) {
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
+    }
+    return api;
+}
+
+class NativeEntry {
+public:
+    static NativeEntry *GetInstance()
     {
-        static ArkUI_NativeNodeAPI_1 *api = nullptr;
-        if (api == nullptr) {
-            OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
-        }
-        return api;
+        static NativeEntry instance;
+        return &instance;
     }
 
-    class NativeEntry {
-    public:
-        static NativeEntry *GetInstance()
-        {
-            static NativeEntry instance;
-            return &instance;
+    void SetContentHandle(ArkUI_NodeContentHandle contentHandle)
+    {
+        contentHandle_ = contentHandle;
+    }
+
+    void SetRootNode(ArkUI_NodeHandle rootNode)
+    {
+        if (rootNode != nullptr && contentHandle_ != nullptr) {
+            rootNode_ = rootNode;
+            OH_ArkUI_NodeContent_AddNode(contentHandle_, rootNode);
         }
+    }
 
-        void SetContentHandle(ArkUI_NodeContentHandle contentHandle)
-        {
-            contentHandle_ = contentHandle;
+    void DisposeRootNode()
+    {
+        if (rootNode_ != nullptr && contentHandle_ != nullptr) {
+            OH_ArkUI_NodeContent_RemoveNode(contentHandle_, rootNode_);
+            // 使用正确的方式销毁节点
+            GetNativeNodeAPI()->disposeNode(rootNode_);
+            rootNode_ = nullptr;
         }
+    }
 
-        void SetRootNode(ArkUI_NodeHandle rootNode)
-        {
-            if (rootNode != nullptr && contentHandle_ != nullptr) {
-                rootNode_ = rootNode;
-                OH_ArkUI_NodeContent_AddNode(contentHandle_, rootNode);
-            }
-        }
+private:
+    NativeEntry() = default;
+    ~NativeEntry() = default;
 
-        void DisposeRootNode()
-        {
-            if (rootNode_ != nullptr && contentHandle_ != nullptr) {
-                OH_ArkUI_NodeContent_RemoveNode(contentHandle_, rootNode_);
-                // 使用正确的方式销毁节点
-                GetNativeNodeAPI()->disposeNode(rootNode_);
-                rootNode_ = nullptr;
-            }
-        }
+    ArkUI_NodeContentHandle contentHandle_ = nullptr;
+    ArkUI_NodeHandle rootNode_ = nullptr;
+};
 
-    private:
-        NativeEntry() = default;
-        ~NativeEntry() = default;
-
-        ArkUI_NodeContentHandle contentHandle_ = nullptr;
-        ArkUI_NodeHandle rootNode_ = nullptr;
-    };
-
-    // NAPI函数声明
-    napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
-    napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
+// NAPI函数声明
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
 
 } // namespace NativeModule
 

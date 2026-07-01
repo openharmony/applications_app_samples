@@ -33,4 +33,7 @@
 // 创建图片示例界面
 ArkUI_NodeHandle CreateImageExample();
 
+// 清理图片示例资源
+void CleanupImageExample();
+
 #endif // IMAGE_EXAMPLE_H
