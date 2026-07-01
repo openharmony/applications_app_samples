@@ -15,36 +15,119 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
+
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+const TAG = '[Sample_DistributedSoftbusConversation]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'DistributedSoftbusConversation_';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(() => {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(() => {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    })
-  })
+    beforeAll(async () => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      };
+      await delegator.startAbility(want);
+      await Driver.create().delayMs(2000);
+    });
+
+    beforeEach(() => {});
+    afterEach(() => {});
+    afterAll(() => {});
+
+    /**
+     * 拉起应用，验证主界面加载成功
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, begin');
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, abilityName: ' + ability.context.abilityInfo.name);
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, end');
+      done();
+    });
+
+    /**
+     * 验证页面标题显示
+     */
+    it(BUNDLE + 'PageTitle_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PageTitle_001, begin');
+      const driver = Driver.create();
+      await driver.assertComponentExist(ON.text('Distributed SoftBus Conversation Test'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PageTitle_001, end');
+      done();
+    });
+
+    /**
+     * 点击"Get Trusted Devices"按钮，验证获取可信设备功能不出现异常
+     */
+    it(BUNDLE + 'GetTrustedDevices_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDevices_001, begin');
+      const driver = Driver.create();
+      const btn = await driver.findComponent(ON.text('Get Trusted Devices'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDevices_001, btn found: ' + (btn !== null));
+      if (btn !== null) {
+        await btn.click();
+        await driver.delayMs(1000);
+      }
+      expect(btn !== null).assertTrue();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDevices_001, end');
+      done();
+    });
+
+    /**
+     * 点击"Register Listener"按钮，验证注册监听器功能不出现异常
+     */
+    it(BUNDLE + 'RegisterListener_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'RegisterListener_001, begin');
+      const driver = Driver.create();
+      const btn = await driver.findComponent(ON.text('Register Listener'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'RegisterListener_001, btn found: ' + (btn !== null));
+      if (btn !== null) {
+        await btn.click();
+        await driver.delayMs(1000);
+      }
+      expect(btn !== null).assertTrue();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'RegisterListener_001, end');
+      done();
+    });
+
+    /**
+     * 点击"Unregister Listener"按钮，验证注销监听器功能不出现异常
+     */
+    it(BUNDLE + 'UnregisterListener_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UnregisterListener_001, begin');
+      const driver = Driver.create();
+      const btn = await driver.findComponent(ON.text('Unregister Listener'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UnregisterListener_001, btn found: ' + (btn !== null));
+      if (btn !== null) {
+        await btn.click();
+        await driver.delayMs(1000);
+      }
+      expect(btn !== null).assertTrue();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UnregisterListener_001, end');
+      done();
+    });
+
+    /**
+     * 点击"Send Message"按钮，验证发送消息功能不出现异常
+     */
+    it(BUNDLE + 'SendMessage_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessage_001, begin');
+      const driver = Driver.create();
+      const btn = await driver.findComponent(ON.text('Send Message'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessage_001, btn found: ' + (btn !== null));
+      if (btn !== null) {
+        await btn.click();
+        await driver.delayMs(1000);
+      }
+      expect(btn !== null).assertTrue();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessage_001, end');
+      done();
+    });
+  });
 }
