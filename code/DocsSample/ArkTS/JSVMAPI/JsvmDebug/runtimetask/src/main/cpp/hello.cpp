@@ -90,8 +90,8 @@ public:
 };
 static map<int, deque<Task *>> g_taskQueueMap;
 
-// 自定义Consoleinfo方法
-static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info)
+// 自定义ConsoleInfo方法
+static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value args[1];
@@ -237,7 +237,7 @@ static int CreateJsCore(uint32_t *result)
     const int addIndex = 1;
     const int assertEqualIndex = 2;
     const int createPromiseIndex = 3;
-    g_callBackStructMap[g_envtagNumber][consoleinfoIndex].callback = Consoleinfo;
+    g_callBackStructMap[g_envtagNumber][consoleinfoIndex].callback = ConsoleInfo;
     g_callBackStructMap[g_envtagNumber][addIndex].callback = Add;
     g_callBackStructMap[g_envtagNumber][assertEqualIndex].callback = AssertEqual;
     g_callBackStructMap[g_envtagNumber][createPromiseIndex].callback = CreatePromise;
@@ -282,7 +282,7 @@ static int ReleaseJsCore(uint32_t coreEnvId)
 }
 
 static std::mutex g_mutexLock;
-// 对外提供执行JS代码接口，通过coreID在对应的JSVN环境中执行JS代码
+// 对外提供执行JS代码接口，通过coreID在对应的JSVM环境中执行JS代码
 static int EvaluateJS(uint32_t envId, const char *source, std::string &res)
 {
     OH_LOG_INFO(LOG_APP, "JSVM EvaluateJS START");

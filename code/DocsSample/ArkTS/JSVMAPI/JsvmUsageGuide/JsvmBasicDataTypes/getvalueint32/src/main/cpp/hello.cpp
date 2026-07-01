@@ -97,7 +97,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // 样例测试js
 const char* SRC_CALL_NATIVE = R"JS(getValueInt32(-123))JS";
-// [EndExclude oh_jsvm_get_value_int32]
+// [End oh_jsvm_get_value_int32]
 
 static int32_t TestJSVM()
 {

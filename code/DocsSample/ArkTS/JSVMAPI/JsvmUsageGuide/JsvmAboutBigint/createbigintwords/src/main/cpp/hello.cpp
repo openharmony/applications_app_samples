@@ -91,7 +91,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 // 样例测试js
 const char* SRC_CALL_NATIVE = R"JS(createBigintWords())JS";
-// [EndExclude oh_jsvm_create_bigint_words]
+// [End oh_jsvm_create_bigint_words]
 
 static int32_t TestJSVM()
 {

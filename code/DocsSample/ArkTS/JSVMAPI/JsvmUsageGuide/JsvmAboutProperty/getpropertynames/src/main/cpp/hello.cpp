@@ -73,7 +73,7 @@ static JSVM_Value GetPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_GetPropertyNames(env, args[0], &result);
     if (status != JSVM_OK) {
-        OH_JSVM_ThrowError(env, nullptr, "Failed to get propertynames");
+        OH_JSVM_ThrowError(env, nullptr, "Failed to get property names");
         return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_GetPropertyNames success");
