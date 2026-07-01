@@ -33,9 +33,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     fetchColumns: [],
     predicates: predicates
   };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
@@ -43,7 +43,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback);
     await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
-    fetchResult.close();
     // [StartExclude register_listener_to_photo_asset]
     return true;
     // [EndExclude register_listener_to_photo_asset]
@@ -52,6 +51,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     // [StartExclude register_listener_to_photo_asset]
     return false;
     // [EndExclude register_listener_to_photo_asset]
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 // [End register_listener_to_photo_asset]

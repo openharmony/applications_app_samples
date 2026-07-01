@@ -38,12 +38,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-      await phAccessHelper.getAlbums(
-        photoAccessHelper.AlbumType.USER, 
-        photoAccessHelper.AlbumSubtype.USER_GENERIC, 
-        fetchOptions);
+    fetchResult = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.USER,
+      photoAccessHelper.AlbumSubtype.USER_GENERIC,
+      fetchOptions);
         
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbums successfully, albumUri: ' + album.albumUri);
@@ -54,7 +54,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     phAccessHelper.registerChange(album.albumUri, false, onCallback);
     album.albumName = 'newAlbumName' + Date.now();
     await album.commitModify();
-    fetchResult.close();
     // [StartExclude register_listener_to_album]
     return true;
     // [EndExclude register_listener_to_album]
@@ -63,6 +62,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     // [StartExclude register_listener_to_album]
     return false;
     // [EndExclude register_listener_to_album]
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 // [End register_listener_to_album]

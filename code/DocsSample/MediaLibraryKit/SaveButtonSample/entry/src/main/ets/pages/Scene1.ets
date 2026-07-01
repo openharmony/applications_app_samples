@@ -74,7 +74,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper): Pro
   try {
     let outputText = 'Supported formats:\n';
     // The value 1 means the supported image formats, and 2 means the supported video formats.
-    let imageFormat = await phAccessHelper.getSupportedPhotoFormats(1);
+    let imageFormat = await phAccessHelper.getSupportedPhotoFormats(photoAccessHelper.PhotoType.IMAGE);
     let result = '';
     for (let i = 0; i < imageFormat.length; i++) {
       result += imageFormat[i];
