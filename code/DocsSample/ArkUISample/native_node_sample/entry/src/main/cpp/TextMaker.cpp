@@ -2659,9 +2659,11 @@ void setTextTailIndents(ArkUI_NodeHandle &textContainer)
         "设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组";
     ArkUI_AttributeItem textItem2 = { .string = textContent2 };
     Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_CONTENT, &textItem2);
+    // [Start text_tail_indents]
     ArkUI_NumberValue multiValues[] = { { .f32 = 0.0f }, { .f32 = 50.0f }, { .f32 = 100.0f } };
     ArkUI_AttributeItem tailIndentItem2 = { .value = multiValues, .size = 3 };
     Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_TAIL_INDENTS, &tailIndentItem2);
+    // [End text_tail_indents]
     Manager::nodeAPI_->addChild(textContainer, text2);
 }
 
