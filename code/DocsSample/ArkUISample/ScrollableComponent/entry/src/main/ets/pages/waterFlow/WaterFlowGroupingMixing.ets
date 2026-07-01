@@ -125,7 +125,7 @@ export struct WaterFlowGroupingMixing {
             .width('100%')
             .aspectRatio(item != 0 ? this.itemHeightArray[item % 100] / this.itemWidthArray[item % 100] : 0)
             .backgroundColor(item != 0 ? this.colors[item % 5] : Color.White)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .backgroundColor(0xFAEEE0)
         .height('100%')

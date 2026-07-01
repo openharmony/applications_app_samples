@@ -32,7 +32,6 @@ class Contact {
 @Entry
 @Component
 export struct ArcListContents {
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State private contacts: Array<object> = [
     // 请将$r('app.string.xxx')替换为实际资源文件
     new Contact($r('app.string.name_xiaohong'), $r('app.media.ic_contact')),
