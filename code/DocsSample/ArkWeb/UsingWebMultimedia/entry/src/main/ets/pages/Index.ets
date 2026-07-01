@@ -26,7 +26,7 @@ struct WebComponent {
   aboutToAppear() {
     // 配置Web开启调试模式
     webview.WebviewController.setWebDebuggingAccess(true);
-    // 获取权限请求通知，点击onConfirm按钮后，拉起摄像头和麦克风。
+    // 获取摄像头和麦克风权限，在组件创建时主动申请权限。
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
       .then((data) => {
