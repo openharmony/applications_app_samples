@@ -130,7 +130,7 @@ export struct ArcListArcIndexerBar {
             .backgroundColor(Color.Black)
             // [EndExclude arcAlphabetIndexer_start]
             .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-              // 根据列表滚动到的索引值，重新计算对应索引条的位置this.selectedIndex
+              // 根据列表滚动到的索引值，重新计算对应索引条的位置this.indexerIndex
               this.indexerIndex = centerIndex + 1;
             })
             // [StartExclude arcAlphabetIndexer_start]
