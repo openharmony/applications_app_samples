@@ -335,6 +335,24 @@ static napi_value CleanupStrongReference(napi_env env, napi_callback_info info)
 }
 // [End napi_create_strong_reference]
 
+// [Start napi_get_global_handle_count]
+// napi_get_global_handle_count
+static napi_value GetGlobalHandleCount(napi_env env, napi_callback_info info)
+{
+    size_t count = 0;
+    napi_status status = napi_get_global_handle_count(env, &count);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to get global handle count");
+        return nullptr;
+    }
+    OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_global_handle_count, count = %{public}zu.", count);
+    // 将handle数量转换为ArkTS number返回
+    napi_value result = nullptr;
+    napi_create_double(env, static_cast<double>(count), &result);
+    return result;
+}
+// [End napi_get_global_handle_count]
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -352,7 +370,8 @@ static napi_value Init(napi_env env, napi_value exports)
         { "createStrongReference", nullptr, CreateStrongReference, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "getStrongReferenceValue", nullptr, GetStrongReferenceValue, nullptr, nullptr, nullptr, napi_default,
           nullptr },
-        { "cleanupStrongReference", nullptr, CleanupStrongReference, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "cleanupStrongReference", nullptr, CleanupStrongReference, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getGlobalHandleCount", nullptr, GetGlobalHandleCount, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

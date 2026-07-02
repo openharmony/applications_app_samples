@@ -46,3 +46,7 @@ export const getStrongReferenceValue: () => string;
 
 export const cleanupStrongReference: () => void;
 // [End napi_create_weak_reference]
+
+// [Start napi_get_global_handle_count]
+export const getGlobalHandleCount: () => number;
+// [End napi_get_global_handle_count]
