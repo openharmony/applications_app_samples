@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/PowerDialog",
+    "pages/Transparent"
+  ],
+  "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "power_dialog"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "power_dialog"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ThermalServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThermalServiceExtAbility_low_label",
+      "value": "ThermalServiceExtAbility_low_label"
+    },
+    {
+      "name": "PowerServiceExtAbility_label",
+      "value": "PowerServiceExtAbility_label"
+    },
+    {
+      "name": "BatteryServiceExtAbility_label",
+      "value": "BatteryServiceExtAbility_label"
+    },
+    {
+      "name": "ThermalServiceExtAbility_high_label",
+      "value": "ThermalServiceExtAbility_high_label"
+    },
+    {
+      "name": "BatteryServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PowerServiceExtAbility_reason",
+      "value": "reboot or shutdown"
+    },
+    {
+      "name": "BUTTON_CANCEL_POWERDIALOG",
+      "value": "取消"
+    },
+    {
+      "name": "BUTTON_SHUTDOWN_POWERDIALOG",
+      "value": "关机"
+    },
+    {
+      "name": "BUTTON_REBOOT_POWERDIALOG",
+      "value": "重启"
+    },
+    {
+      "name": "TEXT_POWER_OPTIONS_POWERDIALOG",
+      "value": "电源选项"
+    },
+    {
+      "name": "TEXT_LOW_BATTERY_BATTERYDIALOG",
+      "value": "电量低"
+    },
+    {
+      "name": "BUTTON_KNOW",
+      "value": "知道了"
+    },
+    {
+      "name": "TEXT_HIGH_TEMPERATURE_THERMALDIALOG_HIGH",
+      "value": "高温"
+    },
+    {
+      "name": "TEXT_LOW_TEMPERATURE_THERMALDIALOG_LOW",
+      "value": "低温"
+    }
+  ]
+}

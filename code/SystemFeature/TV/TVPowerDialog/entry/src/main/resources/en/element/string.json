@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "power_dialog"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "power_dialog"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ThermalServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThermalServiceExtAbility_low_label",
+      "value": "ThermalServiceExtAbility_low_label"
+    },
+    {
+      "name": "PowerServiceExtAbility_label",
+      "value": "PowerServiceExtAbility_label"
+    },
+    {
+      "name": "BatteryServiceExtAbility_label",
+      "value": "BatteryServiceExtAbility_label"
+    },
+    {
+      "name": "ThermalServiceExtAbility_high_label",
+      "value": "ThermalServiceExtAbility_high_label"
+    },
+    {
+      "name": "BatteryServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PowerServiceExtAbility_reason",
+      "value": "reboot or shutdown"
+    },
+    {
+      "name": "BUTTON_CANCEL_POWERDIALOG",
+      "value": "Cancel"
+    },
+    {
+      "name": "BUTTON_SHUTDOWN_POWERDIALOG",
+      "value": "Off"
+    },
+    {
+      "name": "BUTTON_REBOOT_POWERDIALOG",
+      "value": "Restart"
+    },
+    {
+      "name": "TEXT_POWER_OPTIONS_POWERDIALOG",
+      "value": "Power Options"
+    },
+    {
+      "name": "TEXT_LOW_BATTERY_BATTERYDIALOG",
+      "value": "Low Power"
+    },
+    {
+      "name": "BUTTON_KNOW",
+      "value": "Cancel"
+    },
+    {
+      "name": "TEXT_HIGH_TEMPERATURE_THERMALDIALOG_HIGH",
+      "value": "HighTemp"
+    },
+    {
+      "name": "TEXT_LOW_TEMPERATURE_THERMALDIALOG_LOW",
+      "value": "LowerTemp"
+    }
+  ]
+}
