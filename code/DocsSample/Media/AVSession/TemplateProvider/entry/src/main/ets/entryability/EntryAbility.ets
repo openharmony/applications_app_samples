@@ -12,9 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2026-2026. All rights reserved.
- */
 
 // [Start ability_create_template]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -50,7 +47,7 @@ export default class EntryAbility extends UIAbility {
     this.context.startAbility(want).then(() => {
       console.info('startTemplateControllerAbility: startAbility success');
     }).catch((e: BusinessError) => {
-      console.error(`startTemplateControllerAbility: startAbility: errCode: ${e?.code}}`);
+      console.error(`startTemplateControllerAbility: startAbility: errCode: ${e?.code}`);
     });
   }
 }

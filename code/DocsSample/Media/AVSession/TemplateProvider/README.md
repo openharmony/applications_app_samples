@@ -2,16 +2,16 @@
 
 ### 介绍
 
-本示例主要展示了音频模板（模板提供方）的相关功能，使用[@ohos.multimedia.avMusicTemplate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/arkts-apis-avsession-AVMusicTemplate.md)等接口实现音频模板提供方与音频模板控制方自定义信息的交互功能。
+本示例主要展示了音频模板（模板提供方）的相关功能，使用[AVMusicTemplate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplate.md)等接口实现音频模板提供方与音频模板控制方自定义信息的交互功能。
 
 > 注意：
-> 此示例仅展示音频模板提供方的相关功能，如果需要音频模板提供的完整的自定义信息交互功能，请将本示例与[音频模板控制方示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/TemplateController)共同使用。
+> 此示例仅展示音频模板提供方的相关功能。
 
 ### 效果预览
 
 无直接界面，主要提供数据。
 
-#### 使用说明（需与音频模板控制方一起使用）
+#### 使用说明
 
 1. 打开音频模板提供方示例应用。
 2. 音频模板按需注册相应的数据获取方法监听。
@@ -26,12 +26,14 @@
 ```
 entry/src/main/ets/
 |---entryAbility
-|---|---EntryAbility.ets                             //逻辑实现
+|---|---EntryAbility.ets                             //主界面
+|---manager
+|---|---TemplateManager.ets                             //逻辑实现
 ```
 
 ### 具体实现
 
-* 界面相关的实现都封装在entryAbility/EntryAbility.ets下，源码参考：[entryAbility/EntryAbility.ets](./entry/src/main/ets/entryAbility/EntryAbility.ets)
+* 界面相关的实现都封装在entryAbility/EntryAbility.ets下，源码参考：[entryAbility/EntryAbility.ets](./entry/src/main/ets/entryability/EntryAbility.ets)
   * 创建音频模板对象，关键代码段：
 
     ```js
@@ -181,10 +183,6 @@ entry/src/main/ets/
      await backgroundTaskManager.startBackgroundRunning(globalThis.context,      backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK,want);
    }
    ```
-
-### 依赖
-
-此示例仅展示音频模板提供方的相关功能，如果需要音频模板提供的完整的自定义信息交互功能，请将本示例与[[音频模板控制方示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/TemplateController)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/TemplateController)共同使用。
 
 ### 约束与限制
 
