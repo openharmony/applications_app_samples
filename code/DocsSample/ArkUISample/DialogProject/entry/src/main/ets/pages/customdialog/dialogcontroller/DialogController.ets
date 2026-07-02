@@ -84,7 +84,7 @@ struct CustomDialogExample {
         .fontSize(30)
       Button('Close Dialog(Built-in Controller)')
         .onClick(() => {
-          let dialogController: PromptActionDialogController = this.getDialogController();
+          let dialogController: promptAction.DialogController = this.getDialogController();
           if (dialogController !== undefined) {
             dialogController.close();
           }
@@ -196,49 +196,57 @@ export struct DialogController {
     NavDestination() {
       Column({ space: 5 }) {
         Button('OpenCustomDialogWithController')
-          .onClick(() => {
+          .onClick(async () => {
             // [Start content_node]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
             let contentNode: ComponentContent<Object> =
               new ComponentContent(this.getUIContext(), wrapBuilder(buildText),
                 new Params(this.message, dialogController));
-            this.getUIContext().getPromptAction().openCustomDialogWithController(
-              contentNode, dialogController, this.baseDialogOptions).catch((err: BusinessError) => {
+            try {
+              await this.getUIContext().getPromptAction().openCustomDialogWithController(
+                contentNode, dialogController, this.baseDialogOptions);
+            } catch(err) {
               hilog.error(DOMAIN, 'dialogController',
                 'openCustomDialogWithController error: ' + err.code + ' ' + err.message);
-            });
+            }
             // [End content_node]
           })
         Button('PresentCustomDialog+CustomBuilder')
-          .onClick(() => {
+          .onClick(async () => {
             // [Start dialog_controller_component]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
-            this.getUIContext().getPromptAction().presentCustomDialog(() => {
-              this.customDialogComponent(dialogController);
-            }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
+            try {
+              await this.getUIContext().getPromptAction().presentCustomDialog(() => {
+                this.customDialogComponent(dialogController);
+              }, dialogController, this.dialogOptions);
+            } catch(err) {
               hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
-            });
+            }
             // [End dialog_controller_component]
           })
         Button('PresentCustomDialog+CustomBuilderWithId')
-          .onClick(() => {
+          .onClick(async () => {
             // [Start dialog_controller_id]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
-            this.getUIContext().getPromptAction().presentCustomDialog((dialogId: number) => {
-              this.customDialogComponentWithId(dialogId, dialogController);
-            }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
+            try {
+              await this.getUIContext().getPromptAction().presentCustomDialog((dialogId: number) => {
+                this.customDialogComponentWithId(dialogId, dialogController);
+              }, dialogController, this.dialogOptions);
+            } catch(err) {
               hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
-            });
+            }
             // [End dialog_controller_id]
           })
         Button('PresentCustomDialog+CustomBuilderGetState')
-          .onClick(() => {
+          .onClick(async () => {
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
-            this.getUIContext().getPromptAction().presentCustomDialog(() => {
-              this.customDialogComponentGetState(dialogController);
-            }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
+            try {
+              await this.getUIContext().getPromptAction().presentCustomDialog(() => {
+                this.customDialogComponentGetState(dialogController);
+              }, dialogController, this.dialogOptions);
+            } catch(err) {
               hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
-            });
+            }
           })
         Button('CustomDialogController')
           .onClick(() => {

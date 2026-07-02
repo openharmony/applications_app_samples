@@ -15,7 +15,7 @@
 
 // [Start open_popup_main]
 import { PromptActionClass } from './PopupMainPage';
-import { ComponentContent, PromptAction } from '@kit.ArkUI';
+import { ComponentContent, PromptAction, PopupCommonOptions } from '@kit.ArkUI';
 
 const ID: number = 0;
 

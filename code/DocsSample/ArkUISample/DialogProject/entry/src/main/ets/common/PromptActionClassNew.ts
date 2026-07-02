@@ -48,7 +48,7 @@ export class PromptActionClassNew {
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          hilog.error(DOMAIN, 'testTag', 'testTag', 'OpenCustomDialog args error code is ${code}, message is ${message}');
+          hilog.error(DOMAIN, 'testTag', 'testTag', `OpenCustomDialog args error code is ${code}, message is ${message}`);
         })
       // [End prompt_action_class_open_custom_dialog]
     }
@@ -64,7 +64,7 @@ export class PromptActionClassNew {
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          hilog.error(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog args error code is ${code}, message is ${message}');
+          hilog.error(DOMAIN, 'testTag', 'testTag', `CloseCustomDialog args error code is ${code}, message is ${message}`);
         })
     }
   }
@@ -74,7 +74,7 @@ export class PromptActionClassNew {
     // [Start prompt_action_class_close_custom_dialog]
     PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
       .then(() => {
-        hilog.info(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog complete.g complete.');
+        hilog.info(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog complete.');
         if (this.contentNode !== null) {
           this.contentNode.dispose();   // 释放contentNode
         }
@@ -82,7 +82,7 @@ export class PromptActionClassNew {
       .catch((error: BusinessError) => {
         let message = (error as BusinessError).message;
         let code = (error as BusinessError).code;
-        hilog.error(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog args error code is ${code}, message is ${message}');
+        hilog.error(DOMAIN, 'testTag', 'testTag', `CloseCustomDialog args error code is ${code}, message is ${message}`);
       })
     // [End prompt_action_class_close_custom_dialog]
   }
@@ -99,7 +99,7 @@ export class PromptActionClassNew {
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          hilog.error(DOMAIN, 'testTag', 'testTag', 'UpdateCustomDialog args error code is ${code}, message is ${message}');
+          hilog.error(DOMAIN, 'testTag', 'testTag', `UpdateCustomDialog args error code is ${code}, message is ${message}`);
         })
       // [End prompt_action_class_update_options]
     }
