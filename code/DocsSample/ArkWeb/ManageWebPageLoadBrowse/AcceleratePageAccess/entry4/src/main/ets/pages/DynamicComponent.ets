@@ -28,7 +28,7 @@ export class NodeControllerImpl extends NodeController {
   private rootNode: BuilderNode<BuilderData[]> | null = null;
   private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-  constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>,  context: UIContext) {
+  constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
   storage = context.getSharedLocalStorage();
     super();
     this.wrappedBuilder = wrappedBuilder;
