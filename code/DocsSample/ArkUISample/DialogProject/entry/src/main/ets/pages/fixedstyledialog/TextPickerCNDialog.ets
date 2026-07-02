@@ -35,7 +35,7 @@ export struct TextPickerCNDialogExample {
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
   ];
-  private select: number = 0;
+  private select: number[] = [0, 0, 0];
 
   build() {
     // [StartExclude text_picker_dialog]
@@ -52,7 +52,7 @@ export struct TextPickerCNDialogExample {
               range: this.fruits,
               selected: this.select,
               onAccept: (value: TextPickerResult) => {
-                this.select = value.index as number
+                this.select = value.index as number[]
               }
             });
           })

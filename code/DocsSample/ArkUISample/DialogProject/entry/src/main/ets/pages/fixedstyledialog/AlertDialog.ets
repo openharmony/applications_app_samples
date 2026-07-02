@@ -14,7 +14,6 @@
  */
 
 // [Start alert_dialog]
-import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component

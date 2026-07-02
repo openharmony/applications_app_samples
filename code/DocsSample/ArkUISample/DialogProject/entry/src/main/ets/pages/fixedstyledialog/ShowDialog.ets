@@ -55,7 +55,7 @@ export struct ShowDialogExample {
               } catch (error) {
                 let message = (error as BusinessError).message;
                 let code = (error as BusinessError).code;
-                console.error(`showdialog args error code is ${code}, message is ${message}`);
+                console.error(`showDialog args error code is ${code}, message is ${message}`);
               }
             })
         }.width('100%')

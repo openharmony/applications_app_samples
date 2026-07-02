@@ -82,7 +82,7 @@ export struct ButtonCustomStyle {
         }) {
           // [Start custom_create_function_button]
           Button({ type: ButtonType.Circle, stateEffect: true }) {
-            // 请将$r('app.media.ic_public_delete_filled3')替换为实际资源文件
+            // 请将$r('app.media.ic_public_delete_filled')替换为实际资源文件
             Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
           }.width(55).height(55).margin({ 'left': 20 }).backgroundColor(0xF55A42)
           // [End custom_create_function_button]

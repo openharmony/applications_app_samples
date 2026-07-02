@@ -90,15 +90,15 @@ export struct DialogInteractionUseButton {
   }
 
   onCancel() {
-    hilog.info(DOMAIN, 'testTag', 'testTag', 'Callback when the first button is clicked');
+    hilog.info(DOMAIN, 'testTag', 'Callback when the first button is clicked');
   }
 
   onAccept() {
-    hilog.info(DOMAIN, 'testTag', 'testTag', 'Callback when the second button is clicked');
+    hilog.info(DOMAIN, 'testTag', 'Callback when the second button is clicked');
   }
 
   exitApp() {
-    hilog.info(DOMAIN, 'testTag', 'testTag', 'Click the callback in the blank area');
+    hilog.info(DOMAIN, 'testTag', 'Click the callback in the blank area');
   }
 
   build() {

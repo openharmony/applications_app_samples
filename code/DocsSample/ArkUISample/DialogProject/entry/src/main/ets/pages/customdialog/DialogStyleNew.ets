@@ -29,7 +29,6 @@ struct CustomDialogExample {
 @Entry
 @Component
 export struct DialogStyleNew {
-  @State textValue: string = '';
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),
