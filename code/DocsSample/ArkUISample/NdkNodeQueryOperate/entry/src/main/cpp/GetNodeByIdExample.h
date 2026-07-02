@@ -119,5 +119,5 @@ std::shared_ptr<ArkUIBaseNode> CreateGetNodeByIdExample()
 }
 } // namespace NativeModule
 
-#endif //MYAPPLICATION_GETNODEBYID_H
+#endif // MYAPPLICATION_GETNODEBYID_H
 // [End ndknodequeryoperate3_start]

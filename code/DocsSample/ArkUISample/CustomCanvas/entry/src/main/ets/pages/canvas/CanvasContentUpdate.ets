@@ -18,7 +18,7 @@
 struct CanvasContentUpdate {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  @State @Watch('draw')content: string = 'Hello World';
+  @State @Watch('draw') content: string = 'Hello World';
 
   draw() {
     this.context.clearRect(0, 0, 400, 200); // 清空Canvas的内容

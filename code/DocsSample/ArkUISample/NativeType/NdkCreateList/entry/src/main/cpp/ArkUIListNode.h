@@ -85,24 +85,24 @@ public:
     void ScrollTo(float offset)
     {
         ArkUI_NumberValue value[] = {{.f32 = 0}, {.f32 = offset}, {.f32 = 0}};
-        ArkUI_AttributeItem Item = {.value = value, .size = 3};
-        nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
+        ArkUI_AttributeItem item = {.value = value, .size = 3};
+        nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &item);
     }
     // [StartExclude ScrollTo]
     // [EndExclude ScrollToIndex]
     void ScrollToIndex(int32_t index)
     {
         ArkUI_NumberValue value[] = {{.i32 = index}};
-        ArkUI_AttributeItem Item = {.value = value, .size = 1};
-        nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
+        ArkUI_AttributeItem item = {.value = value, .size = 1};
+        nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &item);
     }
     // [StartExclude ScrollToIndex]
     // [EndExclude ScrollBy]
     void ScrollBy(float offset)
     {
         ArkUI_NumberValue value[] = {{.f32 = 0}, {.f32 = offset}};
-        ArkUI_AttributeItem Item = {.value = value, .size = 2};
-        nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
+        ArkUI_AttributeItem item = {.value = value, .size = 2};
+        nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &item);
     }
     // [StartExclude ScrollBy]
     // [EndExclude SetSticky]

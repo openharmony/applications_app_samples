@@ -156,5 +156,5 @@ std::shared_ptr<ArkUIBaseNode> CreateMoveToExample()
 }
 } // namespace NativeModule
 
-#endif //MYAPPLICATION_MOVETO_H
+#endif // MYAPPLICATION_MOVETO_H
 // [End ndknodequeryoperate5_start]
