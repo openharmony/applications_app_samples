@@ -46,7 +46,7 @@ export struct FocusableExample {
             })
           Divider()
 
-          Text('focusable: ' + this.textFocusable)    // 第二个Text设置了focusable初始为true，focusableOnTouch为true
+          Text('focusable: ' + this.textFocusable)    // 第二个Text设置了focusable初始为true，focusOnTouch为true
             .borderColor(this.color2)
             .borderWidth(2)
             .width(300)

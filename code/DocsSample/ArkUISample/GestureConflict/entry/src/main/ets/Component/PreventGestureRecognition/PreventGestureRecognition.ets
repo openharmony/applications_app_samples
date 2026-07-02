@@ -17,8 +17,8 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local progress: number = 496000; // 初始进度，秒
-  @Local total: number = 27490000; // 总时长，秒
+  @Local progress: number = 496000; // 初始进度，毫秒
+  @Local total: number = 27490000; // 总时长，毫秒
   @Local currentWidth: string = '100%';
   @Local currentHeight: string = '100%';
   @Local playbackProgress: string = '';

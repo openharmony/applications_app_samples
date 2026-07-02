@@ -55,7 +55,7 @@ export struct FocusTransferExample {
                   console.error('Get string failed!');
                 }
               })
-            Button('button 3')
+            Button('Button 3')
               .margin(20)
               .onFocus(() => {
                 // 请将$r('app.string.Get_Focus')替换为实际资源文件，在本示例中该资源文件的value值为"获得焦点"
