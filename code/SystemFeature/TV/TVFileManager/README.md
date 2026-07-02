@@ -159,7 +159,7 @@ Index 页面管理本机/外部存储 Tab 切换，参考 [Index.ets](entry/src/
 ```bash
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/TV/TVFileManager > .git/info/sparse-checkout
+echo code/SystemFeature/TV/TVFileManager > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
