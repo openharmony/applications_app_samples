@@ -1,0 +1,484 @@
+{
+  "string": [
+    {
+      "name": "audio_visual_experience",
+      "value": "Audio-Visual Experience"
+    },
+    {
+      "name": "4K_demo_video",
+      "value": "4K Demo Video"
+    },
+    {
+      "name": "Audio_characteristics",
+      "value": "Audio Characteristics"
+    },
+    {
+      "name": "Technical_Specifications",
+      "value": "Technical Specifications"
+    },
+    {
+      "name": "Function_Directory",
+      "value": "Function Directory"
+    },
+    {
+      "name": "Smart_Life",
+      "value": "Smart Life"
+    },
+    {
+      "name": "Product_Specifications",
+      "value": "Product Specifications"
+    },
+    {
+      "name": "Sound_system",
+      "value": "Sound System"
+    },
+    {
+      "name": "Dolby_Atmos",
+      "value": "Dolby Atmos"
+    },
+    {
+      "name": "energy_efficiency_rating",
+      "value": "Energy Efficiency Rating"
+    },
+    {
+      "name": "Class_1_Energy_Efficiency",
+      "value": "Class 1 Energy Efficiency"
+    },
+    {
+      "name": "tab_function_features",
+      "value": "Function Features"
+    },
+    {
+      "name": "tab_service_support",
+      "value": "Service Support"
+    },
+    {
+      "name": "feature_universal_interconnection",
+      "value": "Universal Interconnection"
+    },
+    {
+      "name": "feature_screen_cast",
+      "value": "Screen Cast"
+    },
+    {
+      "name": "feature_smart_ai",
+      "value": "Smart AI"
+    },
+    {
+      "name": "feature_pointing_remote",
+      "value": "Pointing Remote"
+    },
+    {
+      "name": "feature_smart_screensaver",
+      "value": "Smart Screensaver"
+    },
+    {
+      "name": "feature_voice_interaction",
+      "value": "Voice Interaction"
+    },
+    {
+      "name": "feature_distributed",
+      "value": "Distributed"
+    },
+    {
+      "name": "feature_universal_interconnection_desc",
+      "value": "Multi-device collaboration, one-tap content transfer"
+    },
+    {
+      "name": "feature_screen_cast_desc",
+      "value": "Miracast+DLNA, small screen to big screen with ease"
+    },
+    {
+      "name": "feature_smart_ai_desc",
+      "value": "DeepSeek AI model, knowledge at your command"
+    },
+    {
+      "name": "feature_pointing_remote_desc",
+      "value": "Point and control, effortless TV interaction"
+    },
+    {
+      "name": "feature_smart_screensaver_desc",
+      "value": "Custom Photo and Video Display"
+    },
+    {
+      "name": "feature_voice_interaction_desc",
+      "value": "One-tap voice, search and control hands-free"
+    },
+    {
+      "name": "feature_distributed_desc",
+      "value": "Whiteboard, Gallery, Camera — seamless cross-device synergy"
+    },
+    {
+      "name": "smartlife_entertainment_av",
+      "value": "Entertainment & AV"
+    },
+    {
+      "name": "smartlife_child_care",
+      "value": "Child Care"
+    },
+    {
+      "name": "smartlife_efficient_office",
+      "value": "Efficient Office"
+    },
+    {
+      "name": "smartlife_entertainment_av_desc",
+      "value": "Smart scene recognition, auto-optimize picture settings"
+    },
+    {
+      "name": "smartlife_child_care_desc",
+      "value": "Healthy viewing habits, protect children's eyesight"
+    },
+    {
+      "name": "smartlife_efficient_office_desc",
+      "value": "Multi-device collaboration, one-tap content transfer"
+    },
+    {
+      "name": "inter_label_1",
+      "value": "Seamless Multi-Device Connection, Boundless Collaboration"
+    },
+    {
+      "name": "inter_content_1",
+      "value": "TV supports cross-brand interconnection of phones, computers, smart home devices and more — no tedious pairing needed, just bring them close to connect instantly. Cast phone videos to TV with one tap, sync computer documents to the big screen for work, and view smart home status on the TV display, integrating all devices for more convenient operation and a seamless experience."
+    },
+    {
+      "name": "inter_label_2",
+      "value": "Effortless Data Flow, Switch Content Freely"
+    },
+    {
+      "name": "inter_content_2",
+      "value": "Achieve real-time cross-device data sharing and continuity — unfinished shows on your phone can be cast to TV and resumed; photos browsed on TV can sync to your phone. File transfers require no third-party software, just drag and drop, allowing content to flow freely between devices to meet diverse usage needs."
+    },
+    {
+      "name": "inter_label_3",
+      "value": "Expanding Scene Ecosystem, Upgraded Smart Experience"
+    },
+    {
+      "name": "inter_content_3",
+      "value": "Based on universal interconnection capabilities, the TV serves as a smart home control hub, linking lights, curtains, air conditioning and other devices for scene-based control; it can also connect to education and fitness apps, syncing phone-based courses to the big screen. From entertainment to lifestyle to work, it expands the scene ecosystem in all dimensions, upgrading the smart living experience."
+    },
+    {
+      "name": "cast_label_1",
+      "value": "Miracast Casting, Smooth Screen Mirroring"
+    },
+    {
+      "name": "cast_content_1",
+      "value": "Based on Miracast protocol, mirror your phone or computer screen to the TV in real time. Gaming battles and office presentations without lag, peer-to-peer direct connection without network dependency — even on camping trips, cast phone movies to the big screen and enjoy an open-air cinema with friends."
+    },
+    {
+      "name": "cast_label_2",
+      "value": "DLNA Casting, Direct Content Push"
+    },
+    {
+      "name": "cast_content_2",
+      "value": "Supports DLNA multimedia sharing — directly 'push' movies from video apps and local music to the TV for playback. After pushing, your phone operates independently; making calls or replying to messages won't affect TV playback, so binge-watching and music listening never interfere with each other."
+    },
+    {
+      "name": "cast_label_3",
+      "value": "Full Protocol Coverage, Cast Your Way"
+    },
+    {
+      "name": "cast_content_3",
+      "value": "Miracast and DLNA, the two mainstream casting protocols, complement each other to meet different scenario needs. Whether mirroring games, pushing videos, or sharing photos, you'll find the most suitable casting method to effortlessly bring content to the big screen."
+    },
+    {
+      "name": "ai_label_1",
+      "value": "Knowledge Encyclopedia, Answers at Your Call"
+    },
+    {
+      "name": "ai_content_1",
+      "value": "Built-in DeepSeek large language model transforms the TV into a family knowledge base. A child asks 'Why is the sky blue?' or an elder wants to learn about wellness — simply speak your question into the remote, and the TV deeply understands and provides detailed answers, satisfying the curiosity of the entire family."
+    },
+    {
+      "name": "ai_label_2",
+      "value": "Document Assistant, One-Click Summary Generation"
+    },
+    {
+      "name": "ai_content_2",
+      "value": "Upload work documents and learning materials to the TV, and DeepSeek AI automatically extracts core summaries and generates mind maps or presentation outlines. It can even help polish emails and write weekly reports, making tedious text work easy and efficient — the TV becomes a productivity tool."
+    },
+    {
+      "name": "ai_label_3",
+      "value": "Life Butler, Plan Your Daily Routine"
+    },
+    {
+      "name": "ai_content_3",
+      "value": "From 'weekend family dinner recipes' to 'three-day family trip itineraries', DeepSeek AI combines your preferences to customize personalized plans. It can also recommend recipes based on leftover fridge ingredients and remind about clothing based on weather forecasts — let the TV manage life's little details for you."
+    },
+    {
+      "name": "pointing_label_1",
+      "value": "Precision Pointing Control, Double the Efficiency"
+    },
+    {
+      "name": "pointing_content_1",
+      "value": "Say goodbye to the tedious row-by-row cursor movement of traditional remotes. The pointing remote simply aims at the target area on the TV screen for precise 'point-and-select' control. Whether switching channels, opening apps, or selecting menu options, it responds instantly, greatly reducing steps and making TV interaction more efficient and convenient."
+    },
+    {
+      "name": "pointing_label_2",
+      "value": "Minimalist Interaction, Zero Learning Curve"
+    },
+    {
+      "name": "pointing_content_2",
+      "value": "No need to memorize complex button combinations — point and confirm, two steps to complete most operations. The elderly and children can quickly master usage without usage difficulties caused by complex operations. Simple button layout paired with intuitive pointing functionality lets the whole family easily enjoy TV entertainment without extra learning costs."
+    },
+    {
+      "name": "pointing_label_3",
+      "value": "Long-Range Stable Response, Full Coverage"
+    },
+    {
+      "name": "pointing_content_3",
+      "value": "Features powerful signal reception with effective control distance up to 8 meters and wide-angle signal coverage. Even from the corner of the living room or the other side of the sofa, you can stably control the TV without signal interruption or control lag. Whether multiple people use it during family gatherings or for daily long-distance control, it maintains a smooth experience."
+    },
+    {
+      "name": "screensaver_label_1",
+      "value": "Masterpiece Slideshow, Daily Artistic Inspiration"
+    },
+    {
+      "name": "screensaver_content_1",
+      "value": "When the TV is idle automatically cycles through classic artworks, paired with elegant frames and soothing music, instantly transforming the space into a gallery experience"
+    },
+    {
+      "name": "screensaver_label_2",
+      "value": "Family Time Machine, Cherished Memories Always Near"
+    },
+    {
+      "name": "screensaver_content_2",
+      "value": "Set family photos from the distributed gallery as screensaver, and the TV automatically plays children's growth albums and parents' travel photos while idle. Each photo is tagged with time and location, like a family documentary, letting warm memories surface at any moment."
+    },
+    {
+      "name": "screensaver_label_3",
+      "value": "Info Dashboard, Practical and Aesthetic"
+    },
+    {
+      "name": "screensaver_content_3",
+      "value": "Smart screensaver can be customized to display practical information such as time, weather, and schedule reminders. Minimalist clock and gradient color backgrounds present information clearly without being intrusive. Glance at the weather before heading out in the morning, check tomorrow's schedule when coming home at night — the TV becomes a life information center even while idle."
+    },
+    {
+      "name": "voice_label_1",
+      "value": "Always-On Wake, Always Ready"
+    },
+    {
+      "name": "voice_content_1",
+      "value": "No need to repeatedly say the wake word — wake once for continuous conversation. 'Play Jay Chou's songs', 'Next track', 'Volume to 50%' — the TV accurately understands context and executes each command. Communication flows as naturally as talking to a person, completely freeing your hands."
+    },
+    {
+      "name": "voice_label_2",
+      "value": "Dialect Recognition, Zero Barrier Communication"
+    },
+    {
+      "name": "voice_content_2",
+      "value": "Supports recognition of multiple dialects including Sichuanese, Cantonese, Shanghainese and more — easy for both elderly and children to use. Grandma says in dialect 'I want to watch Peking opera' and the TV instantly tunes to the opera channel; a child says in a childish voice 'I want to watch Peppa Pig' and the cartoon plays immediately."
+    },
+    {
+      "name": "voice_label_3",
+      "value": "Smart Home Hub, One Word Controls All"
+    },
+    {
+      "name": "voice_content_3",
+      "value": "Control ecosystem-connected lights, air conditioning, curtains and other devices through TV voice. Say 'I want to watch a movie' and the TV automatically dims the lights, closes the curtains, and activates cinema mode. Voice interaction makes the smart home truly understand you — control the entire house with a single word."
+    },
+    {
+      "name": "distributed_label_1",
+      "value": "Distributed Whiteboard, Inspiration Across Devices"
+    },
+    {
+      "name": "distributed_content_1",
+      "value": "The distributed whiteboard breaks device silos, supporting simultaneous access from phones, tablets, and computers for multiple people. Draw greeting cards together during family gatherings, and annotate proposal sketches synchronously in work meetings. Strokes and shapes flow in real time, letting everyone see each other's changes as if in the same room, multiplying collaboration efficiency."
+    },
+    {
+      "name": "distributed_label_2",
+      "value": "Distributed Gallery, Memories Auto-Gathered"
+    },
+    {
+      "name": "distributed_content_2",
+      "value": "Turn on the distributed gallery and family members' phone photos automatically sync to the TV family album. Children's growth moments and parents' travel footprints — no manual transfer needed, all beautiful moments captured by any device are intelligently organized by time and location. After meals, the whole family gathers before the big screen to relive those warm moments."
+    },
+    {
+      "name": "distributed_label_3",
+      "value": "Distributed Camera, Multi-Dimensional Vision Extension"
+    },
+    {
+      "name": "distributed_content_3",
+      "value": "During video calls, you can invoke the phone camera to let faraway parents see children's drawings clearly. When exercising at home, connect a smart camera for AI real-time motion capture and correction. The distributed camera lets the TV use lenses from other devices, unlocking new possibilities for smart living."
+    },
+    {
+      "name": "media_label_1",
+      "value": "Immersive Audio-Visual, Living Room Transforms into Private Cinema"
+    },
+    {
+      "name": "media_content_1",
+      "value": "Equipped with a 4K high-definition picture engine and high-quality sound system, viewing experiences are enhanced. Dark scene details are clearly rendered and colors are vibrant and vivid."
+    },
+    {
+      "name": "media_label_2",
+      "value": "Massive Content Aggregation, Something for Everyone"
+    },
+    {
+      "name": "media_content_2",
+      "value": "Integrates resources from mainstream video platforms — movies, TV series, variety shows, documentaries, and children's animation all in one place. Based on family members' viewing habits, the intelligent recommendation algorithm customizes exclusive content pages for everyone. The period dramas parents follow, the educational cartoons children watch, the classic films you want to catch up on — find them all when you turn on the TV. No more fighting over the remote, let every family member's leisure time be well spent."
+    },
+    {
+      "name": "media_label_3",
+      "value": "Karaoke Entertainment Upgrade, Party Vibe Anytime"
+    },
+    {
+      "name": "media_content_3",
+      "value": "Built-in professional karaoke system with a massive library of licensed backing tracks continuously updated, from classic oldies to trending hits covering everything. Supports dual microphone connection, intelligent scoring, reverb adjustment, one-touch vocal removal and more — heating up family gatherings instantly. Friends visiting, family birthdays, no need to go to a KTV, sing your heart out in the living room and turn every reunion into an unforgettable joyful party."
+    },
+    {
+      "name": "childcare_label_1",
+      "value": "Healthy Eye Protection, Balance Fun and Health"
+    },
+    {
+      "name": "childcare_content_1",
+      "value": "Features distance sensing and duration control — when children get too close to the screen, an automatic pop-up reminder appears and brightness decreases. When cumulative viewing reaches the set duration, the TV gently reminds them to rest and locks the screen. Also supports blue light filtering mode to reduce blue light damage to children's eyesight, protecting from three aspects of viewing distance, time, and lighting, letting children enjoy screen time healthily."
+    },
+    {
+      "name": "childcare_label_2",
+      "value": "Interactive Growth Guidance, Learn Through Play"
+    },
+    {
+      "name": "childcare_content_2",
+      "value": "Integrates interactive educational content such as voice Q&A, animated picture books, and educational games, embedding knowledge into fun interactions to stimulate children's learning interest. Parents can view children's viewing and learning records via mobile phone, understand interest preferences and growth progress, and push customized educational content — transforming the TV from an entertainment tool into a smart companion that supports children's growth."
+    },
+    {
+      "name": "office_label_1",
+      "value": "Big Screen Document Processing, Broader View"
+    },
+    {
+      "name": "office_content_1",
+      "value": "Project documents, spreadsheets, and presentations from your laptop to the TV big screen with one tap, saying goodbye to prolonged hunching over a small screen. 4K ultra-clear quality renders text sharp and clear, with data chart details fully visible. Whether reviewing hundred-page reports, proofreading complex spreadsheets, or revising design drafts, the big screen presentation makes information clear at a glance, doubling office efficiency."
+    },
+    {
+      "name": "office_label_2",
+      "value": "Wireless Presentation, Smoother Meetings"
+    },
+    {
+      "name": "office_content_2",
+      "value": "Supports Miracast, DLNA and other wireless casting protocols — no tedious wiring needed, quickly project proposals to the TV before meetings begin. Presenters can walk freely in the meeting room, use the pointing remote to flip pages and annotate, circling key content in real time. Client visits or team discussions no longer need crowding around a small screen, making every presentation confident and composed."
+    },
+    {
+      "name": "office_label_3",
+      "value": "Split-Screen Collaboration, Multi-Tasking in Parallel"
+    },
+    {
+      "name": "office_content_3",
+      "value": "TV supports split-screen display — run a video conference on one side while showing relevant documents on the other. During remote communication, the other party's video and discussion content are displayed on the same screen, no frequent window switching needed. Team members can join simultaneously, share screens, and annotate together — remote collaboration feels like face-to-face interaction, breaking through spatial limitations."
+    },
+    {
+      "name": "product_screen_size",
+      "value": "Screen Size"
+    },
+    {
+      "name": "product_75inch_4k",
+      "value": "75-inch 4K Ultra HD"
+    },
+    {
+      "name": "product_display_tech",
+      "value": "Display Technology"
+    },
+    {
+      "name": "product_miniled_backlight",
+      "value": "MiniLED Full Array Backlight"
+    },
+    {
+      "name": "product_os",
+      "value": "Operating System"
+    },
+    {
+      "name": "product_memory_config",
+      "value": "Memory Configuration"
+    },
+    {
+      "name": "product_4gb_64gb",
+      "value": "4GB+64GB"
+    },
+    {
+      "name": "product_processor",
+      "value": "Processor"
+    },
+    {
+      "name": "product_interface_config",
+      "value": "Interface Configuration"
+    },
+    {
+      "name": "product_hdmi21",
+      "value": "HDMI 2.1"
+    },
+    {
+      "name": "product_27inch_1080p",
+      "value": "27-inch 1080P"
+    },
+    {
+      "name": "product_gk6320",
+      "value": "GK6320"
+    },
+    {
+      "name": "product_gk6780",
+      "value": "GK6780V100"
+    },
+    {
+      "name": "product_openharmony",
+      "value": "OpenHarmony 5.1"
+    },
+    {
+      "name": "media_4k_demo_title",
+      "value": "4K Demo Video - Nature Scenery"
+    },
+    {
+      "name": "media_dolby_atmos_sound",
+      "value": "Dolby Atmos Sound"
+    },
+    {
+      "name": "media_smart_sound_field",
+      "value": "Smart Sound Field"
+    },
+    {
+      "name": "media_voice_enhancement",
+      "value": "Voice Enhancement"
+    },
+    {
+      "name": "media_hdr_support",
+      "value": "HDR Support"
+    },
+    {
+      "name": "media_hdr10plus",
+      "value": "HDR10+, Dolby Vision"
+    },
+    {
+      "name": "media_refresh_rate",
+      "value": "Refresh Rate"
+    },
+    {
+      "name": "media_120hz_memc",
+      "value": "120Hz MEMC"
+    },
+    {
+      "name": "media_color_depth",
+      "value": "Color Depth"
+    },
+    {
+      "name": "media_1_07_billion_colors",
+      "value": "1.07 Billion Colors"
+    },
+    {
+      "name": "media_contrast_ratio",
+      "value": "Contrast Ratio"
+    },
+    {
+      "name": "media_1000000_1",
+      "value": "1,000,000:1"
+    },
+    {
+      "name": "error_screen_params_invalid",
+      "value": "Invalid screen parameters"
+    },
+    {
+      "name": "error_get_screen_size_failed",
+      "value": "Failed to get screen size"
+    },
+    {
+      "name": "error_screensaver_failed",
+      "value": "Failed to jump to screensaver"
+    }
+  ]
+}

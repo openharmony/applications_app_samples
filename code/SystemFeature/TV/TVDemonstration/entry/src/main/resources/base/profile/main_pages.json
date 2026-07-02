@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "Component/SmartLifeComponent",
+    "Video/VideoPage",
+    "Component/FeatureComponent",
+    "pages/ScreenSaver"
+  ],
+  "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

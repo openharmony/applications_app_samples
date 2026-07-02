@@ -1,0 +1,484 @@
+{
+  "string": [
+    {
+      "name": "audio_visual_experience",
+      "value": "影音体验"
+    },
+    {
+      "name": "4K_demo_video",
+      "value": "4K演示视频"
+    },
+    {
+      "name": "Audio_characteristics",
+      "value": "音频特性"
+    },
+    {
+      "name": "Technical_Specifications",
+      "value": "技术规格"
+    },
+    {
+      "name": "Function_Directory",
+      "value": "功能目录"
+    },
+    {
+      "name": "Smart_Life",
+      "value": "智慧生活"
+    },
+    {
+      "name": "Product_Specifications",
+      "value": "产品规格"
+    },
+    {
+      "name": "Sound_system",
+      "value": "音效系统"
+    },
+    {
+      "name": "Dolby_Atmos",
+      "value": "杜比音效"
+    },
+    {
+      "name": "energy_efficiency_rating",
+      "value": "能效等级"
+    },
+    {
+      "name": "Class_1_Energy_Efficiency",
+      "value": "一级能效"
+    },
+    {
+      "name": "tab_function_features",
+      "value": "功能特性"
+    },
+    {
+      "name": "tab_service_support",
+      "value": "服务支持"
+    },
+    {
+      "name": "feature_universal_interconnection",
+      "value": "通用互联"
+    },
+    {
+      "name": "feature_screen_cast",
+      "value": "投屏"
+    },
+    {
+      "name": "feature_smart_ai",
+      "value": "智能AI"
+    },
+    {
+      "name": "feature_pointing_remote",
+      "value": "指向遥控"
+    },
+    {
+      "name": "feature_smart_screensaver",
+      "value": "智慧屏保"
+    },
+    {
+      "name": "feature_voice_interaction",
+      "value": "语音交互"
+    },
+    {
+      "name": "feature_distributed",
+      "value": "分布式"
+    },
+    {
+      "name": "feature_universal_interconnection_desc",
+      "value": "多设备协同，一键流转内容"
+    },
+    {
+      "name": "feature_screen_cast_desc",
+      "value": "Miracast+DLNA，小屏轻松上大屏"
+    },
+    {
+      "name": "feature_smart_ai_desc",
+      "value": "DeepSeek大模型，有问必答懂你所想"
+    },
+    {
+      "name": "feature_pointing_remote_desc",
+      "value": "远场语音，无需遥控器操作"
+    },
+    {
+      "name": "feature_smart_screensaver_desc",
+      "value": "待机艺术，回忆名画轮播"
+    },
+    {
+      "name": "feature_voice_interaction_desc",
+      "value": "一键语音，搜片调机动口不动手"
+    },
+    {
+      "name": "feature_distributed_desc",
+      "value": "白板图库相机，跨端协同无界"
+    },
+    {
+      "name": "smartlife_entertainment_av",
+      "value": "娱乐影音"
+    },
+    {
+      "name": "smartlife_child_care",
+      "value": "儿童关怀"
+    },
+    {
+      "name": "smartlife_efficient_office",
+      "value": "高效办公"
+    },
+    {
+      "name": "smartlife_entertainment_av_desc",
+      "value": "智能场景识别，自动优化画面参数"
+    },
+    {
+      "name": "smartlife_child_care_desc",
+      "value": "远场语音，无需遥控器操作"
+    },
+    {
+      "name": "smartlife_efficient_office_desc",
+      "value": "多设备协同，一键流转内容"
+    },
+    {
+      "name": "inter_label_1",
+      "value": "多端无缝连接，设备协同无界"
+    },
+    {
+      "name": "inter_content_1",
+      "value": "电视支持手机、电脑、智能家居等多设备跨品牌互联，无需繁琐配对，靠近即可快速连接。手机视频一键投屏至电视，电脑文档同步显示办公，智能家居状态在电视屏幕集中呈现，让各类设备融为一体，操作更便捷，体验更连贯。"
+    },
+    {
+      "name": "inter_label_2",
+      "value": "数据流转自如，内容随心切换"
+    },
+    {
+      "name": "inter_content_2",
+      "value": "实现跨设备数据实时共享与接续，手机上未看完的剧集，投屏到电视可续播；电视上浏览的图片，能同步保存至手机。文件传输无需依赖第三方软件，拖拽即可完成，让内容在不同设备间自由流转，满足用户多场景使用需求。"
+    },
+    {
+      "name": "inter_label_3",
+      "value": "场景生态拓展，智慧体验升级"
+    },
+    {
+      "name": "inter_content_3",
+      "value": "基于通用互联能力，电视可作为智慧家庭控制中枢，联动灯光、窗帘、空调等设备实现场景化控制；也能对接教育、健身等应用，将手机端课程同步至电视大屏学习。从娱乐到生活再到办公，全方位拓展场景生态，升级智慧生活体验。"
+    },
+    {
+      "name": "cast_label_1",
+      "value": "Miracast投屏，镜像丝滑流畅"
+    },
+    {
+      "name": "cast_content_1",
+      "value": "基于Miracast协议，手机、电脑屏幕实时镜像至电视。游戏激战、办公演示无延迟，点对点直连不依赖网络，郊游露营也能将手机电影投到大屏，与好友共享露天影院。"
+    },
+    {
+      "name": "cast_label_2",
+      "value": "DLNA投屏，内容直接推送"
+    },
+    {
+      "name": "cast_content_2",
+      "value": "支持DLNA多媒体共享，将视频App中的电影、本地音乐直接\"推送\"至电视播放。推送后手机可独立操作，打电话、回消息均不影响电视播放，追剧听歌互不干扰。"
+    },
+    {
+      "name": "cast_label_3",
+      "value": "全协议覆盖，投屏随心所欲"
+    },
+    {
+      "name": "cast_content_3",
+      "value": "Miracast与DLNA两大主流投屏协议互补，满足不同场景需求。无论是镜像游戏、推送视频，还是分享照片，都能找到最适合的投屏方式，让内容轻松上大屏。"
+    },
+    {
+      "name": "ai_label_1",
+      "value": "知识百科，有问必答"
+    },
+    {
+      "name": "ai_content_1",
+      "value": "内置DeepSeek大模型，电视变身家庭知识库。孩子问\"为什么天是蓝的？\"，老人想了解养生知识，只需对着遥控器说出问题，电视便深度理解、给出详尽解答，满足全家人的好奇心。"
+    },
+    {
+      "name": "ai_label_2",
+      "value": "文档助手，摘要生成一键搞定"
+    },
+    {
+      "name": "ai_content_2",
+      "value": "将工作文档、学习资料上传至电视，DeepSeek AI自动提炼核心摘要，生成思维导图或PPT大纲。甚至能帮你润色邮件、撰写周报，让繁琐的文字工作变得轻松高效，电视也能成为生产力工具。"
+    },
+    {
+      "name": "ai_label_3",
+      "value": "生活管家，规划你的日常"
+    },
+    {
+      "name": "ai_content_3",
+      "value": "从\"周末家庭聚餐食谱\"到\"三天两夜亲子游路线\"，DeepSeek AI结合你的偏好，定制个性化方案。还能根据冰箱剩余食材推荐菜谱，根据天气提醒增减衣物，让电视为你打理生活琐事。"
+    },
+    {
+      "name": "pointing_label_1",
+      "value": "精准指向操控，效率翻倍"
+    },
+    {
+      "name": "pointing_content_1",
+      "value": "告别传统遥控器逐行移动光标的繁琐，指向遥控器只需对准电视屏幕目标区域，即可实现\"指哪选哪\"的精准操控。无论是切换频道、打开应用还是选中菜单选项，都能瞬间响应，大幅减少操作步骤，让电视交互更高效便捷。"
+    },
+    {
+      "name": "pointing_label_2",
+      "value": "极简交互逻辑，上手零门槛"
+    },
+    {
+      "name": "pointing_content_2",
+      "value": "无需记忆复杂按键组合，指向+确认两步就能完成绝大多数操作。老人、小孩都能快速掌握使用方法，避免因操作复杂导致的使用困扰。简洁的按键布局搭配直观的指向功能，让全家成员都能轻松享受电视娱乐，无需额外学习成本。"
+    },
+    {
+      "name": "pointing_label_3",
+      "value": "远距离稳定响应，无死角覆盖"
+    },
+    {
+      "name": "pointing_content_3",
+      "value": "具备超强信号接收能力，有效操控距离可达8米，且支持广角度信号覆盖。即使在客厅角落、沙发另一侧等位置，也能稳定控制电视，不会出现信号中断或操控延迟的情况。无论是家庭聚会多人共用，还是日常远距离操控，都能保持流畅体验。"
+    },
+    {
+      "name": "screensaver_label_1",
+      "value": "名画轮播，每日艺术熏陶"
+    },
+    {
+      "name": "screensaver_content_1",
+      "value": "电视待机时，自动切换梵高的《向日葵》、莫奈的《睡莲》等世界名画，搭配优雅边框和舒缓音乐，让客厅秒变私人美术馆。支持设定画派偏好，每天推陈出新，提升家居格调。"
+    },
+    {
+      "name": "screensaver_label_2",
+      "value": "家庭时光机，回忆常伴左右"
+    },
+    {
+      "name": "screensaver_content_2",
+      "value": "将分布式图库中的家庭照片设为屏保，电视待机便自动播放孩子的成长相册、父母的旅行留影。每张照片标注时间地点，仿佛一部家庭纪录片，让温馨回忆随时浮现。"
+    },
+    {
+      "name": "screensaver_label_3",
+      "value": "信息看板，实用与美学兼具"
+    },
+    {
+      "name": "screensaver_content_3",
+      "value": "智慧屏保可自定义显示时间、天气、日程提醒等实用信息。简约时钟、渐变色背景，信息一目了然却不打扰。早上出门前瞥一眼天气，晚上回家看看明日安排，电视待机也能成为生活信息中心。"
+    },
+    {
+      "name": "voice_label_1",
+      "value": "全时唤醒，随时待命"
+    },
+    {
+      "name": "voice_content_1",
+      "value": "无需反复说出唤醒词，一次唤醒即可连续对话。\"播放周杰伦的歌\"，\"下一首\"，\"音量调到50%\"，电视准确理解上下文，一一执行。交流如真人般自然顺畅，彻底解放双手。"
+    },
+    {
+      "name": "voice_label_2",
+      "value": "方言识别，沟通零障碍"
+    },
+    {
+      "name": "voice_content_2",
+      "value": "支持四川话、粤语、上海话等多种方言识别，老人小孩都能轻松使用。姥姥用方言说\"我想看京剧\"，电视立刻调出戏曲频道；孩子奶声奶气说\"我要看佩奇\"，动画片即刻播放。"
+    },
+    {
+      "name": "voice_label_3",
+      "value": "智能家居中枢，一句话控全屋"
+    },
+    {
+      "name": "voice_content_3",
+      "value": "通过电视语音控制接入生态的灯光、空调、窗帘等设备。说\"我要看电影\"，电视自动调暗灯光、关闭窗帘、开启影院模式。语音交互让智慧家庭真正懂你，一句话掌控全屋。"
+    },
+    {
+      "name": "distributed_label_1",
+      "value": "分布式白板，灵感跨端挥洒"
+    },
+    {
+      "name": "distributed_content_1",
+      "value": "分布式白板打破设备孤岛，支持手机、平板、电脑多人同时接入。家庭聚会时一起绘制贺卡，工作会议中同步批注方案草图。笔迹、图形实时流转，每个人都能看见彼此的修改，如同共处一室挥洒创意，让协作效率倍增。"
+    },
+    {
+      "name": "distributed_label_2",
+      "value": "分布式图库，回忆自动汇聚"
+    },
+    {
+      "name": "distributed_content_2",
+      "value": "开启分布式图库，家人手机中的照片自动同步至电视家庭相册。孩子的成长点滴、父母的旅行足迹，无需手动传输，所有设备拍摄的美好瞬间都会按时间地点智能归类。茶余饭后，全家围坐大屏前，一起重温那些温馨时刻。"
+    },
+    {
+      "name": "distributed_label_3",
+      "value": "分布式相机，视界多维延伸"
+    },
+    {
+      "name": "distributed_content_3",
+      "value": "视频通话时可调用手机摄像头，让远方父母看清孩子的涂鸦；居家健身时连接智能摄像头，AI实时捕捉动作并进行矫正。分布式相机让电视调用其他设备的镜头，解锁更多智慧生活新可能。"
+    },
+    {
+      "name": "media_label_1",
+      "value": "沉浸式视听，客厅变身私人影院"
+    },
+    {
+      "name": "media_content_1",
+      "value": "搭载4K超高清画质引擎与影院级音效系统，让每一次观影都身临其境。暗场细节层次分明，亮部色彩鲜活通透，配合杜比全景声的立体环绕音效，无论是科幻大片的宇宙激战，还是文艺电影的雨滴落地，都能精准还原导演镜头下的每一个情绪细节。关灯，打开电视，客厅即刻升级为专属家庭影院。"
+    },
+    {
+      "name": "media_label_2",
+      "value": "海量内容聚合，全家人各有所爱"
+    },
+    {
+      "name": "media_content_2",
+      "value": "整合主流视频平台资源，电影、电视剧、综艺、纪录片、少儿动漫一站式配齐。基于家庭成员的观看习惯，智能推荐算法为每个人定制专属内容页。爸妈追的年代剧、孩子看的启蒙动画、你想补档的经典老片，打开电视就能找到，不再为遥控器争夺发愁，让全家人的闲暇时光各得其所。"
+    },
+    {
+      "name": "media_label_3",
+      "value": "K歌娱乐升级，聚会氛围随时点燃"
+    },
+    {
+      "name": "media_content_3",
+      "value": "内置专业卡拉OK系统，海量正版伴奏曲库持续更新，从经典老歌到抖音热曲一应俱全。支持双麦克风连接，智能评分、混响调节、一键消原唱等功能，让家庭聚会瞬间升温。朋友来做客、家人过生日，不用转场KTV，在客厅就能尽情欢唱，把每一次团聚都变成难忘的欢乐派对。"
+    },
+    {
+      "name": "childcare_label_1",
+      "value": "健康用眼守护，平衡娱乐与健康"
+    },
+    {
+      "name": "childcare_content_1",
+      "value": "具备距离感应与时长管控功能，孩子离屏幕过近时自动弹窗提醒并降低亮度，累计观看达到设定时长后，电视会温和提示休息并锁定画面。同时支持蓝光过滤模式，减少屏幕蓝光对孩子视力的伤害，从用眼距离、时间、光线三方面守护，让孩子健康享受观影时光。"
+    },
+    {
+      "name": "childcare_label_2",
+      "value": "互动成长引导，边玩边学更高效"
+    },
+    {
+      "name": "childcare_content_2",
+      "value": "融合互动式教育内容，如语音问答、动画绘本、益智游戏等，将知识融入趣味互动中，激发孩子学习兴趣。家长可通过手机端查看孩子的观看与学习记录，了解兴趣偏好与成长进度，还能推送定制化教育内容，让电视从娱乐工具转变为助力孩子成长的智能伙伴"
+    },
+    {
+      "name": "office_label_1",
+      "value": "大屏文档处理，视野更开阔"
+    },
+    {
+      "name": "office_content_1",
+      "value": "将笔记本电脑的文档、表格、演示文稿一键投射至电视大屏，告别长时间低头伏案的疲惫。4K超清画质让文字锐利清晰，数据图表细节分毫毕现。无论是审阅百页报告、校对复杂报表，还是修改设计稿，大屏呈现让信息一目了然，办公效率倍增。"
+    },
+    {
+      "name": "office_label_2",
+      "value": "无线投屏演示，会议更流畅"
+    },
+    {
+      "name": "office_content_2",
+      "value": "支持Miracast、DLNA等多种无线投屏协议，无需繁琐接线，会议开始前即可快速将方案投射至电视。演讲者在会议室自由走动，用指向遥控翻页批注，重点内容实时圈画。客户到访或团队讨论，无需围挤在小屏幕前，让每一次演示都从容自信。"
+    },
+    {
+      "name": "office_label_3",
+      "value": "分屏协作模式，多任务并行"
+    },
+    {
+      "name": "office_content_3",
+      "value": "电视支持分屏显示功能，一边开启视频会议，一边展示相关文档资料。远程沟通时，对方画面与讨论内容同屏呈现，无需频繁切换窗口。团队成员可同时接入，共享屏幕、共同批注，异地协作如同面对面，让办公突破空间限制。"
+    },
+    {
+      "name": "product_screen_size",
+      "value": "屏幕尺寸"
+    },
+    {
+      "name": "product_75inch_4k",
+      "value": "75英寸 4K超清"
+    },
+    {
+      "name": "product_display_tech",
+      "value": "显示技术"
+    },
+    {
+      "name": "product_miniled_backlight",
+      "value": "MiniLED全阵列背光"
+    },
+    {
+      "name": "product_os",
+      "value": "操作系统"
+    },
+    {
+      "name": "product_memory_config",
+      "value": "内存配置"
+    },
+    {
+      "name": "product_4gb_64gb",
+      "value": "4GB+64GB"
+    },
+    {
+      "name": "product_processor",
+      "value": "处理器"
+    },
+    {
+      "name": "product_interface_config",
+      "value": "接口配置"
+    },
+    {
+      "name": "product_hdmi21",
+      "value": "HDMI2.1"
+    },
+    {
+      "name": "product_27inch_1080p",
+      "value": "27英寸 1080P"
+    },
+    {
+      "name": "product_gk6320",
+      "value": "GK6320"
+    },
+    {
+      "name": "product_gk6780",
+      "value": "GK6780V100"
+    },
+    {
+      "name": "product_openharmony",
+      "value": "OpenHarmony5.1"
+    },
+    {
+      "name": "media_4k_demo_title",
+      "value": "4K演示视频 - 自然风光"
+    },
+    {
+      "name": "media_dolby_atmos_sound",
+      "value": "杜比全景声"
+    },
+    {
+      "name": "media_smart_sound_field",
+      "value": "智能音场"
+    },
+    {
+      "name": "media_voice_enhancement",
+      "value": "语音增强"
+    },
+    {
+      "name": "media_hdr_support",
+      "value": "HDR支持"
+    },
+    {
+      "name": "media_hdr10plus",
+      "value": "HDR10+, Dolby Vision"
+    },
+    {
+      "name": "media_refresh_rate",
+      "value": "刷新率"
+    },
+    {
+      "name": "media_120hz_memc",
+      "value": "120Hz MEMC"
+    },
+    {
+      "name": "media_color_depth",
+      "value": "色彩深度"
+    },
+    {
+      "name": "media_1_07_billion_colors",
+      "value": "10.7亿色"
+    },
+    {
+      "name": "media_contrast_ratio",
+      "value": "对比度"
+    },
+    {
+      "name": "media_1000000_1",
+      "value": "1000000:1"
+    },
+    {
+      "name": "error_screen_params_invalid",
+      "value": "屏幕参数无效"
+    },
+    {
+      "name": "error_get_screen_size_failed",
+      "value": "获取屏幕尺寸失败"
+    },
+    {
+      "name": "error_screensaver_failed",
+      "value": "跳屏保失败"
+    }
+  ]
+}
