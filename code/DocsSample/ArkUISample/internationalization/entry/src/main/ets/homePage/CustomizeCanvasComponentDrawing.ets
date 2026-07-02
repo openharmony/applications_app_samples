@@ -45,7 +45,7 @@ struct CustomizeCanvasComponentDrawing {
             this.drawText();
           })
         } else {
-          console.error(`Need create subscriber`);
+            console.error(`Need create subscriber`);
         }
       })
   }
