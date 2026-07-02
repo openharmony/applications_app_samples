@@ -7,7 +7,7 @@
 
 ### 效果图预览
 
-![imageCapiExample](entry/src/main/ets/common/imageCapiExample.png)
+![imageCapiExample](entry/src/main/resources/rawfile/imageCapiExample.png)
 
 ### 使用说明
 

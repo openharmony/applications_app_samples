@@ -29,29 +29,34 @@
 #include "ImageExample.h"
 // [start native_root_creator]
 namespace NativeModule {
-    napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
-    {
-        size_t argc = 1;
-        napi_value args[1] = {nullptr};
-        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-        // 获取NodeContent
-        ArkUI_NodeContentHandle contentHandle;
-        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
-        NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-        // 创建图片示例界面
-        auto root = CreateImageExample();
-        // 挂载到NodeContent
-        NativeEntry::GetInstance()->SetRootNode(root);
-        return nullptr;
-    }
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
-    napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
-    {
-        NativeEntry::GetInstance()->DisposeRootNode();
-        return nullptr;
-    }
+    // 创建图片示例界面
+    auto root = CreateImageExample();
+
+    // 挂载到NodeContent
+    NativeEntry::GetInstance()->SetRootNode(root);
+
+    return nullptr;
+}
+
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
+{
+    // 清理图片示例资源
+    CleanupImageExample();
+    NativeEntry::GetInstance()->DisposeRootNode();
+    return nullptr;
+}
 
 } // namespace NativeModule
 // [end native_root_creator]
