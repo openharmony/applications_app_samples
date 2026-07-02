@@ -1,0 +1,16 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/IssueReporter/IssueReporterHome",
+    "pages/IssueReporter/IssueReporterAdd",
+    "pages/IssueReporter/IssueReporterDetail",
+    "pages/Security/SecurityHome",
+    "pages/IssueReporter/AttachmentVideoView",
+    "pages/IssueReporter/views/IssueReporterList",
+    "pages/IssueReporter/UseIntroduction"
+  ],
+  "window": {
+    "autoDesignWidth": false,
+    "designWidth": 1080
+  }
+}

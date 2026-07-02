@@ -1,0 +1,199 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Lading"
+    },
+    {
+      "name": "instructions",
+      "value": "instructions"
+    },
+    {
+      "name": "instructions_text",
+      "value": "Welcome to use the developer's bill of lading function. When you encounter any problems, please bill of lading in a timely manner to collect corresponding time logs and submit them for research and development positioning."
+    },
+    {
+      "name": "instructions_step",
+      "value": "Bill of Lading Procedure"
+    },
+    {
+      "name": "instructions_step_one",
+      "value": "1.Click on New Question Sheet to enter the bill of lading page."
+    },
+    {
+      "name": "instructions_step_two",
+      "value": "2.Follow the prompts to select or enter the contents of the bill of lading."
+    },
+    {
+      "name": "instructions_step_three",
+      "value": "3.Click the 'Submit' button to proceed with the bill of lading."
+    },
+    {
+      "name": "preset_conditions",
+      "value": "Preset conditions"
+    },
+    {
+      "name": "instructions_warning",
+      "value": "The bill of lading process requires maintaining network connectivity"
+    },
+    {
+      "name": "create_a_new_questionnaire",
+      "value": "create a new questionnaire"
+    },
+    {
+      "name": "list_of_questions",
+      "value": "list of questions"
+    },
+    {
+      "name": "collect_logs",
+      "value": "collect logs"
+    },
+    {
+      "name": "attachment_uploaded",
+      "value": "attachment uploaded"
+    },
+    {
+      "name": "no_attachment_uploaded",
+      "value": "no attachment uploaded"
+    },
+    {
+      "name": "select_images_videos",
+      "value": "Select images/videos (maximum number of options is 4)"
+    },
+    {
+      "name": "more_select_images_videos",
+      "value": "Up to 4 images/videos can be selected"
+    },
+    {
+      "name": "sure",
+      "value": "sure"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "submit",
+      "value": "submit"
+    },
+    {
+      "name": "resubmit",
+      "value": "resubmit"
+    },
+    {
+      "name": "probability_of_problem",
+      "value": "probability of problem"
+    },
+    {
+      "name": "mean_date_to_failure",
+      "value": "mean date to failure"
+    },
+    {
+      "name": "mean_time_to_failure",
+      "value": "mean time to failure"
+    },
+    {
+      "name": "question_type",
+      "value": "question type"
+    },
+    {
+      "name": "problem_description",
+      "value": "problem description"
+    },
+    {
+      "name": "local_picture",
+      "value": "local picture"
+    },
+    {
+      "name": "selected_picture",
+      "value": "selected picture"
+    },
+    {
+      "name": "placeholder_input",
+      "value": "Please enter a problem description (maximum 1024 characters)"
+    },
+    {
+      "name": "attachment",
+      "value": "attachment"
+    },
+    {
+      "name": "character_exceeding_prompt",
+      "value": "The number of characters you have entered has reached the limit, please do not enter again"
+    },
+    {
+      "name": "warning_prompt",
+      "value": "List retrieval failed, please check if the network connection and server are functioning properly"
+    },
+    {
+      "name": "warning_net_prompt",
+      "value": "Upload failed, please check if the network is available"
+    },
+    {
+      "name": "Video_download_failed",
+      "value": "Video download failed"
+    },
+    {
+      "name": "Operation_History",
+      "value": "Operation History"
+    },
+    {
+      "name": "Please_choose",
+      "value": "Please choose"
+    },
+    {
+      "name": "Please_choose_time",
+      "value": "Please choose the fault time"
+    },
+    {
+      "name": "Please_choose_probability",
+      "value": "Please choose the question probability"
+    },
+    {
+      "name": "Please_fill_description",
+      "value": "Please fill in the problem description"
+    },
+    {
+      "name": "Please_choose_type",
+      "value": "Please choose a question type"
+    },{
+      "name": "Failed_details",
+      "value": "Failed to get details"
+    },
+    {
+      "name": "Hello_developer",
+      "value": "Hello developer, this device is non-standard and cannot use this app."
+    },
+    {
+      "name": "Bill_successful",
+      "value": "Bill of lading successful"
+    },
+    {
+      "name": "Bill_failed",
+      "value": "Bill of lading failed"
+    },
+    {
+      "name": "Failed_logs",
+      "value": "Failed to fetch logs"
+    },
+    {
+      "name": "Uploading",
+      "value": "Uploading..."
+    },
+    {
+      "name": "Custom_long",
+      "value": "Custom name too long"
+    },
+    {
+      "name": "bigger_than_100MB",
+      "value": "The attachment can't be bigger than 100MB"
+    }
+  ]
+}
