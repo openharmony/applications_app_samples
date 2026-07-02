@@ -37,6 +37,8 @@ struct TextInputExample {
   build() {
     Column({ space: 20 }) {
       Text(this.text)
+        .fontSize(20)
+        .margin(10)
       // $$运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步
       TextInput({ text: $$this.text, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)

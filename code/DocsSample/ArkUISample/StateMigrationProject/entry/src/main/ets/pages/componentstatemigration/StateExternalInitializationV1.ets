@@ -19,6 +19,8 @@ struct Child {
 
   build() {
     Text(this.value.toString())
+      .fontSize(20)
+      .margin(10)
   }
 }
 
@@ -30,6 +32,7 @@ struct Parent {
       // @State可以从外部初始化
       Child({ value: 30 })
     }
+    .width('100%')
   }
 }
 // [End Parent5_start]

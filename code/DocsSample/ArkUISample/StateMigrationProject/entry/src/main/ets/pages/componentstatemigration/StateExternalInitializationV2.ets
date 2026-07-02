@@ -19,6 +19,8 @@ struct Child {
 
   build() {
     Text(this.value.toString())
+      .fontSize(20)
+      .margin(10)
   }
 }
 
@@ -30,6 +32,7 @@ struct Parent {
       // @Local禁止从外部初始化，可以用@Param和@Once替代实现
       Child({ value: 30 })
     }
+    .width('100%')
   }
 }
 // [End Parent6_start]

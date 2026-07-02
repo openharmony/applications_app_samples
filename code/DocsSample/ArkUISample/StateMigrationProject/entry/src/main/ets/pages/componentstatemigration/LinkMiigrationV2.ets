@@ -24,11 +24,16 @@ struct Child {
   build() {
     Column() {
       Text('child: ' + this.val.toString())
+        .fontSize(20)
+        .margin(10)
       Button('+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.addOne();
+          this.addOne(); // 通过@Event回调通知父组件更新
         })
     }
+    .width('100%')
   }
 }
 
@@ -40,8 +45,11 @@ struct Parent {
   build() {
     Column() {
       Text('parent: ' + this.myVal.toString())
-      Child({ val: this.myVal, addOne: () => this.myVal++ })
+        .fontSize(20)
+        .margin(10)
+      Child({ val: this.myVal, addOne: () => this.myVal++ }) // @Param传递数据，@Event传递回调，实现双向同步
     }
+    .width('100%')
   }
 }
 // [End Parent8_start]

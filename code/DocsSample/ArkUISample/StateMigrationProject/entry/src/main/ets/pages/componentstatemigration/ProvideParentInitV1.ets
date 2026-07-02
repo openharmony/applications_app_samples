@@ -25,6 +25,7 @@ struct Parent {
       // @Provide可以从父组件初始化
       Child({ childValue: this.parentValue })
     }
+    .width('100%')
   }
 }
 
@@ -35,7 +36,10 @@ struct Child {
   build() {
     Column() {
       Text(this.childValue.toString())
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Parent21_start]

@@ -23,11 +23,16 @@ struct Child {
   build() {
     Column() {
       Text('child: ' + this.val.toString())
+        .fontSize(20)
+        .margin(10)
       Button('+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.val++;
+          this.val++; // 子组件修改val，父子组件同步刷新
         })
     }
+    .width('100%')
   }
 }
 
@@ -39,8 +44,11 @@ struct Parent {
   build() {
     Column() {
       Text('parent: ' + this.myVal.toString())
-      Child({ val: this.myVal })
+        .fontSize(20)
+        .margin(10)
+      Child({ val: this.myVal }) // 通过@Link建立父子双向同步
     }
+    .width('100%')
   }
 }
 // [End Parent7_start]

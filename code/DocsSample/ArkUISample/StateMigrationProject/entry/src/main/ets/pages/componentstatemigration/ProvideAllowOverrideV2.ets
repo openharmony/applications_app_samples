@@ -25,6 +25,7 @@ struct GrandParent {
     Column() {
       Parent()
     }
+    .width('100%')
   }
 }
 
@@ -43,7 +44,9 @@ struct Child {
   @Consumer() reviewVotes: number = 0;
 
   build() {
-    Text(this.reviewVotes.toString()) // Text显示20
+    Text(this.reviewVotes.toString())
+      .fontSize(20)
+      .margin(10)
   }
 }
 // [End GrandParent2_start]

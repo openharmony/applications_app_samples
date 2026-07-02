@@ -9,6 +9,8 @@
     "pages/componentstatemigration/StateExternalInitializationV2",
     "pages/componentstatemigration/LinkMiigrationV1",
     "pages/componentstatemigration/LinkMiigrationV2",
+    "pages/componentstatemigration/ObjectLinkMigrationV1",
+    "pages/componentstatemigration/ObjectLinkMigrationV2",
     "pages/componentstatemigration/PropEasyV1",
     "pages/componentstatemigration/PropEasyV2",
     "pages/componentstatemigration/PropComplexV1",

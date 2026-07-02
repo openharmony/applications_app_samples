@@ -21,11 +21,16 @@ struct Child {
   build() {
     Column() {
       Text(this.value.toString())
+        .fontSize(20)
+        .margin(10)
       Button('+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.value++;
+          this.value++; // 本地修改，不会同步回父组件
         })
     }
+    .width('100%')
   }
 }
 
@@ -36,6 +41,7 @@ struct Parent {
     Column() {
       Child({ value: 30 })
     }
+    .width('100%')
   }
 }
 // [End Parent13_start]

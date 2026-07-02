@@ -35,16 +35,25 @@ struct MonitorExample {
   build() {
     Column() {
       Text(`apple count: ${this.apple}`)
+        .fontSize(20)
+        .margin(10)
       Text(`orange count: ${this.orange}`)
+        .fontSize(20)
+        .margin(10)
       Button('add apple')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.apple++;
+          this.apple++; // 点击触发onFruitChange回调
         })
       Button('add orange')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.orange++;
+          this.orange++; // 点击触发onFruitChange回调
         })
     }
+    .width('100%')
   }
 }
 // [End MonitorExample2_start]

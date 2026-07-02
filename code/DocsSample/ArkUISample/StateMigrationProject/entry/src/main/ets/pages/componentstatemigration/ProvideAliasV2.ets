@@ -15,27 +15,33 @@
 // [Start Parent18_start]
 @ComponentV2
 struct Child {
-  // alias是唯一匹配的key，有alias情况下无法通过属性名匹配
-  @Consumer('text') childMessage: string = 'default';
-  @Consumer() message: string = 'default';
+  @Consumer('text') childMessage: string = 'default'; // 指定alias时，通过alias匹配
+  @Consumer() message: string = 'default'; // 未指定alias时，通过属性名匹配
 
   build() {
     Column() {
       Text(this.childMessage)
-      Text(this.message) // Text是default
+        .fontSize(20)
+        .margin(10)
+      Text(this.message)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 
 @Entry
 @ComponentV2
 struct Parent {
-  @Provider('text') message: string = 'Hello World';
+  @Provider('text') parentMessage: string = 'Hello World';
+  @Provider() message: string = 'Hello World';
 
   build() {
     Column() {
       Child()
     }
+    .width('100%')
   }
 }
 // [End Parent18_start]

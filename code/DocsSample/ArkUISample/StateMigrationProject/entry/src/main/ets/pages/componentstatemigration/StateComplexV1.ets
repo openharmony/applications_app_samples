@@ -22,17 +22,22 @@ class Child {
 @Component
 @Entry
 struct Example {
+  // @State可以观察第一层变化
   @State child: Child = new Child();
 
   build() {
     Column() {
       Text(this.child.value.toString())
-      // @State可以观察第一层变化
+        .fontSize(20)
+        .margin(10)
       Button('value+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.child.value++;
+          this.child.value++; // 修改对象属性，触发UI刷新
         })
     }
+    .width('100%')
   }
 }
 // [End example1_start]
