@@ -118,3 +118,5 @@
 3.  本示例已支持使Build Version: 6.0.1.112, built on November 20, 2025。
 
 4.  高等级APL特殊签名说明：无。
+
+5.  RK3568不支持低时延，故无法测试AudioLoopbackDebugInfo。
