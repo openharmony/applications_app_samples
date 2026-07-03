@@ -26,8 +26,7 @@ class A {
 // 反例：
 // @Sendable
 // class A {
-//   constructor() {
-//   }
+//   constructor() {}
 //   a!: number;
 // }
 // [End counter_example]

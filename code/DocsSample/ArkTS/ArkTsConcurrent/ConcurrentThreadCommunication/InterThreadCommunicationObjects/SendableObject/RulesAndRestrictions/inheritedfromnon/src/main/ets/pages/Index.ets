@@ -13,34 +13,22 @@
  * limitations under the License.
  */
 
-//非Sendable class只能继承自非Sendable class
+// 非Sendable class只能继承自非Sendable class
 // [Start counter_example]
-//正例：
+// 正例：
 class A {
   constructor() {
-    console.log('hello world');
+    console.info('hello world');
   }
 }
 
 class B extends A {
   constructor() {
-    console.log('HELLO WORLD');
+    console.info('HELLO WORLD');
     super()
   }
 }
 
-//反例：
-// @Sendable
-// class A {
-//   constructor() {
-//   }
-// }
-//
-// class B extends A {
-//   constructor() {
-//     super()
-//   }
-// }
 // [End counter_example]
 
 @Entry

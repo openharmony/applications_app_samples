@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-//Sendable class/interface的成员变量不支持使用计算属性名
+// Sendable class/interface的成员变量不支持使用计算属性名
 // [Start counter_example]
-//正例：
+// 正例：
 @Sendable
 class A {
   num1: number = 1;
@@ -26,15 +26,6 @@ class A {
   }
 }
 
-//反例：
-// enum B {
-//   b1 = 'bbb';
-// }
-// @Sendable
-// class A {
-//   ['aaa']: number = 1; // ['aaa'] is allowed in other classes in ets files
-//   [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
-// }
 // [End counter_example]
 
 @Entry

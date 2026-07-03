@@ -41,36 +41,6 @@ class C {
   }
 }
 
-// 反例：
-// import { lang } from '@kit.ArkTS';
-//
-// type ISendable = lang.ISendable;
-//
-// interface I extends ISendable {}
-//
-// @Sendable
-// class B implements I {}
-//
-// function bar(): B {
-//   return new B();
-// }
-//
-// let b = new B();
-//
-// {
-//   @Sendable
-//   class A implements I {}
-//
-//   @Sendable
-//   class C {
-//     u: I = bar(); // bar不是sendable class对象，编译报错
-//     v: I = new A(); // A不是定义在top level中，编译报错
-//
-//     foo() {
-//       return b; // b不是sendable class对象，而是sendable class的实例，编译报错
-//     }
-//   }
-// }
 // [End counter_example]
 
 @Entry

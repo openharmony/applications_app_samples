@@ -26,8 +26,7 @@ class A {
 // 反例：
 // @Sendable
 // class A {
-//   constructor() {
-//   }
+//   constructor() {}
 //   b: Array<number> = [1, 2, 3] // 需使用collections.Array
 // }
 // [End counter_example]

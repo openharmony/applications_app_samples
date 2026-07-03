@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-//非Sendable class只能实现非Sendable interface
+// 非Sendable class只能实现非Sendable interface
 // [Start counter_example_achieve_non]
-//正例：
+// 正例：
 interface I {
   a: string;
 };
@@ -24,29 +24,29 @@ class B implements I {
   a: string = 'hello world';
 };
 
-//反例：
+// 反例：
 // import { lang } from '@kit.ArkTS';
-//
+
 // type ISendable = lang.ISendable;
-//
+
 // interface I extends ISendable {};
-//
+
 // class B implements I {};
 // [End counter_example_achieve_non]
 
-//Sendable装饰器修饰类型时仅支持修饰函数类型
+// Sendable装饰器修饰类型时仅支持修饰函数类型
 // [Start counter_example_only_support]
-//正例：
+// 正例：
 @Sendable
 type SendableFuncType = () => void;
 
-//反例：
+// 反例：
 // @Sendable
 // type A = number; // 编译报错
-//
+
 // @Sendable
 // class C {}
-//
+
 // @Sendable
 // type D = C; // 编译报错
 // [End counter_example_only_support]
@@ -68,7 +68,7 @@ struct Index {
         })
         .onClick(() => {
           const bInstance = new B();
-          console.log('class B:', bInstance.a)
+          console.info('class B:', bInstance.a)
           this.message = 'success';
         })
     }

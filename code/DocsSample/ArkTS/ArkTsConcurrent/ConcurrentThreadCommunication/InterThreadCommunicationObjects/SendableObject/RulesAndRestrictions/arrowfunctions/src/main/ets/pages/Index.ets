@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-//箭头函数不支持共享
+// 箭头函数不支持共享
 // [Start counter_example]
-//正例：
+// 正例：
 @Sendable
 type SendableFuncType = () => void;
 
@@ -35,11 +35,11 @@ class SendableClass {
 
 let sendableClass = new SendableClass(sendableFunc);
 
-//反例：
+// 反例：
 // @Sendable
 // type SendableFuncType = () => void;
 // let func: SendableFuncType = () => {}; // 编译报错
-//
+
 // @Sendable
 // class SendableClass {
 //   func: SendableFuncType = () => {}; // 编译报错
