@@ -15,7 +15,20 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/97485/.ohos/config/openharmony/default_AudioSuiteSample_RlCqpGi2YLuJuhb4us53gOnV6x88OqmeaBT8DrPRW64=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A65B08CCB7B8F10EAD7D1DE0EF1A9BBFEBA72912726F1BEF3AAC1FA03F6ED833AE8F37B5F3DC8",
+          "profile": "C:/Users/97485/.ohos/config/openharmony/default_AudioSuiteSample_RlCqpGi2YLuJuhb4us53gOnV6x88OqmeaBT8DrPRW64=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/97485/.ohos/config/openharmony/default_AudioSuiteSample_RlCqpGi2YLuJuhb4us53gOnV6x88OqmeaBT8DrPRW64=.p12",
+          "storePassword": "0000001AA705C033D45EAD0EDF3E50DCF86ECDA695C9507F407398309CB84A5463B9F119FA60688A0747"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
