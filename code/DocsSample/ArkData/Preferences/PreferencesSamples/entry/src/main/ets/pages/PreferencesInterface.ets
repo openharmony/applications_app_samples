@@ -19,7 +19,7 @@ import { util } from '@kit.ArkTS';
 import EntryAbility from '../entryability/EntryAbility';
 import Logger from '../common/Logger';
 
-let dataPreferences: preferences.Preferences | undefined = undefined;
+let dataPreferences: preferences.Preferences | null = null;
 // [Start DefineContext]
 const context = EntryAbility.getContext();
 // [End DefineContext]
@@ -62,7 +62,7 @@ export class PreferencesInterface {
   
   public PutSync = (() => {
     Logger.info('PutSync start');
-    if (dataPreferences === undefined) {
+    if (dataPreferences === null) {
       Logger.info('PutSync: dataPreferences not initialized');
       return;
     }
@@ -112,7 +112,7 @@ export class PreferencesInterface {
 
   public DeleteSync = (() => {
     Logger.info('DeleteSync start');
-    if (dataPreferences === undefined) {
+    if (dataPreferences === null) {
       Logger.info('DeleteSync: dataPreferences not initialized');
       return;
     }
@@ -132,7 +132,7 @@ export class PreferencesInterface {
 
   public Flush = (() => {
     Logger.info('Flush start');
-    if (dataPreferences === undefined) {
+    if (dataPreferences === null) {
       Logger.info('Flush: dataPreferences not initialized');
       return;
     }
@@ -155,7 +155,7 @@ export class PreferencesInterface {
 
   public XMLOn = (() => {
     Logger.info('XMLOn start');
-    if (dataPreferences === undefined) {
+    if (dataPreferences === null) {
       Logger.info('XMLOn: dataPreferences not initialized');
       return;
     }
@@ -172,7 +172,7 @@ export class PreferencesInterface {
           return;
         }
         Logger.info('Succeeded in putting the value of startup.');
-        if (dataPreferences !== undefined) {
+        if (dataPreferences !== null) {
           dataPreferences.flush((err: BusinessError) => {
             if (err) {
               Logger.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
@@ -192,7 +192,7 @@ export class PreferencesInterface {
 
   public GSKVOn = (() => {
     Logger.info('GSKVOn start');
-    if (dataPreferences === undefined) {
+    if (dataPreferences === null) {
       Logger.info('GSKVOn: dataPreferences not initialized');
       return;
     }
