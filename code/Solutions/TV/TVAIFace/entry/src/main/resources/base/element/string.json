@@ -1,0 +1,124 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AI FaceAuth"
+    },
+    {
+      "name": "gallery_entry_tips",
+      "value": "Please select an image"
+    },
+    {
+      "name": "no_image_tips",
+      "value": "No image at the moment"
+    },
+    {
+      "name": "Local_image",
+      "value": "Local image"
+    },
+    {
+      "name": "face_recognition",
+      "value": "Image face recognition"
+    },
+    {
+      "name": "choose_camera",
+      "value": "Please choose a camera"
+    },
+    {
+      "name": "Camera_face_recognition",
+      "value": "Camera face recognition"
+    },
+    {
+      "name": "Multi_camera_switching",
+      "value": "Multi-camera switching"
+    },
+    {
+      "name": "Device_Connection_Authentication",
+      "value": "Device Connection Authentication"
+    },
+    {
+      "name": "Please_connect_the_camera",
+      "value": "Please connect the camera"
+    },
+    {
+      "name": "AI_model_failed",
+      "value": "AI model failed to load, please try again!"
+    },
+    {
+      "name": "Image_failed_to_load",
+      "value": "Image failed to load, please choose another one."
+    },
+    {
+      "name": "No_face_detected",
+      "value": "No face detected, please try again."
+    },
+    {
+      "name": "No_available_camera",
+      "value": "No available camera"
+    },
+    {
+      "name": "Confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "Cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "Unknown",
+      "value": "Unknown"
+    },
+    {
+      "name": "Rear",
+      "value": "Rear"
+    },
+    {
+      "name": "Front",
+      "value": "Front"
+    },
+    {
+      "name": "Folded_state",
+      "value": "Folded state"
+    },
+    {
+      "name": "Wide_angle",
+      "value": "Wide angle"
+    },
+    {
+      "name": "Ultra_wideAngle",
+      "value": "Ultra wide-angle"
+    },
+    {
+      "name": "telephoto",
+      "value": "telephoto"
+    },
+    {
+      "name": "Depth_field",
+      "value": "Depth of field"
+    },
+    {
+      "name": "Built_in",
+      "value": "Built-in"
+    },
+    {
+      "name": "USB_connection",
+      "value": "USB connection"
+    },
+    {
+      "name": "Remote_connection",
+      "value": "Remote connection"
+    },
+    {
+      "name": "Camera",
+      "value": "Camera"
+    }
+  ]
+}

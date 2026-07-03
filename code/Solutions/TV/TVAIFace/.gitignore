@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+node_modules/
+
+.npm
+.vscode
+/node_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+.clang-format
+.clang-tidy
+.clangd
+.hvigor
+oh_modules
+oh-package-lock.json5
+
+package-lock.json
