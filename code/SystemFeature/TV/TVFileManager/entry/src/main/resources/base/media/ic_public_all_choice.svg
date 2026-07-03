@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>xuanze</title>
+    <g id="xuanze" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="rect" fill-opacity="0.200000003" fill="#FFFFFF" opacity="0" points="64 0 64 64 0 64 0 0"></polygon>
+        <path d="M16,29.33334 L27.2524584,40.58578 C28.0334858,41.36684 29.2998419,41.36684 30.0808692,40.58578 C30.0808692,40.58578 36.2761355,34.39052 48.6666679,22" id="矢量-59" stroke-opacity="0.862561633" stroke="#FFFFFF" stroke-width="5"></path>
+    </g>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>xuanzhon-2</title>
+    <defs>
+        <path d="M23.2049378,5.29325867 C24.1990491,5.29325867 25.0049379,6.09914797 25.0049379,7.09326104 L25.0049379,23.7432577 L25.0049379,23.7432577 C25.0049379,24.7373708 24.1990491,25.5432601 23.2049378,25.5432601 L23.1180695,25.5393745 C23.073275,25.5427132 23.0280237,25.5444124 22.9823756,25.5444124 L13.9823714,25.5444124 L13.9823714,25.5444124 C12.9882565,25.5444124 12.182373,24.7385235 12.182373,23.7444123 C12.182373,22.7503011 12.9882565,21.9444122 13.9823714,21.9444122 L21.4043311,21.9443993 L21.4049377,7.09326104 L21.4049377,7.09326104 C21.4049377,6.09914797 22.2108266,5.29325867 23.2049378,5.29325867 Z" id="path-1"></path>
+        <filter x="-32.5%" y="-13.8%" width="165.7%" height="141.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0.0493555069" dy="1.41335201" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.101960786 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="xuanzhon-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M18,1.5 C22.556343,1.5 26.6813427,3.34682903 29.6672568,6.33274317 C32.653171,9.31865731 34.5,13.443657 34.5,18 C34.5,22.556343 32.653171,26.6813427 29.6672568,29.6672568 C26.6813427,32.653171 22.556343,34.5 18,34.5 C13.443657,34.5 9.31865731,32.653171 6.33274317,29.6672568 C3.34682903,26.6813427 1.5,22.556343 1.5,18 C1.5,13.443657 3.34682903,9.31865731 6.33274317,6.33274317 C9.31865731,3.34682903 13.443657,1.5 18,1.5 Z" id="Rectangle-2375-Copy" stroke="#FFFFFF" stroke-width="3" fill="#8D8D8D"></path>
+        <g id="Rectangle-62" transform="translate(18.597731, 15.415915) rotate(43.000000) translate(-18.597731, -15.415915) ">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use stroke-opacity="0.0470588244" stroke="#000000" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
