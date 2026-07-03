@@ -15,7 +15,6 @@
 {
   "app": {
     "signingConfigs": [
-
     ],
     "products": [
       {
@@ -23,7 +22,6 @@
         "signingConfig": "default",
         "compileSdkVersion": "26.0.0",
         "compatibleSdkVersion": "26.0.0",
-        "targetSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {

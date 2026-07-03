@@ -4,7 +4,9 @@
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性、状态管理并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-[组件内状态变量迁移指导](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-inner-component.md)。
+[组件内状态变量迁移指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-inner-component.md)。
+
+[卡片状态变量迁移](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-card.md)。
 
 
 ### 1. [组件内状态变量迁移指导]
@@ -60,6 +62,16 @@ entry/src/main/ets/
 |   |       |---WatchMoreVarV2.ets    //V2 @Monitor装饰器
 |   |       |---ComputedV1.ets     /V1 @State装饰器
 |   |       |---ComputedV2.ets     //V2 @Computed装饰器
+|---widget
+|   |---pages
+|   |       |---WidgetCardV1.ets    //V1 卡片入口组件，@LocalStorageProp按key值接收数据
+|   |       |---WidgetCard.ets      //V2 卡片入口组件，@Local按变量名接收数据
+|---sharewidget
+|   |---pages
+|   |       |---ShareWidgetCardV1.ets    //V1 卡片跨组件共享，@LocalStorageProp
+|   |       |---ShareWidgetCard.ets      //V2 卡片跨组件共享，@Provider/@Consumer
+|---entryformability
+|   |---EntryFormAbility.ets        //卡片提供方，updateForm刷新数据
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -80,6 +92,10 @@ entry/src/ohosTest/
 3. 计算与监听能力需适配新装饰器
 
    V1 无计算属性时重复的表达式（如拼接姓名），V2 需定义 @Computed 修饰的 getter 方法（如 fullName），实现一次计算多处复用；变量监听（V1@Watch）迁移为 V2@Monitor 后，可在单个回调中监听多个变量（如同时监听 apple 和 orange），并通过 monitor.value () 获取变化前后的值，减少回调函数数量。
+
+4. 卡片数据接收机制迁移
+
+   V1 卡片入口组件需通过 @Entry 传入 LocalStorage 实例，使用 @LocalStorageProp 按入参 key 值匹配卡片提供方 updateForm 推送的数据。V2 迁移后入口组件使用 @ComponentV2，无需传入 LocalStorage，改为通过 @Local、@Provider 等装饰器按变量名直接接收 updateForm 数据；需跨组件共享的数据可使用 @Provider/@Consumer 替代原 LocalStorage 共享方式。
 
 ### 相关权限
 

@@ -15,6 +15,30 @@
     {
       "name": "state_migration",
       "value": "组件内状态变量迁移指导"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "shareWidget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "shareWidget_display_name",
+      "value": "shareWidget"
     }
   ]
 }
