@@ -43,19 +43,18 @@ napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info)
     if (fd < 0) {
         // 文件打开失败，回退到日志输出。
         // fd < 0表示输出到日志。
-//        OH_AudioSuite_PrintInfo(engine, nullptr, -1);
+        OH_AudioSuite_PrintInfo(engine, nullptr, -1);
         napi_get_boolean(env, true, &result);
         return result;
     }
     
     // 输出所有管线信息到文件。
     // nullptr表示输出engine下所有pipeline，fd为文件描述符。
-   /* OH_AudioSuite_Result ret = OH_AudioSuite_PrintInfo(engine, nullptr, fd);
+    OH_AudioSuite_Result ret = OH_AudioSuite_PrintInfo(engine, nullptr, fd);
     close(fd);
     // [End audioSuite_PrintInfo]
     if (ret == AUDIOSUITE_SUCCESS) {
         napi_get_boolean(env, true, &result);
-    
-    }*/
+    }
     return result;
 }
