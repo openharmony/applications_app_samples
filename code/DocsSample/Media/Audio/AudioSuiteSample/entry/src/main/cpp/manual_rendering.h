@@ -21,10 +21,7 @@
 
 const int AUDIO_EQ_BAND_NUM = 10;
 
-enum AudioEffectType {
-    AUDIO_EFFECT_TYPE_EQUALIZER = 0,
-    AUDIO_EFFECT_TYPE_VOICE_BEAUTIFIER = 1
-};
+enum AudioEffectType { AUDIO_EFFECT_TYPE_EQUALIZER = 0, AUDIO_EFFECT_TYPE_VOICE_BEAUTIFIER = 1 };
 
 enum EqualizerPresetType {
     EQ_PRESET_CUSTOM = -1,

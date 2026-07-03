@@ -104,7 +104,7 @@ static BaseEditorNodes CreateBaseEditorNodes(OH_AudioSuitePipeline *audioSuiteEn
     OH_AudioSuiteNodeBuilder_SetRequestDataCallback(nodeBuilder, InputNodeWriteDataCallBack, userData);
     // 创建输入节点。
     OH_AudioSuiteEngine_CreateNode(audioSuiteEngine, nodeBuilder, &nodes.inputNode);
-    
+
     // 重置构造器配置，创建效果节点。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     // 可根据需要设置不同的效果节点类型。

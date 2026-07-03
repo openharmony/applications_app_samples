@@ -25,19 +25,21 @@ class AudioEffectStrategy {
 public:
     virtual ~AudioEffectStrategy() = default;
     virtual OH_AudioNode_Type GetNodeType() const = 0;
-    virtual void CreateAndApply(OH_AudioSuitePipeline* pipeline, OH_AudioNodeBuilder* builder,
-                                 OH_AudioNode** node, const EffectParams& params) = 0;
+    virtual void CreateAndApply(OH_AudioSuitePipeline *pipeline, OH_AudioNodeBuilder *builder, OH_AudioNode **node,
+                                const EffectParams &params) = 0;
 };
 
 class EqualizerStrategy : public AudioEffectStrategy {
 public:
-    OH_AudioNode_Type GetNodeType() const override {
+    OH_AudioNode_Type GetNodeType() const override
+    {
         return OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER;
     }
-    
+
     // [Start audioSuite_GetEqualizerGains]
     // 根据预置类型或自定义参数获取均衡器增益值。
-    static OH_EqualizerFrequencyBandGains GetEqualizerGains(const EffectParams& params) {
+    static OH_EqualizerFrequencyBandGains GetEqualizerGains(const EffectParams &params)
+    {
         OH_EqualizerFrequencyBandGains gains;
         switch (params.eqPresetIndex) {
             case EQ_PRESET_DEFAULT:
@@ -77,9 +79,10 @@ public:
         return gains;
     }
     // [End audioSuite_GetEqualizerGains]
-    
-    void CreateAndApply(OH_AudioSuitePipeline* pipeline, OH_AudioNodeBuilder* builder,
-                        OH_AudioNode** node, const EffectParams& params) override {
+
+    void CreateAndApply(OH_AudioSuitePipeline *pipeline, OH_AudioNodeBuilder *builder, OH_AudioNode **node,
+                        const EffectParams &params) override
+    {
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
         OH_EqualizerFrequencyBandGains gains = GetEqualizerGains(params);
@@ -89,19 +92,23 @@ public:
 
 class VoiceBeautifierStrategy : public AudioEffectStrategy {
 public:
-    OH_AudioNode_Type GetNodeType() const override {
+    OH_AudioNode_Type GetNodeType() const override
+    {
         return OH_AudioNode_Type::EFFECT_NODE_TYPE_VOICE_BEAUTIFIER;
     }
-    
-    void CreateAndApply(OH_AudioSuitePipeline* pipeline, OH_AudioNodeBuilder* builder,
-                        OH_AudioNode** node, const EffectParams& params) override {
+
+    void CreateAndApply(OH_AudioSuitePipeline *pipeline, OH_AudioNodeBuilder *builder, OH_AudioNode **node,
+                        const EffectParams &params) override
+    {
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_VOICE_BEAUTIFIER);
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
-        OH_AudioSuiteEngine_SetVoiceBeautifierType(*node, static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+        OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
+                                                   static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
     }
 };
 
-inline std::unique_ptr<AudioEffectStrategy> CreateEffectStrategy(int effectType) {
+inline std::unique_ptr<AudioEffectStrategy> CreateEffectStrategy(int effectType)
+{
     switch (effectType) {
         case AUDIO_EFFECT_TYPE_EQUALIZER:
             return std::make_unique<EqualizerStrategy>();

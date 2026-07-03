@@ -33,6 +33,7 @@
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
+const int PARAM_NUM = 2;
 const int AUDIO_RENDER_MODE_SPACE = 3;
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
@@ -84,7 +85,8 @@ void BaseEditorExecute(napi_env env, void *data)
     BaseEditorData *asyncData = static_cast<BaseEditorData *>(data);
     ReadPcmFile(asyncData->inputFilePath.c_str(), &asyncData->audioInfo);
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", asyncData->audioInfo.bufferSize);
-    BaseEditorEffect(&asyncData->audioInfo, asyncData->outputFilePath.c_str(), asyncData->effectType, asyncData->params);
+    BaseEditorEffect(&asyncData->audioInfo, asyncData->outputFilePath.c_str(), asyncData->effectType,
+                     asyncData->params);
     FreeAudioDataInfo(&asyncData->audioInfo);
 }
 
@@ -135,7 +137,7 @@ napi_value BaseEditor(napi_env env, napi_callback_info info)
         napi_value eqPresetValue;
         napi_get_named_property(env, argv[1], "eqPresetIndex", &eqPresetValue);
         napi_get_value_int32(env, eqPresetValue, &asyncData->params.eqPresetIndex);
-        
+
         napi_value eqGainsArray;
         napi_get_named_property(env, argv[1], "eqGains", &eqGainsArray);
         for (int i = 0; i < AUDIO_EQ_BAND_NUM; i++) {
@@ -155,13 +157,13 @@ napi_value BaseEditor(napi_env env, napi_callback_info info)
     }
 
     // 保存回调函数。
-    napi_create_reference(env, argv[2], 1, &asyncData->callback);
+    napi_create_reference(env, argv[PARAM_NUM], 1, &asyncData->callback);
 
     // 创建异步工作。
     napi_value resource_name;
     napi_create_string_utf8(env, "BaseEditor", NAPI_AUTO_LENGTH, &resource_name);
     napi_create_async_work(env, nullptr, resource_name, BaseEditorExecute, BaseEditorComplete, asyncData,
-                            &asyncData->work);
+                           &asyncData->work);
 
     // 将异步工作加入队列。
     napi_queue_async_work(env, asyncData->work);
