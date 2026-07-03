@@ -1,0 +1,30 @@
+<svg width="512.000000" height="512.000000" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_289_36198_dd" x="24.000000" y="75.000000" width="464.386719" height="370.478516" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="4"/>
+			<feGaussianBlur stdDeviation="6"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0.12549 0 0 0 0 0.41961 0 0 0 0 1 0 0 0 0.2 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<linearGradient x1="204.916687" y1="393.041138" x2="309.417603" y2="95.092865" id="paint_linear_289_36196_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#5F94FF"/>
+		</linearGradient>
+		<linearGradient x1="235.491211" y1="422.224701" x2="280.562225" y2="322.917511" id="paint_linear_289_36197_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#5F94FF"/>
+		</linearGradient>
+	</defs>
+	<rect id="矩形 256" rx="96.000000" width="512.000000" height="512.000000" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<g filter="url(#filter_289_36198_dd)">
+		<path id="path" d="M426.1 89L86.31 89C61.83 89 42 108.67 42 132.97L42 352.83C42 377.12 61.83 396.8 86.31 396.8L120.46 396.8C126.12 396.8 131.53 394.52 135.48 390.47L231.35 292.36C243.91 279.5 269.87 279.5 282.43 292.36L378.3 390.47C382.25 394.52 387.66 396.8 393.32 396.8L426.06 396.8C450.55 396.8 470.38 377.12 470.38 352.83L470.38 132.97C470.38 108.67 450.59 89 426.1 89Z" fill="url(#paint_linear_289_36196_0)" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="path" d="M242.9 326.41L168.66 402.4C160.05 411.2 168.59 423.47 183.32 423.47L331.83 423.47C346.53 423.47 355.06 411.2 346.49 402.4L272.26 326.41C265.06 319.04 250.1 319.04 242.9 326.41L168.66 402.4C160.05 411.2 168.59 423.47 183.32 423.47L331.83 423.47C346.53 423.47 355.06 411.2 346.49 402.4L272.26 326.41C265.06 319.04 250.1 319.04 242.9 326.41Z" fill="url(#paint_linear_289_36197_0)" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>

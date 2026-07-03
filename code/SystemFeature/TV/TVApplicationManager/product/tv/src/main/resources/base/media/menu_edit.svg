@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 5</title>
+    <g id="icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Extra-Large" transform="translate(-183.000000, -557.000000)">
+            <g id="编组-2" transform="translate(183.000000, 557.000000)">
+                <circle id="椭圆形" stroke="#D8D8D8" stroke-width="4" cx="39" cy="39" r="37"></circle>
+                <rect id="矩形" fill="#D8D8D8" x="19" y="24" width="41" height="4" rx="2"></rect>
+                <rect id="矩形" fill="#D8D8D8" x="19" y="37" width="41" height="4" rx="2"></rect>
+                <rect id="矩形" fill="#D8D8D8" x="19" y="50" width="41" height="4" rx="2"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
