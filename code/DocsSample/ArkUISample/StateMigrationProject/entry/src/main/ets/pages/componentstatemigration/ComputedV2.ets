@@ -28,11 +28,19 @@ struct Index {
   build() {
     Column() {
       Text(this.fullName)
+        .fontSize(20)
+        .margin(10)
       Text(this.fullName)
-      Button('changed lastName').onClick(() => {
-        this.lastName += 'a';
-      })
+        .fontSize(20)
+        .margin(10)
+      Button('changed lastName')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.lastName += 'a';
+        })
     }
+    .width('100%')
   }
 }
 // [End ComputedV2_start]

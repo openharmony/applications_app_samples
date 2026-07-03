@@ -21,14 +21,21 @@ struct Index {
 
   build() {
     Column() {
-      Text(this.lastName + ' ' + this.firstName)
-      Text(this.lastName + ' ' + this.firstName)
+      Text(this.firstName + ' ' + this.lastName)
+        .fontSize(20)
+        .margin(10)
+      Text(this.firstName + ' ' + this.lastName)
+        .fontSize(20)
+        .margin(10)
       // 每次改变lastName都会触发Text组件的刷新
-      Button('changed lastName').onClick(() => {
-        this.lastName += 'a';
-      })
-
+      Button('changed lastName')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          this.lastName += 'a';
+        })
     }
+    .width('100%')
   }
 }
 // [End ComputedV1_start]

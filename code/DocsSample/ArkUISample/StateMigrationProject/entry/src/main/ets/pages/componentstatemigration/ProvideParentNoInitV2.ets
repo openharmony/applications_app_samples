@@ -25,6 +25,7 @@ struct Parent {
       // @Provider禁止从父组件初始化，替代方案为先用@Param接受，再赋值给@Provider
       Child({ initialValue: this.parentValue })
     }
+    .width('100%')
   }
 }
 
@@ -36,7 +37,10 @@ struct Child {
   build() {
     Column() {
       Text(this.childValue.toString())
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 // [End Parent22_start]

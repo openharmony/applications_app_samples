@@ -37,6 +37,8 @@ struct TextInputExampleV2 {
   build() {
     Column({ space: 20 }) {
       Text(this.text)
+        .fontSize(20)
+        .margin(10)
       // V2中直接用!!替换$$
       TextInput({ text: this.text!!, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)

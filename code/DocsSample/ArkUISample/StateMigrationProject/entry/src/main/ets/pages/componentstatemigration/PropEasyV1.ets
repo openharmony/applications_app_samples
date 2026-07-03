@@ -20,6 +20,8 @@ struct Child {
 
   build() {
     Text(this.value.toString())
+      .fontSize(20)
+      .margin(10)
   }
 }
 
@@ -30,6 +32,7 @@ struct Parent {
     Column() {
       Child({ value: 30 })
     }
+    .width('100%')
   }
 }
 // [End Parent9_start]

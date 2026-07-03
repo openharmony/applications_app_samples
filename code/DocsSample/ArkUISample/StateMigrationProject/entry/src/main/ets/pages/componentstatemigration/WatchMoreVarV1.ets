@@ -24,7 +24,7 @@ struct WatchExample {
   @State @Watch('onAppleChange') apple: number = 0;
   @State @Watch('onOrangeChange') orange: number = 0;
 
-  // @Watch 回调，只能监听单个变量，不能获取变化前的值
+  // @Watch回调，只能监听单个变量，不能获取变化前的值
   onAppleChange(): void {
     hilog.info(DOMAIN, TAG, 'apple count changed to ' + this.apple);
   }
@@ -36,19 +36,27 @@ struct WatchExample {
   build() {
     Column() {
       Text(`apple count: ${this.apple}`)
+        .fontSize(20)
+        .margin(10)
       Text(`orange count: ${this.orange}`)
+        .fontSize(20)
+        .margin(10)
       Button('add apple')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.apple++;
+          this.apple++; // 点击触发onAppleChange回调
         })
       Button('add orange')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.orange++;
+          this.orange++; // 点击触发onOrangeChange回调
         })
     }
+    .width('100%')
   }
 }
-
 // [End WatchExample2_start]
 const watchExample2 = WatchExample;
 export default watchExample2;

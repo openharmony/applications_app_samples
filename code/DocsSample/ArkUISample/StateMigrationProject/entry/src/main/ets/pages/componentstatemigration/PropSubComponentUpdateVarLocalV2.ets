@@ -20,8 +20,8 @@ const PARENT_INITIAL_LOCAL_VALUE = 10;
 
 @ComponentV2
 struct Child {
-  @Local localValue: number = 0;
   @Param value: number = 0;
+  @Local localValue: number = this.value;
 
   @Monitor('value')
   onValueChange(mon: IMonitor) {
@@ -32,13 +32,18 @@ struct Child {
 
   build() {
     Column() {
-      Text(`${this.localValue}`).fontSize(25)
+      Text(`${this.localValue}`)
+        .fontSize(20)
+        .margin(10)
       Button('Child +100')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 改变localValue不会传递给父组件Parent
           this.localValue += 100;
         })
     }
+    .width('100%')
   }
 }
 
@@ -50,12 +55,15 @@ struct Parent {
   build() {
     Column() {
       Button('Parent +1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
         })
       Child({ value: this.value })
     }
+    .width('100%')
   }
 }
 // [End Parent16_start]

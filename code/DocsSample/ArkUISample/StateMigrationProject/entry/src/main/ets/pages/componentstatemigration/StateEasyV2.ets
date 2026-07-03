@@ -23,7 +23,12 @@ struct Child {
   @Local val: number = INITIAL_VALUE;
 
   build() {
-    Text(this.val.toString())
+    Column() {
+      Text(this.val.toString())
+        .fontSize(20)
+        .margin(10)
+    }
+    .width('100%')
   }
 }
 // [End Child2_start]

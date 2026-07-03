@@ -53,6 +53,14 @@ let demandList: listItem[] = [
     router: 'pages/componentstatemigration/LinkMiigrationV2',
   },
   {
+    name: 'ObjectLinkMigrationV1',
+    router: 'pages/componentstatemigration/ObjectLinkMigrationV1',
+  },
+  {
+    name: 'ObjectLinkMigrationV2',
+    router: 'pages/componentstatemigration/ObjectLinkMigrationV2',
+  },
+  {
     name: 'PropEasyV1',
     router: 'pages/componentstatemigration/PropEasyV1',
   },

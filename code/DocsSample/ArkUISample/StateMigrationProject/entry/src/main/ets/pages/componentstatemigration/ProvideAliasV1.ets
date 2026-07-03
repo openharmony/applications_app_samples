@@ -22,8 +22,13 @@ struct Child {
   build() {
     Column() {
       Text(this.childMessage)
-      Text(this.message) // Text是Hello World
+        .fontSize(20)
+        .margin(10)
+      Text(this.message)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 
@@ -36,6 +41,7 @@ struct Parent {
     Column() {
       Child()
     }
+    .width('100%')
   }
 }
 // [End Parent17_start]

@@ -31,12 +31,17 @@ struct MonitorExample {
   build() {
     Column() {
       Text(`apple count: ${this.apple}`)
+        .fontSize(20)
+        .margin(10)
       // 点击Button累加apple，触发UI刷新
       Button('add apple')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.apple++;
         })
     }
+    .width('100%')
   }
 }
 // [End MonitorExample1_start]

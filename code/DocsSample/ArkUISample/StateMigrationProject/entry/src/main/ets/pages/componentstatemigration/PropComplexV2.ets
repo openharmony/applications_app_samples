@@ -36,18 +36,26 @@ struct Child {
 
   build() {
     Column() {
-      Text('child')
-      Text(this.fruit.apple.toString())
-      Text(this.fruit.orange.toString())
+      Text('child apple: ' + this.fruit.apple.toString())
+        .fontSize(20)
+        .margin(10)
+      Text('child orange: ' + this.fruit.orange.toString())
+        .fontSize(20)
+        .margin(10)
       Button('apple+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.fruit.apple++;
+          this.fruit.apple++; // 修改深拷贝对象，父组件不受影响
         })
       Button('orange+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.fruit.orange++;
         })
     }
+    .width('100%')
   }
 }
 
@@ -58,11 +66,15 @@ struct Parent {
 
   build() {
     Column() {
-      Text('parent')
-      Text(this.parentFruit.apple.toString())
-      Text(this.parentFruit.orange.toString())
+      Text('parent apple: ' + this.parentFruit.apple.toString())
+        .fontSize(20)
+        .margin(10)
+      Text('parent orange: ' + this.parentFruit.orange.toString())
+        .fontSize(20)
+        .margin(10)
       Child({ fruit: this.parentFruit.clone() })
     }
+    .width('100%')
   }
 }
 // [End Parent12_start]

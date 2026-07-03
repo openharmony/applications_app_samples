@@ -29,16 +29,25 @@ struct Child {
   build() {
     Column() {
       Text('child apple: ' + this.fruit.apple.toString())
+        .fontSize(20)
+        .margin(10)
       Text('child orange: ' + this.fruit.orange.toString())
+        .fontSize(20)
+        .margin(10)
       Button('apple+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          this.fruit.apple++;
+          this.fruit.apple++; // 修改子组件@Prop对象，父组件不受影响
         })
       Button('orange+1')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.fruit.orange++;
         })
     }
+    .width('100%')
   }
 }
 
@@ -50,9 +59,14 @@ struct Parent {
   build() {
     Column() {
       Text('parent apple: ' + this.parentFruit.apple.toString())
+        .fontSize(20)
+        .margin(10)
       Text('parent orange: ' + this.parentFruit.orange.toString())
+        .fontSize(20)
+        .margin(10)
       Child({ fruit: this.parentFruit })
     }
+    .width('100%')
   }
 }
 // [End Parent11_start]
