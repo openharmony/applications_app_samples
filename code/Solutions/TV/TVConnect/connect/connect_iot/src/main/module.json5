@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "connect_iot",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

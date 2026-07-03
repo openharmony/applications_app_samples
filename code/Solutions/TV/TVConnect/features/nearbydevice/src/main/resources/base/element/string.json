@@ -1,0 +1,960 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "scan_title",
+      "value": "Nearby Devices"
+    },
+    {
+      "name": "scan_not_start_tip0",
+      "value": "Scan did not start"
+    },
+    {
+      "name": "scan_not_start_tip1",
+      "value": "Please make sure it is turned on"
+    },
+    {
+      "name": "scanning_tip0",
+      "value": "Scanning for devices..."
+    },
+    {
+      "name": "scanning_tip1",
+      "value": "Some devices cannot be added, please make sure they are turned on"
+    },
+    {
+      "name": "scanning_tip2",
+      "value": "Make sure the device is plugged in and near your phone"
+    },
+    {
+      "name": "scan_no_result_tip",
+      "value": "No device found, click to scan again"
+    },
+    {
+      "name": "scan_no_result_button_text",
+      "value": "Rescan device"
+    },
+    {
+      "name": "scan_no_result_button_text_coap",
+      "value": "Coap Rescan device"
+    },
+    {
+      "name": "add_device_button_text",
+      "value": "Add device"
+    },
+    {
+      "name": "env_check_tip",
+      "value": "\"Interconnection\" requires turning on mobile phone wireless network and Bluetooth to discover and add devices. Enable?"
+    },
+    {
+      "name": "comma",
+      "value": ","
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "button_text_open",
+      "value": "open"
+    },
+    {
+      "name": "device_unknown",
+      "value": "device unknown"
+    },
+    {
+      "name": "button_text_switch",
+      "value": "switch"
+    },
+    {
+      "name": "device_status_text",
+      "value": "device status"
+    },
+    {
+      "name": "position_information_text",
+      "value": "position information"
+    },
+    {
+      "name": "typical_business_text",
+      "value": "typical business"
+    },
+    {
+      "name": "manufacturer_name_text",
+      "value": "manufacturer name"
+    },
+    {
+      "name": "button_text_reboot",
+      "value": "reboot"
+    },
+    {
+      "name": "button_text_hibernate",
+      "value": "hibernate"
+    },
+    {
+      "name": "button_text_shutdown",
+      "value": "shutdown"
+    },
+    {
+      "name": "button_text_ScreenOn",
+      "value": "ScreenOn"
+    },
+    {
+      "name": "button_text_ScreenOff",
+      "value": "ScreenOff"
+    },
+    {
+      "name": "device_type_text",
+      "value": "device type"
+    },
+    {
+      "name": "device_name_text",
+      "value": "device name"
+    },
+    {
+      "name": "operating_system_type_text",
+      "value": "operating system type"
+    },
+    {
+      "name": "operating_system_version_number_text",
+      "value": "operating system version number"
+    },
+    {
+      "name": "pop_tip",
+      "value": "Connected, click to view device details"
+    },
+    {
+      "name": "connect_not_start",
+      "value": "not connected"
+    },
+    {
+      "name": "connect_success",
+      "value": "connected"
+    },
+    {
+      "name": "connect_title",
+      "value": "Connected devices"
+    },
+    {
+      "name": "openvalley_toast_login_fail",
+      "value": "Login failed"
+    },
+    {
+      "name": "tunnel_device_sensing",
+      "value": "Sensing"
+    },
+    {
+      "name": "tunnel_device_wind_machine",
+      "value": "WindMachine"
+    },
+    {
+      "name": "tunnel_device_light",
+      "value": "Light"
+    },
+    {
+      "name": "tunnel_device_siren",
+      "value": "Siren"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "execution scenario"
+    },
+    {
+      "name": "finish_scenario",
+      "value": "finish scenario"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "Topping",
+      "value": "Topping"
+    },
+    {
+      "name": "location_permission",
+      "value": "need request location permission"
+    },
+    {
+      "name": "bluetooth_permission",
+      "value": "need request bluetooth permission"
+    },
+    {
+      "name": "previousPicture",
+      "value": "previous"
+    },
+    {
+      "name": "nextPicture",
+      "value": "next"
+    },
+    {
+      "name": "restart",
+      "value": "restart"
+    },
+    {
+      "name": "sleep",
+      "value": "sleep"
+    },
+    {
+      "name": "online",
+      "value": "online"
+    },
+    {
+      "name": "offline",
+      "value": "offline"
+    },
+    {
+      "name": "no_position",
+      "value": "no position info"
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "cmd_send_failed",
+      "value": "Command sending failed, please check the device connection status"
+    },
+    {
+      "name": "devices_online",
+      "value": "the device is offline"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "confirm_message",
+      "value": "Other devices are in a connected state. Do you want to disconnect the current connection?"
+    },
+    {
+      "name": "finish_project_select",
+      "value": "Finish"
+    },
+    {
+      "name": "project_select_text",
+      "value": "Select Project"
+    },
+    {
+      "name": "select_project_text",
+      "value": "Select a Project"
+    },
+    {
+      "name": "create_project_text",
+      "value": "Create a Project"
+    },
+    {
+      "name": "project_information_text",
+      "value": "Project Information"
+    },
+    {
+      "name": "project_name_text",
+      "value": "Project Name"
+    },
+    {
+      "name": "project_location_text",
+      "value": "Project Location"
+    },
+    {
+      "name": "project_member_text",
+      "value": "Project Members"
+    },
+    {
+      "name": "project_name_text_input_placeholder",
+      "value": "Please enter the project name"
+    },
+    {
+      "name": "project_location_select_tip",
+      "value": "Select points on the map to locate geographic locations"
+    },
+    {
+      "name": "member_addition",
+      "value": "Add Member"
+    },
+    {
+      "name": "devices_main",
+      "value": "devices"
+    },
+    {
+      "name": "devices_scan",
+      "value": "devices scan"
+    },
+    {
+      "name": "devices_wifi",
+      "value": "devices_wifi"
+    },
+    {
+      "name": "delete_device_tip",
+      "value": "The deleted device cannot be restored. Are you sure?"
+    },
+    {
+      "name": "finish_project",
+      "value": "Save"
+    },
+    {
+      "name": "project_member_demo",
+      "value": "Zhang San"
+    },
+    {
+      "name": "edit_project_text",
+      "value": "Edit Project"
+    },
+    {
+      "name": "delete_project_button",
+      "value": "Delete"
+    },
+    {
+      "name": "add_device_no_find",
+      "value": "add_device_no_find"
+    },
+    {
+      "name": "add_device",
+      "value": "add_device"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "scan_result",
+      "value": "has_scan_result"
+    },
+    {
+      "name": "next_step",
+      "value": "next_step"
+    },
+    {
+      "name": "configure_device",
+      "value": "configure device"
+    },
+    {
+      "name": "device_name",
+      "value": "device name"
+    },
+    {
+      "name": "net_configure",
+      "value": "net configure"
+    },
+    {
+      "name": "configuring",
+      "value": "configuring"
+    },
+    {
+      "name": "getIp",
+      "value": "getIp"
+    },
+    {
+      "name": "patient_wait",
+      "value": "patient wait"
+    },
+    {
+      "name": "create_project",
+      "value": "create project"
+    },
+    {
+      "name": "project_info",
+      "value": "project info"
+    },
+    {
+      "name": "project_name",
+      "value": "project name"
+    },
+    {
+      "name": "please_input_project_name",
+      "value": "please input project name"
+    },
+    {
+      "name": "project_location",
+      "value": "project location"
+    },
+    {
+      "name": "map_location",
+      "value": "map location"
+    },
+    {
+      "name": "project_member",
+      "value": "project member"
+    },
+    {
+      "name": "select",
+      "value": "select"
+    },
+    {
+      "name": "scan_finish",
+      "value": "scan finish"
+    },
+    {
+      "name": "about_device",
+      "value": "about device"
+    },
+    {
+      "name": "delete_device",
+      "value": "delete device"
+    },
+    {
+      "name": "device_alias_name",
+      "value": "device alias name"
+    },
+    {
+      "name": "device_info",
+      "value": "device info"
+    },
+    {
+      "name": "device_net_info",
+      "value": "device net info"
+    },
+    {
+      "name": "relate_scenery_info",
+      "value": "relate scenery info"
+    },
+    {
+      "name": "factory",
+      "value": "factory"
+    },
+    {
+      "name": "MAC_addr",
+      "value": "MAC addr"
+    },
+    {
+      "name": "serial_number",
+      "value": "serial number"
+    },
+    {
+      "name": "version",
+      "value": "version"
+    },
+    {
+      "name": "WLAN_name",
+      "value": "WLAN name"
+    },
+    {
+      "name": "RSSI",
+      "value": "RSSI"
+    },
+    {
+      "name": "ip_address",
+      "value": "ip address"
+    },
+    {
+      "name": "BSSID",
+      "value": "BSSID"
+    },
+    {
+      "name": "connect",
+      "value": "connect"
+    },
+    {
+      "name": "device_number",
+      "value": "%d device number"
+    },
+    {
+      "name": "restart_scan",
+      "value": "restart scan"
+    },
+    {
+      "name": "device_control",
+      "value": "device control"
+    },
+    {
+      "name": "device_connect_success",
+      "value": "device connect success"
+    },
+    {
+      "name": "equipment_information",
+      "value": "equipment information"
+    },
+    {
+      "name": "disconnect_device",
+      "value": "disconnect"
+    },
+    {
+      "name": "please_input_net_configure_msg",
+      "value": "please input net configure msg"
+    },
+    {
+      "name": "please_retry_later",
+      "value": "please retry later"
+    },
+    {
+      "name": "device_connect_failed_retry_later",
+      "value": "device connect failed retry later"
+    },
+    {
+      "name": "to_create_project",
+      "value": "to create project"
+    },
+    {
+      "name": "connecting",
+      "value": "connecting"
+    },
+    {
+      "name": "cfg_failed",
+      "value": "configure failed"
+    },
+    {
+      "name": "cfg_success",
+      "value": "configure success"
+    },
+    {
+      "name": "delete_dev_success",
+      "value": "delete device success"
+    },
+    {
+      "name": "delete_dev_failed",
+      "value": "delete device failed"
+    },
+    {
+      "name": "dis_connect",
+      "value": "网络不可用"
+    },
+    {
+      "name": "exceeding_data_range",
+      "value": "超过数据范围"
+    },
+    {
+      "name": "no_device",
+      "value": "No devices"
+    },
+    {
+      "name": "to",
+      "value": "to"
+    },
+    {
+      "name": "origin_circle_size",
+      "value": "270lpx"
+    },
+    {
+      "name": "control_circle_size",
+      "value": "345lpx"
+    },
+    {
+      "name": "bg_device_size",
+      "value": "150lpx"
+    },
+    {
+      "name": "ic_device_size",
+      "value": "45lpx"
+    },
+    {
+      "name": "position_title_margin_top",
+      "value": "96lpx"
+    },
+    {
+      "name": "position_title_margin_left",
+      "value": "36lpx"
+    },
+    {
+      "name": "dialog_divider_height",
+      "value": "45lpx"
+    },
+    {
+      "name": "dialog_padding_0",
+      "value": "33lpx"
+    },
+    {
+      "name": "dialog_padding_top",
+      "value": "15lpx"
+    },
+    {
+      "name": "dialog_offset_dy",
+      "value": "-45lpx"
+    },
+    {
+      "name": "scan_tip_font_size",
+      "value": "27lpx"
+    },
+    {
+      "name": "button_font_size",
+      "value": "21lpx"
+    },
+    {
+      "name": "button_padding_vertical",
+      "value": "15lpx"
+    },
+    {
+      "name": "button_padding_horizontal",
+      "value": "45lpx"
+    },
+    {
+      "name": "button_margin_bottom",
+      "value": "33lpx"
+    },
+    {
+      "name": "scan_tip_margin_top",
+      "value": "27lpx"
+    },
+    {
+      "name": "vp_60",
+      "value": "90lpx"
+    },
+    {
+      "name": "vp_50",
+      "value": "75lpx"
+    },
+    {
+      "name": "vp_46",
+      "value": "69lpx"
+    },
+    {
+      "name": "vp_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "vp_30",
+      "value": "45lpx"
+    },
+    {
+      "name": "vp_25",
+      "value": "37.5lpx"
+    },
+    {
+      "name": "vp_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "vp_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "vp_13",
+      "value": "19.5lpx"
+    },
+    {
+      "name": "vp_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "vp_10",
+      "value": "15lpx"
+    },
+    {
+      "name": "vp_6",
+      "value": "9lpx"
+    },
+    {
+      "name": "vp_5",
+      "value": "7.5lpx"
+    },
+    {
+      "name": "vp_3",
+      "value": "4.5lpx"
+    },
+    {
+      "name": "vp_1",
+      "value": "1.5lpx"
+    },
+    {
+      "name": "vp_n14",
+      "value": "-21lpx"
+    },
+    {
+      "name": "vp_n20",
+      "value": "-30lpx"
+    },
+    {
+      "name": "vp_n30",
+      "value": "-45lpx"
+    },
+    {
+      "name": "vp_n32",
+      "value": "-48lpx"
+    },
+    {
+      "name": "fp_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "fp_15",
+      "value": "22.5lpx"
+    },
+    {
+      "name": "fp_13",
+      "value": "19.5lpx"
+    },
+    {
+      "name": "fp_11",
+      "value": "16.5lpx"
+    },
+    {
+      "name": "device_item_ic_size",
+      "value": "48lpx"
+    },
+    {
+      "name": "device_item_name_size",
+      "value": "22.5lpx"
+    },
+    {
+      "name": "device_item_name_font_size",
+      "value": "16.5lpx"
+    },
+    {
+      "name": "font_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "wh_value_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "wh_value_160",
+      "value": "240lpx"
+    },
+    {
+      "name": "wh_value_120",
+      "value": "180lpx"
+    },
+    {
+      "name": "wh_value_96",
+      "value": "144lpx"
+    },
+    {
+      "name": "wh_value_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "wh_value_18",
+      "value": "27lpx"
+    },
+    {
+      "name": "radius_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "distance_4",
+      "value": "6lpx"
+    },
+    {
+      "name": "distance_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "distance_11",
+      "value": "16.5lpx"
+    },
+    {
+      "name": "distance_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "distance_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "distance_17",
+      "value": "25.5lpx"
+    },
+    {
+      "name": "distance_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "wh_value_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "wh_value_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "wh_value_48",
+      "value": "72lpx"
+    },
+    {
+      "name": "divider_wh",
+      "value": "0.75lpx"
+    },
+    {
+      "name": "wh_value_60",
+      "value": "90lpx"
+    },
+    {
+      "name": "wh_value_80",
+      "value": "120lpx"
+    },
+    {
+      "name": "wh_value_100",
+      "value": "150lpx"
+    },
+    {
+      "name": "wh_value_180",
+      "value": "270lpx"
+    },
+    {
+      "name": "wh_value_200",
+      "value": "300lpx"
+    },
+    {
+      "name": "wh_value_400",
+      "value": "600lpx"
+    },
+    {
+      "name": "wh_value_260",
+      "value": "390lpx"
+    },
+    {
+      "name": "wh_value_300",
+      "value": "450lpx"
+    },
+    {
+      "name": "wh_value_210",
+      "value": "315lpx"
+    },
+    {
+      "name": "lineHeight_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "device_min_space",
+      "value": "24lpx"
+    },
+    {
+      "name": "scan_header_height",
+      "value": "300lpx"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "btn_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "btn_margin_bottom",
+      "value": "36lpx"
+    },
+    {
+      "name": "icon_width",
+      "value": "36lpx"
+    },
+    {
+      "name": "font_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "padding_tab_title_left",
+      "value": "12lpx"
+    },
+    {
+      "name": "tip_icon_size",
+      "value": "33lpx"
+    },
+    {
+      "name": "padding_tab_left",
+      "value": "36lpx"
+    },
+    {
+      "name": "scene_tab_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "fp_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "add_font_height",
+      "value": "42lpx"
+    },
+    {
+      "name": "tip_button_width",
+      "value": "360lpx"
+    },
+    {
+      "name": "configure_device_image",
+      "value": "294lpx"
+    },
+    {
+      "name": "configure_image_height",
+      "value": "390lpx"
+    },
+    {
+      "name": "configure_image_left_right_border",
+      "value": "105lpx"
+    },
+    {
+      "name": "configure_image_top",
+      "value": "31.5lpx"
+    },
+    {
+      "name": "progress_size",
+      "value": "432lpx"
+    },
+    {
+      "name": "progress_font_size",
+      "value": "90lpx"
+    },
+    {
+      "name": "list_item_height",
+      "value": "192lpx"
+    },
+    {
+      "name": "text_input_width",
+      "value": "231lpx"
+    },
+    {
+      "name": "text_margin_right",
+      "value": "13.5lpx"
+    },
+    {
+      "name": "add_device_item_height",
+      "value": "87lpx"
+    },
+    {
+      "name": "delete_btn_width",
+      "value": "504lpx"
+    },
+    {
+      "name": "connect_dialog_height",
+      "value": "549lpx"
+    },
+    {
+      "name": "down_arrow_width",
+      "value": "10.5lpx"
+    },
+    {
+      "name": "padding_top_17",
+      "value": "25.5lpx"
+    },
+    {
+      "name": "line_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "line_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "empty_width",
+      "value": "180lpx"
+    },
+    {
+      "name": "empty_height",
+      "value": "180lpx"
+    },
+    {
+      "name": "Switch",
+      "value": "Switch"
+    },
+    {
+      "name": "CoAP_network",
+      "value": "CoAP network setup requires connecting to Wi-Fi and turning on Bluetooth"
+    },
+    {
+      "name": "Location_failed",
+      "value": "Location failed, maybe location services aren't turned on"
+    },
+    {
+      "name": "Location_permission",
+      "value": "Location permission not granted, unable to locate"
+    },
+    {
+      "name": "Scan_failed",
+      "value": "Scan failed, please check your network connection / Wi-Fi only"
+    },
+    {
+      "name": "Bluetooth_switch",
+      "value": "Please turn on the Bluetooth switch"
+    }
+  ]
+}

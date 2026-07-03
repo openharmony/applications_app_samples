@@ -1,0 +1,25 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#229;&#133;&#179;&#230;&#156;&#186;&#230;&#140;&#137;&#233;&#146;&#174;">
+<g id="Rectangle 198">
+<rect width="46" height="46" rx="23" fill="url(#paint0_linear_69_24216)"/>
+<rect x="0.25" y="0.25" width="45.5" height="45.5" rx="22.75" stroke="black" stroke-opacity="0.05" stroke-width="0.5"/>
+</g>
+<g id="Frame" clip-path="url(#clip0_69_24216)">
+<g id="_ic_power_off">
+<g id="_icon">
+<path id="_Stroke-8" d="M23 13.7998V22.1998" stroke="#F33232" stroke-width="1.6" stroke-linecap="round"/>
+<path id="_Stroke-10" d="M18.4006 15.0332C15.6512 16.624 13.8 19.5948 13.8 22.9996C13.8 28.0806 17.919 32.1996 23 32.1996C28.081 32.1996 32.2 28.0806 32.2 22.9996C32.2 19.5948 30.3488 16.624 27.5994 15.0332" stroke="#F33232" stroke-width="1.6" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_69_24216" x1="23" y1="0" x2="23" y2="46" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0F0F0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<clipPath id="clip0_69_24216">
+<rect width="24" height="24" fill="white" transform="translate(11 11)"/>
+</clipPath>
+</defs>
+</svg>

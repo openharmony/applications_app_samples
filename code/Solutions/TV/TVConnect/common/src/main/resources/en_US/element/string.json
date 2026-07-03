@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "type_big_screen",
+      "value": "Big Screen"
+    },
+    {
+      "name": "type_camera",
+      "value": "Camera"
+    },
+    {
+      "name": "type_controller",
+      "value": "Controller"
+    },
+    {
+      "name": "type_development_board",
+      "value": "Development Board"
+    },
+    {
+      "name": "type_gate",
+      "value": "Gate"
+    },
+    {
+      "name": "type_pen",
+      "value": "Pen"
+    },
+    {
+      "name": "type_pos",
+      "value": "Pos"
+    },
+    {
+      "name": "type_printer",
+      "value": "Printer"
+    },
+    {
+      "name": "type_screen",
+      "value": "Screen"
+    },
+    {
+      "name": "type_sound",
+      "value": "Sound"
+    },
+    {
+      "name": "type_student_card",
+      "value": "Student Card"
+    },
+    {
+      "name": "type_test_box",
+      "value": "Test Box"
+    },
+    {
+      "name": "type_watch",
+      "value": "Watch"
+    },
+    {
+      "name": "access_name_wifi",
+      "value": "WiFi"
+    },
+    {
+      "name": "access_name_bluetooth",
+      "value": "bluetooth"
+    },
+    {
+      "name": "login",
+      "value": "login"
+    },
+    {
+      "name": "duplicate_login",
+      "value": "There are other devices that log in repeatedly"
+    },
+    {
+      "name": "duplicate_login_id",
+      "value": "The id of the login device is"
+    }
+  ]
+}

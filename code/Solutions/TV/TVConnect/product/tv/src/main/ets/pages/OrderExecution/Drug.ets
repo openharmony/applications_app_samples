@@ -1,0 +1,130 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { router } from '@kit.ArkUI';
+import { name } from './PatientList';
+import { drugsList } from './MedicalAdvice';
+import { DrugClass, DrugData, DrugObject } from '../../viewmodel/OrderExecution/MediacalData';
+import { Logger } from '@ohos/common';
+
+@Entry
+@Component
+export struct Drug {
+  @State currentIndex: number = 0;
+
+  onCancel() {
+    Logger.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    Logger.info('Callback when the second button is clicked');
+  }
+
+  build() {
+    Column() {
+      //header
+      Row() {
+        Image($r('app.media.nurse_back_gray')).width(20).height(20).position({ x: 10, y: 18 })
+          .onClick(() => {
+            router.back();
+          });
+        Text($r('app.string.Drug_preparation'))
+          .height(22)
+          .fontSize(20);
+      }
+      .backgroundColor(Color.White)
+      .width('100%')
+      .height(50)
+      .justifyContent(FlexAlign.Center)
+      .shadow({
+        radius: 20,
+        color: Color.Gray,
+        offsetX: 2,
+        offsetY: 2
+      });
+
+      Stack({ alignContent: Alignment.TopStart }) {
+        Column() {
+          //列表
+          List({ space: 5, initialIndex: 0 }) {
+            ForEach(drugsList, (item: DrugClass) => {
+              ListItem() {
+                Column() {
+                  Row() {
+                    Text(name.bedName).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text(name.patientName).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text(name.sex).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text(name.patientAge).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text('ID：' + name.patientId).fontSize(16).fontColor(Color.Gray);
+                  }.width('100%').padding(10);
+
+                  Row() {
+                    Text(item.field1)
+                      .fontSize(20)
+                      .fontWeight(600)
+                      .fontColor($r('app.color.nurse_blue'))
+                      .lineHeight(24)
+                      .maxLines(1)
+                      .textOverflow({ overflow: TextOverflow.Ellipsis })
+                      .margin({ right: 5 });
+                  }.width('100%').padding(10);
+
+                  Divider().strokeWidth(1).color('#999').margin({ top: 5 });
+                  Row() {
+                    Text($r('app.string.Frequency',item.field9) ).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text(item.field8).fontSize(16).fontColor(Color.Gray).margin({ right: 20 });
+                    Text($r('app.string.Medicine_pickup_time',item.field10)).fontSize(16).fontColor(Color.Gray);
+                  }.width('100%').padding(10);
+                }.width('92%')
+                .margin({ top: 15, left: 15 })
+                .backgroundColor(Color.White)
+                .borderRadius(5);
+
+              };
+            });
+          }
+          .listDirection(Axis.Vertical) // 排列方向
+          .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
+          .chainAnimation(false) // 联动特效关闭
+          .onScrollIndex((firstIndex: number, lastIndex: number) => {
+            Logger.info('first' + firstIndex);
+            Logger.info('last' + lastIndex);
+          })
+          .width('100%')
+          .height('100%')
+          .padding(5);
+        }.width('100%').height('85%');
+      };
+
+      Row() {
+        Button($r('app.string.Finish_preparing'), { type: ButtonType.Normal, stateEffect: true })
+          .borderRadius(8)
+          .backgroundColor(0xeaf3ff)
+          .fontColor($r('app.color.nurse_blue'))
+          .width(150)
+          .margin({ right: 20 })
+          .onClick(() => {
+            router.back();
+          });
+        Button($r('app.string.Finish_preparing_solution'), { type: ButtonType.Normal, stateEffect: true })
+          .borderRadius(8)
+          .backgroundColor($r('app.color.nurse_blue'))
+          .width(150)
+          .onClick(() => {
+            router.back();
+          });
+      }.width('100%').backgroundColor(Color.White).padding({ top: 15, bottom: 15 }).justifyContent(FlexAlign.Center);
+    }.backgroundColor('#f1f2f6');
+  }
+}

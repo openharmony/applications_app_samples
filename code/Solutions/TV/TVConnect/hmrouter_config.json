@@ -1,0 +1,8 @@
+{
+  "scanDir": [
+    "src/main/ets/hmrouter",
+    "src/main/ets/pages",
+    "src/main/ets/components/page"
+  ],
+  "saveGeneratedFile": false
+}

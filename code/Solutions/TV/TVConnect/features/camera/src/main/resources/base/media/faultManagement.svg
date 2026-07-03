@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="故障管理" transform="translate(-3186 5140)">
+    <g id="提示_tips-one" transform="translate(3185.999 -5139.569)">
+      <g id="列表视图_list-view" transform="translate(3.001 3)">
+        <path id="矩形_1041" data-name="矩形 1041" d="M2-.8H16A2.8,2.8,0,0,1,18.8,2V16A2.8,2.8,0,0,1,16,18.8H2A2.8,2.8,0,0,1-.8,16V2A2.8,2.8,0,0,1,2-.8Zm14,18A1.2,1.2,0,0,0,17.2,16V2A1.2,1.2,0,0,0,16,.8H2A1.2,1.2,0,0,0,.8,2V16A1.2,1.2,0,0,0,2,17.2Z" transform="translate(0 -0.43)"/>
+        <path id="路径_151" data-name="路径 151" d="M21.6,14.75H4a.75.75,0,0,1,0-1.5H21.6a.75.75,0,0,1,0,1.5Z" transform="translate(-3.851 -9.698)"/>
+        <path id="路径_152" data-name="路径 152" d="M26.749,24.75H20a.75.75,0,0,1,0-1.5h6.749a.75.75,0,1,1,0,1.5Z" transform="translate(-12.625 -14.858)"/>
+        <path id="路径_153" data-name="路径 153" d="M26.749,32.75H20a.75.75,0,0,1,0-1.5h6.749a.75.75,0,1,1,0,1.5Z" transform="translate(-12.625 -18.986)"/>
+        <path id="路径_154" data-name="路径 154" d="M12.844,24.75H12a.75.75,0,0,1,0-1.5h.844a.75.75,0,1,1,0,1.5Z" transform="translate(-8.32 -14.858)"/>
+        <path id="路径_155" data-name="路径 155" d="M12.844,32.75H12a.75.75,0,0,1,0-1.5h.844a.75.75,0,1,1,0,1.5Z" transform="translate(-8.32 -18.986)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+{
+  "color": [
+    {
+      "name": "bg_scan",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "scan_animator_bg",
+      "value": "#eaeef6"
+    },
+    {
+      "name": "scan_shape_bg",
+      "value": "#d5dff5"
+    },
+    {
+      "name": "scan_button_color",
+      "value": "#e1e5e8"
+    },
+    {
+      "name": "button_text_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "san_tip_font_color",
+      "value": "#606162"
+    },
+    {
+      "name": "dialog_divider_color",
+      "value": "#ebebeb"
+    },
+    {
+      "name": "san_title_font_color",
+      "value": "#e6000000"
+    },
+    {
+      "name": "DCEAF9",
+      "value": "#DCEAF9"
+    },
+    {
+      "name": "FAFAFA",
+      "value": "#FAFAFA"
+    },
+    {
+      "name": "white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "loading_color",
+      "value": "#4e5462"
+    },
+    {
+      "name": "divider_color",
+      "value": "#ffe9f0f0"
+    },
+    {
+      "name": "add_text_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "add_button_backgroundColor",
+      "value": "#0D000000"
+    },
+    {
+      "name": "tips_button_backgroundColor",
+      "value": "#99000000"
+    },
+    {
+      "name": "font_color_E6000000",
+      "value": "#E6000000"
+    },
+    {
+      "name": "page_color_f1f3f5",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "delete_color_fff33232",
+      "value": "#FFF33232"
+    },
+    {
+      "name": "back_color_1a0a59f7",
+      "value": "#1a0a59f7"
+    },
+    {
+      "name": "back_color_00ffffff",
+      "value": "#00ffffff"
+    },
+    {
+      "name": "canConnect_device_bg",
+      "value": "#262626"
+    },
+    {
+      "name": "connect_device_text",
+      "value": "#C0C7D9"
+    },
+    {
+      "name": "connect_button_bg",
+      "value": "#D8D8D8"
+    },
+    {
+      "name": "scan_device_bg",
+      "value": "#373737"
+    },
+    {
+      "name": "scan_device_bg2",
+      "value": "#4A4949"
+    },
+    {
+      "name": "device_list_divider",
+      "value": "#858585"
+    },
+    {
+      "name": "device_list_icon",
+      "value": "#696969"
+    },
+    {
+      "name": "menu_focus_color",
+      "value": "#4A86FF"
+    },
+    {
+      "name": "menu_normal_color",
+      "value": "#5B6987"
+    }
+  ]
+}

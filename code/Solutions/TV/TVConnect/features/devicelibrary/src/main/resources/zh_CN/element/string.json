@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "application_industry",
+      "value": "应用行业"
+    },
+    {
+      "name": "system_type",
+      "value": "系统类型"
+    },
+    {
+      "name": "system_version",
+      "value": "系统版本"
+    },
+    {
+      "name": "manufacturer_name",
+      "value": "厂商名称"
+    },
+    {
+      "name": "device_type",
+      "value": "设备类型"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名称"
+    },
+    {
+      "name": "operating_system_type",
+      "value": "操作系统类型"
+    },
+    {
+      "name": "operating_system_version_number",
+      "value": "操作系统版本号"
+    },
+    {
+      "name": "device_information",
+      "value": "设备信息"
+    },
+    {
+      "name": "universal_interconnection",
+      "value": "通用互联"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "purge",
+      "value": "清除"
+    },
+    {
+      "name": "no_results_contain_str",
+      "value": "无包含“%s”的结果"
+    },
+    {
+      "name": "results_include_str",
+      "value": "以下是包含“%s”的结果："
+    },
+    {
+      "name": "search_for_records",
+      "value": "历史记录"
+    },
+    {
+      "name": "connect_auth",
+      "value": "互通认证"
+    },
+    {
+      "name": "searching",
+      "value": "搜索"
+    },
+    {
+      "name": "more",
+      "value": "更多"
+    },
+    {
+      "name": "loading",
+      "value": "%s加载中..."
+    }
+  ]
+}

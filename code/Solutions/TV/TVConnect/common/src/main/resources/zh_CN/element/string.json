@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "type_big_screen",
+      "value": "大屏"
+    },
+    {
+      "name": "type_camera",
+      "value": "摄像头"
+    },
+    {
+      "name": "type_controller",
+      "value": "控制器"
+    },
+    {
+      "name": "type_development_board",
+      "value": "开发板"
+    },
+    {
+      "name": "type_gate",
+      "value": "网关"
+    },
+    {
+      "name": "type_pen",
+      "value": "点阵笔"
+    },
+    {
+      "name": "type_pos",
+      "value": "pos机"
+    },
+    {
+      "name": "type_printer",
+      "value": "打印机"
+    },
+    {
+      "name": "type_screen",
+      "value": "小屏"
+    },
+    {
+      "name": "type_sound",
+      "value": "音响"
+    },
+    {
+      "name": "type_student_card",
+      "value": "电子学生证"
+    },
+    {
+      "name": "type_test_box",
+      "value": "试验箱"
+    },
+    {
+      "name": "type_watch",
+      "value": "智能手表"
+    },
+    {
+      "name": "access_name_wifi",
+      "value": "WiFi"
+    },
+    {
+      "name": "access_name_bluetooth",
+      "value": "蓝牙"
+    },
+    {
+      "name": "China",
+      "value": "中国"
+    },
+    {
+      "name": "Taiwan",
+      "value": "台湾"
+    },
+    {
+      "name": "Hong_Kong",
+      "value": "香港"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "duplicate_login",
+      "value": "有其他设备重复登录"
+    },
+    {
+      "name": "duplicate_login_id",
+      "value": "登录设备的id是"
+    }
+  ]
+}

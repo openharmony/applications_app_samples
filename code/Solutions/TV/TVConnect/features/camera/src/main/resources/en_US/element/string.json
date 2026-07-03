@@ -1,0 +1,431 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CameraAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CameraAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "input_device_serial_number",
+      "value": "input device serial number"
+    },
+    {
+      "name": "equipment_qualification",
+      "value": "equipment qualification"
+    },
+    {
+      "name": "device_distribution_network_description",
+      "value": "device distribution network description"
+    },
+    {
+      "name": "device_initialize_one",
+      "value": "device initialize one"
+    },
+    {
+      "name": "device_initialize_two",
+      "value": "device initialize two"
+    },
+    {
+      "name": "device_initialize_three",
+      "value": "device initialize three"
+    },
+    {
+      "name": "device_name_and_scenario",
+      "value": "device name and scenario"
+    },
+    {
+      "name": "device_added_successfully",
+      "value": "device added successfully"
+    },
+    {
+      "name": "set",
+      "value": "set"
+    },
+    {
+      "name": "essential_information",
+      "value": "essential information"
+    },
+    {
+      "name": "devic_name",
+      "value": "devic name"
+    },
+    {
+      "name": "application_of_equipment",
+      "value": "application of equipment"
+    },
+    {
+      "name": "database_coordinate_system",
+      "value": "database coordinate system"
+    },
+    {
+      "name": "create_coordinate",
+      "value": "create coordinate"
+    },
+    {
+      "name": "end_coordinate",
+      "value": "end coordinate"
+    },
+    {
+      "name": "transcribe_transcribe",
+      "value": "transcribe transcribe"
+    },
+    {
+      "name": "device_serial_number_picture",
+      "value": "device serial number picture"
+    },
+    {
+      "name": "device_picture",
+      "value": "device picture"
+    },
+    {
+      "name": "serial_number",
+      "value": "serial number"
+    },
+    {
+      "name": "please_enter",
+      "value": "please_enter"
+    },
+    {
+      "name": "equipment_number",
+      "value": "equipment number"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
+    },
+    {
+      "name": "join",
+      "value": "join"
+    },
+    {
+      "name": "accomplish",
+      "value": "accomplish"
+    },
+    {
+      "name": "start_distribution",
+      "value": "start distribution"
+    },
+    {
+      "name": "plugin_describe",
+      "value": "plugin describe"
+    },
+    {
+      "name": "indicator_light",
+      "value": "indicator light"
+    },
+    {
+      "name": "select_router",
+      "value": "select router"
+    },
+    {
+      "name": "without_password",
+      "value": "without password"
+    },
+    {
+      "name": "switching_network",
+      "value": "switching network"
+    },
+    {
+      "name": "connected_device_hotspot",
+      "value": "connected device hotspot"
+    },
+    {
+      "name": "please_click_join",
+      "value": "please click join"
+    },
+    {
+      "name": "selective_use",
+      "value": "selective use"
+    },
+    {
+      "name": "device_qr_code",
+      "value": "device qr code"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "picture_reversal",
+      "value": "picture reversal"
+    },
+    {
+      "name": "integrated_Peripherals",
+      "value": "integrated_Peripherals"
+    },
+    {
+      "name": "click_video",
+      "value": "click video"
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "transcribe",
+      "value": "transcribe"
+    },
+    {
+      "name": "screen_shot",
+      "value": "screen shot"
+    },
+    {
+      "name": "coordinate",
+      "value": "coordinate"
+    },
+    {
+      "name": "level",
+      "value": "level"
+    },
+    {
+      "name": "pitching",
+      "value": "pitching"
+    },
+    {
+      "name": "focal_num",
+      "value": "focal num"
+    },
+    {
+      "name": "add_coordinates",
+      "value": "add coordinates"
+    },
+    {
+      "name": "manage_coordinates_camera",
+      "value": "manage coordinates camera"
+    },
+    {
+      "name": "the_camera_recording",
+      "value": "the camera recording"
+    },
+    {
+      "name": "recording",
+      "value": "recording"
+    },
+    {
+      "name": "video_saved_photo",
+      "value": "video saved photo"
+    },
+    {
+      "name": "screenshot_saved_photo",
+      "value": "screenshot saved photo"
+    },
+    {
+      "name": "super_definition",
+      "value": "super definition"
+    },
+    {
+      "name": "high_definition",
+      "value": "high definition"
+    },
+    {
+      "name": "standard_definition",
+      "value": "standard definition"
+    },
+    {
+      "name": "devicename_use_wait",
+      "value": "devicename use wait"
+    },
+    {
+      "name": "unit_type",
+      "value": "unit type"
+    },
+    {
+      "name": "equipment_erial_num",
+      "value": "equipment erial num"
+    },
+    {
+      "name": "please_select_use",
+      "value": "please select use"
+    },
+    {
+      "name": "select_coordinate",
+      "value": "select coordinate"
+    },
+    {
+      "name": "confirm_del",
+      "value": "confirm del"
+    },
+    {
+      "name": "ladata",
+      "value": "ladata"
+    },
+    {
+      "name": "coordinate_name",
+      "value": "coordinate name"
+    },
+    {
+      "name": "add_equipments",
+      "value": "add equipments"
+    },
+    {
+      "name": "scanning_pcl_devices",
+      "value": "scanning pcl devices"
+    },
+    {
+      "name": "and_near_the_phone",
+      "value": "and near the phone"
+    },
+    {
+      "name": "connect",
+      "value": "connect"
+    },
+    {
+      "name": "manually_add",
+      "value": "manually add"
+    },
+    {
+      "name": "scan_code_addition",
+      "value": "scan code addition"
+    },
+    {
+      "name": "selection_sort",
+      "value": "selection sort"
+    },
+    {
+      "name": "configuration_wizard",
+      "value": "configuration wizard"
+    },
+    {
+      "name": "device_attachment",
+      "value": "device attachment"
+    },
+    {
+      "name": "production_equipment",
+      "value": "production equipment"
+    },
+    {
+      "name": "fault_management",
+      "value": "fault management"
+    },
+    {
+      "name": "coordinate_axis",
+      "value": "coordinate axis"
+    },
+    {
+      "name": "alarm_information",
+      "value": "alarm information"
+    },
+    {
+      "name": "view_details",
+      "value": "view details"
+    },
+    {
+      "name": "distributed_camera",
+      "value": "distributed camera"
+    },
+    {
+      "name": "select_information_type",
+      "value": "select information type"
+    },    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "Step_one",
+      "value": "Step one"
+    },
+    {
+      "name": "Turn_on_the_device",
+      "value": "Turn on the device, and see the indicator light turn on"
+    },
+    {
+      "name": "Step_Two",
+      "value": "Step Two"
+    },
+    {
+      "name": "The_above_operations",
+      "value": "The above operations have been completed"
+    },
+    {
+      "name": "equipment_powered_on",
+      "value": "The equipment is powered on"
+    },
+    {
+      "name": "networkIsSmooth",
+      "value": "The device network is smooth"
+    },
+    {
+      "name": "Connection_successful",
+      "value": "Connection successful"
+    },
+    {
+      "name": "Coordinate_Name1",
+      "value": "Coordinate Name 1"
+    },
+    {
+      "name": "Device_number",
+      "value": "Device number"
+    },
+    {
+      "name": "Type",
+      "value": "Type"
+    },
+    {
+      "name": "Can_be_blocked",
+      "value": "Can be blocked"
+    },
+    {
+      "name": "Invalid",
+      "value": "Invalid"
+    },
+    {
+      "name": "Loading",
+      "value": "Loading..."
+    },
+    {
+      "name": "Drug_preparation",
+      "value": "Drug preparation"
+    },
+    {
+      "name": "Equipment",
+      "value": "Equipment"
+    },
+    {
+      "name": "no_more_data",
+      "value": "There is no more data."
+    },
+    {
+      "name": "Connecting_device",
+      "value": "Connecting device…"
+    },
+    {
+      "name": "Connecting_device_process",
+      "value": "During the connection process, please ensure:"
+    },
+    {
+      "name": "close_to_the_phone",
+      "value": "Place the device close to the phone"
+    },
+    {
+      "name": "Call_police",
+      "value": "Call the police"
+    },
+    {
+      "name": "External_Fault",
+      "value": "External Fault - 3N12 Watchdog"
+    },
+    {
+      "name": "reset_button",
+      "value": "Press the reset button with a thimble for about 3 seconds, and after you hear the 'Reset Successful' beep, the device will restart and enter network setup mode."
+    },
+    {
+      "name": "SendTurn_signal",
+      "value": "Send turn signal"
+    }
+  ]
+}

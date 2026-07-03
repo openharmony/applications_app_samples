@@ -1,0 +1,228 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "type_big_screen",
+      "value": "Big Screen"
+    },
+    {
+      "name": "type_camera",
+      "value": "Camera"
+    },
+    {
+      "name": "type_controller",
+      "value": "Controller"
+    },
+    {
+      "name": "type_development_board",
+      "value": "Development Board"
+    },
+    {
+      "name": "type_gate",
+      "value": "Gate"
+    },
+    {
+      "name": "type_pen",
+      "value": "Pen"
+    },
+    {
+      "name": "type_pos",
+      "value": "Pos"
+    },
+    {
+      "name": "type_printer",
+      "value": "Printer"
+    },
+    {
+      "name": "type_screen",
+      "value": "Screen"
+    },
+    {
+      "name": "type_sound",
+      "value": "Sound"
+    },
+    {
+      "name": "type_student_card",
+      "value": "Student Card"
+    },
+    {
+      "name": "type_test_box",
+      "value": "Test Box"
+    },
+    {
+      "name": "type_watch",
+      "value": "Watch"
+    },
+    {
+      "name": "access_name_wifi",
+      "value": "WiFi"
+    },
+    {
+      "name": "access_name_bluetooth",
+      "value": "bluetooth"
+    },
+    {
+      "name": "China",
+      "value": "China"
+    },
+    {
+      "name": "Taiwan",
+      "value": "Taiwan"
+    },
+    {
+      "name": "Hong_Kong",
+      "value": "Hong Kong"
+    },
+    {
+      "name": "login",
+      "value": "login"
+    },
+    {
+      "name": "duplicate_login",
+      "value": "There are other devices that log in repeatedly"
+    },
+    {
+      "name": "duplicate_login_id",
+      "value": "The id of the login device is"
+    },
+    {
+      "name": "font_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "font_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "font_18",
+      "value": "27lpx"
+    },
+    {
+      "name": "font_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "font_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "font_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "5_vp",
+      "value": "7.5lpx"
+    },
+    {
+      "name": "6_vp",
+      "value": "9lpx"
+    },
+    {
+      "name": "8_vp",
+      "value": "12lpx"
+    },
+    {
+      "name": "10_vp",
+      "value": "15lpx"
+    },
+    {
+      "name": "11_vp",
+      "value": "16.5lpx"
+    },
+    {
+      "name": "12_vp",
+      "value": "18lpx"
+    },
+    {
+      "name": "16_vp",
+      "value": "24lpx"
+    },
+    {
+      "name": "19_vp",
+      "value": "28.5lpx"
+    },
+    {
+      "name": "20_vp",
+      "value": "30lpx"
+    },
+    {
+      "name": "21_vp",
+      "value": "31.5lpx"
+    },
+    {
+      "name": "22_vp",
+      "value": "33lpx"
+    },
+    {
+      "name": "24_vp",
+      "value": "36lpx"
+    },
+    {
+      "name": "26_vp",
+      "value": "39lpx"
+    },
+    {
+      "name": "28_vp",
+      "value": "42lpx"
+    },
+    {
+      "name": "30_vp",
+      "value": "45lpx"
+    },
+    {
+      "name": "32_vp",
+      "value": "48lpx"
+    },
+    {
+      "name": "38_vp",
+      "value": "57lpx"
+    },
+    {
+      "name": "40_vp",
+      "value": "60lpx"
+    },
+    {
+      "name": "42_vp",
+      "value": "63lpx"
+    },
+    {
+      "name": "48_vp",
+      "value": "72lpx"
+    },
+    {
+      "name": "56_vp",
+      "value": "84lpx"
+    },
+    {
+      "name": "default_page_padding",
+      "value": "60lpx"
+    },
+    {
+      "name": "70_vp",
+      "value": "105lpx"
+    },
+    {
+      "name": "80_vp",
+      "value": "120lpx"
+    },
+    {
+      "name": "100_vp",
+      "value": "150lpx"
+    },
+    {
+      "name": "120_vp",
+      "value": "180lpx"
+    },
+    {
+      "name": "page_toolbar_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "API_BASE_URL",
+      "value": "https://connect.harmonytsc.com/api/v1"
+    }
+  ]
+}

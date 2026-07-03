@@ -1,0 +1,492 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "no_scene",
+      "value": "no any scene"
+    },
+    {
+      "name": "my_scene",
+      "value": "my scene"
+    },
+    {
+      "name": "scene_library",
+      "value": "scene library"
+    },
+    {
+      "name": "to",
+      "value": "to"
+    },
+    {
+      "name": "add_scene_library",
+      "value": "add scene library"
+    },
+    {
+      "name": "add_custom_scene",
+      "value": "add custom scene"
+    },
+    {
+      "name": "edit_custom_scene",
+      "value": "edit custom scene"
+    },
+    {
+      "name": "or",
+      "value": "or"
+    },
+    {
+      "name": "smart_tunnel",
+      "value": "smart_tunnel"
+    },
+    {
+      "name": "sensor_device_control",
+      "value": "sensor device control"
+    },
+    {
+      "name": "scene_name",
+      "value": "scene name"
+    },
+    {
+      "name": "trigger_conditions",
+      "value": "trigger conditions"
+    },
+    {
+      "name": "additional_conditions",
+      "value": "additional conditions"
+    },
+    {
+      "name": "add_conditions",
+      "value": "add conditions"
+    },
+    {
+      "name": "execute_action",
+      "value": "execute action"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "execution scenario"
+    },
+    {
+      "name": "scene_description",
+      "value": "scene description"
+    },
+    {
+      "name": "scene_title_desc",
+      "value": "%s %s waiting for equipment control"
+    },
+    {
+      "name": "equipment_combination",
+      "value": "equipment combination"
+    },
+    {
+      "name": "solution_description",
+      "value": "solution description:"
+    },
+    {
+      "name": "execution_device",
+      "value": "execution device"
+    },
+    {
+      "name": "trigger_device",
+      "value": "trigger device"
+    },
+    {
+      "name": "add_trigger_condition",
+      "value": "add trigger condition"
+    },
+    {
+      "name": "add_execute_action",
+      "value": "add execute action"
+    },
+    {
+      "name": "edit_trigger_condition",
+      "value": "edit trigger condition"
+    },
+    {
+      "name": "edit_execute_action",
+      "value": "edit execute action"
+    },
+    {
+      "name": "placeholder_desc",
+      "value": "Please enter the scene name"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "edit",
+      "value": "edit"
+    },
+    {
+      "name": "device_select",
+      "value": "device select"
+    },
+    {
+      "name": "scene_save_tip",
+      "value": "The scene has been saved and opened."
+    },
+    {
+      "name": "device_unknown",
+      "value": "device unknown"
+    },
+    {
+      "name": "scene_detail_desc",
+      "value": "This scenario can be completed based on %s、%s internet of things"
+    },
+    {
+      "name": "add_scene_name_empty_tip",
+      "value": "Scene name cannot be empty."
+    },
+    {
+      "name": "add_data_fail_tip",
+      "value": "Incomplete data filling, please submit after completing the filling"
+    },
+    {
+      "name": "Topping",
+      "value": "Topping"
+    },
+    {
+      "name": "custom_scene_name",
+      "value": "custom scene name %s"
+    },
+    {
+      "name": "rename_scene_name",
+      "value": "rename scene name"
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "button_text_confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "delete_scene_tip",
+      "value": "The deleted custom scene cannot be restored. Are you sure?"
+    },
+    {
+      "name": "add_limited_tip",
+      "value": "My scene has reached the limit and cannot be added"
+    },
+    {
+      "name": "combination",
+      "value": "%s device combination"
+    },
+    {
+      "name": "modify_scene_icon",
+      "value": "modify scene icon %s"
+    },
+    {
+      "name": "on_line_equipment",
+      "value": "on line equipment %s"
+    },
+    {
+      "name": "off_line_equipment",
+      "value": "off line equipment %s"
+    },
+    {
+      "name": "select_scene_icon",
+      "value": "select scene icon %s"
+    },
+    {
+      "name": "empty_width",
+      "value": "180lpx"
+    },
+    {
+      "name": "empty_height",
+      "value": "180lpx"
+    },
+    {
+      "name": "font_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "font_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "font_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "font_44",
+      "value": "66lpx"
+    },
+    {
+      "name": "font_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "padding_top_17",
+      "value": "25.5lpx"
+    },
+    {
+      "name": "line_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "line_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "line_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "icon_width",
+      "value": "36lpx"
+    },
+    {
+      "name": "icon_height",
+      "value": "36lpx"
+    },
+    {
+      "name": "switch_width",
+      "value": "54lpx"
+    },
+    {
+      "name": "switch_height",
+      "value": "30lpx"
+    },
+    {
+      "name": "card_width",
+      "value": "243lpx"
+    },
+    {
+      "name": "card_height",
+      "value": "180lpx"
+    },
+    {
+      "name": "card_border_radius",
+      "value": "24lpx"
+    },
+    {
+      "name": "top_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "height_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "p_6",
+      "value": "9lpx"
+    },
+    {
+      "name": "p_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "p_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "p_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "p_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "p_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "p_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "p_44",
+      "value": "66lpx"
+    },
+    {
+      "name": "p_52",
+      "value": "78lpx"
+    },
+    {
+      "name": "add_scene_width",
+      "value": "30lpx"
+    },
+    {
+      "name": "add_scene_height",
+      "value": "30lpx"
+    },
+    {
+      "name": "scene_tab_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "padding_tab_title_left",
+      "value": "12lpx"
+    },
+    {
+      "name": "padding_tab_left",
+      "value": "36lpx"
+    },
+    {
+      "name": "margin_card_top",
+      "value": "36lpx"
+    },
+    {
+      "name": "btn_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "tip_icon_width",
+      "value": "33lpx"
+    },
+    {
+      "name": "tip_icon_height",
+      "value": "33lpx"
+    },
+    {
+      "name": "origin_circle_size",
+      "value": "270lpx"
+    },
+    {
+      "name": "ic_arrow_left_icon_width",
+      "value": "18lpx"
+    },
+    {
+      "name": "btn_margin_bottom",
+      "value": "36lpx"
+    },
+    {
+      "name": "device_item_name_font_size",
+      "value": "18lpx"
+    },
+    {
+      "name": "device_item_bg_size",
+      "value": "90lpx"
+    },
+    {
+      "name": "device_item_ic_size",
+      "value": "52.5lpx"
+    },
+    {
+      "name": "device_item_padding",
+      "value": "7.5lpx"
+    },
+    {
+      "name": "device_item_name_size",
+      "value": "22.5lpx"
+    },
+    {
+      "name": "bg_device_size",
+      "value": "150lpx"
+    },
+    {
+      "name": "device_min_space",
+      "value": "24lpx"
+    },
+    {
+      "name": "vp_60",
+      "value": "90lpx"
+    },
+    {
+      "name": "vp_50",
+      "value": "75lpx"
+    },
+    {
+      "name": "vp_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "vp_25",
+      "value": "37.5lpx"
+    },
+    {
+      "name": "vp_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "vp_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "vp_13",
+      "value": "19.5lpx"
+    },
+    {
+      "name": "vp_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "vp_10",
+      "value": "15lpx"
+    },
+    {
+      "name": "vp_5",
+      "value": "4.5lpx"
+    },
+    {
+      "name": "dialog_padding_top",
+      "value": "15lpx"
+    },
+    {
+      "name": "dialog_padding_bottom",
+      "value": "36lpx"
+    },
+    {
+      "name": "dialog_divider_height",
+      "value": "45lpx"
+    },
+    {
+      "name": "menu_body_width",
+      "value": "240lpx"
+    },
+    {
+      "name": "menu_body_height",
+      "value": "144lpx"
+    },
+    {
+      "name": "menu_item_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "modify_scene_icon_height",
+      "value": "381lpx"
+    },
+    {
+      "name": "scene_icon_width",
+      "value": "103.5lpx"
+    },
+    {
+      "name": "scene_icon_height",
+      "value": "103.5lpx"
+    },
+    {
+      "name": "scene_current_icon_width",
+      "value": "60lpx"
+    },
+    {
+      "name": "scene_current_icon_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "Choose",
+      "value": "Choose %s"
+    },
+    {
+      "name": "Finish_preparing",
+      "value": "Finish preparing the solution and double-check it"
+    },
+    {
+      "name": "Finish_preparing_solution",
+      "value": "Finish preparing the solution"
+    },
+    {
+      "name": "choose_scene_icon",
+      "value": "Please choose a scene icon"
+    }
+  ]
+}

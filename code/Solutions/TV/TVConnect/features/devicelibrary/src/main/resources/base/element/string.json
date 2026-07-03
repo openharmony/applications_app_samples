@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "application_industry",
+      "value": "Application industry"
+    },
+    {
+      "name": "system_type",
+      "value": "System type"
+    },
+    {
+      "name": "system_version",
+      "value": "System version"
+    },
+    {
+      "name": "manufacturer_name",
+      "value": "Manufacturer name"
+    },
+    {
+      "name": "device_type",
+      "value": "Device type"
+    },
+    {
+      "name": "device_name",
+      "value": "Device Name"
+    },
+    {
+      "name": "operating_system_type",
+      "value": "Operating system type"
+    },
+    {
+      "name": "operating_system_version_number",
+      "value": "Operating system version number"
+    },
+    {
+      "name": "device_information",
+      "value": "Device information"
+    },
+    {
+      "name": "universal_interconnection",
+      "value": "Universal interconnection"
+    },
+    {
+      "name": "search",
+      "value": "search"
+    },
+    {
+      "name": "purge",
+      "value": "purge"
+    },
+    {
+      "name": "no_results_contain_str",
+      "value": "There are no results that contain %s."
+    },
+    {
+      "name": "results_include_str",
+      "value": "Here are the results that include \"%s\":"
+    },
+    {
+      "name": "search_for_records",
+      "value": "Search for records"
+    },
+    {
+      "name": "connect_auth",
+      "value": "Interoperability authentication"
+    },
+    {
+      "name": "searching",
+      "value": "search..."
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "loading",
+      "value": "%s Loading"
+    }
+  ]
+}

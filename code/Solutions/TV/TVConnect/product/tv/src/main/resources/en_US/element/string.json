@@ -1,0 +1,300 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "This module template implements Category functions."
+    },
+    {
+      "name": "ability_desc",
+      "value": "This ability loads CategoryPage."
+    },
+    {
+      "name": "ability_label",
+      "value": "Category Ability"
+    },
+    {
+      "name": "list_item_text",
+      "value": "Category %d"
+    },
+    {
+      "name": "tab_text",
+      "value": "Tab"
+    },
+    {
+      "name": "detail_list_item_text",
+      "value": "Subtype"
+    },
+    {
+      "name": "grid_item_text",
+      "value": "Subclass"
+    },
+    {
+      "name": "sub_title",
+      "value": "Sub title"
+    },
+    {
+      "name": "title",
+      "value": "Category"
+    },
+    {
+      "name": "tab_personal",
+      "value": "personal"
+    },
+    {
+      "name": "tab_devices",
+      "value": "devices"
+    },
+    {
+      "name": "tab_scan",
+      "value": "scan"
+    },
+    {
+      "name": "tab_scene",
+      "value": "scene"
+    },
+    {
+      "name": "launcher_text_name",
+      "value": "connect"
+    },
+    {
+      "name": "launcher_btn_text",
+      "value": "Enter the application"
+    },
+    {
+      "name": "login",
+      "value": "login"
+    },
+    {
+      "name": "account",
+      "value": "account "
+    },
+    {
+      "name": "password",
+      "value": "password"
+    },
+    {
+      "name": "input_account",
+      "value": "Please enter your account number"
+    },
+    {
+      "name": "input_password",
+      "value": "Please enter password"
+    },
+    {
+      "name": "account_password_login",
+      "value": "Account password login"
+    },
+    {
+      "name": "mobile_number_login",
+      "value": "Mobile number login"
+    },
+    {
+      "name": "sign_in",
+      "value": "Sign in"
+    },
+    {
+      "name": "input_registration",
+      "value": "Enter for registration"
+    },
+    {
+      "name": "next",
+      "value": "Next"
+    },
+    {
+      "name": "Create_account",
+      "value": "Create an account"
+    },
+    {
+      "name": "reenter_password",
+      "value": "Reenter password"
+    },
+    {
+      "name": "forgot_password",
+      "value": "Forgot password"
+    },
+    {
+      "name": "account_management",
+      "value": "Forgot password"
+    },
+    {
+      "name": "personal_information",
+      "value": "Personal information"
+    },
+    {
+      "name": "nickname",
+      "value": "nickname"
+    },
+    {
+      "name": "mail_address",
+      "value": "Mail address"
+    },
+    {
+      "name": "account_security",
+      "value": "Account security"
+    },
+    {
+      "name": "log_out",
+      "value": "Log out"
+    },
+    {
+      "name": "successful_verification",
+      "value": "Successful verification"
+    },
+    {
+      "name": "account_or_code_format_incorrect",
+      "value": "The format of the account or code is incorrect"
+    },
+    {
+      "name": "reset_successfully",
+      "value": "Reset successfully"
+    },
+    {
+      "name": "two_password_format_error",
+      "value": "The password format is incorrect or the password is incorrect twice"
+    },
+    {
+      "name": "consent_agreement",
+      "value": "Please agree to the User Agreement and Privacy Policy"
+    },
+    {
+      "name": "login_successful",
+      "value": "Login successful"
+    },
+    {
+      "name": "login_failure",
+      "value": "Login failure"
+    },
+    {
+      "name": "account_or_password_incorrect",
+      "value": "The account or password is incorrect"
+    },
+    {
+      "name": "registered_successfully",
+      "value": "Registered successfully"
+    },
+    {
+      "name": "registered_failure",
+      "value": "Registered failure"
+    },
+    {
+      "name": "registration_format_incorrect",
+      "value": "Incorrect format"
+    },
+    {
+      "name": "please_login_first",
+      "value": "You are not logged in, please log in first"
+    },
+    {
+      "name": "Account_security",
+      "value": "Account security"
+    },
+    {
+      "name": "Cancel_account",
+      "value": "Cancel account"
+    },
+    {
+      "name": "Account_cancellation_failure",
+      "value": "Account cancellation failure"
+    },
+    {
+      "name": "press_again_to_exit",
+      "value": "press again to exit"
+    },
+    {
+      "name": "Hepatobiliary_Surgery_Ward1",
+      "value": "Hepatobiliary Surgery Ward 1"
+    },
+    {
+      "name": "DeviceNumber_001",
+      "value": "Device Number: 001"
+    },
+    {
+      "name": "operating_system_settings",
+      "value": "Click to open the operating system settings"
+    },
+    {
+      "name": "Carrying_out_medical_orders",
+      "value": "Carrying out medical orders"
+    },
+    {
+      "name": "Bed",
+      "value": "Bed"
+    },
+    {
+      "name": "Seriously_ill",
+      "value": "Seriously ill"
+    },
+    {
+      "name": "Female",
+      "value": "Female"
+    },
+    {
+      "name": "76_years_old",
+      "value": "76 years old"
+    },
+    {
+      "name": "Injection_Medication_Orders",
+      "value": "Injection Medication Orders"
+    },
+    {
+      "name": "Patient_List",
+      "value": "Patient List"
+    },
+    {
+      "name": "My_patient",
+      "value": "My patient"
+    },
+    {
+      "name": "Frequency",
+      "value": "Frequency: %s"
+    },
+    {
+      "name": "Medicine_pickup_time",
+      "value": "Medicine pick-up time: %s"
+    },
+    {
+      "name": "enter_face_recognition",
+      "value": "Click to enter face recognition"
+    },
+    {
+      "name": "Nursing_orders",
+      "value": "Nursing orders"
+    },
+    {
+      "name": "Read_agree",
+      "value": "Read and agree"
+    },
+    {
+      "name": "User_Agreement",
+      "value": "General Internet User Agreement"
+    },
+    {
+      "name": "Content_About",
+      "value": "Content and About"
+    },
+    {
+      "name": "Services_Privacy",
+      "value": "Statement on Device Management Services and Privacy"
+    },
+    {
+      "name": "UserAgreement_PrivacyPolicy",
+      "value": "Please read and agree to the User Agreement and Privacy Policy"
+    },
+    {
+      "name": "closeToPatient",
+      "value": "Get close to the patient"
+    },
+    {
+      "name": "StayAwayFromPatient",
+      "value": "Stay away from the patient"
+    },
+    {
+      "name": "Calculation_started",
+      "value": "Calculation started"
+    },
+    {
+      "name": "Record_data",
+      "value": "Record %s data and calculate"
+    }
+  ]
+}

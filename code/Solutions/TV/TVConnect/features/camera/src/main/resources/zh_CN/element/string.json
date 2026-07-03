@@ -1,0 +1,432 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "CameraAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CameraAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "input_device_serial_number",
+      "value": "输入设备序列号"
+    },
+    {
+      "name": "equipment_qualification",
+      "value": "设备确认"
+    },
+    {
+      "name": "device_distribution_network_description",
+      "value": "设备配网说明"
+    },
+    {
+      "name": "device_initialize_one",
+      "value": "设备初始化"
+    },
+    {
+      "name": "device_initialize_two",
+      "value": "设备初始化"
+    },
+    {
+      "name": "device_initialize_three",
+      "value": "设备初始化"
+    },
+    {
+      "name": "device_name_and_scenario",
+      "value": "设备名称与场景"
+    },
+    {
+      "name": "device_added_successfully",
+      "value": "设备添加成功"
+    },
+    {
+      "name": "set",
+      "value": "设置"
+    },
+    {
+      "name": "essential_information",
+      "value": "基本信息"
+    },
+    {
+      "name": "devic_name",
+      "value": "设备名称"
+    },
+    {
+      "name": "application_of_equipment",
+      "value": "设备用途"
+    },
+    {
+      "name": "database_coordinate_system",
+      "value": "坐标库"
+    },
+    {
+      "name": "create_coordinate",
+      "value": "创建坐标"
+    },
+    {
+      "name": "end_coordinate",
+      "value": "编辑坐标"
+    },
+    {
+      "name": "transcribe_transcribe",
+      "value": "录制记录"
+    },
+    {
+      "name": "device_serial_number_picture",
+      "value": "设备序列号图片"
+    },
+    {
+      "name": "device_picture",
+      "value": "设备图片"
+    },
+    {
+      "name": "serial_number",
+      "value": "序列号"
+    },
+    {
+      "name": "equipment_number",
+      "value": "设备编号"
+    },
+    {
+      "name": "please_enter",
+      "value": "请输入"
+    },
+    {
+      "name": "add",
+      "value": "添加"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "next_step",
+      "value": "下一步"
+    },
+    {
+      "name": "join",
+      "value": "加入"
+    },
+    {
+      "name": "accomplish",
+      "value": "完成"
+    },
+    {
+      "name": "start_distribution",
+      "value": "开始配网"
+    },
+    {
+      "name": "plugin_describe",
+      "value": "请将设备插上电源，耐心等待约1分钟，直到指示灯呈蓝色快速闪烁"
+    },
+    {
+      "name": "indicator_light",
+      "value": "指示灯已经蓝色快闪"
+    },
+    {
+      "name": "select_router",
+      "value": "选择路由器Wi-Fi并输入密码"
+    },
+    {
+      "name": "without_password",
+      "value": "若无密码则无需输入"
+    },
+    {
+      "name": "switching_network",
+      "value": "切换网络"
+    },
+    {
+      "name": "connected_device_hotspot",
+      "value": "连接设备热点"
+    },
+    {
+      "name": "please_click_join",
+      "value": "请点击“加入”，手机将自动连接设备热点："
+    },
+    {
+      "name": "selective_use",
+      "value": "选择用途"
+    },
+    {
+      "name": "device_qr_code",
+      "value": "设备二维码"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "picture_reversal",
+      "value": "画面反转"
+    },
+    {
+      "name": "integrated_Peripherals",
+      "value": "设备设置"
+    },
+    {
+      "name": "click_video",
+      "value": "点击后视频画面会反转显示，适合倒装的场景。后续可在设\n置-画面设置进行调整"
+    },
+    {
+      "name": "camera",
+      "value": "摄像头"
+    },
+    {
+      "name": "transcribe",
+      "value": "录制"
+    },
+    {
+      "name": "screen_shot",
+      "value": "截屏"
+    },
+    {
+      "name": "coordinate",
+      "value": "坐标"
+    },
+    {
+      "name": "level",
+      "value": "水平(P)"
+    },
+    {
+      "name": "pitching",
+      "value": "俯仰(T)"
+    },
+    {
+      "name": "focal_num",
+      "value": "焦距(Z)"
+    },
+    {
+      "name": "add_coordinates",
+      "value": "将当前坐标添加至坐标库"
+    },
+    {
+      "name": "manage_coordinates_camera",
+      "value": "管理摄像头的坐标"
+    },
+    {
+      "name": "the_camera_recording",
+      "value": "摄像头的录制记录"
+    },
+    {
+      "name": "recording",
+      "value": "录制中..."
+    },
+    {
+      "name": "video_saved_photo",
+      "value": "视频已保存至相册"
+    },
+    {
+      "name": "screenshot_saved_photo",
+      "value": "截屏已保存至相册"
+    },
+    {
+      "name": "super_definition",
+      "value": "超清"
+    },
+    {
+      "name": "high_definition",
+      "value": "高清"
+    },
+    {
+      "name": "standard_definition",
+      "value": "标清"
+    },
+    {
+      "name": "devicename_use_wait",
+      "value": "设备名称、用途、序列号等"
+    },
+    {
+      "name": "unit_type",
+      "value": "设备型号"
+    },
+    {
+      "name": "equipment_erial_num",
+      "value": "设备序列号"
+    },
+    {
+      "name": "please_select_use",
+      "value": "请选择用途"
+    },
+    {
+      "name": "select_coordinate",
+      "value": "选择坐标"
+    },
+    {
+      "name": "confirm_del",
+      "value": "确定删除"
+    },
+    {
+      "name": "ladata",
+      "value": "坐标信息"
+    },
+    {
+      "name": "coordinate_name",
+      "value": "坐标名称"
+    },
+    {
+      "name": "add_equipments",
+      "value": "添加设备"
+    },
+    {
+      "name": "scanning_pcl_devices",
+      "value": "正在扫描"
+    },
+    {
+      "name": "and_near_the_phone",
+      "value": "请确保智能设备已连接电源，且位于大屏附近"
+    },
+    {
+      "name": "connect",
+      "value": "连接"
+    },
+    {
+      "name": "manually_add",
+      "value": "手动添加"
+    },
+    {
+      "name": "scan_code_addition",
+      "value": "扫码添加"
+    },
+    {
+      "name": "selection_sort",
+      "value": "选择分类"
+    },
+    {
+      "name": "configuration_wizard",
+      "value": "配置向导"
+    },
+    {
+      "name": "device_attachment",
+      "value": "设备连接"
+    },
+    {
+      "name": "production_equipment",
+      "value": "生产设备"
+    },
+    {
+      "name": "fault_management",
+      "value": "故障管理"
+    },
+    {
+      "name": "coordinate_axis",
+      "value": "坐标轴"
+    },
+    {
+      "name": "alarm_information",
+      "value": "报警信息"
+    },
+    {
+      "name": "view_details",
+      "value": "查看详情"
+    },
+    {
+      "name": "distributed_camera",
+      "value": "分布式摄像头"
+    },
+    {
+      "name": "select_information_type",
+      "value": "选择信息类型"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "Step_one",
+      "value": "第一步"
+    },
+    {
+      "name": "Turn_on_the_device",
+      "value": "接通设备电源,看到指示灯亮起"
+    },
+    {
+      "name": "Step_Two",
+      "value": "第二步"
+    },
+    {
+      "name": "The_above_operations",
+      "value": "已完成上述操作"
+    },
+    {
+      "name": "equipment_powered_on",
+      "value": "设备已通电"
+    },
+    {
+      "name": "networkIsSmooth",
+      "value": "设备网络畅通"
+    },
+    {
+      "name": "Connection_successful",
+      "value": "连接成功"
+    },
+    {
+      "name": "Coordinate_Name1",
+      "value": "坐标名称1"
+    },
+    {
+      "name": "Device_number",
+      "value": "器件号"
+    },
+    {
+      "name": "Type",
+      "value": "类型"
+    },
+    {
+      "name": "Can_be_blocked",
+      "value": "可屏蔽"
+    },
+    {
+      "name": "Invalid",
+      "value": "无效"
+    },
+    {
+      "name": "Loading",
+      "value": "加载中..."
+    },
+    {
+      "name": "Drug_preparation",
+      "value": "药品配液"
+    },
+    {
+      "name": "Equipment",
+      "value": "设备"
+    },
+    {
+      "name": "no_more_data",
+      "value": "没有更多数据啦"
+    },
+    {
+      "name": "Connecting_device",
+      "value": "设备连接中…"
+    },
+    {
+      "name": "Connecting_device_process",
+      "value": "连接过程中，请确保："
+    },
+    {
+      "name": "close_to_the_phone",
+      "value": "设备靠近手机放置位置"
+    },
+    {
+      "name": "Call_police",
+      "value": "报警"
+    },
+    {
+      "name": "External_Fault",
+      "value": "外部故障-3N12看门狗"
+    },
+    {
+      "name": "reset_button",
+      "value": "使用顶针按压复位键约3秒，听到“重置成功”的提示音后，设备将会重启进入配网状态。"
+    },
+    {
+      "name": "SendTurn_signal",
+      "value": "发送转向"
+    }
+  ]
+}

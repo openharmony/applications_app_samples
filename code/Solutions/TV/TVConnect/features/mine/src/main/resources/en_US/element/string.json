@@ -1,0 +1,380 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MineAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MineAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "page_mine",
+      "value": "mine"
+    },
+    {
+      "name": "page_selectFile",
+      "value": "select flie"
+    },
+    {
+      "name": "page_settings",
+      "value": "settings"
+    },
+    {
+      "name": "page_settings_area",
+      "value": "area"
+    },
+    {
+      "name": "page_settings_language",
+      "value": "language"
+    },
+    {
+      "name": "page_settings_upgrade",
+      "value": "software upgrade"
+    },
+    {
+      "name": "page_settings_about",
+      "value": "about"
+    },
+    {
+      "name": "page_device_store_import",
+      "value": "import device store"
+    },
+    {
+      "name": "page_scene_store_import",
+      "value": "import scene store"
+    },
+    {
+      "name": "page_device_store_sync",
+      "value": "synchronize device store"
+    },
+    {
+      "name": "page_scene_store_sync",
+      "value": "synchronize scene store"
+    },
+    {
+      "name": "upgrade_item_title_current_version",
+      "value": "current version"
+    },
+    {
+      "name": "upgrade_item_title_new_version",
+      "value": "new version"
+    },
+    {
+      "name": "upgrade_discover_new_version",
+      "value": "A new version has been discovered"
+    },
+    {
+      "name": "upgrade_latest_version",
+      "value": "It is the latest version"
+    },
+    {
+      "name": "upgrade_confirm",
+      "value": "Confirm the upgrade"
+    },
+    {
+      "name": "start",
+      "value": "start"
+    },
+    {
+      "name": "upgrade_checking",
+      "value": "checking..."
+    },
+    {
+      "name": "size",
+      "value": "size"
+    },
+    {
+      "name": "detail",
+      "value": "detail"
+    },
+    {
+      "name": "version_number",
+      "value": "version number"
+    },
+    {
+      "name": "universal_connected_user_agreement",
+      "value": "Universal Connected User Agreement"
+    },
+    {
+      "name": "device_management_services_and_privacy",
+      "value": "Device Management Services and Privacy"
+    },
+    {
+      "name": "Content_of_user_privacy_agreement",
+      "value": "This Privacy Statement (sometimes referred to as the \"Privacy Policy\" under local law) explains to you our privacy practices and the choices and rights you can exercise with respect to your personal data. In accordance with the Personal Information Protection Law of the People's Republic of China, this Privacy Statement includes information that may be collected from your online activities, device usage, and offline interactions with HP (such as communicating with our customer support representatives), as well as the methods and types of information that we process. The e purpose of this Privacy Statement is to provide the necessary information regarding our processing of personal data and other relevant rules regarding the processing of your personal data prior to obtaining your consent, as required by local law. This allows you to make informed decisions, understand what you agree to and how to exercise your rights, such as your right to withdraw consent at any time as described in this Privacy Statement."
+    },
+    {
+      "name": "about_footer_read",
+      "value": "Read the "
+    },
+    {
+      "name": "about_footer_and",
+      "value": " and the statement on "
+    },
+    {
+      "name": "about_footer_statement",
+      "value": "."
+    },
+    {
+      "name": "sure",
+      "value": "sure"
+    },
+    {
+      "name": "open_source_license",
+      "value": "Open Source License"
+    },
+    {
+      "name": "about_universal_interconnection",
+      "value": "Universal interconnection"
+    },
+    {
+      "name": "about_footer",
+      "value": "Read the %s and the statement on %s."
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "page_area_switch_message",
+      "value": "After switching regions, the local data will be cleared, and the local device needs to be re-bound for use, but the permissions that have been obtained by this service will not be affected."
+    },
+    {
+      "name": "import",
+      "value": "import"
+    },
+    {
+      "name": "search",
+      "value": "search"
+    },
+    {
+      "name": "follow_system",
+      "value": "Follow the system"
+    },
+    {
+      "name": "device_import_succ",
+      "value": "The device library is successfully imported"
+    },
+    {
+      "name": "scene_import_succ",
+      "value": "The scene library is successfully imported"
+    },
+    {
+      "name": "device_parse",
+      "value": "Parse the device library..."
+    },
+    {
+      "name": "scene_parse",
+      "value": "Parse the scene library..."
+    },
+    {
+      "name": "device_verify",
+      "value": "Verify the device library..."
+    },
+    {
+      "name": "scene_verify",
+      "value": "Verify the scene library..."
+    },
+    {
+      "name": "device_import_fail",
+      "value": "Failed to import the device library"
+    },
+    {
+      "name": "scene_import_fail",
+      "value": "Failed to import the scene library"
+    },
+    {
+      "name": "task_background",
+      "value": "Tasks are executed in the background"
+    },
+    {
+      "name": "check_device_version",
+      "value": "Check the device library version..."
+    },
+    {
+      "name": "download_device",
+      "value": "Download the Device Library %s, progress:%s"
+    },
+    {
+      "name": "device_sync_succ",
+      "value": "The device library is synchronized successfully"
+    },
+    {
+      "name": "device_sycn_fail",
+      "value": "Device library sync failed"
+    },
+    {
+      "name": "verify_device_fail",
+      "value": "Failed to verify the device library"
+    },
+    {
+      "name": "parse_device_fail",
+      "value": "Failed to resolve the device library"
+    },
+    {
+      "name": "device_import",
+      "value": "Import the device library..."
+    },
+    {
+      "name": "check_device_version_fail",
+      "value": "Failed to get the latest device library version information"
+    },
+    {
+      "name": "check_device_version_no_update",
+      "value": "It is currently the latest version"
+    },
+    {
+      "name": "download_device_fail",
+      "value": "Failed to download the device library"
+    },
+    {
+      "name": "verify_scene_fail",
+      "value": "Failed to verify the scene library"
+    },
+    {
+      "name": "scene_import",
+      "value": "Import the scene library..."
+    },
+    {
+      "name": "parse_scene_fail",
+      "value": "Failed to resolve the scene library"
+    },
+    {
+      "name": "download_scene",
+      "value": "Download the Scene Library %s, progress:%s"
+    },
+    {
+      "name": "download_scene_fail",
+      "value": "Failed to download the scene library"
+    },
+    {
+      "name": "check_scene_version_no_update",
+      "value": "It is currently the latest version"
+    },
+    {
+      "name": "check_scene_version_fail",
+      "value": "Failed to get the latest scene library version information"
+    },
+    {
+      "name": "check_scene_version",
+      "value": "Check the scene library version..."
+    },
+    {
+      "name": "init_preset_device_library",
+      "value": "Initialize the preset device library..."
+    },
+    {
+      "name": "input_verification",
+      "value": "Six to sixteen digits or letter combinations"
+    },
+    {
+      "name": "verification_code",
+      "value": "Verification code"
+    },
+    {
+      "name": "input_verification_code",
+      "value": "Please enter the verification code"
+    },
+    {
+      "name": "get_verification_code",
+      "value": "Get verification code"
+    },
+    {
+      "name": "seconds",
+      "value": "seconds"
+    },
+    {
+      "name": "failed_get_code",
+      "value": "Failed to obtain the verification code. Procedure"
+    },
+    {
+      "name": "read_and_agree",
+      "value": "I have read and agree to the "
+    },
+    {
+      "name": "user_agreement",
+      "value": "<User Agreement> "
+    },
+    {
+      "name": "and",
+      "value": "and "
+    },
+    {
+      "name": "privacy_policy",
+      "value": "<Privacy Policy>"
+    },
+    {
+      "name": "mobile_number",
+      "value": "Mobile number"
+    },
+    {
+      "name": "input_mobile_number",
+      "value": "Please enter your mobile number"
+    },
+    {
+      "name": "reset_password",
+      "value": "Reset password"
+    },
+    {
+      "name": "your_account_number_is",
+      "value": "Your account number is"
+    },
+    {
+      "name": "enter_new_password",
+      "value": "Enter new password"
+    },
+    {
+      "name": "enter_the_new_password_again",
+      "value": "Enter new password again"
+    },
+    {
+      "name": "ready_reset_password",
+      "value": "Enter the account password to reset the password"
+    },
+    {
+      "name": "click_to_login",
+      "value": "Click to log in"
+    },
+    {
+      "name": "modify_profile_picture",
+      "value": "Modify profile picture"
+    },
+    {
+      "name": "China",
+      "value": "China"
+    },
+    {
+      "name": "Taiwan",
+      "value": "Taiwan"
+    },
+    {
+      "name": "Hong_Kong",
+      "value": "Hong Kong"
+    },
+    {
+      "name": "are_you_want_to_change_the",
+      "value": " Are you want to change the %s?"
+    },
+    {
+      "name": "ok",
+      "value": "ok"
+    },
+    {
+      "name": "plant",
+      "value": "plant"
+    },
+    {
+      "name": "Content_of_user_agreement",
+      "value": "This User Agreement is a legally binding contract for your use of our services. You must register with valid personal information, use the service legally, and never lend your account or engage in illegal activities. Account security is your responsibility - report any issues promptly. All content on the platform is protected by intellectual property laws, and you warrant that your uploads comply with regulations. We may remove improper content. We protect your personal data in compliance with laws while retaining necessary records for service provision. We reserve the right to update terms with notice. Violations may result in warnings or account suspension. This Agreement follows Chinese law, with disputes resolved through consultation or jurisdiction in 【location】. Using our service constitutes acceptance of these terms"
+    },
+    {
+      "name": "Content_of_code_agreement",
+      "value": "This Open Source License Agreement (hereinafter referred to as \"this Agreement\") governs your use, modification and distribution of this open-source software (hereinafter referred to as \"the Software\").You are granted a license to freely use, copy, modify and distribute the Software under the terms of this Agreement. If you modify and distribute the Software, you must clearly indicate the modifications made and the modification dates in the modified files.\n\nWhen distributing the Software or its modified versions, in any form (such as source code or executable files), you must provide a copy of this Agreement, and retain the original copyright notice, license notice and related statements in the distributed Software.The use of this Software for any illegal purpose is prohibited, and the copyright information, license notice and related statements in the Software must not be deleted or tampered with.The interpretation, application and dispute resolution of this Agreement shall be governed by the laws of [specific jurisdiction]. If you breach the terms of this Agreement, this Agreement will terminate, and you must immediately stop using, modifying and distributing the Software. Continued use will be deemed as acceptance of this Agreement."
+    }
+  ]
+}

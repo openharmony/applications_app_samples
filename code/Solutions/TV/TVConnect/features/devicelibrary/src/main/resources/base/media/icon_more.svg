@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>gengduo</title>
+    <g id="gengduo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="画板-291" fill="#5B6987" fill-rule="nonzero" x="0" y="0" width="200" height="200" rx="16"></rect>
+        <g id="gengduomore12" opacity="0.796625773" transform="translate(60.272727, 89.818182)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M70,-1.59872116e-14 C75.52,-1.59872116e-14 80,4.47999998 80,10 C80,15.52 75.52,20 70,20 C64.475,20 60,15.525 60,10 C60,4.47500002 64.475,-1.59872116e-14 70,-1.59872116e-14 Z M10,20 C4.47500002,20 0,15.525 0,10 C0,4.47500002 4.47500002,-1.59872116e-14 10,-1.59872116e-14 C15.52,-1.59872116e-14 20,4.47999998 20,10 C20,15.52 15.52,20 10,20 Z M30,10 C30,4.47500002 34.475,-1.59872116e-14 40,-1.59872116e-14 C45.52,-1.59872116e-14 50,4.47999998 50,10 C50,15.52 45.52,20 40,20 C34.475,20 30,15.525 30,10 Z" id="形状"></path>
+        </g>
+    </g>
+</svg>

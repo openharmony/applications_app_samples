@@ -1,0 +1,136 @@
+{
+  "float": [
+    {
+      "name": "font_14",
+      "value": "14vp"
+    },
+    {
+      "name": "font_16",
+      "value": "16vp"
+    },
+    {
+      "name": "font_18",
+      "value": "18vp"
+    },
+    {
+      "name": "font_20",
+      "value": "20vp"
+    },
+    {
+      "name": "font_22",
+      "value": "22vp"
+    },
+    {
+      "name": "font_24",
+      "value": "24vp"
+    },
+    {
+      "name": "5_vp",
+      "value": "5vp"
+    },
+    {
+      "name": "6_vp",
+      "value": "6vp"
+    },
+    {
+      "name": "8_vp",
+      "value": "8vp"
+    },
+    {
+      "name": "10_vp",
+      "value": "10vp"
+    },
+    {
+      "name": "11_vp",
+      "value": "11vp"
+    },
+    {
+      "name": "12_vp",
+      "value": "12vp"
+    },
+    {
+      "name": "16_vp",
+      "value": "16vp"
+    },
+    {
+      "name": "19_vp",
+      "value": "19vp"
+    },
+    {
+      "name": "20_vp",
+      "value": "20vp"
+    },
+    {
+      "name": "21_vp",
+      "value": "21vp"
+    },
+    {
+      "name": "22_vp",
+      "value": "22vp"
+    },
+    {
+      "name": "24_vp",
+      "value": "24vp"
+    },
+    {
+      "name": "26_vp",
+      "value": "26vp"
+    },
+    {
+      "name": "28_vp",
+      "value": "28vp"
+    },
+    {
+      "name": "30_vp",
+      "value": "30vp"
+    },
+    {
+      "name": "32_vp",
+      "value": "32vp"
+    },
+    {
+      "name": "38_vp",
+      "value": "38vp"
+    },
+    {
+      "name": "40_vp",
+      "value": "40vp"
+    },
+    {
+      "name": "42_vp",
+      "value": "42vp"
+    },
+    {
+      "name": "48_vp",
+      "value": "48vp"
+    },
+    {
+      "name": "56_vp",
+      "value": "56vp"
+    },
+    {
+      "name": "default_page_padding",
+      "value": "40vp"
+    },
+    {
+      "name": "70_vp",
+      "value": "70vp"
+    },
+    {
+      "name": "80_vp",
+      "value": "80vp"
+    },
+    {
+      "name": "100_vp",
+      "value": "100vp"
+    },
+    {
+      "name": "120_vp",
+      "value": "120vp"
+    },
+    {
+      "name": "page_toolbar_height",
+      "value": "56vp"
+    }
+  ]
+}
