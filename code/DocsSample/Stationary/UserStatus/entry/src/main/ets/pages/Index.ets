@@ -13,56 +13,19 @@
  * limitations under the License.
  */
 
-// [Start import_the_user_status_module]
-import { userStatus } from '@kit.MultimodalAwarenessKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-// [End import_the_user_status_module]
-
 @Entry
 @Component
 struct Index {
   @State message: string = 'userStatus';
 
   private subscribe() {
-    // [Start user_status_parameter]
-    let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-      console.info('callback succeeded, ageGroup:' + data.ageGroup + ', confidence:' + data.confidence);
-    };
-    // [End user_status_parameter]
-
-    // [Start user_status_subscribe]
-    try {
-      userStatus.on('userAgeGroupDetected', callback);
-      console.info('on succeeded');
-      // [StartExclude user_status_subscribe]
-      this.message = 'userStatus subscribe';
-      // [EndExclude user_status_subscribe]
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error('Failed on and err code is ' + error.code);
-      // [StartExclude user_status_subscribe]
-      this.message = 'userStatus subscribe';
-      // [EndExclude user_status_subscribe]
-    }
-    // [End user_status_subscribe]
+    // The framework is retained for future code integration into the library.
+    this.message = 'userStatus subscribe';
   }
 
   private unsubscribe() {
-    // [Start user_status_unsubscribe]
-    try {
-      userStatus.off('userAgeGroupDetected');
-      console.info('off succeeded');
-      // [StartExclude user_status_unsubscribe]
-      this.message = 'userStatus unsubscribe';
-      // [EndExclude user_status_unsubscribe]
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error('Failed off and err code is ' + error.code);
-      // [StartExclude user_status_unsubscribe]
-      this.message = 'userStatus unsubscribe';
-      // [EndExclude user_status_unsubscribe]
-    }
-    // [End user_status_unsubscribe]
+    // The framework is retained for future code integration into the library.
+    this.message = 'userStatus unsubscribe';
   }
 
   build() {
