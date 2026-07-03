@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-//Sendable class和Sendable function不能使用除了@Sendable的其它装饰器
+// Sendable class和Sendable function不能使用除了@Sendable的其它装饰器
 // [Start counter_example]
-//正例：
+// 正例：
 @Sendable
 class A {
   num: number = 1;
 }
 
-//反例：
+// 反例：
 // @Sendable
 // @Observed
 // class C {

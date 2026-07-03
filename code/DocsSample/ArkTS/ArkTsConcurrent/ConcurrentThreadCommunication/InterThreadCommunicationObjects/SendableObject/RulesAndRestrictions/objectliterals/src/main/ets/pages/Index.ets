@@ -22,7 +22,7 @@ let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); //
 
 // 反例：
 // import { collections } from '@kit.ArkTS';
-//
+
 // let arr2: collections.Array<number> = [1, 2, 3]; // 不是Sendable类型，编译报错
 // let arr3: number[] = [1, 2, 3]; // 不是Sendable类型，正例，不报错
 // let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错

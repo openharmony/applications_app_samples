@@ -31,12 +31,12 @@ let a1: A = new SendableA() as A;
 // class A {
 //   state: number = 0;
 // }
-//
+
 // @Sendable
 // class SendableA {
 //   state: number = 0;
 // }
-//
+
 // let a2: SendableA = new A() as SendableA;
 // [End counter_example]
 
