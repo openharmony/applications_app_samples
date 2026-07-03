@@ -45,9 +45,11 @@ async function createAudioRenderer(): Promise<void> {
     streamInfo: audioStreamInfo,
     rendererInfo: audioRendererInfo
   };
-  audio.createAudioRenderer(audioRendererOptions).then((data) => {
-    audioRenderer = data;
-  }).catch(() => {});
+  try {
+    audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+  } catch (err) {
+    audioRenderer = undefined;
+  }
 }
 
 async function createAudioCapturer(context: common.UIAbilityContext): Promise<void> {
@@ -69,9 +71,11 @@ async function createAudioCapturer(context: common.UIAbilityContext): Promise<vo
     streamInfo: audioStreamInfo,
     capturerInfo: audioCapturerInfo
   };
-  audio.createAudioCapturer(audioCapturerOptions).then((data) => {
-    audioCapturer = data;
-  }).catch(() => {});
+  try {
+    audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
+  } catch (err) {
+    audioCapturer = undefined;
+  }
 }
 
 function getAvailableOutputDevices(): audio.AudioDeviceDescriptors {
@@ -202,7 +206,7 @@ struct EnhancedDeviceRoutingDemo {
             }
             let sheets: Array<SheetInfo> = devices.map((item: audio.AudioDeviceDescriptor) => {
               const sheet: SheetInfo = {
-                title: item.name || item.displayName,
+                title:  '\n' + (item.name || item.displayName) + '\n',
                 action: () => {
                   try {
                     let result = testNapi.SelectOutputDevice(item.id);
@@ -236,7 +240,7 @@ struct EnhancedDeviceRoutingDemo {
             }
             let sheets: Array<SheetInfo> = devices.map((item: audio.AudioDeviceDescriptor) => {
               const sheet: SheetInfo = {
-                title: item.name || item.displayName,
+                title:  '\n' + (item.name || item.displayName) + '\n',
                 action: () => {
                   try {
                     let result = testNapi.SelectInputDevice(item.id);
@@ -280,7 +284,7 @@ struct EnhancedDeviceRoutingDemo {
             }
             let sheets: Array<SheetInfo> = devices.map((item: audio.AudioDeviceDescriptor) => {
               const sheet: SheetInfo = {
-                title: item.name || item.displayName,
+                title:  '\n' + (item.name || item.displayName) + '\n',
                 action: () => {
                   try {
                     let result = testNapi.SelectOutputDeviceForAudioRenderer(item.id);
@@ -319,7 +323,7 @@ struct EnhancedDeviceRoutingDemo {
             }
             let sheets: Array<SheetInfo> = devices.map((item: audio.AudioDeviceDescriptor) => {
               const sheet: SheetInfo = {
-                title: item.name || item.displayName,
+                title:  '\n' + (item.name || item.displayName) + '\n',
                 action: () => {
                   try {
                     let result = testNapi.SelectInputDeviceForAudioCapturer(item.id);

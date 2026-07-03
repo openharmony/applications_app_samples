@@ -28,6 +28,10 @@
 #define SAMPLE_RATE_48K 48000
 #define CHANNEL_COUNT_STEREO 2
 
+// [Start select_OutputDevice]
+// [Start select_InputDevice]
+// [Start select_OutputDeviceForAudioRenderer]
+// [Start select_InputDeviceForAudioCapturer]
 static OH_AudioDeviceEnhanceManager *GetEnhanceManager(std::string &errorMsg)
 {
     OH_AudioDeviceEnhanceManager *manager = nullptr;
@@ -76,7 +80,10 @@ static void ReleaseDeviceSearch(DeviceSearchResult &search)
         OH_AudioRoutingManager_ReleaseDevices(search.routingManager, search.deviceArray);
     }
 }
-
+// [StartExclude select_OutputDevice]
+// [StartExclude select_InputDevice]
+// [StartExclude select_OutputDeviceForAudioRenderer]
+// [StartExclude select_InputDeviceForAudioCapturer]
 static OH_AudioRenderer *CreateAudioRenderer()
 {
     OH_AudioStreamBuilder *builder = nullptr;
@@ -130,7 +137,6 @@ static napi_value ParseInt32Arg(napi_env env, napi_callback_info info, int32_t &
 // [Start isEnhancedRoutingSupported]
 napi_value IsEnhancedRoutingSupported(napi_env env, napi_callback_info info)
 {
-    // [EndExclude isEnhancedRoutingSupported]
     OH_AudioDeviceEnhanceManager *enhanceManager = nullptr;
     OH_AudioCommon_Result result = OH_AudioManager_GetAudioDeviceEnhanceManager(&enhanceManager);
     bool isSupported = false;
@@ -144,17 +150,18 @@ napi_value IsEnhancedRoutingSupported(napi_env env, napi_callback_info info)
         ss << "查询增强路由支持完成\nisEnhancedRoutingSupported: " << (isSupported ? "true" : "false");
     }
     return CreateNapiString(env, ss.str());
+    // [EndExclude isEnhancedRoutingSupported]
 }
 // [End isEnhancedRoutingSupported]
 
-// [Start select_OutputDevice]
+// [EndExclude select_OutputDevice]
 napi_value SelectOutputDevice(napi_env env, napi_callback_info info)
 {
-    // [StartExclude select_OutputDevice]
     int32_t deviceId = 0;
     ParseInt32Arg(env, info, deviceId);
     std::string errorMsg;
     OH_AudioDeviceEnhanceManager *enhanceManager = GetEnhanceManager(errorMsg);
+    // [StartExclude select_OutputDevice]
     if (enhanceManager == nullptr) {
         return CreateNapiString(env, errorMsg);
     }
@@ -164,8 +171,8 @@ napi_value SelectOutputDevice(napi_env env, napi_callback_info info)
     OH_AudioCommon_Result result = OH_AudioDeviceEnhanceManager_SelectOutputDevice(
         enhanceManager, search.targetDescriptor);
     ReleaseDeviceSearch(search);
-
     // [StartExclude select_OutputDevice]
+
     std::stringstream ss;
     if (search.targetDescriptor == nullptr) {
         ss << "未找到匹配的输出设备\n设备ID: " << deviceId;
@@ -175,17 +182,18 @@ napi_value SelectOutputDevice(napi_env env, napi_callback_info info)
         ss << "为应用选择输出设备失败\n错误码: " << result;
     }
     return CreateNapiString(env, ss.str());
+    // [EndExclude select_OutputDevice]
 }
 // [End select_OutputDevice]
 
-// [Start select_InputDevice]
+// [EndExclude select_InputDevice]
 napi_value SelectInputDevice(napi_env env, napi_callback_info info)
 {
-    // [StartExclude select_InputDevice]
     int32_t deviceId = 0;
     ParseInt32Arg(env, info, deviceId);
     std::string errorMsg;
     OH_AudioDeviceEnhanceManager *enhanceManager = GetEnhanceManager(errorMsg);
+    // [StartExclude select_InputDevice]
     if (enhanceManager == nullptr) {
         return CreateNapiString(env, errorMsg);
     }
@@ -195,8 +203,8 @@ napi_value SelectInputDevice(napi_env env, napi_callback_info info)
     OH_AudioCommon_Result result = OH_AudioDeviceEnhanceManager_SelectInputDevice(
         enhanceManager, search.targetDescriptor);
     ReleaseDeviceSearch(search);
-
     // [StartExclude select_InputDevice]
+
     std::stringstream ss;
     if (search.targetDescriptor == nullptr) {
         ss << "未找到匹配的输入设备\n设备ID: " << deviceId;
@@ -206,21 +214,24 @@ napi_value SelectInputDevice(napi_env env, napi_callback_info info)
         ss << "为应用选择输入设备失败\n错误码: " << result;
     }
     return CreateNapiString(env, ss.str());
+    // [EndExclude select_InputDevice]
 }
 // [End select_InputDevice]
 
-// [Start select_OutputDeviceForAudioRenderer]
+// [EndExclude select_OutputDeviceForAudioRenderer]
 napi_value SelectOutputDeviceForAudioRenderer(napi_env env, napi_callback_info info)
 {
-    // [StartExclude select_OutputDeviceForAudioRenderer]
     int32_t deviceId = 0;
     ParseInt32Arg(env, info, deviceId);
     std::string errorMsg;
     OH_AudioDeviceEnhanceManager *enhanceManager = GetEnhanceManager(errorMsg);
+    // [StartExclude select_OutputDeviceForAudioRenderer]
     if (enhanceManager == nullptr) {
         return CreateNapiString(env, errorMsg);
     }
+    // [EndExclude select_OutputDeviceForAudioRenderer]
     OH_AudioRenderer *renderer = CreateAudioRenderer();
+    // [StartExclude select_OutputDeviceForAudioRenderer]
     if (renderer == nullptr) {
         return CreateNapiString(env, "构造AudioRenderer失败");
     }
@@ -230,8 +241,8 @@ napi_value SelectOutputDeviceForAudioRenderer(napi_env env, napi_callback_info i
     OH_AudioCommon_Result result = OH_AudioDeviceEnhanceManager_SelectOutputDeviceForAudioRenderer(
         enhanceManager, renderer, search.targetDescriptor);
     ReleaseDeviceSearch(search);
-
     // [StartExclude select_OutputDeviceForAudioRenderer]
+
     OH_AudioRenderer_Release(renderer);
     std::stringstream ss;
     if (search.targetDescriptor == nullptr) {
@@ -242,21 +253,24 @@ napi_value SelectOutputDeviceForAudioRenderer(napi_env env, napi_callback_info i
         ss << "为Renderer选择输出设备失败\n错误码: " << result;
     }
     return CreateNapiString(env, ss.str());
+    // [EndExclude select_OutputDeviceForAudioRenderer]
 }
 // [End select_OutputDeviceForAudioRenderer]
 
-// [Start select_InputDeviceForAudioCapturer]
+// [EndExclude select_InputDeviceForAudioCapturer]
 napi_value SelectInputDeviceForAudioCapturer(napi_env env, napi_callback_info info)
 {
-    // [StartExclude select_InputDeviceForAudioCapturer]
     int32_t deviceId = 0;
     ParseInt32Arg(env, info, deviceId);
     std::string errorMsg;
     OH_AudioDeviceEnhanceManager *enhanceManager = GetEnhanceManager(errorMsg);
+    // [StartExclude select_InputDeviceForAudioCapturer]
     if (enhanceManager == nullptr) {
         return CreateNapiString(env, errorMsg);
     }
+    // [EndExclude select_InputDeviceForAudioCapturer]
     OH_AudioCapturer *capturer = CreateAudioCapturer();
+    // [StartExclude select_InputDeviceForAudioCapturer]
     if (capturer == nullptr) {
         return CreateNapiString(env, "构造AudioCapturer失败");
     }
@@ -266,8 +280,8 @@ napi_value SelectInputDeviceForAudioCapturer(napi_env env, napi_callback_info in
     OH_AudioCommon_Result result = OH_AudioDeviceEnhanceManager_SelectInputDeviceForAudioCapturer(
         enhanceManager, capturer, search.targetDescriptor);
     ReleaseDeviceSearch(search);
-
     // [StartExclude select_InputDeviceForAudioCapturer]
+
     OH_AudioCapturer_Release(capturer);
     std::stringstream ss;
     if (search.targetDescriptor == nullptr) {
@@ -278,6 +292,7 @@ napi_value SelectInputDeviceForAudioCapturer(napi_env env, napi_callback_info in
         ss << "为Capturer选择输入设备失败\n错误码: " << result;
     }
     return CreateNapiString(env, ss.str());
+    // [EndExclude select_InputDeviceForAudioCapturer]
 }
 // [End select_InputDeviceForAudioCapturer]
 
