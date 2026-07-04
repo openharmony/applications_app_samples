@@ -35,8 +35,7 @@ public:
     {
         return OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER;
     }
-
-    // [Start audioSuite_GetEqualizerGains]
+    
     // 根据预置类型或自定义参数获取均衡器增益值。
     static OH_EqualizerFrequencyBandGains GetEqualizerGains(const EffectParams &params)
     {
@@ -78,15 +77,18 @@ public:
         }
         return gains;
     }
-    // [End audioSuite_GetEqualizerGains]
 
     void CreateAndApply(OH_AudioSuitePipeline *pipeline, OH_AudioNodeBuilder *builder, OH_AudioNode **node,
                         const EffectParams &params) override
     {
+        // [Start audioSuite_SetEqualizerType]
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+        // [StartExclude audioSuite_SetEqualizerType]
         OH_EqualizerFrequencyBandGains gains = GetEqualizerGains(params);
+        // [EndExclude audioSuite_SetEqualizerType]
         OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
+        // [End audioSuite_SetEqualizerType]
     }
 };
 
@@ -100,10 +102,12 @@ public:
     void CreateAndApply(OH_AudioSuitePipeline *pipeline, OH_AudioNodeBuilder *builder, OH_AudioNode **node,
                         const EffectParams &params) override
     {
+        // [Start audioSuite_SetVoiceBeautifierType]
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_VOICE_BEAUTIFIER);
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
         OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
                                                    static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+        // [End audioSuite_SetVoiceBeautifierType]
     }
 };
 

@@ -108,12 +108,12 @@ static BaseEditorNodes CreateBaseEditorNodes(OH_AudioSuitePipeline *audioSuiteEn
     // 重置构造器配置，创建效果节点。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     // 可根据需要设置不同的效果节点类型。
-    // [StartExclude EndExclude]
+    // [StartExclude audioSuite_CreateBaseNode]
     auto strategy = CreateEffectStrategy(effectType);
     if (strategy != nullptr) {
         strategy->CreateAndApply(audioSuiteEngine, nodeBuilder, &nodes.eqNode, params);
     }
-    // [EndExclude EndExclude]
+    // [EndExclude audioSuite_CreateBaseNode]
 
     // 重置构造器配置并设置为输出节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
