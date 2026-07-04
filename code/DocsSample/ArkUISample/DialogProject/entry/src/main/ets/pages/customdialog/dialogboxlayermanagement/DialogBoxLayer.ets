@@ -56,7 +56,7 @@ export struct DialogBoxLayer {
               levelOrder: LevelOrder.clamp(0),
             })
               .catch((err: BusinessError) => {
-                hilog.error(DOMAIN, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + ' ' + err.message);
+                hilog.error(DOMAIN, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + '' + err.message);
               });
             // [End open_custom_dialog]
             this.dialogIndex++;

@@ -15,7 +15,7 @@
 
 // [Start main_page]
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent, TargetInfo, PromptAction, PopupCommonOptions } from '@kit.ArkUI';
+import { ComponentContent, TargetInfo, PromptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export class PromptActionClass {

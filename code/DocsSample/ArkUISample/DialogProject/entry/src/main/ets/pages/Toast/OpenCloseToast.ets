@@ -46,7 +46,7 @@ export struct OpenCloseToastExample {
             } catch (error) {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
-              hilog.error(DOMAIN, TAG, '%{public}s', `OpenToast error code is $\{code}, message is $\{message}`);
+              hilog.error(DOMAIN, TAG, '%{public}s', 'OpenToast error code is $\{code}, message is $\{message}');
             }
           })
         Blank().height(50);
@@ -59,7 +59,7 @@ export struct OpenCloseToastExample {
             } catch (error) {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
-              hilog.error(DOMAIN, TAG, '%{public}s', `CloseToast error code is $\{code}, message is $\{message}`);
+              hilog.error(DOMAIN, TAG, '%{public}s', 'CloseToast error code is $\{code}, message is $\{message}');
             }
           })
       }.height('100%').width('100%').justifyContent(FlexAlign.Center)

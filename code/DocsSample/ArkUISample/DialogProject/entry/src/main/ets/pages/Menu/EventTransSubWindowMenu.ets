@@ -39,6 +39,15 @@ export struct EventTransSubWindowMenuExample {
   }
 
   @Builder
+  bindMenuBuilder() {
+    Menu() {
+      MenuItem({ content: 'bindMenu item' }) {
+
+      }
+    }
+  }
+
+  @Builder
   contextMenuBuilder() {
     Menu() {
       MenuItem({ content: 'contextMenu item' }) {

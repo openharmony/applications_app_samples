@@ -68,7 +68,8 @@ export struct BuilderCustomMenuExample {
           .selected(this.select)
           .onChange((selected) => {
             hilog.info(0xFF00, 'DialogProject', 'menuItem select' + selected);
-            this.iconStr2 = $r('app.media.icon');
+            let str: Tmp = new Tmp();
+            str.set($r('app.media.icon'));
           })
         // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
         // 请将$r('app.media.view_list_filled')替换为实际资源文件

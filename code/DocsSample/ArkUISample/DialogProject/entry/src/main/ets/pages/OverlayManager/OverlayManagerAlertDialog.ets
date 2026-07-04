@@ -53,7 +53,8 @@ function builderOverlay(params: Params) {
 export struct OverlayManagerAlertDialog {
   private uiContext: UIContext = this.getUIContext();
   private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
-  private overlayContent: ComponentContent<Params>[] = [];
+  private overlayContent:ComponentContent<Params>[] = [];
+  controller: TextInputController = new TextInputController();
 
   aboutToAppear(): void {
     let uiContext = this.getUIContext();
