@@ -32,6 +32,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 export struct DialogAnimationNew {
+  @State textValue: string = '';
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),

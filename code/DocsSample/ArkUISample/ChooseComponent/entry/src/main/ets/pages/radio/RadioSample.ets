@@ -29,56 +29,44 @@ export struct RadioExample {
     NavDestination() {
       // [EndExclude click_radio_to_change_function]
       Row() {
-       Column() {
-        Radio({ value: 'Ringing', group: 'radioGroup' }).checked(true)
-          .height(50)
-          .width(50)
-          .onChange(async (isChecked: boolean) => {
-            if (isChecked) {
-              try {
+        Column() {
+          Radio({ value: 'Ringing', group: 'radioGroup' }).checked(true)
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
                 // 切换为响铃模式
-                await this.getUIContext().getPromptAction().openToast(this.rst);
-              } catch (err) {
-                console.error('Failed to show toast: ${err.code}');
+                this.getUIContext().getPromptAction().openToast(this.rst);
               }
-            }
-          })
-        Text('Ringing')
-      }
+            })
+          Text('Ringing')
+        }
 
-      Column() {
-        Radio({ value: 'Vibration', group: 'radioGroup' })
-          .height(50)
-          .width(50)
-          .onChange(async (isChecked: boolean) => {
-            if (isChecked) {
-              try {
+        Column() {
+          Radio({ value: 'Vibration', group: 'radioGroup' })
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
                 // 切换为振动模式
-                await this.getUIContext().getPromptAction().openToast(this.vst);
-              } catch (err) {
-                console.error('Failed to show toast: ${err.code}');
+                this.getUIContext().getPromptAction().openToast(this.vst);
               }
-            }
-          })
-        Text('Vibration')
-      }
+            })
+          Text('Vibration')
+        }
 
-      Column() {
-        Radio({ value: 'Silent', group: 'radioGroup' })
-          .height(50)
-          .width(50)
-          .onChange(async (isChecked: boolean) => {
-            if (isChecked) {
-              try {
+        Column() {
+          Radio({ value: 'Silent', group: 'radioGroup' })
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
                 // 切换为静音模式
-                await this.getUIContext().getPromptAction().openToast(this.sst);
-              } catch (err) {
-                console.error('Failed to show toast: ${err.code}');
+                this.getUIContext().getPromptAction().openToast(this.sst);
               }
-            }
-          })
-        Text('Silent')
-      }
+            })
+          Text('Silent')
+        }
       }.height('100%').width('100%').justifyContent(FlexAlign.Center)
       // [StartExclude click_radio_to_change_function]
     }

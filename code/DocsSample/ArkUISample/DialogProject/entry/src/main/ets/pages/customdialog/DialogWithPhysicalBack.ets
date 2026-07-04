@@ -38,9 +38,6 @@ struct CustomDialogExample {
             if (this.controller !== undefined) {
               this.controller.close();
             }
-            if (this.cancel) {
- 	            this.cancel();
- 	          }
           })
           .backgroundColor(0xffffff)
           .fontColor(Color.Black)
@@ -49,9 +46,6 @@ struct CustomDialogExample {
             if (this.controller !== undefined) {
               this.controller.close();
             }
-            if (this.confirm) {
- 	            this.confirm();
- 	          }
           })
           .backgroundColor(0xffffff)
           .fontColor(Color.Red)

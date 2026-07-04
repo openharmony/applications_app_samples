@@ -47,7 +47,7 @@ export struct showActionSheetExample {
                 confirm: {
                   value: 'Confirm button',
                   action: () => {
-                    console.info('Get ActionSheet handled');
+                    console.info('Get Alert Dialog handled');
                   }
                 },
                 alignment: DialogAlignment.Center,

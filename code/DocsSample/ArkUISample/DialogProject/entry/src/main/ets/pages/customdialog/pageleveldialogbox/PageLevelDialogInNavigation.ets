@@ -39,6 +39,7 @@ function customDialogBuilder(uiContext: UIContext, stack: NavPathStack | undefin
 
 @Component
 export struct PageLevelDialogInNavigation {
+  @State info: string = '';
   private stack: NavPathStack | undefined = undefined;
   private uiContext: UIContext = this.getUIContext();
   @State message: string = 'Hello World';

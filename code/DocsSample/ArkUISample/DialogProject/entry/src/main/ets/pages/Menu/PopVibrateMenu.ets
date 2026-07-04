@@ -96,7 +96,7 @@ export struct PopVibrateMenuExample  {
         // [Start popVibrate_menu]
         Button('click for Menu')
           .id('click for Menu')
-          .bindMenu(this.MyMenu, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
+          .bindMenu(this.MyMenu, { hapticFeedbackMode: HapticFeedbackMode.ENABLED})
           // [End popVibrate_menu]
           .width(160)
           .height(50)

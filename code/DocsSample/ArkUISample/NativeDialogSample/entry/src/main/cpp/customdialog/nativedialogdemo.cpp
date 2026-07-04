@@ -110,7 +110,7 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
-                                          .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
+                                          .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
@@ -121,11 +121,11 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                              .size = sizeof(imageSpanWidthValue) / sizeof(ArkUI_NumberValue)};
+                                              .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
     ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                               .size = sizeof(imageSpanHeightValue) / sizeof(ArkUI_NumberValue)};
+                                               .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
     nodeAPI->addChild(text, span);
     nodeAPI->addChild(text, imageSpan);
@@ -538,7 +538,7 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
-                                          .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
+                                          .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
@@ -549,11 +549,11 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                              .size = sizeof(imageSpanWidthValue) / sizeof(ArkUI_NumberValue)};
+                                              .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
     ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                               .size = sizeof(imageSpanHeightValue) / sizeof(ArkUI_NumberValue)};
+                                               .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
     nodeAPI->addChild(text, span);
     nodeAPI->addChild(text, imageSpan);
