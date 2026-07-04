@@ -82,11 +82,14 @@ public:
                         const EffectParams &params) override
     {
         // [Start audioSuite_SetEqualizerType]
+        // 设置为均衡器节点类型。
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
+        // 创建均衡器节点。
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
         // [StartExclude audioSuite_SetEqualizerType]
         OH_EqualizerFrequencyBandGains gains = GetEqualizerGains(params);
         // [EndExclude audioSuite_SetEqualizerType]
+        // 设置均衡器节点效果。
         OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
         // [End audioSuite_SetEqualizerType]
     }
@@ -103,8 +106,11 @@ public:
                         const EffectParams &params) override
     {
         // [Start audioSuite_SetVoiceBeautifierType]
+        // 设置为声音美化节点类型。
         OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_VOICE_BEAUTIFIER);
+        // 创建声音美化节点。
         OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+        // 设置声音美化节点效果。
         OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
                                                    static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
         // [End audioSuite_SetVoiceBeautifierType]
