@@ -28,10 +28,12 @@
 #include "audio_format_converter.h"
 #include "print_info_to_file.h"
 #include "space_render_rotation.h"
+#include "audio_effect/audio_effect.h"
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
+const int PARAM_NUM = 2;
 const int AUDIO_RENDER_MODE_SPACE = 3;
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
@@ -73,6 +75,8 @@ struct BaseEditorData {
     std::string outputFilePath;
     AudioDataInfo audioInfo;
     napi_ref callback;
+    int effectType;
+    EffectParams params;
 };
 
 // 异步执行函数
@@ -81,7 +85,8 @@ void BaseEditorExecute(napi_env env, void *data)
     BaseEditorData *asyncData = static_cast<BaseEditorData *>(data);
     ReadPcmFile(asyncData->inputFilePath.c_str(), &asyncData->audioInfo);
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", asyncData->audioInfo.bufferSize);
-    BaseEditorEffect(&asyncData->audioInfo, asyncData->outputFilePath.c_str());
+    BaseEditorEffect(&asyncData->audioInfo, asyncData->outputFilePath.c_str(), asyncData->effectType,
+                     asyncData->params);
     FreeAudioDataInfo(&asyncData->audioInfo);
 }
 
@@ -92,7 +97,7 @@ void BaseEditorComplete(napi_env env, napi_status status, void *data)
 
     if (status == napi_ok) {
         std::stringstream ss;
-        ss << "均衡器效果添加成功\n";
+        ss << "音频效果添加成功\n";
         napi_value retVal;
         napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
 
@@ -114,25 +119,53 @@ void BaseEditorComplete(napi_env env, napi_status status, void *data)
 
 napi_value BaseEditor(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
-    napi_value argv[1];
+    size_t argc = 3;
+    napi_value argv[3];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 
-    // 创建异步数据
+    // 创建异步数据。
     BaseEditorData *asyncData = new BaseEditorData();
     asyncData->inputFilePath = g_filePath;
     asyncData->outputFilePath = g_filePathEffect;
 
-    // 保存回调函数
-    napi_create_reference(env, argv[0], 1, &asyncData->callback);
+    // 获取效果类型参数。
+    napi_get_value_int32(env, argv[0], &asyncData->effectType);
+    asyncData->params.effectType = asyncData->effectType;
 
-    // 创建异步工作
+    // 根据效果类型解析参数（NAPI层逻辑）。
+    if (asyncData->effectType == AUDIO_EFFECT_TYPE_EQUALIZER) {
+        napi_value eqPresetValue;
+        napi_get_named_property(env, argv[1], "eqPresetIndex", &eqPresetValue);
+        napi_get_value_int32(env, eqPresetValue, &asyncData->params.eqPresetIndex);
+
+        napi_value eqGainsArray;
+        napi_get_named_property(env, argv[1], "eqGains", &eqGainsArray);
+        for (int i = 0; i < AUDIO_EQ_BAND_NUM; i++) {
+            napi_value gainValue;
+            napi_get_element(env, eqGainsArray, i, &gainValue);
+            napi_get_value_int32(env, gainValue, &asyncData->params.eqGains[i]);
+        }
+        asyncData->params.voiceBeautifierType = 0;
+    } else if (asyncData->effectType == AUDIO_EFFECT_TYPE_VOICE_BEAUTIFIER) {
+        asyncData->params.eqPresetIndex = EQ_PRESET_CUSTOM;
+        napi_value voiceTypeValue;
+        napi_get_named_property(env, argv[1], "voiceBeautifierType", &voiceTypeValue);
+        napi_get_value_int32(env, voiceTypeValue, &asyncData->params.voiceBeautifierType);
+        for (int i = 0; i < AUDIO_EQ_BAND_NUM; i++) {
+            asyncData->params.eqGains[i] = 0;
+        }
+    }
+
+    // 保存回调函数。
+    napi_create_reference(env, argv[PARAM_NUM], 1, &asyncData->callback);
+
+    // 创建异步工作。
     napi_value resource_name;
     napi_create_string_utf8(env, "BaseEditor", NAPI_AUTO_LENGTH, &resource_name);
     napi_create_async_work(env, nullptr, resource_name, BaseEditorExecute, BaseEditorComplete, asyncData,
                            &asyncData->work);
 
-    // 将异步工作加入队列
+    // 将异步工作加入队列。
     napi_queue_async_work(env, asyncData->work);
 
     napi_value undefined;

@@ -17,8 +17,33 @@
 #define MANUAL_RENDERING_H
 
 #include "pcm_file_utils.h"
+#include <cstdint>
 
-void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath);
+const int AUDIO_EQ_BAND_NUM = 10;
+
+enum AudioEffectType { AUDIO_EFFECT_TYPE_EQUALIZER = 0, AUDIO_EFFECT_TYPE_VOICE_BEAUTIFIER = 1 };
+
+enum EqualizerPresetType {
+    EQ_PRESET_CUSTOM = -1,
+    EQ_PRESET_DEFAULT = 0,
+    EQ_PRESET_BALLADS = 1,
+    EQ_PRESET_CHINESE_STYLE = 2,
+    EQ_PRESET_CLASSICAL = 3,
+    EQ_PRESET_DANCE_MUSIC = 4,
+    EQ_PRESET_JAZZ = 5,
+    EQ_PRESET_POP = 6,
+    EQ_PRESET_RB = 7,
+    EQ_PRESET_ROCK = 8
+};
+
+struct EffectParams {
+    int effectType;
+    int eqPresetIndex;
+    int32_t eqGains[AUDIO_EQ_BAND_NUM];
+    int voiceBeautifierType;
+};
+
+void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath, int effectType, const EffectParams &params);
 void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath, const char *accompanimentFilePath);
 void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInfoForMix, const char *mixFilePath);
 
