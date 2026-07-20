@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArkTSGC"
+    },
+    {
+      "name": "index_title",
+      "value": "ArkTS GC垃圾回收"
+    },
+    {
+      "name": "hint_gc_page",
+      "value": "ArkTools.hintGC() 使用示例"
+    }
+  ]
+}
