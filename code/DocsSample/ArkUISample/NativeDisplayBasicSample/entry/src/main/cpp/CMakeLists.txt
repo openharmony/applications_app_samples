@@ -15,5 +15,5 @@ add_library(nativedisplay SHARED napi_init.cpp)
 target_link_libraries(nativedisplay PUBLIC libace_napi.z.so)
 # [Start add_display_target_link]
 target_link_libraries(nativedisplay PUBLIC libhilog_ndk.z.so)
-target_link_libraries(nativedisplay PUBLIC libnative_display_manager.so )
+target_link_libraries(nativedisplay PUBLIC libnative_display_manager.so)
 # [End add_display_target_link]
