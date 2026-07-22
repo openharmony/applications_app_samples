@@ -93,28 +93,30 @@ static void TestCallback(long long timestamp, long long targetTimestamp, void *d
 
     std::string id(idStr);
     auto render = SampleXComponent::GetInstance(id);
-    OHNativeWindow *nativeWindow = render->GetNativeWindow();
-    uint64_t width;
-    uint64_t height;
+    if (render != nullptr) {
+        OHNativeWindow *nativeWindow = render->GetNativeWindow();
+        uint64_t width;
+        uint64_t height;
 
-    int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
-    if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-        render->Prepare();
-        render->Create();
-        if (id == "xcomponentId_30") {
-            int offset = 16;
-            render->ConstructPath(offset, offset, render->defaultOffsetY);
+        int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
+        if (xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            render->Prepare();
+            render->Create();
+            if (id == "xcomponentId_30") {
+                int offset = 16;
+                render->ConstructPath(offset, offset, render->defaultOffsetY);
+            }
+            if (id == "xcomponentId_120") {
+                int offset = 4;
+                render->ConstructPath(offset, offset, render->defaultOffsetY);
+            }
+            // [StartExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
+            render->SetPenAndBrush();
+            render->DrawPath();
+            render->DisPlay();
+            render->Destroy();
+            // [EndExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
         }
-        if (id == "xcomponentId_120") {
-            int offset = 4;
-            render->ConstructPath(offset, offset, render->defaultOffsetY);
-        }
-        // [StartExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
-        render->SetPenAndBrush();
-        render->DrawPath();
-        render->DisPlay();
-        render->Destroy();
-        // [EndExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
     }
 }
 // [End display_soloist_frame_rate_setting_and_subscription_function_registration]
@@ -294,7 +296,7 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
     }
     SAMPLE_LOGI("RegisterID = %{public}s", idStr);
     std::string id(idStr);
-    SampleXComponent *render = SampleXComponent().GetInstance(id);
+    SampleXComponent *render = SampleXComponent::GetInstance(id);
     if (render != nullptr) {
         DisplaySoloist_ExpectedRateRange range;
         bool useExclusiveThread = false;
@@ -345,7 +347,7 @@ napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info inf
     }
     SAMPLE_LOGI("ID = %{public}s", idStr);
     std::string id(idStr);
-    SampleXComponent *render = SampleXComponent().GetInstance(id);
+    SampleXComponent *render = SampleXComponent::GetInstance(id);
     if (render != nullptr) {
         // [EndExclude display_soloist_napi_register_and_unregister]
         OH_DisplaySoloist_Stop(g_displaySync[id]);
@@ -393,7 +395,7 @@ napi_value SampleXComponent::NapiDestroy(napi_env env, napi_callback_info info)
     }
     SAMPLE_LOGI("ID = %{public}s", idStr);
     std::string id(idStr);
-    SampleXComponent *render = SampleXComponent().GetInstance(id);
+    SampleXComponent *render = SampleXComponent::GetInstance(id);
     if (render != nullptr) {
         // [EndExclude display_soloist_napi_register_and_unregister]
         OH_DisplaySoloist_Destroy(g_displaySync[id]);
