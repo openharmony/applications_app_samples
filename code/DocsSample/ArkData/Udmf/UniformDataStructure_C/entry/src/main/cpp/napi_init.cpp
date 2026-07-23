@@ -88,7 +88,7 @@ int32_t GetFileUriTest()
     if (fileUri == nullptr) {
         return Udmf_ErrCode::UDMF_ERR;
     }
-    // 2. 设置fileUri中的URL和描述信息。
+    // 2. 设置fileUri中的URL和文件类型信息。
     int32_t ret = OH_UdsFileUri_SetFileUri(fileUri, uri);
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
         OH_UdsFileUri_Destroy(fileUri);

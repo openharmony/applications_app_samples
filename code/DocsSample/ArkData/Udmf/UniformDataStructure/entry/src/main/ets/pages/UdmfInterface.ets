@@ -14,7 +14,7 @@
  */
 
 // [Start import_module]
-// 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
+// 1. 导入uniformDataStruct、unifiedDataChannel和uniformTypeDescriptor模块。
 import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_module]
@@ -39,7 +39,7 @@ export function uniformDataStructure() {
   // 访问对象属性。
   hilog.info(0xFF00, '[Sample_Udmf]', `hyperlink.url = ${hyperlink.url}`);
 
-  // 3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
+  // 3. 创建纯文本数据类型记录。
   let plainTextDetails: Record<string, string> = {
     'attr1': 'value1',
     'attr2': 'value2'
@@ -50,14 +50,14 @@ export function uniformDataStructure() {
     abstract: 'this is abstract',
     details: plainTextDetails
   }
-  // 4. 创建一个统一数据对象实例。
+  // 4. 创建统一数据对象及记录。
   let unifiedData = new unifiedDataChannel.UnifiedData();
   let hyperlinkRecord =
     new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
   let plainTextRecord =
     new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 
-  // 5. 添加plainText数据记录。
+  // 5. 添加数据记录。
   unifiedData.addRecord(hyperlinkRecord);
   unifiedData.addRecord(plainTextRecord);
 
@@ -74,12 +74,12 @@ export function uniformDataStructure() {
       switch (type) {
         case uniformTypeDescriptor.UniformDataType.HYPERLINK:
           Object.keys(record).forEach(key => {
-            hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+            hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
           });
           break;
         case uniformTypeDescriptor.UniformDataType.PLAIN_TEXT:
           Object.keys(record).forEach(key => {
-            hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+            hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
           });
           break;
         default:
