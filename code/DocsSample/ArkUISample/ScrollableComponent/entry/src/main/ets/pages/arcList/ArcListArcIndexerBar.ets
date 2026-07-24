@@ -44,7 +44,7 @@ function buildText() {
 }
 // [EndExclude arcAlphabetIndexer_start]
 const alphabets: string[] = [
-  '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N',
+  '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
   'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
 
@@ -131,7 +131,9 @@ export struct ArcListArcIndexerBar {
             // [EndExclude arcAlphabetIndexer_start]
             .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
               // 根据列表滚动到的索引值，重新计算对应索引条的位置this.indexerIndex
-              this.indexerIndex = centerIndex + 1;
+              let contact = this.contacts[centerIndex] as Contact;
+              let firstChar = contact.firstChar;
+              this.indexerIndex = alphabets.indexOf(firstChar);
             })
             // [StartExclude arcAlphabetIndexer_start]
             .id('arcIndexTest')
@@ -141,8 +143,19 @@ export struct ArcListArcIndexerBar {
               .selected(this.indexerIndex!!)
               .onSelect((index: number) => {
                 // 选中索引项后，列表跳转到相应位置
-                this.indexerIndex = index
-                this.arcListScroller.scrollToIndex(this.indexerIndex - 1)
+                this.indexerIndex = index;
+                const selectedLetter = alphabets[index];
+                let targetIndex = -1;
+                for (let i = 0; i < this.contacts.length; i++) {
+                  const contact = this.contacts[i] as Contact;
+                  if (contact.firstChar === selectedLetter) {
+                    targetIndex = i;
+                    break;
+                  }
+                }
+                if (targetIndex >= 0) {
+                  this.arcListScroller.scrollToIndex(targetIndex);
+                }
               })
               // [StartExclude arcAlphabetIndexer_start]
               .autoCollapse(true)
