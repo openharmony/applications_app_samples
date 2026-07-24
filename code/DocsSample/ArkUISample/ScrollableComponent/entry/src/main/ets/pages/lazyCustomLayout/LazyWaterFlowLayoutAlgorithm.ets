@@ -329,27 +329,39 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
     // 保存锚点信息
     this.saveAnchorInfo(helper);
 
+    // 保存切列前的活跃范围，便于重建列拓扑后回收旧节点
+    let startIndex = this.startIndex;
+    let endIndex = this.endIndex;
+
     // 列数切换时清空数据
     if (this.prevColumns !== this.columns) {
       this.itemArr = [];
       this.itemArrStartIndex = 0;
+      this.startIndex = -1;
+      this.endIndex = -1;
+      this.totalHeight = 0;
+      this.totalMeasuredHeight = 0;
       this.columnHeights = new Array<number>(this.columns).fill(0);
+      this.columnTops = new Array<number>(this.columns).fill(0);
       this.prevColumns = this.columns;
     }
 
     // 处理行间距变化（在测量之前）
     this.flushRowGapChange();
 
-    let startIndex = this.startIndex;
-    let endIndex = this.endIndex;
-
     this.measureInViewRange(self, constraint, helper);
+
+    // 先计算锚点修正，再按修正后的视口更新可见范围。
+    // 否则变更列数或行间距时，会把修正后仍可见的节点提前标记为 inactive。
+    const anchorAdjustedOffset = this.adjustAnchorPosition(helper);
+    if (anchorAdjustedOffset !== 0) {
+      // 锚点修正会改变父容器最终使用的 viewport。同一帧再填充一次修正后的视口，
+      // 避免等到下一次滚动才创建新进入可见区的节点。
+      this.measureInViewRange(self, constraint, helper, -anchorAdjustedOffset);
+    }
 
     // 回收不再可见的元素
     this.recycleChildren(helper, startIndex, endIndex);
-
-    // 调整锚点位置保持滚动稳定
-    this.adjustAnchorPosition(helper);
 
     self.setMeasuredSize({ width: constraint.maxSize.width, height: this.totalHeight + verticalPadding });
   }
@@ -409,15 +421,16 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   /**
    * adjustAnchorPosition - 调整锚点位置保持滚动稳定
    */
-  private adjustAnchorPosition(helper: LazyLayoutHelper): void {
+  private adjustAnchorPosition(helper: LazyLayoutHelper): number {
+    let adjustedOffset = 0;
     if (this.anchorChildIndex >= 0) {
       if (helper.getLazyLayoutDirection() === LazyLayoutDirection.FORWARD) {
         const arrayIndex = this.anchorChildIndex - this.itemArrStartIndex;
         if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
           let newPos = this.itemArr[arrayIndex].start;
           if (newPos !== this.anchorChildRelativePos) {
-
-            helper.setAdjustedOffset(this.anchorChildRelativePos - newPos);
+            adjustedOffset = this.anchorChildRelativePos - newPos;
+            helper.setAdjustedOffset(adjustedOffset);
           }
         }
       } else {
@@ -425,12 +438,13 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
         if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
           let newPos = this.totalHeight - this.itemArr[arrayIndex].end;
           if (newPos !== this.anchorChildRelativePos) {
-
-            helper.setAdjustedOffset(newPos - this.anchorChildRelativePos);
+            adjustedOffset = newPos - this.anchorChildRelativePos;
+            helper.setAdjustedOffset(adjustedOffset);
           }
         }
       }
     }
+    return adjustedOffset;
   }
 
   private clearMeasureState(): void {
@@ -534,10 +548,11 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
   private measureInViewRange(
     self: FrameNode,
     constraint: LayoutConstraint,
-    helper: LazyLayoutHelper
+    helper: LazyLayoutHelper,
+    viewportOffset: number = 0
   ): void {
-    const viewStart = helper.getViewStart();
-    const viewEnd = helper.getViewEnd();
+    const viewStart = helper.getViewStart() + viewportOffset;
+    const viewEnd = helper.getViewEnd() + viewportOffset;
 
     let firstIndex = 0;
     let lastIndex = this.childCnt - 1;
@@ -581,7 +596,7 @@ export class LazyWaterFlowLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
 
       helper.setAdjustedOffset(this.totalHeight - prevHeight)
     }
-    this.calculateVisibleRange(helper, adjustedOffset);
+    this.calculateVisibleRange(helper, viewportOffset + adjustedOffset);
   }
 
   /**
