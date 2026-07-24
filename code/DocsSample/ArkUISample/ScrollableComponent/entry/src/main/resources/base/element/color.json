@@ -3,6 +3,14 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "navigation_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "navigation_card_background",
+      "value": "#FFFFFF"
     }
   ]
 }

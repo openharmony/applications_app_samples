@@ -132,9 +132,9 @@ struct ArcListExample {
       .contentStartOffset(56)
       .padding({ left: 16, right: 16 })
     }
-    .backgroundColor('#f1f3f5')
+    .backgroundColor($r('app.color.navigation_background'))
     .title('ArcList', {
-      backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+      backgroundColor: $r('app.color.navigation_background'),
       barStyle: BarStyle.STACK
     })
   }

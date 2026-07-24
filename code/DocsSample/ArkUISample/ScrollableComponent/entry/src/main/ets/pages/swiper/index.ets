@@ -140,9 +140,9 @@ struct SwiperExample {
       .padding({ left: 16, right: 16 })
       .id('list_')
     }
-    .backgroundColor('#f1f3f5')
+    .backgroundColor($r('app.color.navigation_background'))
     .title('Swiper', {
-      backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+      backgroundColor: $r('app.color.navigation_background'),
       barStyle: BarStyle.STACK
     })
   }
