@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "本模块提供了使用AVSession接口开发媒体控制方应用的示例。"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "本Ability提供了使用AVSession接口开发媒体控制方应用的示例。"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "not_in_play",
+      "value": "未在播放"
+    }
+  ]
+}
