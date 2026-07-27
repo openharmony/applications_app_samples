@@ -142,9 +142,12 @@ struct Index {
       .height('100%')
       .width('100%')
     }
-    .backgroundColor('#f1f3f5')
+    .backgroundColor($r('app.color.navigation_background'))
+    .navBarWidth('40%')
+    .navBarWidthRange([320, 400])
+    .minContentWidth(360)
     .title({ builder: this.Title, height: 56 }, {
-      backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+      backgroundColor: $r('app.color.navigation_background'),
       barStyle: BarStyle.STACK
     })
     .navDestination(destination)
