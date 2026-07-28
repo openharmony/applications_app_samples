@@ -75,17 +75,26 @@ export struct CustomLazyColumnLayoutSample {
   @State @Watch('onRowGapChange') rowGap: number = 5;
   // [End lazy_custom_layout_dynamic_param]
   private arr: MyDataSource<string> = new MyDataSource<string>();
-  private lazyAlgorithm: LazyColumnLayoutAlgorithm = new LazyColumnLayoutAlgorithm(this.getUIContext());
+  private lazyAlgorithm: LazyColumnLayoutAlgorithm = new LazyColumnLayoutAlgorithm();
 
   // [Start lazy_custom_layout_unit_convert]
   onRowGapChange(): void {
-    this.lazyAlgorithm.setRowGap(this.getUIContext().vp2px(this.rowGap));
+    const uiContext = this.getUIContext();
+    if (!uiContext) {
+      return;
+    }
+    this.lazyAlgorithm.setRowGap(uiContext.vp2px(this.rowGap));
   }
   // [End lazy_custom_layout_unit_convert]
   // [EndExclude lazy_custom_layout_create]
 
   aboutToAppear(): void {
-    this.lazyAlgorithm.setRowGap(this.getUIContext().vp2px(this.rowGap));
+    const uiContext = this.getUIContext();
+    if (!uiContext) {
+      return;
+    }
+    this.lazyAlgorithm.setUIContext(uiContext);
+    this.lazyAlgorithm.setRowGap(uiContext.vp2px(this.rowGap));
     for (let i = 0; i < 50; i++) {
       this.arr.pushData(`Item ${i}`);
     }
