@@ -99,6 +99,17 @@ export class LazyColumnLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
     this.uiContext = context;
   }
 
+  // [Start lazy_custom_layout_algorithm_update_padding_convert]
+  private updatePadding(self: FrameNode, constraint: LayoutConstraint): void {
+    const padding = self.getUserConfigPadding();
+    const containerWidth = constraint.percentReference.width;
+
+    this.leftPadding = this.convertToPx(padding?.left, containerWidth);
+    this.rightPadding = this.convertToPx(padding?.right, containerWidth);
+    this.topPadding = this.convertToPx(padding?.top, containerWidth);
+    this.bottomPadding = this.convertToPx(padding?.bottom, containerWidth);
+  }
+
   private convertToPx(lengthMetrics: LengthMetrics | undefined, referenceSize?: number): number {
     if (!lengthMetrics) {
       return 0;
@@ -122,16 +133,7 @@ export class LazyColumnLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
         return value;
     }
   }
-
-  private updatePadding(self: FrameNode, constraint: LayoutConstraint): void {
-    const padding = self.getUserConfigPadding();
-    const containerWidth = constraint.percentReference.width;
-
-    this.leftPadding = this.convertToPx(padding?.left, containerWidth);
-    this.rightPadding = this.convertToPx(padding?.right, containerWidth);
-    this.topPadding = this.convertToPx(padding?.top, containerWidth);
-    this.bottomPadding = this.convertToPx(padding?.bottom, containerWidth);
-  }
+  // [End lazy_custom_layout_algorithm_update_padding_convert]
 
   flushLayoutParamChange(): void {
     // 处理间距变化：调整所有元素位置
