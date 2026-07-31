@@ -312,7 +312,7 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     ret = OH_Values_PutInt(values, 1); // The value of id is 1
     ret = OH_Values_PutInt(values, 2); // The value of data2 is 2
     ret = OH_Values_PutReal(values, 1.1); // The value of data3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of data3 is 1
+    ret = OH_Values_PutText(values, "1"); // The value of data4 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
     
