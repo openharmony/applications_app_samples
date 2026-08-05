@@ -61,7 +61,7 @@ export default class EntryAbility extends UIAbility {
         deviceModel: "M70",
       };
       hiRetrieval.participate(cfg);
-      // 执行应用报告灰度采集任务
+      // 执行应用灰度采集任务
       hiRetrieval.run();
     } catch (err) {
       hilog.error(DOMAIN, 'testTag', 'hiretrieval error: %{public}s', JSON.stringify(err));
