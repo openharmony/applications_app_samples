@@ -115,7 +115,7 @@ export class MyNodeControllerIndirectDisplay extends NodeController {
   private rootNode: FrameNode | null = null;
   private myRenderNode = new MyRenderNodeIndirectDisplay();
 
-  // 4. 在MyNodeController的aboutToAppear中创建PixeMap
+  // 4. 在MyNodeController的aboutToAppear中创建PixelMap
   aboutToAppear(): void {
     let task = new taskpool.Task(createPixelMapAsync);
     taskpool.execute(task).then((pixel:Object)=>{
