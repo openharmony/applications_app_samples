@@ -13,13 +13,13 @@
 * limitations under the License.
 */
 
+// [Start register_init_scheme]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import testNapi from 'libentry.so';
 import { webview } from '@kit.ArkWeb';
 
-// [Start register_init_scheme]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册三方协议的配置。

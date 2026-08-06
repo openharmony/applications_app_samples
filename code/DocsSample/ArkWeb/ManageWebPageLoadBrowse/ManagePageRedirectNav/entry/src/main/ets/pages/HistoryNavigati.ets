@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
+// [Start button_click_trigger_back]
 import { webview } from '@kit.ArkWeb';
 
-// [Start button_click_trigger_back]
 @Entry
 @Component
 struct WebComponent {
