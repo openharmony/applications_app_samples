@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { window } from '@kit.ArkUI';
 // [Start set_web_darkmode_auto]
+import { window } from '@kit.ArkUI';
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want, Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
