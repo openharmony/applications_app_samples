@@ -93,7 +93,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   private async setWifi(isDisallow: boolean) {
     // [EndExclude set_disallowed_policy_wifi]
     try {
-      restrictions.setDisallowedPolicy(this.wantTemp, 'wifi', isDisallow);
+      restrictions.setDisallowedPolicy(this.wantTemp, restrictions.FeatureForDevice.WIFI, isDisallow);
       console.info(isDisallow ? 'disable wifi success.' : 'enable wifi success.');
       // [StartExclude set_disallowed_policy_wifi]
       this.sendResult(CommonEventValue.STATUS_RESULT, isDisallow ?
@@ -114,7 +114,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
   private async getWifiStatus() {
     try {
-      let ret = restrictions.getDisallowedPolicy(this.wantTemp, 'wifi');
+      let ret = restrictions.getDisallowedPolicy(this.wantTemp, restrictions.FeatureForDevice.WIFI);
       this.sendResult(CommonEventValue.STATUS_WIFI, ret ?
         this.getStringByResource($r('app.string.disabled').id) :
         this.getStringByResource($r('app.string.enabled').id));
