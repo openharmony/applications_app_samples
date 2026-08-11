@@ -430,8 +430,6 @@ struct Index {
         try {
           Logger.info('userAuthInstance callback.');
           this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
-          // 认证完成后取消订阅
-          userAuthInstance.off('authTip');
         } catch (error) {
           const err: BusinessError = error as BusinessError;
           Logger.error(`onAuthTip failed, code: ${err?.code}, Message: ${err?.message}`);
