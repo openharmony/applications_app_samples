@@ -31,10 +31,6 @@ struct Index {
   @State statusText: string = 'Move the sliders to change the current window background color.';
   @State applyModeText: string = 'Current mode: string (#AARRGGBB)';
 
-  aboutToAppear(): void {
-    this.applyWindowBackgroundColor();
-  }
-
   // 将0~255的通道值转换成两位十六进制字符串，用于拼接 #AARRGGBB。
   private toHex(value: number): string {
     return Math.round(value).toString(16).padStart(2, '0').toUpperCase();
@@ -44,7 +40,7 @@ struct Index {
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
- // [StartExclude backgroundColor_start]
+  // [StartExclude backgroundColor_start]
   // 滑块变化时默认使用string形式更新窗口背景色。
   private applyWindowBackgroundColor(): void {
     if (!this.mainWindow) {
@@ -100,7 +96,7 @@ struct Index {
       hilog.error(DOMAIN, 'backgroundColor', this.statusText);
     }
   }
- // [EndExclude backgroundColor_start]
+  // [EndExclude backgroundColor_start]
   // 直接用ColorMetrics.rgba(...)设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
@@ -122,7 +118,7 @@ struct Index {
     }
   }
 
- // [StartExclude backgroundColor_start]
+  // [StartExclude backgroundColor_start]
   @Builder
   @Builder
   private buildColorSlider(title: string, value: number, onChange: (value: number) => void) {
@@ -269,6 +265,6 @@ struct Index {
     .height('100%')
     .padding(12)
   }
-   // [EndExclude backgroundColor_start]
+  // [EndExclude backgroundColor_start]
 }
 // [End backgroundColor_start]
