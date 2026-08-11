@@ -53,7 +53,7 @@ class SppClientManager {
     }
     this.connectPromise = new Promise((resolve) => {
       let option: socket.SppOptions = {
-        uuid: '00009999-0000-1000-8000-00805F9B34FB',
+        uuid: '00009999-0000-1000-8000-00805F9B34FB', // 需要连接的服务端UUID服务，确保服务端支持
         secure: false,
         type: socket.SppType.SPP_RFCOMM
       };
