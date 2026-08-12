@@ -20,9 +20,15 @@
       {
         "name": "default",
         "signingConfig": "default",
+<<<<<<< HEAD
         "compileSdkVersion": "26.0.0",
         "targetSdkVersion": "26.0.0",
         "compatibleSdkVersion": "26.0.0",
+=======
+        "compileSdkVersion": 23,
+        "targetSdkVersion": 23,
+        "compatibleSdkVersion": 23,
+>>>>>>> parent of 0b6bf8ac42 (3.0.2)
         "runtimeOS": "OpenHarmony"
       }
     ],
