@@ -430,11 +430,9 @@ struct Index {
         try {
           Logger.info('userAuthInstance callback.');
           this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
-          // 认证完成后取消订阅
-          userAuthInstance.off('result');
         } catch (error) {
           const err: BusinessError = error as BusinessError;
-          Logger.error(`onResult failed, code: ${err?.code}, Message: ${err?.message}`);
+          Logger.error(`onAuthTip failed, code: ${err?.code}, Message: ${err?.message}`);
         }
       });
       // 开始认证
@@ -566,7 +564,7 @@ struct Index {
     try {
       Logger.info(`get auth lock state start`);
       const authLockState : userAuth.AuthLockState = await userAuth.getAuthLockState(userAuth.UserAuthType.PIN);
-      if (authLockState.lockoutDuration === userAuth.PERMANENT_LOCKOUT_DURATION) {
+      if (authLockState.isLocked && authLockState.lockoutDuration === userAuth.PERMANENT_LOCKOUT_DURATION) {
         Logger.info('the authentication of given authType is permanent locked.');
       }
       const authLockStateContent : string = JSON.stringify(authLockState);
