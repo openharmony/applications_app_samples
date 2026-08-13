@@ -40,8 +40,8 @@ struct Index {
       Button($r('app.string.pem_to_rsa'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doTestPemDataCovertAsymKey();
-          this.message = 'doTestPemDataCovertAsymKey Success Result:' + ret.toString();
+          let ret: number = testNapi.doTestPemDataConvertAsymKey();
+          this.message = 'doTestPemDataConvertAsymKey Success Result:' + ret.toString();
         })
       Button($r('app.string.promise'))
         .width('70%')

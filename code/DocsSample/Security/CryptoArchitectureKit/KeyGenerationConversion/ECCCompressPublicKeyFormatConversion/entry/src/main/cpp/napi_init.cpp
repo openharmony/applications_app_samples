@@ -16,10 +16,10 @@
 #include "napi/native_api.h"
 #include "types/project/file.h"
 
-static napi_value NAPI_Global_doTestEccDataCovert(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doTestEccDataConvert(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doTestEccDataCovert(), &ret);
+    napi_create_int32(env, doTestEccDataConvert(), &ret);
     return ret;
 }
 
@@ -41,7 +41,7 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"doTestEccDataCovert", nullptr, NAPI_Global_doTestEccDataCovert, nullptr, nullptr, nullptr,
+        {"doTestEccDataConvert", nullptr, NAPI_Global_doTestEccDataConvert, nullptr, nullptr, nullptr,
             napi_default, nullptr},
         {"doTestEccPointUncompressedToCompressed", nullptr, NAPI_Global_doTestEccPointUncompressedToCompressed,
             nullptr, nullptr, nullptr, napi_default, nullptr},

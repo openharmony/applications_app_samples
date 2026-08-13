@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export const doTestPemDataCovertAsymKey: () => number;
+export const doTestPemDataConvertAsymKey: () => number;

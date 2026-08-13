@@ -51,7 +51,7 @@ export default function eccCompressPublicKeyFormatConversionTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('doTestEccDataCovert Success'));
+      await driver.assertComponentExist(ON.text('doTestEccDataConvert Success'));
       console.info('uitest: testEccCompressPublicKeyFormatConversion001 end');
     })
     it('testEccCompressPublicKeyFormatConversion002', 0, async () => {

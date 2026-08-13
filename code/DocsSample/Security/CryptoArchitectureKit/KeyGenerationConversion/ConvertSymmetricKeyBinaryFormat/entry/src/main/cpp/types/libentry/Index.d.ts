@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-export const doTestDataCovertSymKey: () => number;
+export const doTestDataConvertSymKey: () => number;
 
 export const testConvertHmacKey: () => number;

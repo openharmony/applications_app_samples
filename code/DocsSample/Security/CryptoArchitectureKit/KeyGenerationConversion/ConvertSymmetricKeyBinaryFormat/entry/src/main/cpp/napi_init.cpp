@@ -16,10 +16,10 @@
 #include "napi/native_api.h"
 #include "types/project/file.h"
 
-static napi_value NAPI_Global_doTestDataCovertSymKey(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doTestDataConvertSymKey(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doTestDataCovertSymKey(), &ret);
+    napi_create_int32(env, doTestDataConvertSymKey(), &ret);
     return ret;
 }
 
@@ -33,10 +33,12 @@ static napi_value NAPI_Global_testConvertHmacKey(napi_env env, napi_callback_inf
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"doTestDataCovertSymKey", nullptr, NAPI_Global_doTestDataCovertSymKey, nullptr,
-                                        nullptr, nullptr, napi_default, nullptr},
-                                       {"testConvertHmacKey", nullptr, NAPI_Global_testConvertHmacKey, nullptr, nullptr,
-                                        nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {
+        {"doTestDataConvertSymKey", nullptr, NAPI_Global_doTestDataConvertSymKey, nullptr,
+            nullptr, nullptr, napi_default, nullptr},
+        {"testConvertHmacKey", nullptr, NAPI_Global_testConvertHmacKey, nullptr, nullptr,
+            nullptr, napi_default, nullptr}
+    };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

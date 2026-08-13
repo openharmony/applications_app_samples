@@ -16,24 +16,24 @@
 #include "napi/native_api.h"
 #include "types/project/file.h"
 
-static napi_value NAPI_Global_doTestDataCovertAsymKey(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doTestDataConvertAsymKey(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doTestDataCovertAsymKey(), &ret);
+    napi_create_int32(env, doTestDataConvertAsymKey(), &ret);
     return ret;
 }
 
-static napi_value NAPI_Global_doAsymEccCovert(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doAsymEccConvert(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doAsymEccCovert(), &ret);
+    napi_create_int32(env, doAsymEccConvert(), &ret);
     return ret;
 }
 
-static napi_value NAPI_Global_doAsymSm2Covert(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doAsymSm2Convert(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doAsymSm2Covert(), &ret);
+    napi_create_int32(env, doAsymSm2Convert(), &ret);
     return ret;
 }
 
@@ -41,10 +41,10 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"doTestDataCovertAsymKey", nullptr, NAPI_Global_doTestDataCovertAsymKey, nullptr, nullptr, nullptr,
+        {"doTestDataConvertAsymKey", nullptr, NAPI_Global_doTestDataConvertAsymKey, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"doAsymEccCovert", nullptr, NAPI_Global_doAsymEccCovert, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"doAsymSm2Covert", nullptr, NAPI_Global_doAsymSm2Covert, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"doAsymEccConvert", nullptr, NAPI_Global_doAsymEccConvert, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"doAsymSm2Convert", nullptr, NAPI_Global_doAsymSm2Convert, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

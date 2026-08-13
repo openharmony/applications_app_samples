@@ -18,7 +18,7 @@
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
 
-OH_Crypto_ErrCode doAsymSm2Covert()
+OH_Crypto_ErrCode doAsymSm2Convert()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_CryptoKeyPair *dupKeyPair = nullptr;

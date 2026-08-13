@@ -51,7 +51,7 @@ export default function convertSpecifiedPEMAsymmetricKeyPairTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('doTestPemDataCovertAsymKey Success Result:0'));
+      await driver.assertComponentExist(ON.text('doTestPemDataConvertAsymKey Success Result:0'));
       console.info('uitest: testConvertSpecifiedPEMAsymmetricKeyPair001 end');
     })
 

@@ -17,7 +17,7 @@
 
 #include "CryptoArchitectureKit/crypto_common.h"
 
-OH_Crypto_ErrCode doTestDataCovertSymKey();
+OH_Crypto_ErrCode doTestDataConvertSymKey();
 OH_Crypto_ErrCode testConvertHmacKey();
 
 #endif // FILE_H

@@ -16,16 +16,16 @@
 #include "napi/native_api.h"
 #include "types/project/file.h"
 
-static napi_value NAPI_Global_doTestPemDataCovertAsymKey(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_doTestPemDataConvertAsymKey(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doTestPemDataCovertAsymKey(), &ret);
+    napi_create_int32(env, doTestPemDataConvertAsymKey(), &ret);
     return ret;
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"doTestPemDataCovertAsymKey", nullptr, NAPI_Global_doTestPemDataCovertAsymKey,
+    napi_property_descriptor desc[] = {{"doTestPemDataConvertAsymKey", nullptr, NAPI_Global_doTestPemDataConvertAsymKey,
                                         nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
