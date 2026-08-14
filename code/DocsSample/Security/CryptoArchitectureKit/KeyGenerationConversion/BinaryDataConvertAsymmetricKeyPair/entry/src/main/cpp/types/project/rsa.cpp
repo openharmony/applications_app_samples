@@ -18,7 +18,7 @@
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
 
-OH_Crypto_ErrCode doTestDataCovertAsymKey()
+OH_Crypto_ErrCode doTestDataConvertAsymKey()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_Crypto_ErrCode ret;

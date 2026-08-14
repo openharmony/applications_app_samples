@@ -28,7 +28,7 @@ struct Index {
       Button($r('app.string.3des'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doTestDataCovertSymKey();
+          let ret: number = testNapi.doTestDataConvertSymKey();
           this.message = '3DES Success Result:' + ret.toString();
         })
       Button($r('app.string.hmac'))

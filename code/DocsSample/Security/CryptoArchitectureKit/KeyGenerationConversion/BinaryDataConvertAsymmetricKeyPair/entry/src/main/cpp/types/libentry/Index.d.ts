@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-export const doTestDataCovertAsymKey: () => number;
+export const doTestDataConvertAsymKey: () => number;
 
-export const doAsymEccCovert: () => number;
+export const doAsymEccConvert: () => number;
 
-export const doAsymSm2Covert: () => number;
+export const doAsymSm2Convert: () => number;

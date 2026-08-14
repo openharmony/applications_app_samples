@@ -17,7 +17,7 @@
 
 #include "CryptoArchitectureKit/crypto_common.h"
 
-OH_Crypto_ErrCode doTestEccDataCovert();
+OH_Crypto_ErrCode doTestEccDataConvert();
 OH_Crypto_ErrCode doTestEccPointUncompressedToCompressed();
 OH_Crypto_ErrCode doTestEccPointCompressedToPoint();
 

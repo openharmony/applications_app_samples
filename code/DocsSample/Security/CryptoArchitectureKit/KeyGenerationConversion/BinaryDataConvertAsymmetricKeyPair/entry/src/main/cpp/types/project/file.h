@@ -17,8 +17,8 @@
 
 #include "CryptoArchitectureKit/crypto_common.h"
 
-OH_Crypto_ErrCode doTestDataCovertAsymKey();
-OH_Crypto_ErrCode doAsymEccCovert();
-OH_Crypto_ErrCode doAsymSm2Covert();
+OH_Crypto_ErrCode doTestDataConvertAsymKey();
+OH_Crypto_ErrCode doAsymEccConvert();
+OH_Crypto_ErrCode doAsymSm2Convert();
 
 #endif // FILE_H

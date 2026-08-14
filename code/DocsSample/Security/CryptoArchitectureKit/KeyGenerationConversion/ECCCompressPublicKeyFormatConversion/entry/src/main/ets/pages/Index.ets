@@ -39,11 +39,11 @@ struct Index {
       Button($r('app.string.specifyUncompressedPublicKeyCpp'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doTestEccDataCovert();
+          let ret: number = testNapi.doTestEccDataConvert();
           if (ret == 0) {
-            this.message = 'doTestEccDataCovert Success';
+            this.message = 'doTestEccDataConvert Success';
           } else {
-            this.message = 'doTestEccDataCovert Fail';
+            this.message = 'doTestEccDataConvert Fail';
           }
         })
       Button($r('app.string.compressedPointDataCpp'))

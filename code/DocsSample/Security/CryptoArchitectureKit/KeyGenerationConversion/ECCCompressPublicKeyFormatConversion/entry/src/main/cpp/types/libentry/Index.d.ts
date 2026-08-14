@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-export const doTestEccDataCovert: () => number;
+export const doTestEccDataConvert: () => number;
 export const doTestEccPointUncompressedToCompressed: () => number;
 export const doTestEccPointCompressedToPoint: () => number;

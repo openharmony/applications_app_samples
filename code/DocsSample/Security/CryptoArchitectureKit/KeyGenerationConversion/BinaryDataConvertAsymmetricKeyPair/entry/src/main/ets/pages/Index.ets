@@ -28,19 +28,19 @@ struct Index {
       Button($r('app.string.call_rsa'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doTestDataCovertAsymKey();
+          let ret: number = testNapi.doTestDataConvertAsymKey();
           this.message = 'Call RSA Success Result:' + ret.toString();
         })
       Button($r('app.string.call_ecc'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doAsymEccCovert();
+          let ret: number = testNapi.doAsymEccConvert();
           this.message = 'Call ECC Success Result:' + ret.toString();
         })
       Button($r('app.string.call_sm2'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doAsymSm2Covert();
+          let ret: number = testNapi.doAsymSm2Convert();
           this.message = 'Call SM2 Success Result:' + ret.toString();
         })
     }

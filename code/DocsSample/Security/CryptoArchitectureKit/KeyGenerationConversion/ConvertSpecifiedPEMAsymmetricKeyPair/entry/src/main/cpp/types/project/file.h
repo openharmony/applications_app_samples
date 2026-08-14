@@ -17,6 +17,6 @@
 
 #include "CryptoArchitectureKit/crypto_common.h"
 
-OH_Crypto_ErrCode doTestPemDataCovertAsymKey();
+OH_Crypto_ErrCode doTestPemDataConvertAsymKey();
 
 #endif // FILE_H
